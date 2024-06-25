@@ -2,13 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaPaw } from 'react-icons/fa';
-import FavoriteRefuge from './FavoriteRefuge';
+import FavoriteRefuge from './FavoriteAgencia';
 import Swal from 'sweetalert2';
-import { IDonation } from '@/types';
-import { IRefugios } from '@/interface/IAgencias';
+import { IAgencias } from '@/interface/IAgencias';
 import Image from 'next/image';
 
-export const RefugioDetail: React.FC<IRefugios> = ({ id, name, description, imgUrl, location, zona, shelter_name, phone }) => {
+interface IDonation {
+  agencia: string;
+}
+
+export const AgenciaDetail: React.FC<IAgencias> = ({ id, name, description, imgUrl, location, zona, agencia_name, phone }) => {
   const [donations, setDonations] = useState<IDonation[]>([]);
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const router = useRouter();
@@ -51,9 +54,9 @@ export const RefugioDetail: React.FC<IRefugios> = ({ id, name, description, imgU
     }
 
     const newDonation: IDonation = {
-      shelter: {
+      agencia: {
         id: id ?? '',
-        name: shelter_name ?? 'Nombre del refugio desconocido'
+        name: agencia_name ?? 'Nombre del refugio desconocido'
       },
       amount: selectedAmount
     };
@@ -71,7 +74,7 @@ export const RefugioDetail: React.FC<IRefugios> = ({ id, name, description, imgU
           "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
-          shelter_id: newDonation.shelter.id,
+          agencia_id: newDonation.agencia.id,
           price: newDonation.amount
         })
       });
@@ -85,7 +88,7 @@ export const RefugioDetail: React.FC<IRefugios> = ({ id, name, description, imgU
 
       Swal.fire(`Tu donación de $${selectedAmount} fue agregada con éxito`);
 
-      router.push('/refugios'); // Descomentado si necesitas redirigir
+      router.push('/agencias'); 
     } catch (error) {
       console.error('Error al agregar donación al carrito:', error);
       let errorMessage = 'Hubo un error al agregar la donación al carrito. Por favor, inténtalo nuevamente.';
@@ -184,4 +187,4 @@ export const RefugioDetail: React.FC<IRefugios> = ({ id, name, description, imgU
   );
 };
 
-export default RefugioDetail;
+export default AgenciaDetail;

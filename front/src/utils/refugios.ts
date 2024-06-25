@@ -1,6 +1,6 @@
-import { IRefugios } from "@/interface/IAgencias";
+import { IAgencias } from "@/interface/IAgencias";
 
-export async function getShelterDB() { 
+export async function getAgenciaDB() { 
     try {
         const res= await fetch ("https://huellasdesperanza.onrender.com/shelters", {
             method: "GET",
@@ -8,27 +8,27 @@ export async function getShelterDB() {
                 "Cache-Control": "no-cache" 
             }
         })
-        const refugio: IRefugios[] = await res.json()
-        return refugio
+        const agencia: IAgencias[] = await res.json()
+        return agencia
     } catch (error:any) {
         throw new Error(error)
     }
 }
 
-export async function getRefugio() {
+export async function getAgencia() {
     try {
-        const refugioDB = await getShelterDB()
-        return refugioDB
+        const agenciaDB = await getAgenciaDB()
+        return agenciaDB
     } catch (error : any) {
         throw new Error (error)
     }
 }
 
-export async function getRefugioById(id:string) {
+export async function getAgenciaById(id:string) {
     try {
-        const refugios = await getRefugio()
-        const refugio = refugios.find((refugio) => refugio.id!.toString() === id)
-            return refugio
+        const agencias = await getAgencia()
+        const agencia = agencias.find((agencia) => agencia.id!.toString() === id)
+            return agencia
     } catch (error: any) {
         
     }

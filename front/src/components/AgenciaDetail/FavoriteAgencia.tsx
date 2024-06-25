@@ -7,7 +7,7 @@ interface FavoriteStarProps {
   id: string  ;
 }
 
-const FavoriteRefuge: React.FC<FavoriteStarProps> = ({ isFavorite, onToggleFavorite, isLoggedIn, id }) => {
+const FavoriteAgencia: React.FC<FavoriteStarProps> = ({ isFavorite, onToggleFavorite, isLoggedIn, id }) => {
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
@@ -32,9 +32,6 @@ const FavoriteRefuge: React.FC<FavoriteStarProps> = ({ isFavorite, onToggleFavor
       console.error('No se encontró el token de acceso en el localStorage.');
       return;
     }
-
-    console.log('ID de mascota:', id);
-
     const method = isFavorite ? 'PUT' : 'POST'; 
     fetch(`https://huellasdesperanza.onrender.com/users/shelter/favorite/${id}`, {
       method: method,
@@ -90,4 +87,4 @@ const FavoriteRefuge: React.FC<FavoriteStarProps> = ({ isFavorite, onToggleFavor
   );
 };
 
-export default FavoriteRefuge;
+export default FavoriteAgencia;

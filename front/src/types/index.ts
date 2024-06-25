@@ -55,14 +55,3 @@ export interface JwtPayload {
     picture?: string;
     role?: string;
   }
-
-  export interface IDonation {
-    shelter: IShelter;
-    amount: number;
-  }
-
-  export interface IShelter {
-    id?: string;
-    name: string;
-  }
-  

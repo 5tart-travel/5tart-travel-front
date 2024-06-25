@@ -2,26 +2,26 @@
 import React, { useState, useRef, useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 
-interface Shelter {
+interface Agencia {
   display_name: string;
   lat: number;
   lon: number;
 }
 
-interface ShelterGeolocationProps {
-  shelterId: string;
+interface AgenciaGeolocationProps {
+  id: string;
 }
 
-const ShelterGeolocation: React.FC<ShelterGeolocationProps> = ({ shelterId }) => {
-  const [shelter, setShelter] = useState<Shelter | null>(null);
+const AgenciaGeolocation: React.FC<AgenciaGeolocationProps> = ({ id }) => {
+  const [agencia, setAgencia] = useState<Agencia | null>(null);
   const [error, setError] = useState<string | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
 
   useEffect(() => {
-    const fetchShelter = async () => {
+    const fetchAgencia = async () => {
       try {
-        const response = await fetch(`https://huellasdesperanza.onrender.com/shelters/${shelterId}`, {
+        const response = await fetch(`https://huellasdesperanza.onrender.com/shelters/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -38,29 +38,29 @@ const ShelterGeolocation: React.FC<ShelterGeolocationProps> = ({ shelterId }) =>
         }
 
         const data = await response.json();
-        setShelter(data.shelter);
+        setAgencia(data.agencia);
         setError(null);
       } catch (error: any) {
         setError(error.message);
-        setShelter(null);
+        setAgencia(null);
       }
     };
 
-    fetchShelter();
-  }, [shelterId]);
+    fetchAgencia();
+  }, [id]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && shelter && mapRef.current) {
+    if (typeof window !== 'undefined' && agencia && mapRef.current) {
       const L = require('leaflet');
       if (!mapInstance.current) {
-        mapInstance.current = L.map(mapRef.current).setView([shelter.lat, shelter.lon], 13);
+        mapInstance.current = L.map(mapRef.current).setView([agencia.lat, agencia.lon], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(mapInstance.current);
-        L.marker([shelter.lat, shelter.lon]).addTo(mapInstance.current)
+        L.marker([agencia.lat, agencia.lon]).addTo(mapInstance.current)
           .bindPopup('Shelter Location').openPopup();
       } else {
-        mapInstance.current.setView([shelter.lat, shelter.lon], 13);
+        mapInstance.current.setView([agencia.lat, agencia.lon], 13);
       }
     }
 
@@ -70,13 +70,13 @@ const ShelterGeolocation: React.FC<ShelterGeolocationProps> = ({ shelterId }) =>
         mapInstance.current = null;
       }
     };
-  }, [shelter]);
+  }, [agencia]);
 
   return (
     <div>
       <div id="response" className='mt-10'>
         {error && <p>Error: {error}</p>}
-        {shelter && (
+        {agencia && (
           <>
 
             {/* <p>{shelter.display_name}</p> */}
@@ -89,5 +89,5 @@ const ShelterGeolocation: React.FC<ShelterGeolocationProps> = ({ shelterId }) =>
   );
 };
 
-export default ShelterGeolocation;
+export default AgenciaGeolocation;
 
