@@ -2,32 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
   }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px; /* Redondea la pista del scrollbar */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px; /* Redondea el thumb del scrollbar */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-corner {
+    background: #f1f1f1;
+    border-radius: 10px; /* Redondea las esquinas del scrollbar */
+  }
+
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f128; /* Color del thumb y del scrollbar */
+  }
+}
+
+
+html, body {
+  background-color: #F3F4F6;
+  height: 100%;
+  margin: 0;
+}
+
+
+/* animation skeleton */
+@keyframes pulse {
+  100% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  0% {
+    background-color: #e0e0e0;
+  }
+}
+
+.skeleton {
+  animation: pulse 1.3s infinite linear;
 }
