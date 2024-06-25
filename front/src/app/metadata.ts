@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 const metadata: Metadata = {
-  title: "Huellas de Esperanza",
-  description: "Huellas de Esperanza",
+  title: "5tart -Travel",
+  description: "5tart -Travel",
 };
 
 export default metadata;
