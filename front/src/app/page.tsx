@@ -1,12 +1,12 @@
 'use client'
-import Landing from "@/components/LandinPage/Landing";
 
 
-export default function LandingPage() {
+
+export default function Home() {
   return (
     <>
 
-   <Landing />
+    Holala!!
 
     </>
   );
