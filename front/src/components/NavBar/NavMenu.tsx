@@ -62,7 +62,7 @@ const NavMenu: React.FC = () => {
               query: { name: "test" },
             }}
           >
-            Home
+            Inicio
           </Link>
 )}
         </li>
@@ -71,11 +71,11 @@ const NavMenu: React.FC = () => {
             <Link
               className="hover:text-gray-300"
               href={{
-                pathname: "/adopta",
+                pathname: "/travel",
                 query: { name: "test" },
               }}
             >
-              Adoptar
+              Viajes
             </Link>
           </li>
         )}
@@ -86,11 +86,11 @@ const NavMenu: React.FC = () => {
           <Link
             className="hover:text-gray-300 hover:transform hover:scale-105 transition-transform duration-200"
             href={{
-              pathname: "/refugios",
+              pathname: "/agencias",
               query: { name: "test" },
             }}
           >
-            Refugios
+            Agencias
           </Link>
 )}
         </li>
