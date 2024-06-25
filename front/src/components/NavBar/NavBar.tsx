@@ -50,10 +50,10 @@ const Navbar: React.FC = () => {
   return (
     <header className="bg-gradient-to-bl from-purple-600 via-blue-500 to-blue-600   
      h-36 flex items-center justify-between px-4 border-4 rounded-xl  ">
-      <Logo />
+      {/* <Logo /> */}
       
       <NavMenu />
-      <Search />
+      {/* <Search /> */}
       <div className="flex items-center">
         {isLoggedIn ? (
           <div className="flex items-center justify-center cursor-pointer">
