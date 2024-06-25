@@ -7,7 +7,7 @@ export interface IAgencias {
     imgUrl: string;
     description: string;
     location: string;
-    shelter_name?:string;
+    agencia_name?:string;
     email?: string;
     phone?: number;
     pets?: string;

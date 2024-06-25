@@ -5,8 +5,8 @@ import { IAgencias } from '@/interface/IAgencias';
 import { getAgenciaById } from '@/utils/refugios';
 import { useState, useEffect } from 'react';
 
-const DetailTravel = ({ params }: { params: { id: string } }) => {
-    const [refugio, setRefugio] = useState<IAgencias | null>(null);
+const DetailAgencia = ({ params }: { params: { id: string } }) => {
+    const [agencia, setAgencia] = useState<IAgencias | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -14,7 +14,7 @@ const DetailTravel = ({ params }: { params: { id: string } }) => {
             try {
                 const data = await getAgenciaById(params.id);
                 if (data) {
-                    setRefugio(data);
+                    setAgencia(data);
                 } else {
                     setError('Agencia no encontrado');
                 }
@@ -43,4 +43,4 @@ const DetailTravel = ({ params }: { params: { id: string } }) => {
     );
 };
 
-export default DetailTravel;
+export default DetailAgencia;

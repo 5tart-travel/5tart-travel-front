@@ -9,7 +9,7 @@ import { Suspense, useEffect, useState } from "react";
 
 
 const Agencia = () => {
-  const [Agencias, setAgencias] = useState<IAgencias[]>([]);
+  const [agencias, setAgencias] = useState<IAgencias[]>([]);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [addTravelModalVisible, setAddTravelModalVisible] = useState(false);
   const [filtroUbicacion, setFiltroUbicacion] = useState('');
@@ -57,28 +57,28 @@ const Agencia = () => {
   };
 
   const filtrarAgencias = () => {
-    return Agencias.filter(agencia => {
+    return agencias.filter(agencia => {
       const ubicacionCoincide = filtroUbicacion ? agencia.location.toLowerCase().includes(filtroUbicacion.toLowerCase()) : true;
       const zonaCoincide = filtroZona ? agencia.zona.toLowerCase().includes(filtroZona.toLowerCase()) : true;
       return ubicacionCoincide && zonaCoincide;
     });
   };
-  const filteredRefugios = filtrarAgencias();
+  const filteredAgencias = filtrarAgencias();
 
 
   return (
     <main className='bg-gray-50 flex flex-col items-center  '>
       <div className="flex justify-center space-x-2  ">
         <button onClick={handleOpenFilterModal} className="mt-3 text-white bg-lime500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-800 font-medium rounded-xl text-sm px-5 py-2.5 text-center me-2 mb-2">
-          Filtrar Refugios
+          Filtrar Agencias
         </button>
         {/* <button onClick={handleOpenAddMascotaModal} className="mt-3 text-white bg-green-700 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
           Añadir Mascota
         </button> */}
       </div>
 
-      <Suspense fallback={<div>Cargando mascotas...</div>}>
-        {filteredRefugios.length > 0 ? (
+      <Suspense fallback={<div>Cargando...</div>}>
+        {filteredAgencias.length > 0 ? (
       <ListaAgencias agencias={filtrarAgencias()} />
     ) : (
           <div>No se encontraron agencias con los filtros seleccionados</div>
