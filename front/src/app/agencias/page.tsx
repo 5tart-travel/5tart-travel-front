@@ -1,3 +1,4 @@
+'use client'
 import withAuth from "@/HOC/withAuth";
 import ModalFormularioTravel from "@/components/Agencias/AñadirAgencia/ModalPostTravel";
 import ModalFilter from "@/components/Agencias/FiltroAgencia/ModalFilterAgencias";

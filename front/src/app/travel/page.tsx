@@ -1,3 +1,4 @@
+'use client'
 import withAuth from '@/HOC/withAuth';
 import ModalFilterTravels from '@/components/Card-Travel/FiltroTravel/ModalFilterMascotas';
 import ListaTravel from '@/components/Card-Travel/ListaTravel';
