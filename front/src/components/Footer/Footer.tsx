@@ -9,7 +9,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ username, className }) => {
     return (
-        <footer className="bg-gray-50 font-sans dark:bg-gray-900 mt-10 border-t-2 border-gray-200 shadow-2xl ">
+        <footer className="bg-blue-950 font-sans dark:bg-gray-900 mt-10 border-t-2 border-gray-200 shadow-2xl ">
     <div className="container px-6 py-12 mx-auto ">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4 ">
             

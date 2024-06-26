@@ -34,7 +34,7 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
         <div className='absolute top-[-60px] right-5 m-5 '>
           <Logo />
         </div>
-        <Image src={currentImage} alt='Promo' width={500} height={500} className='rounded-br-full rounded-tr-full  rounded-tl-xl mr-52' />
+        <Image src={currentImage} alt='Promo' width={500} height={500} className='rounded-br-full rounded-tr-full mr-52' />
       </section>
       {children}
     </main>
