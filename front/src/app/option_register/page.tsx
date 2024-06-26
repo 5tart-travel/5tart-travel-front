@@ -39,7 +39,7 @@ const RegistroPage: React.FC = () => {
           </div>
           <p className="mb-4 text-center text-sm sm:text-lg text-gray-600 flex-grow">¿Eres una agencia de turismo que busca conectar a los viajeros con experiencias inolvidables? Regístrate hoy y únete a nuestra plataforma para expandir tus horizontes y llegar a más aventureros.
           </p>
-          <Link href="/AUTH/shelter_register">
+          <Link href="/AUTH/agency_register">
             <button className="bg-lime500 text-gray-50 px-4 py-2 rounded-lg hover:bg-lime-700 mt-auto w-full sm:w-auto shadow-xl ">Registrarme como agencia</button>
           </Link>
         </div>
