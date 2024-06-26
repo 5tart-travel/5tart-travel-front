@@ -1,24 +1,18 @@
-
-
 import React from 'react';
-import { ITravels } from '@/interface/ITravels';
+import { ITour } from '@/interface/ITour';
 import CardTravels from './CardTravels';
 
 interface ListaTravelProps {
-  travel: ITravels[];
-  updateTravel: (updatedTravel: ITravels) => void;
-  deleteTravel: (travelId: string) => void;
+  tours: ITour[];
 }
 
-const ListaTravel: React.FC<ListaTravelProps> = ({ travel, updateTravel, deleteTravel }) => {
+const ListaTravel: React.FC<ListaTravelProps> = ({ tours }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center">
-      {travel.map((travel) => (
+      {tours.map((tour) => (
         <CardTravels 
-          key={travel.id} 
-          travel={travel} 
-          updateTravel={updateTravel} 
-          deleteTravel={deleteTravel}
+          key={tour.id} 
+          tour={tour} 
         />
       ))}
     </div>
@@ -26,3 +20,5 @@ const ListaTravel: React.FC<ListaTravelProps> = ({ travel, updateTravel, deleteT
 };
 
 export default ListaTravel;
+
+

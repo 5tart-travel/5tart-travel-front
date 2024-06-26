@@ -4,46 +4,36 @@ import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import Swal from 'sweetalert2';
-import ButtonGoogle from '@/components/ui/ButtonGoogle';
-import ButtonFacebook from '@/components/ui/ButtonFacebook';
 import HomeButton from '@/components/ui/HomeButton';
 import Link from 'next/link';
-
 
 const Form_Register: React.FC = () => {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
-    name: '',
-    last_name: '',
-    email: '',
+    username: '',
+    mail: '',
     password: '',
     confirm_password: '',
-    birthdate: '',
-    phone: '',
-    location: ''
+    birthday: ''
   });
 
   const [formValidations, setFormValidations] = useState({
-    nameValid: null,
-    last_nameValid: null,
-    emailValid: null,
-    confirm_passwordValid: null,
+    usernameValid: null,
+    mailValid: null,
     passwordValid: null,
-    birthdateValid: null,
-    phoneValid: null,
-    locationValid: null
+    confirm_passwordValid: null,
+    birthdayValid: null
   });
 
   const [error, setError] = useState<string | null>(null);
 
   const validateFields = {
-    name: (value: string) => /^[a-zA-Z]{1,20}$/.test(value),
-    last_name: (value: string) => /^[a-zA-Z]{1,20}$/.test(value),
-    email: (value: string) => /\S+@\S+\.\S+/.test(value),
-    password: (value: string) => /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/.test(value),
+    username: (value: string) => /^[a-zA-Z\s]{1,50}$/.test(value),
+    mail: (value: string) => /\S+@\S+\.\S+/.test(value),
+    password: (value: string) => /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/.test(value),
     confirm_password: (value: string) => value === formData.password,
-    birthdate: (value: string) => {
+    birthday: (value: string) => {
       const today = new Date();
       const birthDate = new Date(value);
       let age = today.getFullYear() - birthDate.getFullYear();
@@ -52,9 +42,7 @@ const Form_Register: React.FC = () => {
         age--;
       }
       return age >= 18;
-    },
-    phone: (value: string) => /^\d{10}$/.test(value),
-    location: (value: string) => value.trim().length > 2
+    }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -72,8 +60,6 @@ const Form_Register: React.FC = () => {
     event.preventDefault();
 
     setError(null);
-
-    const phoneAsNumber = /^\d{10}$/.test(formData.phone) ? parseInt(formData.phone, 10) : null;
 
     const allValid = Object.values(formValidations).every(Boolean);
     if (!allValid) {
@@ -94,25 +80,25 @@ const Form_Register: React.FC = () => {
       return;
     }
 
-    console.log('Datos a enviar:', { ...formData, phone: phoneAsNumber });
+    console.log('Datos a enviar:', formData);
 
     try {
-      const response = await fetch('https://huellasdesperanza.onrender.com/auth/register/user', {
+      const response = await fetch('https://fivetart-travel.onrender.com/auth/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, phone: phoneAsNumber }),
+        body: JSON.stringify(formData),
       });
 
       console.log('Response status:', response.status);
 
       if (!response.ok) {
         const errorMessage = await response.text();
-        setError('Registro fallido. Por favor, inténtalo de nuevo.');
+        setError(`Registro fallido. Por favor, inténtalo de nuevo. Detalles: ${errorMessage}`);
         Swal.fire({
           title: "¡Error!",
-          text: "Registro fallido. Por favor, inténtalo de nuevo.",
+          text: `Registro fallido. Por favor, inténtalo de nuevo. Detalles: ${errorMessage}`,
           icon: "error",
           confirmButtonText: "Aceptar",
           timer: 2000,
@@ -126,12 +112,15 @@ const Form_Register: React.FC = () => {
         return;
       }
 
-      const data = await response.json();
-      const token = data.access_token;
+      let data;
+      try {
+        data = await response.json();
+      } catch (jsonError) {
+        data = null;
+      }
 
-      console.log('Registro exitoso, token:', token);
+      console.log('Registro exitoso:', data);
 
-      localStorage.setItem('token', token);
       Swal.fire({
         title: "¡Registro exitoso!",
         text: "Te has registrado correctamente.",
@@ -143,15 +132,21 @@ const Form_Register: React.FC = () => {
       });
 
     } catch (error) {
-      setError('Ocurrió un error. Por favor, inténtalo de nuevo.');
+      let errorMessage = 'Ocurrió un error desconocido. Por favor, inténtalo de nuevo.';
+      
+      if (error instanceof Error) {
+        errorMessage = `Ocurrió un error. Por favor, inténtalo de nuevo. Detalles: ${error.message}`;
+      }
+      
+      setError(errorMessage);
       Swal.fire({
         title: "¡Error!",
-        text: "Hubo un error al registrar. Por favor, inténtalo nuevamente.",
+        text: errorMessage,
         icon: "error",
         confirmButtonText: "Aceptar",
         timer: 2000
       });
-
+      console.error('Error al registrar:', error);
     }
   };
 
@@ -160,7 +155,7 @@ const Form_Register: React.FC = () => {
       <div className='mb-5'>
         <h2 className='text-2xl font-semibold'>Regístrate</h2>
         <p className='text-yellow500 text-sm'>
-          Por favor, regístrate para poder iniciar sesión y dejar tu huella de esperanza.
+          Por favor, regístrate para poder iniciar sesión.
         </p>
       </div>
       <form className='w-full' onSubmit={handleRegister}>
@@ -170,10 +165,10 @@ const Form_Register: React.FC = () => {
           </div>
         )}
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-          {['name', 'last_name', 'email', 'password', 'confirm_password', 'birthdate', 'phone', 'location' ].map((field) => (
-            <div key={field} className="relative">
+          {['username', 'mail', 'password', 'confirm_password', 'birthday'].map((field) => (
+            <div key={field} className="relative col-span-2 sm:col-span-1">
               <Input
-                type={field === 'password' || field === 'confirm_password' ? 'password' : field === 'birthdate' ? 'date' : field === 'phone' ? 'number' : 'text'}
+                type={field === 'password' || field === 'confirm_password' ? 'password' : field === 'birthday' ? 'date' : 'text'}
                 name={field}
                 placeholder={field.charAt(0).toUpperCase() + field.slice(1).replace('_', ' ')}
                 value={formData[field as keyof typeof formData]}
@@ -188,14 +183,11 @@ const Form_Register: React.FC = () => {
               />
               {formValidations[`${field}Valid` as keyof typeof formValidations] === false && (
                 <p className="text-red-500 text-xs">
-                  {field === 'name' ? 'El nombre no puede estar vacío, maximo 20 caractere. Solo letras mayusculas y minusculas.' : ''}
-                  {field === 'last_name' ? 'El apellido no puede estar vacío, maximo 20 caracteres. Solo letras mayusculas y minusculas' : ''}
-                  {field === 'email' ? 'Ingrese un correo electrónico válido.' : ''}
-                  {field === 'password' ? 'La contraseña debe tener al menos 6 caracteres entre ellos, al menos una: mayuscula, minuscula, numero, caracter especial.' : ''}
+                  {field === 'username' ? 'El nombre de usuario no puede estar vacío, máximo 50 caracteres. Solo letras y espacios.' : ''}
+                  {field === 'mail' ? 'Ingrese un correo electrónico válido.' : ''}
+                  {field === 'password' ? 'La contraseña debe tener al menos 8 caracteres entre ellos, al menos una: mayúscula, minúscula, número, carácter especial.' : ''}
                   {field === 'confirm_password' ? 'La contraseña no coincide.' : ''}
-                  {field === 'birthdate' ? 'Ingrese una fecha de nacimiento.' : ''}
-                  {field === 'phone' ? 'Ingrese un número de teléfono válido (10 dígitos). Prefijo 11 (OBLIGATORIO)' : ''}
-                  {field === 'location' ? 'Ingrese una ubicación en este formato: Calle N° , Localidad.' : ''}
+                  {field === 'birthday' ? 'Debes ser mayor de 18 años.' : ''}
                 </p>
               )}
             </div>
@@ -213,10 +205,9 @@ const Form_Register: React.FC = () => {
           </button>
         </div>
         <div className='flex justify-center'>
-            <Link href={'/Home'}>
-             <HomeButton />
-            </Link>
-       
+          <Link href={'/'}>
+            <HomeButton />
+          </Link>
         </div>
       </form>
     </div>
@@ -224,3 +215,7 @@ const Form_Register: React.FC = () => {
 };
 
 export default Form_Register;
+
+
+
+

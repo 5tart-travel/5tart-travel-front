@@ -5,7 +5,6 @@ import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import { IErrorProps, ILogingProps } from '@/types';
 import Swal from "sweetalert2";
-import ButtonGoogle from '@/components/ui/ButtonGoogle';
 import ButtonFacebook from '@/components/ui/ButtonFacebook';
 
 const Form_Login: React.FC = () => {
@@ -169,10 +168,9 @@ const Form_Login: React.FC = () => {
           </button>
         </div>
         <Button type='submit' label='Ingresar' />
-        <div className='mt-5 mb-10 flex flex-col items-center justify-center gap-y-2'>
+        {/* <div className='mt-5 mb-10 flex flex-col items-center justify-center gap-y-2'>
           <ButtonGoogle type='button' label='Ingresar con Google' onClick={handleGoogleLogin} className={''} />
-{/*           <ButtonFacebook type='button' label='Ingresar con Facebook' onClick={handleFacebookLogin} className={''} /> */}
-        </div>
+        </div> */}
         <div className='mt-5 mb-10 flex items-center justify-center gap-x-2'>
           <p className='text-yellow500'>¿No tienes una cuenta?</p>
           <button

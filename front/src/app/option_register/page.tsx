@@ -21,7 +21,7 @@ const RegistroPage: React.FC = () => {
           <div className="bg-indigo-100 p-4 rounded-full mb-4">
             <FaUser className="text-indigo500 w-10 h-10" />
           </div>
-          <p className="mb-4 text-center text-sm sm:text-lg text-gray-600 flex-grow">Buscas un compañero fiel? Explora nuestra comunidad de refugios registrados y encuentra a tu nuevo mejor amigo de cuatro patas.</p>
+          <p className="mb-4 text-center text-sm sm:text-lg text-gray-600 flex-grow">Buscas viajar por Argentina? Explora nuestra comunidad y encuentra tu nuevo destino.</p>
           <Link href="/AUTH/register">
             <button className="bg-indigo500 text-gray-50 px-4 py-2 rounded-lg hover:bg-indigo-700 mt-auto w-full sm:w-auto shadow-xl ">Registrarme como usuario</button>
           </Link>
@@ -31,9 +31,9 @@ const RegistroPage: React.FC = () => {
           <div className="bg-lime-100 p-4 rounded-full mb-4">
             <FaHome className="text-lime500 w-10 h-10" />
           </div>
-          <p className="mb-4 text-center text-sm sm:text-lg text-gray-600 flex-grow">¿Eres un refugio que busca hogares amorosos para tus animales rescatados? Regístrate hoy y únete a nuestra misión de darle esperanza a cada huella.</p>
-          <Link href="/AUTH/shelter_register">
-            <button className="bg-lime500 text-gray-50 px-4 py-2 rounded-lg hover:bg-lime-700 mt-auto w-full sm:w-auto shadow-xl ">Registrarme como refugio</button>
+          <p className="mb-4 text-center text-sm sm:text-lg text-gray-600 flex-grow">¿Eres una agencia de turismo? Regístrate para poder vender tus paquetes turísticos.</p>
+          <Link href="/AUTH/agencias_register">
+            <button className="bg-lime500 text-gray-50 px-4 py-2 rounded-lg hover:bg-lime-700 mt-auto w-full sm:w-auto shadow-xl ">Registrarme como agencia</button>
           </Link>
         </div>
       </div>
