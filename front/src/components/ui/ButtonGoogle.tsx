@@ -1,5 +1,5 @@
 import Image from 'next/image'; 
-import GoogleIcon from '../../../public/GoogleIcon.webp'; 
+import GoogleIcon from '../../../public/GOOGLE-ICON.webp'; 
 
 interface ButtonGoogleProps {
   onClick: () => void;
