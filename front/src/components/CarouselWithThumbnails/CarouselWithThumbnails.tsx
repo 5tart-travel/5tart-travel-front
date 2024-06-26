@@ -10,6 +10,8 @@ const CarouselWithThumbnails = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
+    autoplay: true,
+    autoplaySpeed: 5000,
     responsive: [
       {
         breakpoint: 1024,
@@ -43,7 +45,7 @@ const CarouselWithThumbnails = () => {
       </div>
       {/* Cards Carousel */}
       <div className="absolute w-full top-[250px] lg:top-[450px] md:top-[350px] sm:top-[250px] flex justify-center">
-        <div className="w-[90%]">
+        <div className="w-[80%]">
           <Slider {...settings}>
             <div className="px-4">
               <Card
