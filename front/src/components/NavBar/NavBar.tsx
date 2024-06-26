@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
 
   return (
     <header className="bg-gradient-to-bl from-purple-600 via-blue-500 to-blue-600   
-     h-36 flex items-center justify-between px-4 border-4 rounded-xl  ">
+     h-36 flex items-center justify-between  ">
       {/* <Logo /> */}
       
       <NavMenu />
