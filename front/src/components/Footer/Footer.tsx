@@ -21,7 +21,7 @@ const Footer: React.FC<FooterProps> = ({ username, className }) => {
                         Quienes Somos
                     </Link>
                     <Link href= "/" className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-tertiary" >
-                        Refugios
+                        a ver q ponemos 
                     </Link>
                     <Link href= "/adopta" className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-tertiary" >
                         Quiero Adoptar
