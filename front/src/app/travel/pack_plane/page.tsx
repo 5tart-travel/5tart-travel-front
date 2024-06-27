@@ -1,24 +1,24 @@
 'use client'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { IBusTour } from '@/interface/IBusTour';
+import { IPlaneTour } from '@/interface/IPlaneTuor';
 
 
 
-const PackBus: React.FC = () => {
+const PackPlane: React.FC = () => {
   const router = useRouter();
-  const [buses, setBuses] = useState<IBusTour[]>([]);
+  const [buses, setBuses] = useState<IPlaneTour[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchBuses = async () => {
       try {
-        const response = await fetch('https://fivetart-travel.onrender.com/tours/bus');
+        const response = await fetch('https://fivetart-travel.onrender.com/tours/plane');
         if (!response.ok) {
           throw new Error('Failed to fetch bus tours');
         }
-        const data: IBusTour[] = await response.json();
+        const data: IPlaneTour[] = await response.json();
         setBuses(data);
       } catch (err) {
         setError('Error fetching data');
@@ -37,7 +37,7 @@ const PackBus: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl text-gray-500 font-bold mb-4 text-center">Pack Bus</h1>
+      <h1 className="text-2xl text-gray-500 font-bold mb-4 text-center">Pack Avión</h1>
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
       <div className="grid grid-cols-6 items-center">
@@ -66,5 +66,5 @@ const PackBus: React.FC = () => {
   );
 };
 
-export default PackBus;
+export default PackPlane;
 
