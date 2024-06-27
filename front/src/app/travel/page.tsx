@@ -17,7 +17,7 @@ const Pk_viajes: React.FC = () => {
         </Link>
       </div>
       <div className="w-full md:w-1/2">
-        <Link href="/travel/pack_flight">
+        <Link href="/travel/pack_plane">
           <Image 
             src="https://res.cloudinary.com/dia2gautk/image/upload/v1719447152/cpkgaywutd8tzxwqwaoa.webp" 
             alt="Paquete de Bus" 
