@@ -16,12 +16,12 @@ const PackBus: React.FC = () => {
       try {
         const response = await fetch('https://fivetart-travel.onrender.com/tours/bus');
         if (!response.ok) {
-          throw new Error('Failed to fetch bus tours');
+          throw new Error('Falló el fetch de bus tours');
         }
         const data: IBusTour[] = await response.json();
         setBuses(data);
       } catch (err) {
-        setError('Error fetching data');
+        setError('Error fetch data');
         console.error(err);
       } finally {
         setLoading(false);
