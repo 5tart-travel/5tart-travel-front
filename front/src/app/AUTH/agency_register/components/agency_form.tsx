@@ -10,55 +10,42 @@ import HomeButton from '@/components/ui/HomeButton';
 import Link from 'next/link';
 
 interface FormData {
-  name: string;
-  email: string;
+  name_agency: string;
+  mail: string;
   password: string;
-  dni: number | '';
-  phone: number | '';
-  shelter_name: string;
+  confirm_password: string;
   address: string;
-  description: string;
 }
 
 interface Validations {
   nameValid: boolean | null;
   emailValid: boolean | null;
   passwordValid: boolean | null;
+  confirmPasswordValid: boolean | null;
   passwordStrength: string;
-  dniValid: boolean | null;
-  phoneValid: boolean | null;
-  shelterNameValid: boolean | null;
   addressValid: boolean | null;
-  descriptionValid: boolean | null;
 }
 
 const AgencyForm: React.FC = () => {
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
+    name_agency: '',
+    mail: '',
     password: '',
-    dni: '',
-    phone: '',
-    shelter_name: '',
+    confirm_password: '',
     address: '',
-    description: ''
   });
 
   const [validations, setValidations] = useState<Validations>({
     nameValid: null,
     emailValid: null,
     passwordValid: null,
+    confirmPasswordValid: null,
     passwordStrength: '',
-    dniValid: null,
-    phoneValid: null,
-    shelterNameValid: null,
     addressValid: null,
-    descriptionValid: null
   });
 
   const [error, setError] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const validateEmail = (email: string) => {
     const re = /\S+@\S+\.\S+/;
@@ -84,20 +71,14 @@ const AgencyForm: React.FC = () => {
       strength,
     };
   };
-  
-
-  const validatePhone = (phone: string) => {
-    const re = /^\d{10}$/;
-    return re.test(phone);
-  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
-    setFormData({ ...formData, [name]: name === 'dni' || name === 'phone' ? Number(value) : value });
+    setFormData({ ...formData, [name]: value });
 
     switch (name) {
-      case 'email':
+      case 'mail':
         setValidations({ ...validations, emailValid: value ? validateEmail(value) : null });
         break;
       case 'password':
@@ -108,34 +89,17 @@ const AgencyForm: React.FC = () => {
           passwordStrength: value ? passwordValidation.strength : ''
         });
         break;
-      case 'phone':
-        setValidations({ ...validations, phoneValid: value ? validatePhone(value) : null });
+      case 'confirm_password':
+        setValidations({ ...validations, confirmPasswordValid: value ? value === formData.password : null });
         break;
-      case 'dni':
-        setValidations({ ...validations, dniValid: value ? !isNaN(Number(value)) && Number(value) > 0 : null });
-        break;
-      case 'name':
+      case 'name_agency':
         setValidations({ ...validations, nameValid: value ? value.length >= 2 : null });
-        break;
-      case 'shelter_name':
-        setValidations({ ...validations, shelterNameValid: value ? value.length >= 2 : null });
         break;
       case 'address':
         setValidations({ ...validations, addressValid: value ? value.length > 0 : null });
         break;
-      case 'description':
-        setValidations({ ...validations, descriptionValid: value ? value.length >= 10 && value.length <= 300 : null });
-        break;
       default:
         break;
-    }
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setSelectedFile(e.target.files[0]);
-    } else {
-      setSelectedFile(null);
     }
   };
 
@@ -147,34 +111,12 @@ const AgencyForm: React.FC = () => {
 
     if (!someInvalid) {
       try {
-
-        if (!selectedFile) {
-          console.error('No file selected');
-          return;
-        }
-
-        const formsData = new FormData();
-        formsData.append('file', selectedFile);
-
-        const responses = await fetch('https://huellasdesperanza.onrender.com/files/uploadFile', {
-          method: 'POST',
-          body: formsData,
-        });
-
-        if (!responses.ok) {
-          throw new Error('Failed to upload file.');
-        }
-
-        const imageUrl = await responses.text();
-
-        const newFormData = {...formData, imgUrl:imageUrl}
-
-        const response = await fetch('https://huellasdesperanza.onrender.com/auth/register/shelter', {
+        const response = await fetch('https://fivetart-travel.onrender.com/auth/register/agency', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(newFormData),
+          body: JSON.stringify(formData),
         });
 
         if (response.ok) {
@@ -193,7 +135,7 @@ const AgencyForm: React.FC = () => {
           setError(`Error en el registro: ${errorData.message || 'Error desconocido'}`);
           Swal.fire({
             title: "¡Algo salió mal!",
-            text: "Tu agencia no pudo ser registrado. Por favor, inténtalo de nuevo.",
+            text: "Tu agencia no pudo ser registrada. Por favor, inténtalo de nuevo.",
             icon: "error",
             confirmButtonText: "Aceptar",
             timer: 3000,
@@ -207,31 +149,28 @@ const AgencyForm: React.FC = () => {
       setError('Por favor, completa todos los campos correctamente.');
     }
   };
-  
 
   return (
     <div className="w-full max-w-md">
       <div className="mb-5">
-        <h2 className="text-2xl font-semibold">Registra tu Refugio</h2>
+        <h2 className="text-2xl font-semibold">Registra tu Agencia</h2>
         <p className="text-gray-500 text-sm">
-          Por favor registre su refugio para poder recibir ayuda y dejar su huella de esperanza.
+          Por favor registre su agencia para poder recibir ayuda.
         </p>
       </div>
       <form className="w-full" onSubmit={handleSubmit}>
         {error && <div className="mb-4 text-red-500">{error}</div>}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { name: 'name', placeholder: 'Nombre', validation: validations.nameValid, errorMessage: 'El nombre debe tener al menos 2 caracteres.' },
-            { name: 'email', placeholder: 'Email', validation: validations.emailValid, errorMessage: 'Ingrese un correo electrónico válido.' },
-            { name: 'password', placeholder: 'Contraseña', validation: validations.passwordValid, errorMessage: 'La contraseña debe contener una mayucula, una minuscula, un numero y un caracter especial.', isPassword: true },
-            { name: 'dni', placeholder: 'DNI', validation: validations.dniValid, errorMessage: 'El DNI no puede estar vacío.' },
-            { name: 'phone', placeholder: 'Teléfono', validation: validations.phoneValid, errorMessage: 'El teléfono debe tener 10 dígitos y el prefijo debe ser 11 .' },
-            { name: 'shelter_name', placeholder: 'Nombre del la agencia', validation: validations.shelterNameValid, errorMessage: 'El nombre del la agencia debe tener al menos 2 caracteres.' },
-            { name: 'address', placeholder: 'Dirección: nombre de la calle y número, localidad', validation: validations.addressValid, errorMessage: 'La dirección no puede estar vacía.', fullWidth: true }
+            { name: 'name_agency', placeholder: 'Nombre de la Agencia', validation: validations.nameValid, errorMessage: 'El nombre debe tener al menos 2 caracteres.' },
+            { name: 'mail', placeholder: 'Email', validation: validations.emailValid, errorMessage: 'Ingrese un correo electrónico válido.' },
+            { name: 'password', placeholder: 'Contraseña', validation: validations.passwordValid, errorMessage: 'La contraseña debe contener una mayúscula, una minúscula, un número y un carácter especial.', isPassword: true },
+            { name: 'confirm_password', placeholder: 'Confirmar Contraseña', validation: validations.confirmPasswordValid, errorMessage: 'Las contraseñas no coinciden.', isPassword: true },
+            { name: 'address', placeholder: 'Dirección', validation: validations.addressValid, errorMessage: 'La dirección no puede estar vacía.', fullWidth: true }
           ].map(({ name, placeholder, validation, errorMessage, isPassword = false, fullWidth = false }) => (
             <div key={name} className={`relative ${fullWidth ? 'col-span-2' : ''}`}>
               <Input
-                type={isPassword ? 'password' : name === 'dni' || name === 'phone' ? 'number' : 'text'}
+                type={isPassword ? 'password' : 'text'}
                 name={name}
                 placeholder={placeholder}
                 value={formData[name as keyof typeof formData]}
@@ -249,38 +188,6 @@ const AgencyForm: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="relative w-full">
-          <TextArea
-            name="description"
-            placeholder="Describe aquí tu agencia..."
-            value={formData.description}
-            onChange={handleChange}
-            className={`border ${
-              validations.descriptionValid === null ? 'border-gray-300' : validations.descriptionValid ? 'border-green-500' : 'border-red-500'
-            } w-full`}
-            rows={4}
-          />
-          {validations.descriptionValid === false && (
-            <p className="text-red-500 text-xs">La descripción debe tener entre 10 y 300 caracteres.</p>
-          )}
-        </div>
-
-        <div className="mb-4">
-  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="imagen">
-    Imagen de la agencia
-  </label>
-  <input
-    id="imagen"
-    type="file"
-    accept="image/*"
-    onChange={handleFileChange}
-    className="shadow appearance-none border border-lime500 rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-lime500 file:text-white hover:file:bg-gray-600"
-  />
-</div>
-
-
-
-
         <Button type="submit" label="Crear cuenta" className="w-full mt-4" />
         <div className="mt-5 mb-10 flex items-center justify-center gap-x-2">
           <p className="text-yellow500">¿Tienes una cuenta?</p>
@@ -296,7 +203,6 @@ const AgencyForm: React.FC = () => {
             <Link href={'/Home'}>
              <HomeButton />
             </Link>
-       
         </div>
       </form>
     </div>
