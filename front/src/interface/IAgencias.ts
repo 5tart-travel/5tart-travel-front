@@ -1,10 +1,19 @@
 
 
 export interface IAgencias {
-        id?: string,
-        agency?: string,
-        location?: string,
-        description?: string,
-        image?: string
+    id?: string;
+    name: string;
+    zona: string;
+    imgUrl: string;
+    description: string;
+    location: string;
+    agencia_name?:string;
+    email?: string;
+    phone?: number;
+    pets?: string;
 }
 
+export interface IParams {
+    id: string;
+
+}

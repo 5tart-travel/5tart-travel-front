@@ -14,7 +14,7 @@ const HomeButton: React.FC<HomeButtonProps> = () => {
       style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
     >
       <MdArrowBackIosNew className="mr-1  " />
-      Inicio
+      Home
     </button>
   );
 };

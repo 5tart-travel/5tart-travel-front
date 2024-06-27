@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 import { ITravels } from '@/interface/ITravels';
-import { TravelDetail } from '@/components/Card-Travel/TravelDetail/TravelDetail';
+import { TravelDetail } from '@/components/TravelDetail/TravelDetail';
 
 const DetailTravel = ({ params }: { params: { id: string } }) => {
     const [travel, setTravel] = useState<ITravels | null>(null);
