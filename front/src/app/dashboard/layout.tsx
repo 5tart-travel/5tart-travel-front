@@ -51,7 +51,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import SideNav from '@/components/Dashboard/sidenav';
-import SkeletonSideNav from '@/components/skeletons/SkeletonSideNav';
+
 import { checkUserRole } from '@/libs/auth';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -69,11 +69,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <div className="flex h-screen">
-      {isLoading ? (
-        <SkeletonSideNav />
-      ) : (
+      
+        
+      
         <SideNav role={role} />
-      )}
+      
       <main className="flex-1 p-4 bg-gray-100 overflow-y-auto">
         {children}
       </main>

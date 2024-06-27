@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Carrusel animado de marcas de agencias */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: calc(200px * 10); /* Ajusta esto según el número de tarjetas */
+  animation: marquee 20s linear infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+}
+
+
+/* -------------------------------------------------- */
+
 
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {

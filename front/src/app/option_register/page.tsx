@@ -45,7 +45,7 @@ const RegistroPage: React.FC = () => {
         </div>
       </div>
       <div className='flex justify-center'>
-            <Link href={'/Home'}>
+            <Link href={'/'}>
              <HomeButton />
             </Link>
        
