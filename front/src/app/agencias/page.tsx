@@ -1,5 +1,4 @@
 'use client'
-import withAuth from "@/HOC/withAuth";
 import ModalFormularioTravel from "@/components/Agencias/AñadirAgencia/ModalPostTravel";
 import ModalFilter from "@/components/Agencias/FiltroAgencia/ModalFilterAgencias";
 import ListaAgencias from "@/components/Agencias/ListaAgencias";
@@ -105,4 +104,4 @@ const Agencia = () => {
   );
 };
 
-export default withAuth(Agencia);
+export default Agencia;

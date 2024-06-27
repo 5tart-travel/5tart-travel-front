@@ -1,13 +1,9 @@
 'use client'
-import withAuth from '@/HOC/withAuth';
-import ModalFilterTravels from '@/components/Card-Travel/FiltroTravel/ModalFilterMascotas';
-import ListaTravel from '@/components/Card-Travel/ListaTravel';
 import { ITravels } from '@/interface/ITravels';
 import useUserRole from '@/utils/userSession';
 import { Suspense, lazy, useEffect, useState } from 'react';
 
 
-const ListaTravels = lazy(() => import('@/components/Card-Travel/ListaTravel'));
 
 const Travel = () => {
   const [travelsState, setTravelsState] = useState<ITravels[]>([]);
@@ -109,7 +105,7 @@ const Travel = () => {
   );
 };
 
-export default withAuth(Travel);
+export default Travel;
 
 
 
