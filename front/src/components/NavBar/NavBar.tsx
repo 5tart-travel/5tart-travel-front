@@ -48,9 +48,12 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="bg-gradient-to-bl from-purple-600 via-blue-500 to-blue-600   
-     h-36 flex items-center justify-between  ">
-      {/* <Logo /> */}
+    <header className="bg-blue-950   
+     h-24 flex items-center justify-between px-4  ">
+      <div className="flex items-center justify-center mb-10 " >
+       <Logo />  
+      </div>
+     
       
       <NavMenu />
       {/* <Search /> */}
@@ -78,7 +81,7 @@ const Navbar: React.FC = () => {
             </div>
             {userRole !== 'Shelter' && (
 
-            <Link href={"/donations"}>
+            <Link href={"/"}>
              <button className="m-4 text-4xl text-white mr-6 mb-12 hover:animate-bounce">
               <BiSolidDonateHeart />
             </button>
@@ -89,7 +92,7 @@ const Navbar: React.FC = () => {
         ) : (
           <button>
             <Link href="/AUTH/login">
-              <div className="text-4xl text-white mr-6">
+              <div className="text-4xl text-white mr-6 hover:text-blue-300 ">
                 <RiLoginCircleLine />
               </div>
             </Link>

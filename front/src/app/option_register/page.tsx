@@ -1,16 +1,21 @@
 
 import HomeButton from '@/components/ui/HomeButton';
+import Logo from '@/components/ui/Logo';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaUser, FaHome } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
+import { MdOutlineTravelExplore } from "react-icons/md";
 
 
 const RegistroPage: React.FC = () => {
   return (
     <div className="mx-auto p-4 bg-gray-100 h-full ">
-      <div className="flex items-center mb-3 w-full h-20 bg-gradient-to-bl from-purple-600 via-indigo-600 to-indigo-500 rounded-lg p-4">
-        <Image src="/LogoHuellas.svg" alt="Logo" className="w-16 h-auto sm:w-24" width={500} height={500} />
-        {/* <h1 className="ml-4 text-white text-lg sm:text-2xl border-b-2">Huellas de Esperanza</h1> */}
+      <div className="flex items-center mb-3 w-full h-24 bg-blue-950 rounded-lg ">
+        <div className='mb-8' >
+           <Logo />
+        </div>
+       
+       
       </div>
       <div className="text-center mb-6">
         <p className="text-xl sm:text-4xl text-gray-600 font-semibold mt-9 ">¿Cómo deseas registrarte?</p>
@@ -21,7 +26,8 @@ const RegistroPage: React.FC = () => {
           <div className="bg-indigo-100 p-4 rounded-full mb-4">
             <FaUser className="text-indigo500 w-10 h-10" />
           </div>
-          <p className="mb-4 text-center text-sm sm:text-lg text-gray-600 flex-grow">Buscas un compañero fiel? Explora nuestra comunidad de refugios registrados y encuentra a tu nuevo mejor amigo de cuatro patas.</p>
+          <p className="mb-4 text-center text-sm sm:text-lg text-gray-600 flex-grow">¿Estás buscando tu próxima aventura? Regístrate en nuestra plataforma y explora una amplia variedad de paquetes de viaje ofrecidos por agencias de turismo registradas. Encuentra la experiencia perfecta para tu próximo viaje.
+          </p>
           <Link href="/AUTH/register">
             <button className="bg-indigo500 text-gray-50 px-4 py-2 rounded-lg hover:bg-indigo-700 mt-auto w-full sm:w-auto shadow-xl ">Registrarme como usuario</button>
           </Link>
@@ -29,16 +35,17 @@ const RegistroPage: React.FC = () => {
 
         <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-2xl w-full sm:w-[450px] h-[300px]">
           <div className="bg-lime-100 p-4 rounded-full mb-4">
-            <FaHome className="text-lime500 w-10 h-10" />
+          <MdOutlineTravelExplore className="text-lime500 w-10 h-10" />
           </div>
-          <p className="mb-4 text-center text-sm sm:text-lg text-gray-600 flex-grow">¿Eres un refugio que busca hogares amorosos para tus animales rescatados? Regístrate hoy y únete a nuestra misión de darle esperanza a cada huella.</p>
-          <Link href="/AUTH/shelter_register">
-            <button className="bg-lime500 text-gray-50 px-4 py-2 rounded-lg hover:bg-lime-700 mt-auto w-full sm:w-auto shadow-xl ">Registrarme como refugio</button>
+          <p className="mb-4 text-center text-sm sm:text-lg text-gray-600 flex-grow">¿Eres una agencia de turismo que busca conectar a los viajeros con experiencias inolvidables? Regístrate hoy y únete a nuestra plataforma para expandir tus horizontes y llegar a más aventureros.
+          </p>
+          <Link href="/AUTH/agency_register">
+            <button className="bg-lime500 text-gray-50 px-4 py-2 rounded-lg hover:bg-lime-700 mt-auto w-full sm:w-auto shadow-xl ">Registrarme como agencia</button>
           </Link>
         </div>
       </div>
       <div className='flex justify-center'>
-            <Link href={'/Home'}>
+            <Link href={'/'}>
              <HomeButton />
             </Link>
        

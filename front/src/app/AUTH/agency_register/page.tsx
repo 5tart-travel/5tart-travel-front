@@ -1,14 +1,14 @@
 
 import Logo from '@/components/ui/Logo';
-import RefugioForm from './components/shelter_form';
+import AgencyForm from './components/agency_form';
 
-const RegisterRefugio = () => {
+const RegisterAgency = () => {
   return (
     <section className='h-full flex flex-col items-center justify-center'>
       <Logo />
-      <RefugioForm />
+      <AgencyForm />
     </section>
   );
 }
 
-export default RegisterRefugio;
+export default RegisterAgency;

@@ -50,15 +50,15 @@ const NavMenu: React.FC = () => {
           {menuOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
         </button>
       </div>
-      <ul className={`flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-10 text-gray-100 text-xl p-4 md:p-0 ${menuOpen ? 'block' : 'hidden md:flex'}`}>
+      <ul className={`flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-10 text-gray-100 text-base p-4 md:p-0 ${menuOpen ? 'block' : 'hidden md:flex'}`}>
         <li>
 
         {userRole !== 'Shelter' && (
 
           <Link
-            className="hover:text--300"
+            className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
             href={{
-              pathname: "/Home",
+              pathname: "/",
               query: { name: "test" },
             }}
           >
@@ -69,7 +69,7 @@ const NavMenu: React.FC = () => {
         {userRole !== 'Shelter' && (
           <li>
             <Link
-              className="hover:text-gray-300"
+              className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
               href={{
                 pathname: "/travel",
                 query: { name: "test" },
@@ -84,7 +84,7 @@ const NavMenu: React.FC = () => {
         {userRole !== 'Shelter' && (
 
           <Link
-            className="hover:text-gray-300 hover:transform hover:scale-105 transition-transform duration-200"
+            className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
             href={{
               pathname: "/agencias",
               query: { name: "test" },
@@ -95,13 +95,18 @@ const NavMenu: React.FC = () => {
 )}
         </li>
         <li>
-          <Link className='hover:text-gray-300' href={{
-            pathname: "/comunidad",
-            query: {name: "test"},
-          }}>
-            Comunidad
-          </Link>
-        </li>
+  <Link
+    className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
+    href={{
+      pathname: "/comunidad",
+      query: { name: "test" },
+    }}
+  >
+    Comunidad
+  </Link>
+</li>
+
+
       </ul>
     </nav>
   );

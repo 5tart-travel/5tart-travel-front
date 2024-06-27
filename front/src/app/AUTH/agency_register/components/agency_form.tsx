@@ -32,7 +32,7 @@ interface Validations {
   descriptionValid: boolean | null;
 }
 
-const ShelterForm: React.FC = () => {
+const AgencyForm: React.FC = () => {
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -193,7 +193,7 @@ const ShelterForm: React.FC = () => {
           setError(`Error en el registro: ${errorData.message || 'Error desconocido'}`);
           Swal.fire({
             title: "¡Algo salió mal!",
-            text: "Tu refugio no pudo ser registrado. Por favor, inténtalo de nuevo.",
+            text: "Tu agencia no pudo ser registrado. Por favor, inténtalo de nuevo.",
             icon: "error",
             confirmButtonText: "Aceptar",
             timer: 3000,
@@ -226,7 +226,7 @@ const ShelterForm: React.FC = () => {
             { name: 'password', placeholder: 'Contraseña', validation: validations.passwordValid, errorMessage: 'La contraseña debe contener una mayucula, una minuscula, un numero y un caracter especial.', isPassword: true },
             { name: 'dni', placeholder: 'DNI', validation: validations.dniValid, errorMessage: 'El DNI no puede estar vacío.' },
             { name: 'phone', placeholder: 'Teléfono', validation: validations.phoneValid, errorMessage: 'El teléfono debe tener 10 dígitos y el prefijo debe ser 11 .' },
-            { name: 'shelter_name', placeholder: 'Nombre del Refugio', validation: validations.shelterNameValid, errorMessage: 'El nombre del refugio debe tener al menos 2 caracteres.' },
+            { name: 'shelter_name', placeholder: 'Nombre del la agencia', validation: validations.shelterNameValid, errorMessage: 'El nombre del la agencia debe tener al menos 2 caracteres.' },
             { name: 'address', placeholder: 'Dirección: nombre de la calle y número, localidad', validation: validations.addressValid, errorMessage: 'La dirección no puede estar vacía.', fullWidth: true }
           ].map(({ name, placeholder, validation, errorMessage, isPassword = false, fullWidth = false }) => (
             <div key={name} className={`relative ${fullWidth ? 'col-span-2' : ''}`}>
@@ -252,7 +252,7 @@ const ShelterForm: React.FC = () => {
         <div className="relative w-full">
           <TextArea
             name="description"
-            placeholder="Describe aquí tu refugio..."
+            placeholder="Describe aquí tu agencia..."
             value={formData.description}
             onChange={handleChange}
             className={`border ${
@@ -266,16 +266,20 @@ const ShelterForm: React.FC = () => {
         </div>
 
         <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="imagen">
-          Imagen del Refugio
-        </label>
-        <input
-          id="imagen"
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-      </div>
+  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="imagen">
+    Imagen de la agencia
+  </label>
+  <input
+    id="imagen"
+    type="file"
+    accept="image/*"
+    onChange={handleFileChange}
+    className="shadow appearance-none border border-lime500 rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-lime500 file:text-white hover:file:bg-gray-600"
+  />
+</div>
+
+
+
 
         <Button type="submit" label="Crear cuenta" className="w-full mt-4" />
         <div className="mt-5 mb-10 flex items-center justify-center gap-x-2">
@@ -299,6 +303,6 @@ const ShelterForm: React.FC = () => {
   );
 };
 
-export default ShelterForm;
+export default AgencyForm;
 
 

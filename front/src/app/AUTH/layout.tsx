@@ -1,27 +1,40 @@
+'use client';
+import Logo from '@/components/ui/Logo';
 import Image from 'next/image';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useState, useEffect } from 'react';
 
 interface AuthLayoutProps {
   children: ReactNode;
 }
 
+const images = [
+    'https://res.cloudinary.com/dia2gautk/image/upload/v1719431097/jirv2wvfrh537g5xjide.webp',
+    'https://res.cloudinary.com/dia2gautk/image/upload/v1719431099/nwyjnt9orild91firajr.webp',
+    // 'https://res.cloudinary.com/dia2gautk/image/upload/v1719436143/bqgzygdkbjb5odbszsaf.webp',
+];
+
 const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
+  const [currentImage, setCurrentImage] = useState(images[0]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage(prevImage => {
+        const currentIndex = images.indexOf(prevImage);
+        const nextIndex = (currentIndex + 1) % images.length;
+        return images[nextIndex];
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main className='min-h-screen grid grid-cols-1 lg:grid-cols-2 p-5'>
-      <section className='hidden h-full lg:flex flex-col items-center justify-center gap-y-5
-      bg-gradient-to-bl from-purple-600 via-indigo-600 to-indigo-500  rounded-2xl'>
-        <div className='relative w-96 h-96'>
-          <Image src='/perritos.webp' alt='Wallpaper' fill />
+      <section className='hidden h-full lg:flex flex-col items-center justify-center gap-y-5 rounded-2xl bg-blue-950 relative'>
+        <div className='absolute top-[-60px] right-5 m-5 '>
+          <Logo />
         </div>
-        <div>
-          <h3 className='text-white text-4xl font-semibold text-center mb-5 font-serif'>
-         Encuentra tu compañero ideal 
-          </h3>
-          <p className='text-gray-200 text-xl text-center font-serif'>
-          Juntos podemos darle a cada mascota un hogar lleno de amor. <br /> ¡Tu participación es clave!
-          </p>
-          <p className='text-gray-300 text-center font-semibold'>Huellas de Esperanza!</p>
-        </div>
+        <Image src={currentImage} alt='Promo' width={500} height={500} className='rounded-br-full rounded-tr-full mr-52' />
       </section>
       {children}
     </main>

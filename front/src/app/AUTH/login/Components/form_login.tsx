@@ -66,7 +66,7 @@ const Form_Login: React.FC = () => {
     }
 
     try {
-      const response = await fetch("https://huellasdesperanza.onrender.com/auth/login", {
+      const response = await fetch("REMPLAZAR POR NEW URL", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -112,7 +112,7 @@ const Form_Login: React.FC = () => {
   };
 
   const handleGoogleLogin = async () => {
-    window.location.href = 'https://huellasdesperanza.onrender.com/google';
+    window.location.href = 'REMPLAZAR POR NEW URL';
   };
 
 /*   const handleFacebookLogin = () => {
