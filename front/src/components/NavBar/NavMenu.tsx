@@ -90,7 +90,7 @@ const NavMenu: React.FC = () => {
               query: { name: "test" },
             }}
           >
-            Quienes Somos
+              Acerca de la Pagina
           </Link>
 )}
         </li>
