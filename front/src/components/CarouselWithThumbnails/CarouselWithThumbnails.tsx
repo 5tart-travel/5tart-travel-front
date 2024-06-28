@@ -53,7 +53,7 @@ const CarouselWithThumbnails: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-[600px] lg:h-[500px] md:h-[400px] sm:h-[300px]">
+    <div className=" mb-16 relative w-full h-[600px] lg:h-[500px] md:h-[400px] sm:h-[300px]">
       {/* Banner Image */}
       <div className="flex w-full h-[300px] lg:h-[500px] md:h-[400px] sm:h-[300px]">
         <Image

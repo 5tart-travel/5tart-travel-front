@@ -6,7 +6,8 @@ const nextConfig = {
         's.gravatar.com', 
         'cdn.auth0.com',
         'via.placeholder.com',
-        'flowbite.com'
+        'flowbite.com',
+        'fivetart-travel.onrender.com'
       ],
     },
     
