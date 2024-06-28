@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Sombra ligera */
+.text-shadow-light {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Sombra semiligera */
+.text-shadow-semilight {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Sombra mediana */
+.text-shadow-medium {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Sombra semioscura */
+.text-shadow-semidark {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Sombra oscura */
+.text-shadow-dark {
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
+}
+
 /* Carrusel animado de marcas de agencias */
 
 @keyframes marquee {
