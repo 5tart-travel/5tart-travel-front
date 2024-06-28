@@ -18,4 +18,7 @@ export interface IPlaneTour {
     date: string;
     transportType: string;
     oferta: boolean;
+    hotel:string;
+    empresa:string;
+    agency:any;
   }
