@@ -90,7 +90,7 @@ const Form_Login: React.FC = () => {
         confirmButtonText: "Aceptar",
         timer: 2000
       }).then(() => {
-        router.push("/dashboard");
+        router.push("/");
       });
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
