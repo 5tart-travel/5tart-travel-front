@@ -86,11 +86,11 @@ const NavMenu: React.FC = () => {
           <Link
             className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
             href={{
-              pathname: "/agencias",
+              pathname: "/nosotros",
               query: { name: "test" },
             }}
           >
-            Agencias
+              Acerca de la Pagina
           </Link>
 )}
         </li>
