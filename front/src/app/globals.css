@@ -10,12 +10,12 @@
 
 /* Sombra semiligera */
 .text-shadow-semilight {
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.397);
 }
 
 /* Sombra mediana */
 .text-shadow-medium {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.49);
 }
 
 /* Sombra semioscura */
