@@ -9,7 +9,7 @@ const Pk_viajes: React.FC = () => {
         <Link href="/travel/pack_bus">
           <Image 
             src="https://res.cloudinary.com/dia2gautk/image/upload/v1719447152/i8t9qrkqawuxnx5k2wsl.webp" 
-            alt="Paquete de Vuelo" 
+            alt="Paquete de Bus" 
             className="w-full h-auto md:h-[800px] object-cover rounded-xl shadow-lg hover:grayscale transition duration-300"
             width={400} 
             height={800}
@@ -17,10 +17,10 @@ const Pk_viajes: React.FC = () => {
         </Link>
       </div>
       <div className="w-full md:w-1/2">
-        <Link href="/travel/pack_plane">
+        <Link href="/travel/pack_flight">
           <Image 
             src="https://res.cloudinary.com/dia2gautk/image/upload/v1719447152/cpkgaywutd8tzxwqwaoa.webp" 
-            alt="Paquete de Bus" 
+            alt="Paquete de Aéreo" 
             className="w-full h-auto md:h-[800px] object-cover rounded-xl shadow-lg hover:grayscale transition duration-300"
             width={400} 
             height={800}
