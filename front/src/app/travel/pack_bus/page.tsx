@@ -33,7 +33,7 @@ const PackBus: React.FC = () => {
   }, []);
 
   const handleCardClick = (id: string) => {
-    router.push(`/travel/${id}`);
+    router.push(`/travel/pack_bus/${id}`);
   };
 
   return (
