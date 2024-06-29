@@ -20,7 +20,7 @@ const TravelBanner: React.FC = () => {
 
         <div className="mt-10 ml-16 ">
             <Link href="/ofertas" >
-          <button className="bg-blue-950 hover:bg-blue-800 text-white font-bold py-4 px-4 rounded-2xl">Explora ahora</button>
+          <button className="bg-blue-950 hover:bg-blue-800 text-white font-bold py-4 px-4 rounded-2xl shadow-lg ">Explora ofertas</button>
             </Link>
         </div>
 

@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
@@ -7,13 +6,13 @@ import { MdOutlineFavorite, MdDashboardCustomize,  } from 'react-icons/md';
 
 
 const userLinks = [
-  { name: 'Home', href: '/Home', icon: FaHome },
+  { name: 'Home', href: '/', icon: FaHome },
   { name: 'Dashboard', href: '/dashboard', icon: MdDashboardCustomize },
   { name: 'Favoritos', href: '/dashboard/favorites', icon: MdOutlineFavorite },
 ];
 
 const adminLinks = [
-  { name: 'Home', href: '/Home', icon: FaHome },
+  { name: 'Home', href: '/', icon: FaHome },
   { name: 'Dashboard', href: '/dashboard', icon: MdDashboardCustomize },
   { name: 'Usuarios', href: '/dashboard/all_users', icon: FaUsers },
   

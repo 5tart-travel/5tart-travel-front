@@ -84,7 +84,7 @@ const SideNav: React.FC<{ role: 'admin' | 'user' | 'agency' }> = ({ role }) => {
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         
         <NavLinks role={role} /> 
-        <div className="hidden h-auto w-full grow rounded-md bg-gray-200 md:block"></div>
+       
         <form className="w-full">
           <button
             type="button"

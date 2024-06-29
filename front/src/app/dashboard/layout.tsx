@@ -55,26 +55,26 @@ import SideNav from '@/components/Dashboard/sidenav';
 import { checkUserRole } from '@/libs/auth';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [role, setRole] = useState<'admin' | 'user' | 'shelter'>('user');
+  const [role, setRole] = useState<'admin' | 'user' | 'agency'>('user');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchRole = async () => {
       const role = await checkUserRole();
-      setRole(role);
+      // setRole(role);
       setIsLoading(false);
     };
     fetchRole();
   }, []);
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen  ">
       
         
       
         <SideNav role={role} />
       
-      <main className="flex-1 p-4 bg-gray-100 overflow-y-auto">
+      <main className="flex-1 p-4 mt-2 overflow-y-auto">
         {children}
       </main>
     </div>
