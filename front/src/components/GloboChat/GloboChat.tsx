@@ -61,6 +61,10 @@ const GloboChat: React.FC = () => {
             <p className="text-sm">Hola 👋</p>
             <p className="text-sm">¿En qué podemos ayudarte?</p>
           </div>
+          <div className="self-start p-2 bg-gray-300 rounded-tl-3xl rounded-tr-3xl rounded-br-3xl shadow-md w-max max-w-xs">
+            
+            <p className="text-sm">Falta terminar aun ... xD</p>
+          </div>
           {messages.map((msg, index) => (
             <div key={index} className="self-start p-2 bg-gray-200 rounded-3xl shadow-md w-max max-w-xs">
               <p className="text-sm">{msg}</p>
