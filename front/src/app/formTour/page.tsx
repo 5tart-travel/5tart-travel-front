@@ -4,17 +4,17 @@ import React, { useEffect, useState } from 'react';
 interface CreateTourDto {
   title: string;
   price: number | null;
-  description: string;
-  imgUrl?: string;
-  address: string;
+  description: string | null;
+  imgUrl?: string | null;
+  address: string | null;
   fecha_ingreso: Date | null;
   fecha_egreso: Date | null;
-  destino?: string;
-  salida?: string;
-  oferta?: boolean;
-  transportType: string | '';
-  hotel?: string;
-  empresa?: string;
+  destino?: string | null;
+  salida?: string | null;
+  oferta?: boolean | null;
+  transportType: string | '' | null;
+  hotel?: string | null;
+  empresa?: string | null;
 }
 
 interface FormularioTourProps {
@@ -35,6 +35,7 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
   const [imgUrl, setImgUrl] = useState('');
   const [hotel, setHotel] = useState('');
   const [empresa, setEmpresa] = useState('');
+  const [oferta, setOferta] = useState<boolean | null>(null);
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
@@ -64,9 +65,10 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           destino,
           salida,
           transportType,
-          imgUrl,
           hotel,
           empresa,
+          // imgUrl,
+          oferta,
         };
 
         console.log('Datos del nuevo tour:', JSON.stringify(nuevoTour));
@@ -86,9 +88,9 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           throw new Error('Error al agregar el tour.');
         }
 
-        onAddTour(nuevoTour); // Llama a la función onAddTour pasada como prop
+
+
         alert('Tour agregado correctamente');
-        onClose(); // Llama a la función onClose pasada como prop
       } catch (error) {
         console.error('Error:', error);
         alert('Ocurrió un error al agregar el tour. Por favor, intente nuevamente.');
@@ -219,14 +221,14 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
               <option value="">Seleccione una opción</option>
-              <option value="bus">Bus</option>
-              <option value="plane">Avión</option>
+              <option value="plane">Aéreo</option>
+              <option value="bus">Terrestre</option>
             </select>
           </div>
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label htmlFor="imgUrl" className="block text-sm font-medium text-gray-700">
-              URL de Imagen
+              URL de la Imagen
             </label>
             <input
               id="imgUrl"
@@ -235,11 +237,11 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
               onChange={(e) => setImgUrl(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
-          </div>
+          </div> */}
 
           <div className="mb-4">
             <label htmlFor="hotel" className="block text-sm font-medium text-gray-700">
-              Nombre de Hotel
+              Hotel
             </label>
             <input
               id="hotel"
@@ -252,7 +254,7 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
 
           <div className="mb-4">
             <label htmlFor="empresa" className="block text-sm font-medium text-gray-700">
-              Nombre de Empresa
+              Empresa
             </label>
             <input
               id="empresa"
@@ -263,12 +265,34 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-green-500 text-white py-2 px-4 mt-4 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600"
-          >
-            Enviar
-          </button>
+          <div className="mb-4">
+            <label htmlFor="oferta" className="block text-sm font-medium text-gray-700">
+              Oferta
+            </label>
+            <input
+              id="oferta"
+              type="checkbox"
+              checked={oferta || false}
+              onChange={(e) => setOferta(e.target.checked ? true : false)}
+              className="mt-1 block h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+            />
+          </div>
+
+          <div className="flex justify-between">
+            <button
+              type="submit"
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              Agregar
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
+            >
+              Cancelar
+            </button>
+          </div>
         </form>
       </div>
     </div>
