@@ -9,13 +9,15 @@ const TourCard: React.FC<TourCardProps> = ({ tour }) => {
     return (
         <div className="relative bg-white shadow-md rounded-lg overflow-hidden p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300">
             <img className="w-full h-48 object-cover rounded-lg mb-4" src={tour.imgUrl} alt={`Imagen de ${tour.destino}`} />
-            <div className="absolute top-0 left-0 bg-blue-500 text-white font-bold py-1 px-3 rounded-full">
-                Oferta
-            </div>
+            {tour.oferta && (
+        <div className="absolute top-0 left-0 bg-blue-500 text-white font-bold py-1 px-3 rounded-full">
+          Oferta
+        </div>)}
 
             <div className="grid grid-cols-1 items-center">
                 <div className="flex items-center justify-between mb-2">
-                    <h2 className="text-lg font-bold text-gray-700">{tour.destino}</h2>
+                <h2 className="text-lg font-bold text-gray-700 truncate">{tour.destino}</h2>
+
                     <p className="text-gray-500 font-bold">{tour.agency.name_agency}</p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
