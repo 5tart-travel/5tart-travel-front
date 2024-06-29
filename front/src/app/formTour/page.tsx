@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface CreateTourDto {
   title: string;
@@ -7,12 +7,14 @@ interface CreateTourDto {
   description: string;
   imgUrl?: string;
   address: string;
-  fecha_ingreso?: Date | null;
-  fecha_egreso?: Date | null;
+  fecha_ingreso: Date | null;
+  fecha_egreso: Date | null;
   destino?: string;
   salida?: string;
   oferta?: boolean;
   transportType: string | '';
+  hotel?: string;
+  empresa?: string;
 }
 
 interface FormularioTourProps {
@@ -30,17 +32,25 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
   const [destino, setDestino] = useState('');
   const [salida, setSalida] = useState('');
   const [transportType, setTransportType] = useState<string | ''>('');
+  const [imgUrl, setImgUrl] = useState('');
+  const [hotel, setHotel] = useState('');
+  const [empresa, setEmpresa] = useState('');
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const userSessionString: any = localStorage.getItem('userSession');
+    console.log(userSessionString);
+
+    if (userSessionString) {
+      const userSession = JSON.parse(userSessionString);
+      const ntoken = userSession.token;
+      setToken(ntoken);
+      console.log('Token obtenido en useEffect:', ntoken);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const userSessionString = localStorage.getItem('userSession');
-    if (!userSessionString) {
-      alert('No hay una sesión de usuario activa.');
-      return;
-    }
-    const userSession = JSON.parse(userSessionString);
-    const token = userSession.access_token;
 
     if (title && price !== null && description && address && transportType) {
       try {
@@ -49,29 +59,36 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           price,
           description,
           address,
-          fecha_ingreso: fecha_ingreso || undefined,
-          fecha_egreso: fecha_egreso || undefined,
-          destino: destino || undefined,
-          salida: salida || undefined,
+          fecha_ingreso,
+          fecha_egreso,
+          destino,
+          salida,
           transportType,
+          imgUrl,
+          hotel,
+          empresa,
         };
+
+        console.log('Datos del nuevo tour:', JSON.stringify(nuevoTour));
 
         const tourResponse = await fetch('https://fivetart-travel.onrender.com/tours', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(nuevoTour),
         });
 
         if (!tourResponse.ok) {
+          const responseText = await tourResponse.text();
+          console.error('Respuesta del servidor:', responseText);
           throw new Error('Error al agregar el tour.');
         }
 
-        onAddTour(nuevoTour);
+        onAddTour(nuevoTour); // Llama a la función onAddTour pasada como prop
         alert('Tour agregado correctamente');
-        onClose();
+        onClose(); // Llama a la función onClose pasada como prop
       } catch (error) {
         console.error('Error:', error);
         alert('Ocurrió un error al agregar el tour. Por favor, intente nuevamente.');
@@ -120,8 +137,8 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              rows={4} // Definir un número fijo de filas
-              style={{ resize: 'none' }} // Evitar la redimensionabilidad
+              rows={4}
+              style={{ resize: 'none' }}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
@@ -198,13 +215,52 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
             <select
               id="transportType"
               value={transportType}
-              onChange={(e) => setTransportType(e.target.value as string)}
+              onChange={(e) => setTransportType(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
               <option value="">Seleccione una opción</option>
               <option value="bus">Bus</option>
               <option value="plane">Avión</option>
             </select>
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="imgUrl" className="block text-sm font-medium text-gray-700">
+              URL de Imagen
+            </label>
+            <input
+              id="imgUrl"
+              type="text"
+              value={imgUrl}
+              onChange={(e) => setImgUrl(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="hotel" className="block text-sm font-medium text-gray-700">
+              Nombre de Hotel
+            </label>
+            <input
+              id="hotel"
+              type="text"
+              value={hotel}
+              onChange={(e) => setHotel(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="empresa" className="block text-sm font-medium text-gray-700">
+              Nombre de Empresa
+            </label>
+            <input
+              id="empresa"
+              type="text"
+              value={empresa}
+              onChange={(e) => setEmpresa(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
           </div>
 
           <button
