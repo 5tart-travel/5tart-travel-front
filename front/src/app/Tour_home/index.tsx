@@ -8,6 +8,7 @@ interface Tour {
   price: number;
   location: string;
   imgUrl: string;
+  oferta:boolean;
 }
 
 const Home: React.FC = () => {
@@ -35,7 +36,8 @@ const Home: React.FC = () => {
           title={tour.title}
           price={tour.price}
           location={tour.location}
-          imageUrl={tour.imgUrl} // Asegúrate de que la propiedad sea correcta
+          imageUrl={tour.imgUrl} 
+          oferta={tour.oferta}  // Asegúrate de que la propiedad sea correcta
         />
       ))}
     </div>
