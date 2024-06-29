@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { checkUserRole } from '@/libs/auth';
 import DashboardMain from '@/components/Dashboard/DashboardMain';
-import withAuth from '@/HOC/WithAuth';
+
 
 
 const DashboardPage: React.FC = () => {
@@ -24,4 +24,4 @@ const DashboardPage: React.FC = () => {
   );
 };
 
-export default withAuth(DashboardPage);
+export default DashboardPage;

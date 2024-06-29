@@ -14,7 +14,7 @@ const SubscriptionForm: React.FC = () => {
     }
 
     try {
-      const response = await fetch('ACA REMPLAZAMO POR LA PETICION DE REGISTRO DE MAIL', {
+      const response = await fetch('https://fivetart-travel.onrender.com/tours/mailOfertas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

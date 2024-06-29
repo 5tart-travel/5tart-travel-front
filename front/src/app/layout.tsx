@@ -5,6 +5,7 @@ import metadata from "@/app/metadata";
 import HiddenNavBar from "@/components/hidden_navbar/HiddenNavBar";
 import Navbar from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
+import HiddenFooter from "@/components/hidden_footer/HiddenFooter";
 
 
 
@@ -32,7 +33,9 @@ export default function RootLayout({
           <Navbar/>
         </HiddenNavBar>
         {children}
+        <HiddenFooter>
         <Footer username={null}/>
+        </HiddenFooter>
        
         
       </body>
