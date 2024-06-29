@@ -79,9 +79,9 @@ const Form_Login: React.FC = () => {
       const data = await response.json();
       console.log('Datos de la respuesta:', data);
 
-      const { access_token } = data;
-      localStorage.setItem("userSession", JSON.stringify({ access_token }));
-      console.log('Datos de la sesión del usuario almacenados en localStorage:', { access_token });
+      const { token } = data;  // <--- chachos el problema estaba q guardabamos access_token y tenia q ser token
+      localStorage.setItem("userSession", JSON.stringify({ token }));
+      console.log('Datos de la sesión del usuario almacenados en localStorage:', { token });
 
       Swal.fire({
         title: "¡Inicio de sesión exitoso!",

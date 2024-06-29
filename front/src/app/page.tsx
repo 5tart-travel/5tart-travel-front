@@ -5,6 +5,7 @@ import Navbar from "@/components/NavBar/NavBar";
 import CarouselWithThumbnails from "@/components/CarouselWithThumbnails/CarouselWithThumbnails";
 import TravelBanner from "@/components/Banner_publicidad/B_publicidad";
 import CardGridTour from "./Tour_home";
+import SubscriptionForm from "@/components/SubscriptionForm/SubscriptionForm";
 
 
 
@@ -28,6 +29,9 @@ export default function Home() {
     </div>
     <div>
      <CardGridTour/>
+    </div>
+    <div>
+      <SubscriptionForm/>
     </div>
 
 
