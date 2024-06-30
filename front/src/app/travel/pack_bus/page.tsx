@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation';
 import { IBusTour } from '@/interface/IBusTour';
 import TourCard from '@/app/ofertas/tourCard';
 
-
-
 const PackBus: React.FC = () => {
   const router = useRouter();
   const [buses, setBuses] = useState<IBusTour[]>([]);
@@ -40,12 +38,12 @@ const PackBus: React.FC = () => {
   return (
     <main className='bg-gray-50 flex flex-col items-center p-4'>
       <section className="max-w-6xl w-full mb-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">Paquetes en Bus</h1>
-      <p className="text-lg text-gray-600 mb-4 text-center">Explora los mejores paquetes turísticos en bus por toda Argentina!!</p>
-   </section>
+        <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">Paquetes en Bus</h1>
+        <p className="text-lg text-gray-600 mb-4 text-center">Explora los mejores paquetes turísticos en bus por toda Argentina!!</p>
+      </section>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-6xl">
         {buses.map((bus) => (
-          <TourCard key={bus.id} tour={bus} />
+          <TourCard key={bus.id} tour={bus} onClick={handleCardClick} />
         ))}
       </div>
     </main>
@@ -53,4 +51,3 @@ const PackBus: React.FC = () => {
 };
 
 export default PackBus;
-
