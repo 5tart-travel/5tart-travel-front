@@ -60,7 +60,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
             <Image src={busDetails.imgUrl} alt={busDetails.title} className="rounded-lg w-full" width={300} height={200} />
             {/* <Image src="https://res.cloudinary.com/dia2gautk/image/upload/v1719724972/sxettsiexymytbh3eakg.jpg" alt={busDetails.title} className="rounded-lg w-full mt-5" width={300} height={200} /> */}
             {busDetails.agency && (
-  <AgenciaGeolocation lat={busDetails.lat} lon={busDetails.lon} displayName={busDetails.display_name} />
+  <AgenciaGeolocation lat={busDetails.lat} lon={busDetails.lon} displayName={busDetails.display_name} touristPoints={busDetails.touristPoints} />
 )}
 
           </div>
