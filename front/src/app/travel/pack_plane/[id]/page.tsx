@@ -15,7 +15,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   useEffect(() => {
     const fetchBusDetails = async () => {
       try {
-        const response = await fetch(`${process.env.API_URL}/tours/${params.id}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours/${params.id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
