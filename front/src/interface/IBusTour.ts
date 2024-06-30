@@ -21,4 +21,5 @@ export interface IBusTour {
     hotel:string;
     empresa:string;
     agency:any;
+    touristPoints:[]
   }
