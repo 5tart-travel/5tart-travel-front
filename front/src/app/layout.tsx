@@ -7,7 +7,6 @@ import Navbar from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
 import HiddenFooter from "@/components/hidden_footer/HiddenFooter";
 import GloboChat from "@/components/GloboChat/GloboChat";
-import ModalConfig from '@/components/GloboChat/ModalConfig';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +22,6 @@ export default function RootLayout({
         <meta name="description" content={String(metadata.description) || "Descripción por defecto"} />
       </head>
       <body className={inter.className}>
-        <ModalConfig />
         <HiddenNavBar>
           <Navbar />
         </HiddenNavBar>
