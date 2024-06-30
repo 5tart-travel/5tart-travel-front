@@ -17,7 +17,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await fetch('https://fivetart-travel.onrender.com/tours');
+        const response = await fetch('https://fivetart-travel-kafg.onrender.com/tours');
         const data = await response.json();
         setTours(data);
       } catch (error) {
