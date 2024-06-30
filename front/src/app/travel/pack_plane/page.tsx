@@ -57,33 +57,46 @@ const PackPlane: React.FC = () => {
   return (
     <main className='bg-gray-50 flex flex-col items-center p-4'>
       <section className="max-w-6xl w-full mb-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">Paquetes en Avion</h1>
-        <p className="text-lg text-gray-600 mb-4 text-center">Explora los mejores paquetes turísticos Aereos, Nacionales e Internacionales!!</p>
+        <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">Paquetes en Avión</h1>
+        <p className="text-lg text-gray-600 mb-4 text-center">Explora los mejores paquetes turísticos Aéreos, Nacionales e Internacionales!!</p>
       </section>
-
-      <section className="max-w-6xl w-full mb-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+  
+      <section className="max-w-6xl w-full mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {regions.map((region) => (
-          <Link key={region} href={`#${region.toLowerCase()}`}>
-            <div className="bg-white rounded-lg shadow-md p-4 transform hover:scale-105 transition-transform duration-300">
-              <Image
-                src={`/images/${region.toLowerCase()}.jpg`}
-                alt={region}
-                width={300} // Replace with appropriate width
-                height={200} // Replace with appropriate height
-                className="w-full h-auto rounded-lg mb-2"
-              />
-              <h3 className="text-lg font-semibold text-gray-800">{region}</h3>
+          <a key={region} href={`#${region.toLowerCase().replace(/\s/g, '-')}`}>
+            <div className="relative bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+              <div className="w-full h-32 sm:h-40 rounded-lg overflow-hidden">
+                <Image
+                  src={`/images/${region.toLowerCase()}.jpg`}
+                  alt={region}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg"
+                />
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <h3 className="text-lg font-semibold italic text-white bg-gray-800 bg-opacity-75 px-4 py-2 rounded-lg">
+                  {region}
+                </h3>
+              </div>
             </div>
-          </Link>
+          </a>
         ))}
       </section>
-
+  
+      <section className="max-w-6xl w-full mb-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">Filtros</h1>
+        <div className="flex flex-wrap gap-4 justify-center">
+          {/* Aquí van tus filtros */}
+        </div>
+      </section>
+  
       <div className="w-full max-w-6xl">
         {Object.keys(groupedTours).map((region) => (
-          <div key={region} className="mb-8" id={region}>
+          <div key={region} className="mb-8" id={region.toLowerCase().replace(/\s/g, '-')}>
             <div className="flex items-center justify-center mb-4">
               <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-2xl font-bold border-gray-300 mx-4">{region}</h2>
+              <h2 className="text-2xl font-bold border-gray-300 mx-4 opacity-40 my-4">{region}</h2>
               <hr className="border-gray-300 flex-grow opacity-20" />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -96,6 +109,7 @@ const PackPlane: React.FC = () => {
       </div>
     </main>
   );
+  
 };
 
 export default PackPlane;
