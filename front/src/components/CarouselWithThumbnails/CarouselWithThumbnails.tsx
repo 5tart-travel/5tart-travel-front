@@ -117,7 +117,7 @@ const CarouselWithThumbnails: React.FC = () => {
   const fetchAgencias = async () => {
     console.log('Fetching agencias...');
     try {
-      const response = await fetch('https://fivetart-travel.onrender.com/agency');
+      const response = await fetch('https://fivetart-travel-kafg.onrender.com/agency');
       const data = await response.json();
       console.log('Agencias fetched:', data);
       setAgencias(data);

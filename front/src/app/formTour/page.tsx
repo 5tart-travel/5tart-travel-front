@@ -73,7 +73,7 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
 
         console.log('Datos del nuevo tour:', JSON.stringify(nuevoTour));
 
-        const tourResponse = await fetch('https://fivetart-travel.onrender.com/tours', {
+        const tourResponse = await fetch('https://fivetart-travel-kafg.onrender.com/tours', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
