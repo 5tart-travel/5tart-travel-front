@@ -71,7 +71,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
               <hr className="my-2"/>
               <p className="text-base"><span className='font-bold'>Alojamiento:</span> {busDetails.hotel}</p>
               <hr className="my-2"/>
-              <p className="text-base"><span className='font-bold'>Precio por persona:</span>$ {busDetails.price}</p>
+              <p className="text-base"><span className='font-bold'>Precio por persona:</span> ${busDetails.price}</p>
               <hr className="my-2"/>
               <p className="text-base"><span className='font-bold'>Descripción:</span> {busDetails.description}</p>
             </div>
