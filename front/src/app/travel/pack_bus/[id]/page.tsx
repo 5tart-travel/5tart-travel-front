@@ -53,15 +53,17 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
             <div>
               <h2 className="text-xl font-bold mb-4">{busDetails.destino}</h2>
               <hr className="my-2"/>
-              <p className="text-base"><strong>Fecha de salida:</strong> {busDetails.date}</p>
+              <p className="text-base"><p className='font-bold'>Fecha de salida:</p> {busDetails.date}</p>
               <hr className="my-2"/>
-              <p className="text-base"><strong>Fecha de ingreso:</strong> {busDetails.fecha_ingreso}</p>
+              <p className="text-base"><p className='font-bold'>Fecha de ingreso:</p> {busDetails.fecha_ingreso}</p>
               <hr className="my-2"/>
-              <p className="text-base"><strong>Agencia:</strong> {busDetails.agency.name_agency}</p>
+              <p className="text-base"><p className='font-bold'>Agencia:</p> {busDetails.agency.name_agency}</p>
               <hr className="my-2"/>
-              <p className="text-base"><strong>Precio por persona:</strong> {busDetails.price}</p>
+              <p className="text-base"><p className='font-bold'>Alojamiento:</p> {busDetails.hotel}</p>
               <hr className="my-2"/>
-              <p className="text-base"><strong>Precio por persona:</strong> {busDetails.description}</p>
+              <p className="text-base"><p className='font-bold'>Precio por persona:</p>$ {busDetails.price}</p>
+              <hr className="my-2"/>
+              <p className="text-base"><p className='font-bold'>Descripción:</p> {busDetails.description}</p>
             </div>
             <div className="mt-4">
               <button className="bg-black text-white px-4 py-2 rounded-lg w-full">Comprar</button>
