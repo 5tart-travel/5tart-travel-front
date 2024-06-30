@@ -6,6 +6,8 @@ import CarouselWithThumbnails from "@/components/CarouselWithThumbnails/Carousel
 import TravelBanner from "@/components/Banner_publicidad/B_publicidad";
 import CardGridTour from "./Tour_home";
 import SubscriptionForm from "@/components/SubscriptionForm/SubscriptionForm";
+import ViajaPorElMundo from "@/components/Home_ui/ViajarPorElMundo";
+import ViajesNacionales from "@/components/Home_ui/ViajesNacionales";
 
 export default function Home() {
   return (
@@ -14,8 +16,14 @@ export default function Home() {
       <div className="flex">
         <CarouselWithThumbnails />
       </div>
+      <div>
+        <ViajaPorElMundo />
+      </div>
       <div className="flex justify-center items-center my-16">
         <TravelBanner />
+      </div>
+      <div>
+        <ViajesNacionales />
       </div>
       <div>
         <CardGridTour />
