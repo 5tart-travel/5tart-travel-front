@@ -1,6 +1,6 @@
 'use client'
 import AgenciaDetail from '@/components/AgenciaDetail/AgenciaDetail';
-import AgenciaGeolocation from '@/components/Maps/ShelterGeolocation';
+import AgenciaGeolocation from '@/components/Maps/TourGeolocation';
 import { IAgencias } from '@/interface/IAgencias';
 import { getAgenciaById } from '@/utils/refugios';
 import { useState, useEffect } from 'react';

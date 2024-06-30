@@ -16,7 +16,7 @@ const PackPlane: React.FC = () => {
   useEffect(() => {
     const fetchBuses = async () => {
       try {
-        const response = await fetch('https://fivetart-travel.onrender.com/tours/plane');
+        const response = await fetch(`${process.env.API_URL}/tours/plane`);
         if (!response.ok) {
           throw new Error('Falló el fetch de plane tours');
         }

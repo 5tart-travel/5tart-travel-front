@@ -14,13 +14,11 @@ const Ofertas: React.FC = () => {
   useEffect(() => {
     const fetchBuses = async () => {
       try {
-        const response = await fetch(
-          "https://fivetart-travel.onrender.com/tours/oferta"
-        );
+        const response = await fetch(`${process.env.API_URL}/tours/oferta`);
         if (!response.ok) {
           throw new Error("Falló el fetch de bus tours");
         }
-        const data: IBusTour[] = await response.json();
+        const data = await response.json();
         setBuses(data);
       } catch (err) {
         setError("Error al obtener los datos");
@@ -29,9 +27,11 @@ const Ofertas: React.FC = () => {
         setLoading(false);
       }
     };
-
+  
     fetchBuses();
   }, []);
+  
+
 
   const handleTransportClick = (transportType: "plane" | "bus") => {
     // Scroll to the section
