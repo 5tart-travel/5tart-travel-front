@@ -34,7 +34,7 @@ const PackPlane: React.FC = () => {
   }, []);
 
   const handleCardClick = (id: string) => {
-    router.push(`/travel/tour_plane/${id}`);
+    router.push(`/travel/pack_plane/${id}`);
   };
 
   const groupedTours = buses.reduce((acc, tour) => {
