@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { IBusTour } from '@/interface/IBusTour';
-import { format } from 'date-fns'; // Importar la librería date-fns
-import { es } from 'date-fns/locale'; // Importar el locale en español
-import './BusDetail.css'; // Asegúrate de que la ruta al archivo CSS sea correcta
+import { format } from 'date-fns'; 
+import { es } from 'date-fns/locale'; 
+import './BusDetail.css'; 
 
 const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [busDetails, setBusDetails] = useState<IBusTour | null>(null);
@@ -44,10 +44,9 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
     return <p>No se encontraron detalles del tour.</p>;
   }
 
-  // Formatear las fechas
   const formattedFechaIngreso = format(new Date(busDetails.fecha_ingreso), 'dd/MM/yyyy', { locale: es });
   const formattedFechaEgreso = format(new Date(busDetails.fecha_egreso), 'dd/MM/yyyy', { locale: es });
-  const formattedFechaSalida = format(new Date(busDetails.date), 'dd/MM/yyyy', { locale: es });
+  // const formattedFechaSalida = format(new Date(busDetails.date), 'dd/MM/yyyy', { locale: es });
 
   return (
     <div className="container mx-auto p-4 flex justify-center">
@@ -84,6 +83,6 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
       </div>
     </div>
   );
-};
+}
 
 export default BusDetail;
