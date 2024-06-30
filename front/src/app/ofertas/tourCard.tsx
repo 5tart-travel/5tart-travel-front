@@ -1,9 +1,10 @@
-import { IBusTour } from '@/interface/IBusTour';
 import { FaPlane, FaBus, FaHotel } from 'react-icons/fa';
+import { IBusTour } from '@/interface/IBusTour';
+import Image from 'next/image'; 
 
 interface TourCardProps {
     tour: IBusTour;
-    onClick: (id: string) => void;  
+    onClick: (id: string) => void;
 }
 
 const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
@@ -12,7 +13,15 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
             className="relative bg-white shadow-md rounded-lg overflow-hidden p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300"
             onClick={() => onClick(tour.id)}  
         >
-            <img className="w-full h-48 object-cover rounded-lg mb-4" src={tour.imgUrl} alt={`Imagen de ${tour.destino}`} />
+            <div className="w-full h-48 rounded-lg mb-4 overflow-hidden">
+                <Image
+                    src={tour.imgUrl}
+                    alt={`Imagen de ${tour.destino}`}
+                    layout="responsive"
+                    width={500} 
+                    height={300}
+                />
+            </div>
             {tour.oferta && (
                 <div className="absolute top-0 left-0 bg-blue-500 text-white font-bold py-1 px-3 rounded-full">
                     Oferta
