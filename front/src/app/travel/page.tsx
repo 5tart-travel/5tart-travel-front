@@ -10,9 +10,9 @@ const Pk_viajes: React.FC = () => {
           <Image 
             src="https://res.cloudinary.com/dia2gautk/image/upload/v1719447152/i8t9qrkqawuxnx5k2wsl.webp" 
             alt="Paquete de Bus" 
-            className="w-full h-auto md:h-[800px] object-cover rounded-xl shadow-lg hover:grayscale transition duration-300"
-            width={400} 
-            height={800}
+            className="w-full h-auto md:h-[600px] object-cover rounded-xl shadow-lg hover:grayscale transition duration-300"
+            width={300} 
+            height={600}
           />
         </Link>
       </div>
@@ -21,9 +21,9 @@ const Pk_viajes: React.FC = () => {
           <Image 
             src="https://res.cloudinary.com/dia2gautk/image/upload/v1719447152/cpkgaywutd8tzxwqwaoa.webp" 
             alt="Paquete de Aéreo" 
-            className="w-full h-auto md:h-[800px] object-cover rounded-xl shadow-lg hover:grayscale transition duration-300"
-            width={400} 
-            height={800}
+            className="w-full h-auto md:h-[600px] object-cover rounded-xl shadow-lg hover:grayscale transition duration-300"
+            width={300} 
+            height={600}
           />
         </Link>
       </div>

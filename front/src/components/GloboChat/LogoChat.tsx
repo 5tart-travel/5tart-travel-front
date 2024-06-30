@@ -9,7 +9,7 @@ const LogoChat: React.FC = () => {
       </div>
       <div
         className={`${saira.className} text-white text-sm md:text-xs lg:text-xs absolute`}
-        style={{ top: '30%', left: '30%', transform: 'translate(-50%, -50%)', zIndex: 10 }}
+        style={{ top: '26%', left: '56%', transform: 'translate(-50%, -50%)', zIndex: 10 }}
       >
         <h1 className="whitespace-nowrap">tart Travel</h1>
       </div>

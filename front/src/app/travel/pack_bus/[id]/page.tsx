@@ -5,6 +5,7 @@ import { IBusTour } from '@/interface/IBusTour';
 import { format } from 'date-fns'; 
 import { es } from 'date-fns/locale'; 
 import './BusDetail.css'; 
+import AgenciaGeolocation from '@/components/Maps/TourGeolocation';
 
 const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [busDetails, setBusDetails] = useState<IBusTour | null>(null);
@@ -19,7 +20,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           throw new Error('Failed to fetch data');
         }
         const data: IBusTour = await response.json();
-        console.log('Fetched data:', data);
+        // console.log('Fetched data:', data);
         setBusDetails(data);
       } catch (error: any) {
         console.error('Error fetching data:', error);
@@ -57,7 +58,11 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
               <div className="ribbon ribbon-top-right text-center"><span>Oferta</span></div>
             )}
             <Image src={busDetails.imgUrl} alt={busDetails.title} className="rounded-lg w-full" width={300} height={200} />
-            <Image src="https://res.cloudinary.com/dia2gautk/image/upload/v1719724972/sxettsiexymytbh3eakg.jpg" alt={busDetails.title} className="rounded-lg w-full mt-5" width={300} height={200} />
+            {/* <Image src="https://res.cloudinary.com/dia2gautk/image/upload/v1719724972/sxettsiexymytbh3eakg.jpg" alt={busDetails.title} className="rounded-lg w-full mt-5" width={300} height={200} /> */}
+            {busDetails.agency && (
+  <AgenciaGeolocation lat={busDetails.lat} lon={busDetails.lon} displayName={busDetails.display_name} />
+)}
+
           </div>
           <div className="bg-gray-100 p-4 rounded-lg flex flex-col justify-between">
             <div>

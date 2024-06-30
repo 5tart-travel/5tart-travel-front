@@ -13,7 +13,11 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        'xs': '475px', // Ejemplo de punto de ruptura personalizado
+        xs: '475px',
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px', 
       },
       maxWidth: {
         'xs': '20rem',  // 320px

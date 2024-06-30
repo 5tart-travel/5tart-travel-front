@@ -24,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ username, className }) => {
                         a ver q ponemos 
                     </Link>
                     <Link href= "/adopta" className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-tertiary" >
-                        Quiero Adoptar
+                        Quiero Viajar
                     </Link>
                 </div>
             </div>
@@ -34,15 +34,15 @@ const Footer: React.FC<FooterProps> = ({ username, className }) => {
 
                 <div className="flex flex-col items-start mt-5 space-y-2">
                     <Link href= "/Home" className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-tertiary" >
-                        Home
+                        Maxi
                     </Link>
 
                     <Link href= "/" className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-tertiary" >
-                        Home
+                        Gatita
                     </Link>
 
                     <Link href= "/" className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-tertiary" >
-                        Home
+                        Contenta
                     </Link>
                 </div>
             </div>
