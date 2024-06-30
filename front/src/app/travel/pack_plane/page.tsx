@@ -51,7 +51,9 @@ const PackPlane: React.FC = () => {
     'Noroeste',
     'Cuyo',
     'Pampeana',
-    'Litoral'
+    'Litoral',
+    'Internacional'
+
   ];
 
   return (
