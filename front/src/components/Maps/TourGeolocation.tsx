@@ -6,11 +6,11 @@ import L from "leaflet";
 
 
 const AgencyIcon = new Icon({
-  iconUrl: "/marker-icon-2x-1.png",
+  iconUrl: "/iconorojo.png",
   iconRetinaUrl: "/red-marker-icon-2x.png", 
   shadowUrl: "/marker-shadow.png", 
-  iconSize: [25, 41], 
-  iconAnchor: [12, 41], 
+  iconSize: [48, 42], 
+  iconAnchor: [15, 42], 
   popupAnchor: [1, -34], 
   shadowSize: [41, 41], 
 });
