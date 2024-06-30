@@ -1,11 +1,11 @@
 'use client'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { IPlaneTour } from '@/interface/IPlaneTuor';
+import Image from 'next/image';
+
 import TourCard from '@/app/ofertas/tourCard';
-import { Link } from 'phosphor-react';
-
-
+import Link from 'next/link';
+import { IPlaneTour } from '@/interface/IPlaneTuor';
 
 const PackPlane: React.FC = () => {
   const router = useRouter();
@@ -37,7 +37,6 @@ const PackPlane: React.FC = () => {
     router.push(`/travel/tour_plane/${id}`);
   };
 
-
   const groupedTours = buses.reduce((acc, tour) => {
     const { region } = tour;
     if (!acc[region]) {
@@ -46,14 +45,15 @@ const PackPlane: React.FC = () => {
     acc[region].push(tour);
     return acc;
   }, {} as Record<string, IPlaneTour[]>);
+
   const regions = [
     'Patagonia',
     'Noroeste',
     'Cuyo',
-    'Norte',
+    'Pampeana',
     'Litoral'
   ];
- 
+
   return (
     <main className='bg-gray-50 flex flex-col items-center p-4'>
       <section className="max-w-6xl w-full mb-8">
@@ -61,25 +61,23 @@ const PackPlane: React.FC = () => {
         <p className="text-lg text-gray-600 mb-4 text-center">Explora los mejores paquetes turísticos Aereos, Nacionales e Internacionales!!</p>
       </section>
 
-
       <section className="max-w-6xl w-full mb-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-      {regions.map((region) => (
-        <Link key={region} href={`#${region.toLowerCase()}`}>
-          <a>
+        {regions.map((region) => (
+          <Link key={region} href={`#${region.toLowerCase()}`}>
             <div className="bg-white rounded-lg shadow-md p-4 transform hover:scale-105 transition-transform duration-300">
-              <img
+              <Image
                 src={`/images/${region.toLowerCase()}.jpg`}
                 alt={region}
+                width={300} // Replace with appropriate width
+                height={200} // Replace with appropriate height
                 className="w-full h-auto rounded-lg mb-2"
               />
               <h3 className="text-lg font-semibold text-gray-800">{region}</h3>
             </div>
-          </a>
-        </Link>
-      ))}
-    </section>
+          </Link>
+        ))}
+      </section>
 
-      
       <div className="w-full max-w-6xl">
         {Object.keys(groupedTours).map((region) => (
           <div key={region} className="mb-8" id={region}>
@@ -90,21 +88,14 @@ const PackPlane: React.FC = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {groupedTours[region].map((tour) => (
-                <TourCard key={tour.id} tour={tour} onClick={handleCardClick}/>
+                <TourCard key={tour.id} tour={tour} onClick={handleCardClick} />
               ))}
             </div>
           </div>
         ))}
       </div>
     </main>
-
-
-
   );
-
-  };
-
-
+};
 
 export default PackPlane;
-
