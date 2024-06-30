@@ -14,7 +14,7 @@ const Ofertas: React.FC = () => {
   useEffect(() => {
     const fetchBuses = async () => {
       try {
-        const response = await fetch(`${process.env.API_URL}/tours/oferta`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours/oferta`);
         if (!response.ok) {
           throw new Error("Falló el fetch de bus tours");
         }
