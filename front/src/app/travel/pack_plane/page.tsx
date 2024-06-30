@@ -64,34 +64,42 @@ const PackPlane: React.FC = () => {
       </section>
   
       <section className="max-w-6xl w-full mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {regions.map((region) => (
-          <a key={region} href={`#${region.toLowerCase().replace(/\s/g, '-')}`}>
-            <div className="relative bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-32 sm:h-40 rounded-lg overflow-hidden">
-                <Image
-                  src={`/images/${region.toLowerCase()}.jpg`}
-                  alt={region}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-lg"
-                />
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-lg font-semibold italic text-white bg-gray-800 bg-opacity-75 px-4 py-2 rounded-lg">
-                  {region}
-                </h3>
-              </div>
-            </div>
-          </a>
-        ))}
+        {regions.map((region) => {
+          if (groupedTours[region]) {
+            return (
+              <a key={region} href={`#${region.toLowerCase().replace(/\s/g, '-')}`}>
+                <div className="relative bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+                  <div className="w-full h-32 sm:h-40 rounded-lg overflow-hidden">
+                    <Image
+                      src={`/images/${region.toLowerCase()}.jpg`}
+                      alt={region}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-lg"
+                    />
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-lg font-semibold italic text-white bg-gray-800 bg-opacity-75 px-4 py-2 rounded-lg">
+                      {region}
+                    </h3>
+                  </div>
+                </div>
+              </a>
+            );
+          } else {
+            return null; // No renderiza nada si no existe la región
+          }
+        })}
       </section>
   
       <section className="max-w-6xl w-full mb-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Filtros</h1>
-        <div className="flex flex-wrap gap-4 justify-center">
-          {/* Aquí van tus filtros */}
+        <div className="flex items-center justify-center mb-4">
+          <hr className="border-gray-300 flex-grow opacity-20" />
+          <h2 className="text-2xl font-bold border-gray-300 mx-4 opacity-40 my-4">Filtros</h2>
+          <hr className="border-gray-300 flex-grow opacity-20" />
         </div>
       </section>
+
   
       <div className="w-full max-w-6xl">
         {Object.keys(groupedTours).map((region) => (
