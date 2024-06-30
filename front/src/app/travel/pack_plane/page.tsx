@@ -34,7 +34,7 @@ const PackPlane: React.FC = () => {
   }, []);
 
   const handleCardClick = (id: string) => {
-    router.push(`/travel/${id}`);
+    router.push(`/travel/tour_plane/${id}`);
   };
 
 
@@ -90,7 +90,7 @@ const PackPlane: React.FC = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {groupedTours[region].map((tour) => (
-                <TourCard key={tour.id} tour={tour} />
+                <TourCard key={tour.id} tour={tour} onClick={handleCardClick}/>
               ))}
             </div>
           </div>
