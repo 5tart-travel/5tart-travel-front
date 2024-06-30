@@ -7,7 +7,7 @@ import { es } from 'date-fns/locale';
 import './PlaneDetail.css'; 
 import AgenciaGeolocation from '@/components/Maps/TourGeolocation';
 
-const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
+const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [busDetails, setBusDetails] = useState<IBusTour | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -90,4 +90,4 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   );
 }
 
-export default BusDetail;
+export default PlaneDetail;
