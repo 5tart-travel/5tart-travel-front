@@ -32,7 +32,7 @@ const Footer: React.FC<FooterProps> = ({ username, className }) => {
             <div>
                 {/* <p className="font-semibold text-gray-800 dark:text-white">Link</p> */}
 
-                <div className="flex flex-col items-start mt-5 space-y-2">
+                {/* <div className="flex flex-col items-start mt-5 space-y-2">
                     <Link href= "/Home" className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-tertiary" >
                         Maxi
                     </Link>
@@ -44,7 +44,7 @@ const Footer: React.FC<FooterProps> = ({ username, className }) => {
                     <Link href= "/" className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-tertiary" >
                         Contenta
                     </Link>
-                </div>
+                </div> */}
             </div>
         </div>
         
