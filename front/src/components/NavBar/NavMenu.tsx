@@ -1,6 +1,3 @@
-
-
-
 import { decodeJwt } from '@/utils/decodeJwt';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -16,20 +13,20 @@ const NavMenu: React.FC = () => {
 
   useEffect(() => {
     const userSessionStr = localStorage.getItem('userSession');
-    
+
     if (userSessionStr) {
       const userSession = JSON.parse(userSessionStr);
-      
+
       if (userSession && userSession.access_token) {
         const token = userSession.access_token;
 
         try {
           const decodedToken = decodeJwt(token);
-          console.log(decodedToken); 
+          console.log(decodedToken);
 
           const roles = decodedToken['https://huellasdesperanza.com/roles'];
           if (roles && roles.length > 0) {
-            setUserRole(roles[0]); 
+            setUserRole(roles[0]);
           }
         } catch (error) {
           console.error('Error decoding token', error);
@@ -50,29 +47,31 @@ const NavMenu: React.FC = () => {
           {menuOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
         </button>
       </div>
-      <ul className={`flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-10 text-gray-100 text-base p-4 md:p-0 ${menuOpen ? 'block' : 'hidden md:flex'}`}>
+      <ul
+        className={`flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-10 text-gray-100 text-base p-4 md:p-0 ${
+          menuOpen ? 'block' : 'hidden md:flex'
+        }`}
+      >
         <li>
-
-        {userRole !== 'Shelter' && (
-
-          <Link
-            className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
-            href={{
-              pathname: "/",
-              query: { name: "test" },
-            }}
-          >
-            Inicio
-          </Link>
-)}
+          {userRole !== 'Shelter' && (
+            <Link
+              className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
+              href={{
+                pathname: '/',
+                query: { name: 'test' },
+              }}
+            >
+              Inicio
+            </Link>
+          )}
         </li>
         {userRole !== 'Shelter' && (
           <li>
             <Link
               className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
               href={{
-                pathname: "/travel",
-                query: { name: "test" },
+                pathname: '/travel',
+                query: { name: 'test' },
               }}
             >
               Viajes
@@ -80,22 +79,20 @@ const NavMenu: React.FC = () => {
           </li>
         )}
         <li>
-
-        {userRole !== 'Shelter' && (
-
-          <Link
-            className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
-            href={{
-              pathname: "/nosotros",
-              query: { name: "test" },
-            }}
-          >
+          {userRole !== 'Shelter' && (
+            <Link
+              className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
+              href={{
+                pathname: '/nosotros',
+                query: { name: 'test' },
+              }}
+            >
               Acerca de la Pagina
-          </Link>
-)}
+            </Link>
+          )}
         </li>
         <li>
-  {/* <Link
+          {/* <Link
     className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
     href={{
       pathname: "/comunidad",
@@ -104,9 +101,7 @@ const NavMenu: React.FC = () => {
   >
     Comunidad
   </Link> */}
-</li>
-
-
+        </li>
       </ul>
     </nav>
   );
