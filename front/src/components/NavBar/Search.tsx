@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
+import axios from 'axios';
 import { ISearch } from '@/interface/ISearch';
-
-// Datos de ejemplo hardcodeados
-const exampleResults: ISearch[] = [
-  { id: 1, name: 'Resultado 1', description: 'Descripción del resultado 1' },
-  { id: 2, name: 'Resultado 2', description: 'Descripción del resultado 2' },
-  { id: 3, name: 'Resultado 3', description: 'Descripción del resultado 3' },
-];
 
 const Search: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,23 +15,21 @@ const Search: React.FC = () => {
     setError('');
     setResults([]);
     console.log('Searching for:', searchTerm);
-
-    // Simular un retraso en la búsqueda
-    setTimeout(() => {
-      try {
-        // Filtrar los resultados de ejemplo en base al término de búsqueda
-        const filteredResults = exampleResults.filter((result) =>
-          result.name.toLowerCase().includes(searchTerm.toLowerCase()),
-        );
-        console.log('Filtered results:', filteredResults);
-        setResults(filteredResults);
-      } catch (error) {
-        console.error('Error realizando la búsqueda:', error);
-        setError('Error realizando la búsqueda');
-      } finally {
-        setLoading(false);
-      }
-    }, 1000); // Simula una búsqueda que tarda 1 segundo
+    try {
+      const response = await axios.get(
+        'https://huellasdesperanza.onrender.com/search',
+        {
+          params: { q: searchTerm },
+        },
+      );
+      console.log('Response data:', response.data);
+      setResults(response.data);
+    } catch (error) {
+      console.error('Error realizando la búsqueda:', error);
+      setError('Error realizando la búsqueda');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -60,15 +52,6 @@ const Search: React.FC = () => {
       </form>
       <div className="w-full">
         {error && <p className="text-red-500">{error}</p>}
-        {loading && <p className="text-gray-500">Cargando...</p>}
-        <ul>
-          {results.map((result) => (
-            <li key={result.id} className="p-2 border-b border-gray-300">
-              <h3 className="text-lg font-semibold">{result.name}</h3>
-              <p className="text-gray-600">{result.description}</p>
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );
