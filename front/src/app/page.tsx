@@ -27,7 +27,7 @@ export default function Home() {
       <div>
         <CardInternacional />
       </div>
-      <div className="flex justify-center items-center my-16">
+      <div className="flex justify-center items-center ">
         <TravelBanner />
       </div>
       <div>

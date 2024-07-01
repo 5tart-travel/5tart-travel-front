@@ -35,26 +35,26 @@ const SubscriptionForm: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-8 bg-gray-100">
-      <p className="mb-4 text-lg font-semibold text-gray-800">
+    <div className="flex flex-col items-center justify-center py-8 px-4 bg-gray-100">
+      <p className="mb-4 text-lg font-semibold text-gray-800 text-center">
         ¿Querés ser el primero en enterarte cuando hay ofertas?
       </p>
-      <form onSubmit={handleSubmit} className="flex w-full max-w-md">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row w-full max-w-md">
         <input
           type="email"
           placeholder="Ingresá tu e-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex-1 px-4 py-2 text-gray-800 bg-white border border-gray-300 rounded-l-3xl focus:outline-none"
+          className="flex-1 px-4 py-2 text-gray-800 bg-white border border-gray-300 rounded-t-3xl sm:rounded-l-3xl sm:rounded-t-none focus:outline-none mb-2 sm:mb-0"
         />
         <button
           type="submit"
-          className="px-6 py-2 text-white bg-blue-950 rounded-r-3xl hover:bg-blue-900 focus:outline-none"
+          className="px-6 py-2 text-white bg-blue-950 rounded-b-3xl sm:rounded-r-3xl sm:rounded-b-none hover:bg-blue-900 focus:outline-none"
         >
           Registrate
         </button>
       </form>
-      {message && <p className="mt-4 text-gray-800">{message}</p>}
+      {message && <p className="mt-4 text-gray-800 text-center">{message}</p>}
     </div>
   );
 };
