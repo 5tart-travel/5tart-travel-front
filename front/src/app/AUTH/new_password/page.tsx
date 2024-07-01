@@ -49,13 +49,20 @@ const NewPassword: React.FC = () => {
     e.preventDefault();
     if (formValidations.newPasswordValid && formValidations.confirmPasswordValid) {
       try {
-        const userId = localStorage.getItem('userId');
-        const response = await axios.put('https://huellasdesperanza.onrender.com/auth/password', {  
-          userId: userId,
+        const dataUserString = localStorage.getItem('dataUser');
+        if (!dataUserString) {
+          throw new Error('No se encontró el objeto dataUser en localStorage');
+        }
+        const dataUser = JSON.parse(dataUserString);
+        
+        const response = await axios.put('https://fivetart-travel-kafg.onrender.com/auth/password', {  
+          id: dataUser.id,
+          type: dataUser.type,
           newPassword: formData.newPassword,
         });
-        Swal.fire({text:'¡Cambio de contraseña exitoso!', icon:'success' });
-        localStorage.removeItem('userId');
+        
+        Swal.fire({ text: '¡Cambio de contraseña exitoso!', icon: 'success' });
+        localStorage.removeItem('dataUser');
         router.push('/AUTH/login');
       } catch (error) {
         console.error('Error al cambiar la contraseña:', error);
@@ -63,10 +70,9 @@ const NewPassword: React.FC = () => {
       }
     } else {
       console.log('Las contraseñas son inválidas');
-      Swal.fire({text:'¡Error al cambiar la contraseña!', icon:'error'});
+      Swal.fire({ text: '¡Error al cambiar la contraseña!', icon: 'error' });
     }
   };
-
   
   return (
     <div className='w-full max-w-md mx-auto mt-48'>
