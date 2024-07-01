@@ -1,17 +1,19 @@
 'use client';
-import Logo from "../ui/Logo";
-import NavMenu from "./NavMenu";
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import Logo from '../ui/Logo';
+import NavMenu from './NavMenu';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { decodeJwt } from '@/utils/decodeJwt';
-import Image from "next/image";
-import { JwtPayload } from "@/types";
-import { RiLoginCircleLine } from "react-icons/ri";
-import { MdDashboardCustomize } from "react-icons/md";
-import DesplegableUser from "./desplegable";
-import useUserRole from "@/utils/userSession";
+import Image from 'next/image';
+import { JwtPayload } from '@/types';
+import { RiLoginCircleLine } from 'react-icons/ri';
+import { MdDashboardCustomize } from 'react-icons/md';
+import DesplegableUser from './desplegable';
+import useUserRole from '@/utils/userSession';
+import SearchBar from '../SearchBar/SearchBar';
 
-const DEFAULT_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
+const DEFAULT_AVATAR =
+  'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
 
 const Navbar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,7 +22,7 @@ const Navbar: React.FC = () => {
   const userRole = useUserRole();
 
   useEffect(() => {
-    const session = localStorage.getItem("userSession");
+    const session = localStorage.getItem('userSession');
     if (session) {
       const { token } = JSON.parse(session);
       if (token) {
@@ -41,7 +43,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   const toggleMenu = () => {
-    setIsMenuOpen(prevState => !prevState);
+    setIsMenuOpen((prevState) => !prevState);
   };
 
   return (
@@ -49,8 +51,9 @@ const Navbar: React.FC = () => {
       <div className="flex items-center justify-center mb-10">
         <Logo />
       </div>
-      
+
       <NavMenu />
+      <SearchBar />
 
       <div className="flex items-center">
         {isLoggedIn ? (
@@ -69,7 +72,7 @@ const Navbar: React.FC = () => {
               <div className=" mt-1 text-sm font-medium text-gray-50 hover:text-blue-300">
                 {userData && userData.nickname && (
                   <button className="focus:outline-none" onClick={toggleMenu}>
-                     {userData.nickname}
+                    {userData.nickname}
                   </button>
                 )}
               </div>
@@ -78,7 +81,7 @@ const Navbar: React.FC = () => {
             {userRole !== 'agency' && (
               <Link href="/dashboard">
                 <button className="m-4 text-4xl text-white mr-6 mt-1 hover:animate-bounce">
-                <MdDashboardCustomize />
+                  <MdDashboardCustomize />
                 </button>
               </Link>
             )}
