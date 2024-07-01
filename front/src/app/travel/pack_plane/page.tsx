@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -16,7 +16,9 @@ const PackPlane: React.FC = () => {
   useEffect(() => {
     const fetchBuses = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours/plane`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/tours/plane`,
+        );
         if (!response.ok) {
           throw new Error('Falló el fetch de plane tours');
         }
@@ -52,22 +54,29 @@ const PackPlane: React.FC = () => {
     'Cuyo',
     'Pampeana',
     'Litoral',
-    'Internacional'
-
+    'Internacional',
   ];
 
   return (
-    <main className='bg-gray-50 flex flex-col items-center p-4'>
+    <main className="bg-gray-50 flex flex-col items-center p-4">
       <section className="max-w-6xl w-full mb-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">Paquetes en Avión</h1>
-        <p className="text-lg text-gray-600 mb-4 text-center">Explora los mejores paquetes turísticos Aéreos, Nacionales e Internacionales!!</p>
+        <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">
+          Paquetes en Avión
+        </h1>
+        <p className="text-lg text-gray-600 mb-4 text-center">
+          Explora los mejores paquetes turísticos Aéreos, Nacionales e
+          Internacionales!!
+        </p>
       </section>
-  
+
       <section className="max-w-6xl w-full mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {regions.map((region) => {
           if (groupedTours[region]) {
             return (
-              <a key={region} href={`#${region.toLowerCase().replace(/\s/g, '-')}`}>
+              <a
+                key={region}
+                href={`#${region.toLowerCase().replace(/\s/g, '-')}`}
+              >
                 <div className="relative bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
                   <div className="w-full h-32 sm:h-40 rounded-lg overflow-hidden">
                     <Image
@@ -91,35 +100,47 @@ const PackPlane: React.FC = () => {
           }
         })}
       </section>
-  
+
       <section className="max-w-6xl w-full mb-8">
         <div className="flex items-center justify-center mb-4">
           <hr className="border-gray-300 flex-grow opacity-20" />
-          <h2 className="text-2xl font-bold border-gray-300 mx-4 opacity-40 my-4">Filtros</h2>
+          <h2 className="text-2xl font-bold border-gray-300 mx-4 opacity-40 my-4">
+            Filtros
+          </h2>
           <hr className="border-gray-300 flex-grow opacity-20" />
         </div>
       </section>
 
-  
-      <div className="w-full max-w-6xl">
+      <div className="w-full max-w-6xl mx-auto">
         {Object.keys(groupedTours).map((region) => (
-          <div key={region} className="mb-8" id={region.toLowerCase().replace(/\s/g, '-')}>
+          <div
+            key={region}
+            className="mb-8"
+            id={region.toLowerCase().replace(/\s/g, '-')}
+          >
             <div className="flex items-center justify-center mb-4">
               <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-2xl font-bold border-gray-300 mx-4 opacity-40 my-4">{region}</h2>
+              <h2 className="text-2xl font-bold border-gray-300 mx-4 opacity-40 my-4">
+                {region}
+              </h2>
               <hr className="border-gray-300 flex-grow opacity-20" />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {groupedTours[region].map((tour) => (
-                <TourCard key={tour.id} tour={tour} onClick={handleCardClick} />
-              ))}
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {groupedTours[region].map((tour) => (
+                  <TourCard
+                    key={tour.id}
+                    tour={tour}
+                    onClick={handleCardClick}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         ))}
       </div>
     </main>
   );
-  
 };
 
 export default PackPlane;
