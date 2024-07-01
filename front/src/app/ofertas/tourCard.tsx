@@ -15,22 +15,22 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
       onClick={() => onClick(tour.id)}
     >
       <div className="flex flex-col relative">
-        <div className="w-full h-48 rounded-lg mb-4 overflow-hidden relative">
+        <div className="w-full h-48 rounded-lg mb-4 overflow-hidden">
           {tour.oferta && (
             <div className="ribbon ribbon-top-right text-center">
               <span>Oferta</span>
             </div>
           )}
           <Image
-            className="w-full h-full absolute inset-0 object-cover"
+            className="w-full h-48 object-cover"
             src={tour.imgUrl}
             alt={`Imagen de ${tour.destino}`}
-            layout="fill"
-            objectFit="cover"
+            layout="responsive"
+            width={500}
+            height={300}
           />
         </div>
       </div>
-
       <div className="grid grid-cols-1 items-center">
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-bold text-gray-700 truncate">
