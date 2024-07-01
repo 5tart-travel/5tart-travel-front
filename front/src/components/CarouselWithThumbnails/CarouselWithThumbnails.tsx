@@ -66,7 +66,7 @@ const CarouselWithThumbnails: React.FC = () => {
           src="https://res.cloudinary.com/dia2gautk/image/upload/v1719355788/xuexupstyrirhdwb05bl.jpg"
           alt="logo"
           className="object-cover w-full h-full"
-          layout="fill"
+          fill
           priority={true}
         />
         <div className="absolute top-20 right-10 text-left p-4">

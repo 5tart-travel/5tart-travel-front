@@ -9,6 +9,9 @@ import SubscriptionForm from "@/components/SubscriptionForm/SubscriptionForm";
 import ViajaPorElMundo from "@/components/Home_ui/ViajarPorElMundo";
 import ViajesNacionales from "@/components/Home_ui/ViajesNacionales";
 import CardInternacional from "./Card_Internacional";
+import AirlineGrid from "@/components/AirLineGrid.tsx/AirLineGrid";
+import BusGrid from "@/components/BusGrid/BuasGrid";
+
 
 export default function Home() {
   return (
@@ -32,6 +35,12 @@ export default function Home() {
       </div>
       <div>
         <CardGridTour />
+      </div>
+      <div>
+        <AirlineGrid />
+      </div>
+      <div>
+        <BusGrid />
       </div>
       <div>
         <SubscriptionForm />
