@@ -57,7 +57,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
             {busDetails.oferta && (
               <div className="ribbon ribbon-top-right text-center"><span>Oferta</span></div>
             )}
-            <Image src={busDetails.imgUrl} alt={busDetails.title} className="rounded-lg w-full" width={300} height={200} />
+            <Image src={busDetails.imgUrl} alt={busDetails.title} className="rounded-lg w-full" width={300} height={300} />
             {/* <Image src="https://res.cloudinary.com/dia2gautk/image/upload/v1719724972/sxettsiexymytbh3eakg.jpg" alt={busDetails.title} className="rounded-lg w-full mt-5" width={300} height={200} /> */}
             {busDetails.agency && (
   <AgenciaGeolocation lat={busDetails.lat} lon={busDetails.lon} displayName={busDetails.display_name} touristPoints={busDetails.touristPoints} />

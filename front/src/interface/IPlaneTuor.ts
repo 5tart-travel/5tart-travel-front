@@ -21,4 +21,5 @@ export interface IPlaneTour {
     hotel:string;
     empresa:string;
     agency:any;
+    touristPoints:[]
   }

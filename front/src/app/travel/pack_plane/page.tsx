@@ -2,9 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-
 import TourCard from '@/app/ofertas/tourCard';
-import Link from 'next/link';
 import { IPlaneTour } from '@/interface/IPlaneTuor';
 
 const PackPlane: React.FC = () => {

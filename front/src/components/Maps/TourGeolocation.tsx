@@ -64,7 +64,7 @@ const AgenciaGeolocation: React.FC<AgenciaGeolocationProps> = ({
         className="rounded-lg"
         center={agencyPosition}
         zoom={13}
-        style={{ height: "400px", width: "100%", marginTop: "20px" }}
+        style={{ height: "300px", width: "100%", marginTop: "20px" }}
         ref={mapRef}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
