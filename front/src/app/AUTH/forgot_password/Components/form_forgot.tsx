@@ -25,9 +25,9 @@ const Form_forgot = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://huellasdesperanza.onrender.com/auth/email', { email });
+      const response = await axios.post('https://fivetart-travel-kafg.onrender.com/auth/email', { mail: email });
 
-      localStorage.setItem('userId', response.data);
+      localStorage.setItem('dataUser', JSON.stringify(response.data));
 
       Swal.fire('¡Solicitud de cambio contraseña enviada!', 'Revisa tu correo electrónico para más instrucciones.', 'success');
     } catch (error) {

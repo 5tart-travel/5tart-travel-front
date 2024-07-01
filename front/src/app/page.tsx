@@ -20,7 +20,7 @@ export default function Home() {
       <div className="flex">
         <CarouselWithThumbnails />
       </div>
-
+      
       <div>
         <ViajaPorElMundo />
       </div>
