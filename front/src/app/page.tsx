@@ -16,11 +16,11 @@ export default function Home() {
       <Navbar />
       <div className="flex">
         <CarouselWithThumbnails />
-      </div>
-      
+      </div>  
       <div>
         <ViajaPorElMundo />
       </div>
+      <div>
         <CardInternacional />
       </div>
       <div className="flex justify-center items-center my-16">
