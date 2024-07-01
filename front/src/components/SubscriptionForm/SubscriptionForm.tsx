@@ -45,11 +45,11 @@ const SubscriptionForm: React.FC = () => {
           placeholder="Ingresá tu e-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex-1 px-4 py-2 text-gray-800 bg-white border border-gray-300 rounded-l-xl focus:outline-none"
+          className="flex-1 px-4 py-2 text-gray-800 bg-white border border-gray-300 rounded-l-3xl focus:outline-none"
         />
         <button
           type="submit"
-          className="px-6 py-2 text-white bg-blue-950 rounded-r-xl hover:bg-blue-800 focus:outline-none"
+          className="px-6 py-2 text-white bg-blue-950 rounded-r-3xl hover:bg-blue-900 focus:outline-none"
         >
           Registrate
         </button>
