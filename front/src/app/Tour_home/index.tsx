@@ -37,7 +37,7 @@ const Home: React.FC = () => {
           price={tour.price}
           location={tour.location}
           imageUrl={tour.imgUrl} 
-          oferta={tour.oferta}  // Asegúrate de que la propiedad sea correcta
+          oferta={tour.oferta}  
         />
       ))}
     </div>
