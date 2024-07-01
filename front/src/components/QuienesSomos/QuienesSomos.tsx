@@ -1,17 +1,17 @@
-import NuestrosDatos from "./NuestrosDatos";
-import Text from "./Text";
+// import NuestrosDatos from "./NuestrosDatos";
+// import Text from "./Text";
 
 
-const QuienesSomos = () => {
-  return (
-    <div>
-        <h1 className="text-center">¡Quienes somos!</h1>
-        <NuestrosDatos/>
-        <Text/>
+// const QuienesSomos = () => {
+//   return (
+//     <div>
+//         <h1 className="text-center">¡Quienes somos!</h1>
+//         <NuestrosDatos/>
+//         <Text/>
 
-    </div>
+//     </div>
     
-  );
-}
+//   );
+// }
 
-export default QuienesSomos
+// export default QuienesSomos

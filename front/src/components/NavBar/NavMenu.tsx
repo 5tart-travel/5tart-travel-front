@@ -95,7 +95,7 @@ const NavMenu: React.FC = () => {
 )}
         </li>
         <li>
-  <Link
+  {/* <Link
     className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
     href={{
       pathname: "/comunidad",
@@ -103,7 +103,7 @@ const NavMenu: React.FC = () => {
     }}
   >
     Comunidad
-  </Link>
+  </Link> */}
 </li>
 
 
