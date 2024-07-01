@@ -7,17 +7,34 @@ interface CardGridProps {
   location?: string;
   imageUrl: string;
   oferta: boolean;
-  region?: string; 
-  hotel: string;   
-  state: string;
-  country: string;
-  empresa : string;
+  region?: string;
+  hotel?: string;
+  state?: string;
+  country?: string;
+  empresa?: string;
 }
 
-const CardGrid: FC<CardGridProps> = ({ title, price, location, imageUrl, oferta,region,hotel,state,country,empresa }) => {
+const CardGrid: FC<CardGridProps> = ({
+  title,
+  price,
+  location,
+  imageUrl,
+  oferta,
+  region,
+  hotel,
+  state,
+  country,
+  empresa,
+}) => {
   return (
     <div className="relative overflow-hidden bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105">
-      <Image src={imageUrl} alt={title} className="w-full h-48 object-cover" width={300} height={300} />
+      <Image
+        src={imageUrl}
+        alt={title}
+        className="w-full h-48 object-cover"
+        width={300}
+        height={300}
+      />
       {oferta && (
         <div className="absolute top-0 left-0 bg-blue-500 text-white font-bold py-1 px-3 rounded-full">
           Oferta

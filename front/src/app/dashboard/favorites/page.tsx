@@ -1,95 +1,93 @@
-'use client'
-import React, { useEffect, useState } from 'react';
-import { IMascotas } from '@/interface/ITravels';
-import { IRefugios } from '@/interface/IAgencias';
-import CardAnimals from '@/components/Card-Travel/CardTravels';
-import CardRefuge from '@/components/Agencias/CardAgencia';
+// 'use client'
+// import React, { useEffect, useState } from 'react';
+// import { IMascotas } from '@/interface/ITravels';
+// import { IRefugios } from '@/interface/IAgencias';
+// import CardAnimals from '@/components/Card-Travel/CardTravels';
+// import CardRefuge from '@/components/Agencias/CardAgencia';
 
+// const Favorite = () => {
+//   const [favoritePets, setFavoritePets] = useState<IMascotas[]>([]);
+//   const [favoriteShelters, setFavoriteShelters] = useState<IRefugios[]>([]);
+//   const [loading, setLoading] = useState(true);
 
-const Favorite = () => {
-  const [favoritePets, setFavoritePets] = useState<IMascotas[]>([]);
-  const [favoriteShelters, setFavoriteShelters] = useState<IRefugios[]>([]);
-  const [loading, setLoading] = useState(true); 
+//   useEffect(() => {
+//     const fetchFavorites = async () => {
+//       try {
+//         const userSessionString = localStorage.getItem('userSession');
+//         if (!userSessionString) {
+//           throw new Error('No user session found in local storage');
+//         }
 
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        const userSessionString = localStorage.getItem('userSession');
-        if (!userSessionString) {
-          throw new Error('No user session found in local storage');
-        }
+//         const userSession = JSON.parse(userSessionString);
+//         const accessToken = userSession.access_token;
 
-        const userSession = JSON.parse(userSessionString);
-        const accessToken = userSession.access_token;
+//         const headers = {
+//           'Content-Type': 'application/json',
+//           Authorization: `Bearer ${accessToken}`,
+//         };
 
-        const headers = {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-        };
+//         const response = await fetch('https://huellasdesperanza.onrender.com/users/favorite_users', {
+//           headers: headers,
+//         });
 
-        const response = await fetch('https://huellasdesperanza.onrender.com/users/favorite_users', {
-          headers: headers,
-        });
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+//         const data = await response.json();
+//         console.log('Data from API:', data);
 
-        const data = await response.json();
-        console.log('Data from API:', data);
+//         if (data.user.favorite_pets) {
+//           setFavoritePets(data.user.favorite_pets);
+//         }
+//         if (data.user.favorite_shelters) {
+//           setFavoriteShelters(data.user.favorite_shelters);
+//         }
 
+//         setLoading(false);
+//       } catch (error) {
+//         console.error(error);
+//         setLoading(false);
+//       }
+//     };
 
-        if (data.user.favorite_pets) {
-          setFavoritePets(data.user.favorite_pets);
-        }
-        if (data.user.favorite_shelters) {
-          setFavoriteShelters(data.user.favorite_shelters);
-        }
+//     fetchFavorites();
+//   }, []);
 
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-        setLoading(false); 
-      }
-    };
+//   if (loading) {
+//     return <p>Cargando favoritos...</p>;
+//   }
 
-    fetchFavorites();
-  }, []);
+//   if (favoritePets.length === 0 && favoriteShelters.length === 0) {
+//     return <p>No tenes favoritos.</p>;
+//   }
 
-  if (loading) {
-    return <p>Cargando favoritos...</p>;
-  }
+//   return (
+//     <div>
 
-  if (favoritePets.length === 0 && favoriteShelters.length === 0) {
-    return <p>No tenes favoritos.</p>;
-  }
+//       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center">
+//         {favoritePets.map((pet) => (
+//           <div key={pet.id} className="transform scale-75">
+//             <CardAnimals
+//               mascota={pet}
+//               updateMascota={() => {}}
+//               deleteMascota={() => {}}
+//             />
+//           </div>
+//         ))}
+//       </div>
+// <h1>borracha</h1>
+//       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center">
+//         {favoriteShelters.map((shelter) => (
+//           <div key={shelter.id} className="transform scale-75">
+//             <CardRefuge
+//               refugio={shelter}
+//             />
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
 
-  return (
-    <div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center">
-        {favoritePets.map((pet) => (
-          <div key={pet.id} className="transform scale-75">
-            <CardAnimals
-              mascota={pet}
-              updateMascota={() => {}} 
-              deleteMascota={() => {}} 
-            />
-          </div>
-        ))}
-      </div>
-<h1>borracha</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center">
-        {favoriteShelters.map((shelter) => (
-          <div key={shelter.id} className="transform scale-75">
-            <CardRefuge
-              refugio={shelter}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default Favorite;
+// export default Favorite;
