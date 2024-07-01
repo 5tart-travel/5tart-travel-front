@@ -28,6 +28,7 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
             layout="responsive"
             width={500}
             height={300}
+            style={{ minWidth: '100%', minHeight: '100%' }}
           />
         </div>
       </div>
@@ -36,7 +37,12 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
           <h2 className="text-lg font-bold text-gray-700 truncate">
             {tour.destino}
           </h2>
-          <p className="text-gray-500 font-bold">{tour.agency.name_agency}</p>
+          <p className="text-gray-500 font-bold">
+  {tour.agency.name_agency.length > 12
+    ? `${tour.agency.name_agency.substring(0, 12)}...`
+    : tour.agency.name_agency}
+</p>
+
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div className="text-gray-500 flex items-center">
@@ -45,11 +51,15 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
             ) : (
               <FaBus className="mr-2 h-5 w-5" />
             )}
-            <p className="text-xs max-w-xs truncate">{tour.empresa}</p>
+            <p className="text-xs max-w-xs truncate">
+              {tour.empresa.length > 13 ? `${tour.empresa.substring(0, 13)}...` : tour.empresa}
+            </p>
           </div>
           <div className="text-gray-500 flex items-center">
             <FaHotel className="mr-2 h-5 w-5 self-start" />
-            <p className="text-xs max-w-xs truncate">{tour.hotel}</p>
+            <p className="text-xs max-w-xs truncate">
+              {tour.hotel.length > 13 ? `${tour.hotel.substring(0, 13)}...` : tour.hotel}
+            </p>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 mt-2">

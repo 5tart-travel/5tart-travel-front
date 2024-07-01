@@ -6,7 +6,7 @@ interface Tour {
   id: number;
   title: string;
   price: number;
-  location: string;
+  region: string;
   imgUrl: string;
   oferta:boolean;
 }
@@ -19,7 +19,8 @@ const Home: React.FC = () => {
       try {
         const response = await fetch('https://fivetart-travel-kafg.onrender.com/tours');
         const data = await response.json();
-        setTours(data);
+        const filteredTours = data.filter((tour: Tour) => tour.region !== 'Internacional');
+        setTours(filteredTours);
       } catch (error) {
         console.error('Error fetching tours:', error);
       }
@@ -35,7 +36,7 @@ const Home: React.FC = () => {
           key={tour.id}
           title={tour.title}
           price={tour.price}
-          location={tour.location}
+          region={tour.region}
           imageUrl={tour.imgUrl} 
           oferta={tour.oferta}  
         />
