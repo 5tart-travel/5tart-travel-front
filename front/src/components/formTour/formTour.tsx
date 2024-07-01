@@ -22,7 +22,10 @@ interface FormularioTourProps {
   onAddTour: (tour: CreateTourDto) => void;
 }
 
-const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) => {
+const FormularioTour: React.FC<FormularioTourProps> = ({
+  onClose,
+  onAddTour,
+}) => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState<number | null>(null);
   const [description, setDescription] = useState('');
@@ -73,14 +76,17 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
 
         console.log('Datos del nuevo tour:', JSON.stringify(nuevoTour));
 
-        const tourResponse = await fetch('https://fivetart-travel-kafg.onrender.com/tours', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+        const tourResponse = await fetch(
+          'https://fivetart-travel-kafg.onrender.com/tours',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(nuevoTour),
           },
-          body: JSON.stringify(nuevoTour),
-        });
+        );
 
         if (!tourResponse.ok) {
           const responseText = await tourResponse.text();
@@ -88,12 +94,12 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           throw new Error('Error al agregar el tour.');
         }
 
-
-
         alert('Tour agregado correctamente');
       } catch (error) {
         console.error('Error:', error);
-        alert('Ocurrió un error al agregar el tour. Por favor, intente nuevamente.');
+        alert(
+          'Ocurrió un error al agregar el tour. Por favor, intente nuevamente.',
+        );
       }
     } else {
       alert('Por favor complete todos los campos obligatorios.');
@@ -106,7 +112,10 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
         <h2 className="text-2xl font-bold mb-4">Agregar Nuevo Tour</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="title"
+              className="block text-sm font-medium text-gray-700"
+            >
               Título
             </label>
             <input
@@ -119,20 +128,28 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           </div>
 
           <div className="mb-4">
-            <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="price"
+              className="block text-sm font-medium text-gray-700"
+            >
               Precio
             </label>
             <input
               id="price"
               type="number"
               value={price !== null ? price : ''}
-              onChange={(e) => setPrice(e.target.value ? parseFloat(e.target.value) : null)}
+              onChange={(e) =>
+                setPrice(e.target.value ? parseFloat(e.target.value) : null)
+              }
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-700"
+            >
               Descripción
             </label>
             <textarea
@@ -146,7 +163,10 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           </div>
 
           <div className="mb-4">
-            <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="address"
+              className="block text-sm font-medium text-gray-700"
+            >
               Dirección
             </label>
             <input
@@ -159,33 +179,54 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           </div>
 
           <div className="mb-4">
-            <label htmlFor="fecha_ingreso" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="fecha_ingreso"
+              className="block text-sm font-medium text-gray-700"
+            >
               Fecha de Ingreso
             </label>
             <input
               id="fecha_ingreso"
               type="date"
-              value={fecha_ingreso ? fecha_ingreso.toISOString().split('T')[0] : ''}
-              onChange={(e) => setFecha_ingreso(e.target.value ? new Date(e.target.value) : null)}
+              value={
+                fecha_ingreso ? fecha_ingreso.toISOString().split('T')[0] : ''
+              }
+              onChange={(e) =>
+                setFecha_ingreso(
+                  e.target.value ? new Date(e.target.value) : null,
+                )
+              }
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="fecha_egreso" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="fecha_egreso"
+              className="block text-sm font-medium text-gray-700"
+            >
               Fecha de Egreso
             </label>
             <input
               id="fecha_egreso"
               type="date"
-              value={fecha_egreso ? fecha_egreso.toISOString().split('T')[0] : ''}
-              onChange={(e) => setFecha_egreso(e.target.value ? new Date(e.target.value) : null)}
+              value={
+                fecha_egreso ? fecha_egreso.toISOString().split('T')[0] : ''
+              }
+              onChange={(e) =>
+                setFecha_egreso(
+                  e.target.value ? new Date(e.target.value) : null,
+                )
+              }
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="destino" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="destino"
+              className="block text-sm font-medium text-gray-700"
+            >
               Destino
             </label>
             <input
@@ -198,7 +239,10 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           </div>
 
           <div className="mb-4">
-            <label htmlFor="salida" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="salida"
+              className="block text-sm font-medium text-gray-700"
+            >
               Salida
             </label>
             <input
@@ -211,7 +255,10 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           </div>
 
           <div className="mb-4">
-            <label htmlFor="transportType" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="transportType"
+              className="block text-sm font-medium text-gray-700"
+            >
               Tipo de Transporte
             </label>
             <select
@@ -240,7 +287,10 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           </div> */}
 
           <div className="mb-4">
-            <label htmlFor="hotel" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="hotel"
+              className="block text-sm font-medium text-gray-700"
+            >
               Hotel
             </label>
             <input
@@ -253,7 +303,10 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           </div>
 
           <div className="mb-4">
-            <label htmlFor="empresa" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="empresa"
+              className="block text-sm font-medium text-gray-700"
+            >
               Empresa
             </label>
             <input
@@ -266,7 +319,10 @@ const FormularioTour: React.FC<FormularioTourProps> = ({ onClose, onAddTour }) =
           </div>
 
           <div className="mb-4">
-            <label htmlFor="oferta" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="oferta"
+              className="block text-sm font-medium text-gray-700"
+            >
               Oferta
             </label>
             <input
