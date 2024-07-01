@@ -10,7 +10,7 @@ import { RiLoginCircleLine } from 'react-icons/ri';
 import { MdDashboardCustomize } from 'react-icons/md';
 import DesplegableUser from './desplegable';
 import useUserRole from '@/utils/userSession';
-import SearchBar from '../SearchBar/SearchBar';
+import Search from './Search';
 
 const DEFAULT_AVATAR =
   'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
       </div>
 
       <NavMenu />
-      <SearchBar />
+      <Search />
 
       <div className="flex items-center">
         {isLoggedIn ? (
