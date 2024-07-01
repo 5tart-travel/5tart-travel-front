@@ -135,7 +135,7 @@ const AgencyForm: React.FC = () => {
           setError(`Error en el registro: ${errorData.message || 'Error desconocido'}`);
           Swal.fire({
             title: "¡Algo salió mal!",
-            text: "Tu agencia no pudo ser registrada. Por favor, inténtalo de nuevo.",
+              text: "Tu agencia no pudo ser registrada. Por favor, inténtalo de nuevo.",
             icon: "error",
             confirmButtonText: "Aceptar",
             timer: 3000,

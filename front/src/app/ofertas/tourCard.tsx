@@ -3,7 +3,6 @@ import { IBusTour } from '@/interface/IBusTour';
 import Image from 'next/image'; 
 import './tourCard.css'; 
 
-
 interface TourCardProps {
     tour: IBusTour;
     onClick: (id: string) => void;
@@ -15,23 +14,21 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
             className="relative bg-white shadow-md rounded-lg overflow-hidden p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300"
             onClick={() => onClick(tour.id)}  
         >
-                <div className="flex flex-col relative">
-            <div className="w-full h-48 rounded-lg mb-4 overflow-hidden">
-    
-                {tour.oferta && (
-                    <div className="ribbon ribbon-top-right text-center"><span>Oferta</span></div>
-                    
-                )}
-                <Image
-                    src={tour.imgUrl}
-                    alt={`Imagen de ${tour.destino}`}
-                    layout="responsive"
-                    width={500} 
-                    height={300}
-                />
-            </div>
+            <div className="flex flex-col relative">
+    <div className="w-full h-48 rounded-lg mb-4 overflow-hidden relative">
+        {tour.oferta && (
+            <div className="ribbon ribbon-top-right text-center"><span>Oferta</span></div>
+        )}
+        <Image
+            className="w-full h-full absolute inset-0 object-cover"
+            src={tour.imgUrl}
+            alt={`Imagen de ${tour.destino}`}
+            layout="fill" 
+            objectFit="cover" 
+        />
+    </div>
+</div>
 
-            </div>
             <div className="grid grid-cols-1 items-center">
                 <div className="flex items-center justify-between mb-2">
                     <h2 className="text-lg font-bold text-gray-700 truncate">{tour.destino}</h2>
