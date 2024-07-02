@@ -53,13 +53,13 @@ Para más información o consultas, puedes contactarnos:
 
 <table align="center">
   <tr>
-    <td align="center">
-      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Jonatan Mosqueda" width="200" style="border-radius: 50%;">
+  <td align="center">
+      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940484/abc8xlg70lzveiol8cns.jpg" alt="Mauricio Villegas" width="200" style="border-radius: 50%;">
       <br>
       <strong>FRONTEND</strong>
     </td>
     <td align="center">
-      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940484/abc8xlg70lzveiol8cns.jpg" alt="Mauricio Villegas" width="200" style="border-radius: 50%;">
+      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Jonatan Mosqueda" width="200" style="border-radius: 50%;">
       <br>
       <strong>FRONTEND</strong>
     </td>
