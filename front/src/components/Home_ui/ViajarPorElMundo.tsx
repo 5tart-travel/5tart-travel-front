@@ -13,12 +13,12 @@ const ViajaPorElMundo = () => {
       />
       <div className="relative flex items-center">
         <div className="absolute left-0 right-0 h-1 border-dotted border-b border-yellow-500 z-0"></div>
-        <h2 className="relative z-10 px-4 text-2xl md:text-4xl font-bold text-black text-center md:text-left">Viajá por el mundo</h2>
+        <h2 className="relative z-10 px-4 text-2xl md:text-4xl font-bold text-blue-950 text-shadow-semidark text-center md:text-left">Viajá por el mundo</h2>
       </div>
       <Image 
         src="https://res.cloudinary.com/dia2gautk/image/upload/v1719784195/xtjrf8tcjccsfofogloh.webp" 
         alt="Destino" 
-        className="ml-0 md:ml-4 mt-4 md:mt-0"
+        className="ml-0 md:ml-4 mt-4 md:mt-0  "
         width={300}
         height={300}
       />
