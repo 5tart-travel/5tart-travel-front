@@ -112,10 +112,10 @@ Para más información o consultas, puedes contactarnos:
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/mauro8778">
+      <a href="https://github.com/MaxiSalguero">
         <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
       </a>
-      <a href="www.linkedin.com/in/mauro-diaz-a0b8916b">
+      <a href="https://www.linkedin.com/in/maximiliano-salguero/">
         <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
       </a>
     </td>
