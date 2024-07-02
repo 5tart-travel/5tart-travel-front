@@ -57,15 +57,27 @@ Para más información o consultas, puedes contactarnos:
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/username_linkedin)
 
 
-  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Mauricio Villegas" width="200" style="border-radius: 50%;">
+  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940484/abc8xlg70lzveiol8cns.jpg" alt="Mauricio Villegas" width="200" style="border-radius: 50%;">
 
   [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)](https://github.com/V-Mau)
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/username_linkedin)
 
 
-  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Juan Carlos Castillo" width="200" style="border-radius: 50%;">
+  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940455/d66xfi743hlgp330kmxu.jpg" alt="Juan Carlos Castillo" width="200" style="border-radius: 50%;">
 
   [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)](https://github.com/juank132)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/username_linkedin)
+
+
+  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940507/x9my38fgodbpgg6xljrx.jpg" alt="Mauro Diaz" width="200" style="border-radius: 50%;">
+
+  [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)](https://github.com/mauro8778)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/username_linkedin)
+
+
+  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940533/k9cgjeu2ncesi6j7agji.jpg" alt="Maximiliano Salguero" width="200" style="border-radius: 50%;">
+
+  [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)](https://github.com/MaxiSalguero)
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/username_linkedin)
 
 
