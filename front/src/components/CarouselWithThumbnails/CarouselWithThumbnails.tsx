@@ -1,8 +1,3 @@
-
-
-
-
-
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
@@ -69,12 +64,12 @@ const CarouselWithThumbnails: React.FC = () => {
           fill
           priority={true}
         />
-        <div className="absolute top-20 right-10 text-left p-4">
-        <p className="text-lg mt-2 text-gray-50 text-shadow-semidark ">Te llevamos a donde quieras ir.</p>
-          <h1 className="text-5xl font-bold text-gray-50 text-shadow-semidark ">Encuentra tu próximo viaje</h1>
-          <p className="text-lg mt-2 text-gray-50 text-shadow-semidark "> Recorre Argentina y el mundo entero de la forma más sencilla.  <br /> ¡Vamos todos a viajar!</p>
+        <div className="absolute top-20 right-10 text-left p-4 max-w-xl sm:top-10 sm:right-5  md:top-14 md:right-7 lg:top-16 lg:right-9">
+          <p className="text-lg mt-2 text-gray-50 text-shadow-semidark sm:text-base md:text-lg lg:text-xl">Te llevamos a donde quieras ir.</p>
+          <h1 className="text-5xl font-bold text-gray-50 text-shadow-semidark sm:text-2xl md:text-5xl lg:text-5xl">Encuentra tu próximo viaje</h1>
+          <p className="text-lg mt-2 text-gray-50 text-shadow-semidark sm:text-base md:text-lg lg:text-xl">Recorre Argentina y el mundo entero de la forma más sencilla. <br /> ¡Vamos todos a viajar!</p>
           <Link href="/travel">
-          <button className="mt-4 px-6 py-3 bg-blue-950 rounded-xl hover:bg-blue-700 text-white">Buscar viajes</button>
+            <button className="mt-4 px-6 py-3 bg-blue-950 rounded-xl hover:bg-blue-900 shadow-xl text-white sm:px-4 sm:py-2 md:px-5 md:py-2.5 lg:px-6 lg:py-3">Buscar viajes</button>
           </Link>
         </div>
       </div>
@@ -88,15 +83,14 @@ const CarouselWithThumbnails: React.FC = () => {
           ) : (
             <Slider {...settings}>
               {agencias.map((agencia) => (
-                <div className="px-4" key={agencia.id}>
+                <div className="px-4  " key={agencia.id}>
                   <Link href={`/agencias/${agencia.id}`} passHref>
-                  <Card
-                        src={agencia.imgUrl || '/default-image.png'}
-                        alt={agencia.name_agency}
-                        name={agencia.name_agency}
-                        address={agencia.address}
-                        // agency={agencia.agency.name_agency}
-                      />
+                    <Card
+                      src={agencia.imgUrl || '/default-image.png'}
+                      alt={agencia.name_agency}
+                      name={agencia.name_agency}
+                      address={agencia.address}
+                    />
                   </Link>
                 </div>
               ))}
