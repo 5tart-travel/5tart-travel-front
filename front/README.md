@@ -77,7 +77,7 @@ Para más información o consultas, puedes contactarnos:
       <a href="https://github.com/V-Mau">
         <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
       </a>
-      <a href="https://www.linkedin.com/in/username_linkedin">
+      <a href="https://www.linkedin.com/in/mauricio-villegas-63a308246/">
         <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
       </a>
     </td>
@@ -115,7 +115,7 @@ Para más información o consultas, puedes contactarnos:
       <a href="https://github.com/mauro8778">
         <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
       </a>
-      <a href="https://www.linkedin.com/in/username_linkedin">
+      <a href="www.linkedin.com/in/mauro-diaz-a0b8916b">
         <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
       </a>
     </td>
