@@ -51,4 +51,4 @@ MIT License
 ## Contacto
 Para más información o consultas, puedes contactarnos:
 
-(https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg)
+ ![Jonatan Mosqueda](https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg)
