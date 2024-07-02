@@ -1,7 +1,5 @@
 # 5tart-Travel
 
-![Logo de 5tart-Travel](ruta/a/tu/logo.png)
-
 ## Descripción
 
 5tart-Travel es una aplicación donde las agencias de turismo pueden publicar sus paquetes turísticos. Nuestro objetivo es centralizar todos los paquetes turísticos de diferentes agencias para que los usuarios puedan tener más opciones a la hora de elegir según sea más conveniente para ellos.
