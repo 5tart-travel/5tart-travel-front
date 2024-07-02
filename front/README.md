@@ -53,10 +53,41 @@ Para más información o consultas, puedes contactarnos:
 
    ## Miembros del proyecto
 
-- Jonatan Mosqueda
-  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Jonatan Mosqueda" width="200" style="border-radius: 50%;">
+## Miembros del proyecto
 
+<div style="display: inline-block; margin-right: 20px;">
+  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940484/abc8xlg70lzveiol8cns.jpg" alt="Mauricio Villegas" width="200" style="border-radius: 50%;">
+  <br>
   [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)](https://github.com/nombre_de_usuario_github)
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/username_linkedin)
+</div>
 
+<div style="display: inline-block; margin-right: 20px;">
+  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Jonatan Mosqueda" width="200" style="border-radius: 50%;">
+  <br>
+  [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)](hhttps://github.com/Jongabee)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/jongabee/)
+</div>
+
+<div style="display: inline-block; margin-right: 20px;">
+  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940455/d66xfi743hlgp330kmxu.jpg" alt="Juan Carlos Castillo" width="200" style="border-radius: 50%;">
+  <br>
+  [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)](https://github.com/nombre_de_usuario_github)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/username_linkedin)
+</div>
+
+
+<div style="display: inline-block; margin-right: 20px;">
+  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940507/x9my38fgodbpgg6xljrx.jpg" alt="Mauro Diaz" width="200" style="border-radius: 50%;">
+  <br>
+  [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)](https://github.com/nombre_de_usuario_github)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/username_linkedin)
+</div>
+
+<div style="display: inline-block; margin-right: 20px;">
+  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940533/k9cgjeu2ncesi6j7agji.jpg" alt="Maximiliano Salguero" width="200" style="border-radius: 50%;">
+  <br>
+  [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github)](https://github.com/nombre_de_usuario_github)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/username_linkedin)
+</div>
 
