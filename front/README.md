@@ -55,9 +55,13 @@ Para más información o consultas, puedes contactarnos:
   <tr>
     <td align="center">
       <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Jonatan Mosqueda" width="200" style="border-radius: 50%;">
+      <br>
+      <strong>FRONTEND</strong>
     </td>
     <td align="center">
       <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940484/abc8xlg70lzveiol8cns.jpg" alt="Mauricio Villegas" width="200" style="border-radius: 50%;">
+      <br>
+      <strong>FRONTEND</strong>
     </td>
   </tr>
   <tr>
@@ -84,12 +88,18 @@ Para más información o consultas, puedes contactarnos:
   <tr>
     <td align="center">
       <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940455/d66xfi743hlgp330kmxu.jpg" alt="Juan Carlos Castillo" width="200" style="border-radius: 50%;">
+      <br>
+      <strong>BACKEND</strong>
     </td>
     <td align="center">
       <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940507/x9my38fgodbpgg6xljrx.jpg" alt="Mauro Diaz" width="200" style="border-radius: 50%;">
+      <br>
+      <strong>BACKEND</strong>
     </td>
     <td align="center">
       <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940533/k9cgjeu2ncesi6j7agji.jpg" alt="Maximiliano Salguero" width="200" style="border-radius: 50%;">
+      <br>
+      <strong>BACKEND</strong>
     </td>
   </tr>
   <tr>
@@ -119,4 +129,5 @@ Para más información o consultas, puedes contactarnos:
     </td>
   </tr>
 </table>
+
 
