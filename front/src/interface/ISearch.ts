@@ -1,15 +1,32 @@
 export interface ISearch {
   id: string;
-  name: string;
-  sexo: string;
-  breed: string;
-  species: string;
-  age: number;
-  month: string;
+  title: string;
+  price: number;
   description: string;
-  pet_size: string;
   imgUrl: string;
-  godfather: string | null;
-  isCondition: boolean;
-  isActive: boolean;
+  fecha_ingreso: string;
+  fecha_egreso: string;
+  lat: number;
+  lon: number;
+  display_name: string;
+  destino: string;
+  salida: string;
+  address: string;
+  country: string;
+  region: string;
+  state: string;
+  date: string;
+  transportType: string;
+  oferta: boolean;
+  hotel: string;
+  empresa: string;
+  touristPoints: { lat: number; lon: number; name: string; }[];
+  agency: {
+    id: string;
+    name_agency: string;
+    mail: string;
+    password: string;
+    address: string;
+    imgUrl: string;
+  };
 }
