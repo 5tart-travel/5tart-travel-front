@@ -251,7 +251,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           <div className="mt-4 ml-10 grid grid-cols-3 gap-4">
             {busDetails.touristPoints.map((point, index) => (
               <div key={index} className="text-base text-gray-500">
-                ⭐ {point.name}
+                {/* ⭐ {point.name} */}
               </div>
             ))}
           </div>
