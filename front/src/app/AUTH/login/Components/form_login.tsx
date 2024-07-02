@@ -122,7 +122,7 @@ const Form_Login: React.FC = () => {
   };
 
   const handleGoogleLogin = async () => {
-    window.location.href = 'https://fivetart-travel.onrender.com/auth/google';
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/google`;
   };
 
   return (
