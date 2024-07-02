@@ -123,7 +123,7 @@ Para más información o consultas, puedes contactarnos:
       <a href="https://github.com/MaxiSalguero">
         <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
       </a>
-      <a href="https://www.linkedin.com/in/username_linkedin">
+      <a href="https://www.linkedin.com/in/maximiliano-salguero/">
         <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
       </a>
     </td>
