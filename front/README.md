@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 5tart-Travel
 
-## Getting Started
+![Logo de 5tart-Travel](ruta/a/tu/logo.png)
 
-First, run the development server:
+## Descripción
 
-```bash
+5tart-Travel es una aplicación donde las agencias de turismo pueden publicar sus paquetes turísticos. Nuestro objetivo es centralizar todos los paquetes turísticos de diferentes agencias para que los usuarios puedan tener más opciones a la hora de elegir según sea más conveniente para ellos.
+
+## Características
+
+- Publicación de paquetes turísticos por parte de agencias.
+- Comparación de paquetes turísticos de diferentes agencias en un solo lugar.
+- Opciones de búsqueda y filtrado para encontrar el paquete ideal.
+- Integración con servicios de geolocalización para mostrar paquetes cercanos.
+- Soporte para envíos de correos mediante nodemailer.
+- Pasarela de pago segura y confiable con Mercado Pago.
+
+## Tecnologías
+
+- [Next.js](https://nextjs.org/)
+- [NestJS](https://nestjs.com/)
+- [Cloudinary](https://cloudinary.com/)
+- [Geocode](https://geocode.xyz/)
+- [Nodemailer](https://nodemailer.com/about/)
+- [Mercado Pago](https://www.mercadopago.com/)
+
+## Instalación
+
+Sigue estos pasos para clonar el repositorio e instalar las dependencias necesarias:
+
+git clone https://github.com/5tart-travel/5tart-travel-front.git
+cd 5tart-travel-front
+npm install
+
+## Uso
+
+Para ejecutar la aplicación en un entorno local, usa el siguiente comando:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre http://localhost:3000 en tu navegador para ver la aplicación en funcionamiento.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Problemas y Sugerencias
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Para reportar problemas o hacer sugerencias, por favor usa el issue tracker.
 
-## Learn More
+## Licencia
+Este proyecto está licenciado bajo la MIT License.
+MIT License
 
-To learn more about Next.js, take a look at the following resources:
+## Contacto
+Para más información o consultas, puedes contactarnos:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+(https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg)
