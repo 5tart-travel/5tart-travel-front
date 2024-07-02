@@ -51,4 +51,5 @@ MIT License
 ## Contacto
 Para más información o consultas, puedes contactarnos:
 
- ![Jonatan Mosqueda](https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg)
+   <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Jonatan Mosqueda" width="200" style="border-radius: 50%;">
+
