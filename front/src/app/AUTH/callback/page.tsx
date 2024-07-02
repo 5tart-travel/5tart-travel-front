@@ -12,7 +12,7 @@ const Callback = () => {
     const accessToken = urlParams.get('access_token');
 
     if (accessToken) {
-      localStorage.setItem("userSession", JSON.stringify({ access_token: accessToken }));
+      localStorage.setItem("userSession", JSON.stringify({ token: accessToken }));
       console.log('Datos de la sesión del usuario almacenados en localStorage:', { access_token: accessToken });
 
       router.push('/');

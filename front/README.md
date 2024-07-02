@@ -53,13 +53,13 @@ Para más información o consultas, puedes contactarnos:
 
 <table align="center">
   <tr>
-    <td align="center">
-      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Jonatan Mosqueda" width="200" style="border-radius: 50%;">
+  <td align="center">
+      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940484/abc8xlg70lzveiol8cns.jpg" alt="Mauricio Villegas" width="200" style="border-radius: 50%;">
       <br>
       <strong>FRONTEND</strong>
     </td>
     <td align="center">
-      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940484/abc8xlg70lzveiol8cns.jpg" alt="Mauricio Villegas" width="200" style="border-radius: 50%;">
+      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Jonatan Mosqueda" width="200" style="border-radius: 50%;">
       <br>
       <strong>FRONTEND</strong>
     </td>
@@ -112,10 +112,10 @@ Para más información o consultas, puedes contactarnos:
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/mauro8778">
+      <a href="https://github.com/MaxiSalguero">
         <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
       </a>
-      <a href="www.linkedin.com/in/mauro-diaz-a0b8916b">
+      <a href="https://www.linkedin.com/in/maximiliano-salguero/">
         <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
       </a>
     </td>
@@ -123,7 +123,7 @@ Para más información o consultas, puedes contactarnos:
       <a href="https://github.com/MaxiSalguero">
         <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
       </a>
-      <a href="https://www.linkedin.com/in/username_linkedin">
+      <a href="https://www.linkedin.com/in/maximiliano-salguero/">
         <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
       </a>
     </td>
