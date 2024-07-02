@@ -51,52 +51,72 @@ MIT License
 ## Contacto
 Para más información o consultas, puedes contactarnos:
 
-<p align="center">
-  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Jonatan Mosqueda" width="200" style="border-radius: 50%;">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940484/abc8xlg70lzveiol8cns.jpg" alt="Mauricio Villegas" width="200" style="border-radius: 50%;">
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940434/cmoccvvllrsaay1kzsmw.jpg" alt="Jonatan Mosqueda" width="200" style="border-radius: 50%;">
+    </td>
+    <td align="center">
+      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940484/abc8xlg70lzveiol8cns.jpg" alt="Mauricio Villegas" width="200" style="border-radius: 50%;">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Jongabee">
+        <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/jongabee/">
+        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/V-Mau">
+        <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/username_linkedin">
+        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
+      </a>
+    </td>
+  </tr>
+</table>
 
-<p align="center">
-  <a href="https://github.com/Jongabee">
-    <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/jongabee/">
-    <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
-  </a>
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940455/d66xfi743hlgp330kmxu.jpg" alt="Juan Carlos Castillo" width="200" style="border-radius: 50%;">
+    </td>
+    <td align="center">
+      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940507/x9my38fgodbpgg6xljrx.jpg" alt="Mauro Diaz" width="200" style="border-radius: 50%;">
+    </td>
+    <td align="center">
+      <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940533/k9cgjeu2ncesi6j7agji.jpg" alt="Maximiliano Salguero" width="200" style="border-radius: 50%;">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/juank132">
+        <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/username_linkedin">
+        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/mauro8778">
+        <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/username_linkedin">
+        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/MaxiSalguero">
+        <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/username_linkedin">
+        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
+      </a>
+    </td>
+  </tr>
+</table>
 
-<p align="center">
-  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940455/d66xfi743hlgp330kmxu.jpg" alt="Juan Carlos Castillo" width="200" style="border-radius: 50%;">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940507/x9my38fgodbpgg6xljrx.jpg" alt="Mauro Diaz" width="200" style="border-radius: 50%;">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://res.cloudinary.com/dia2gautk/image/upload/v1719940533/k9cgjeu2ncesi6j7agji.jpg" alt="Maximiliano Salguero" width="200" style="border-radius: 50%;">
-</p>
-
-<p align="center">
-  <a href="https://github.com/juank132">
-    <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/username_linkedin">
-    <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/mauro8778">
-    <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/username_linkedin">
-    <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/MaxiSalguero">
-    <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/username_linkedin">
-    <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
-  </a>
-</p>
