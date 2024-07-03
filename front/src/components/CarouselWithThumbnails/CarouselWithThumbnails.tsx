@@ -74,7 +74,7 @@ const CarouselWithThumbnails: React.FC = () => {
         </div>
       </div>
       {/* Cards Carousel */}
-      <div className="absolute w-full top-[250px] lg:top-[450px] md:top-[350px] sm:top-[250px] flex justify-center">
+      <div className="absolute w-full  top-[250px] lg:top-[450px]  md:top-[350px] sm:top-[250px] flex justify-center">
         <div className="w-[100%]">
           {loading ? (
             <div><Spiner /></div>
