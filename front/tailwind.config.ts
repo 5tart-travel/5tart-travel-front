@@ -12,6 +12,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        'bounce': 'bounce 1.5s infinite',
+      },
+      keyframes: {
+        bounce: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-15px)' },
+        },
+      },
       screens: {
         xs: '475px',
         sm: '640px',

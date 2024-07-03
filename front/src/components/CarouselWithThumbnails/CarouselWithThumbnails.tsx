@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import Card from '@/components/Home_ui/Card_home';
-import Spiner from '@/components/ui/Spiner';
+import BouncingDotsLoader from '@/components/ui/BouncingDotsLoader';
 import Link from 'next/link';
 
 const CarouselWithThumbnails: React.FC = () => {
@@ -74,16 +74,16 @@ const CarouselWithThumbnails: React.FC = () => {
         </div>
       </div>
       {/* Cards Carousel */}
-      <div className="absolute w-full  top-[250px] lg:top-[450px]  md:top-[350px] sm:top-[250px] flex justify-center">
+      <div className="absolute w-full top-[250px] lg:top-[450px] md:top-[350px] sm:top-[250px] flex justify-center">
         <div className="w-[100%]">
           {loading ? (
-            <div><Spiner /></div>
+            <BouncingDotsLoader />
           ) : agencias.length === 0 ? (
             <p>No agencias available</p>
           ) : (
             <Slider {...settings}>
               {agencias.map((agencia) => (
-                <div className="px-4  " key={agencia.id}>
+                <div className="px-4" key={agencia.id}>
                   <Link href={`/agencias/${agencia.id}`} passHref>
                     <Card
                       src={agencia.imgUrl || '/default-image.png'}
