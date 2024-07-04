@@ -49,7 +49,7 @@ const SubscriptionForm: React.FC = () => {
         />
         <button
           type="submit"
-          className="px-6 py-2 text-white bg-blue-950 rounded-b-3xl sm:rounded-r-3xl sm:rounded-b-none hover:bg-blue-900 focus:outline-none"
+          className="px-6 py-2 text-white bg-blue-950 rounded-b-3xl sm:rounded-br-3xl sm:rounded-b-none hover:bg-blue-900 focus:outline-none"
         >
           Registrate
         </button>
