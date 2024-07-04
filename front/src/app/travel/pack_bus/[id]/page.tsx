@@ -8,6 +8,7 @@ import './BusDetail.css';
 import AgenciaGeolocation from '@/components/Maps/TourGeolocation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faBroom, faBus, faChain, faChair, faExchangeAlt, faParking, faPlaneDeparture, faSnowflake, faSwimmer, faT, faToilet, faTv, faUserShield, faUtensils, faWheelchairAlt, faWifi } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [busDetails, setBusDetails] = useState<IBusTour | null>(null);
@@ -104,6 +105,40 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
     }
   };
 
+  const handleCheckout = async () => {
+    try {
+      const response = await axios.post(`https://fivetart-travel-kafg.onrender.com/mercado-pago`, {
+        title: busDetails.title,
+        price: Number(busDetails.price),
+      });
+      const data = response.data;
+
+      if (data) {
+        const script = document.createElement('script');
+        script.src = 'https://sdk.mercadopago.com/js/v2';
+        script.async = true;
+        script.onload = () => {
+          const mp = new window.MercadoPago('TEST-5423250e-6e54-4e3b-a21b-160a1653fc7a', {
+            locale: 'es-AR',
+          });
+          mp.checkout({
+            preference: {
+              id: data
+            },
+            autoOpen: true,
+          });
+        };
+        document.body.appendChild(script);
+      } else {
+        alert('Error al crear la preferencia de pago');
+      }
+
+    } catch (error) {
+      console.error('Error al crear la preferencia de pago:', error);
+      alert('Error al crear la preferencia de pago');
+    }
+  };
+
   return (
     <div>
       <section className="text-base text-center mb-4">
@@ -125,6 +160,28 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 p-4">
             <h1 className="text-white text-4xl mb-4 text-left">{busDetails.title}</h1>
             <p className="text-white text-lg text-left">{busDetails.description}</p>
+            {/* Botón agregado en la esquina inferior derecha */}
+            <button
+              className="absolute bottom-0 right-0 mb-4 mr-4 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-full z-10 flex items-center justify-center shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1"
+              onClick={handleCheckout} // Agregar el evento onClick
+              style={{ minWidth: '150px' }} // Ajusta el ancho mínimo del botón según sea necesario
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              Pagar ${busDetails.price}
+            </button>
           </div>
         </div>
       </section>
