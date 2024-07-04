@@ -1,4 +1,4 @@
-'use client';
+/*'use client';
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -49,3 +49,4 @@ const ToggleDeleteUser: React.FC<ToggleDeleteUserProps> = ({ userId, onDelete })
 };
 
 export default ToggleDeleteUser;
+*/

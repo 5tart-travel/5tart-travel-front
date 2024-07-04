@@ -1,8 +1,8 @@
 
+/*
 import React, { useState } from 'react';
 import { BarChartShelter } from '@/components/ui/BarChart';
 import AllUsers from '@/components/admin/AllUsers';
-
 import PendingShelters from '@/components/admin/PendingShelters';
 import BannerAdmin from '../admin/BannerAdmin.tsx';
 
@@ -28,7 +28,7 @@ const DashboardMain: React.FC<DashboardMainProps> = ({ role }) => {
             <StatCard title="Notificaciones" icon={<FaBell size={40} className="text-yellow-500" />}>
               <p className="text-xl">3</p>
             </StatCard>
-          </div> */}
+          </div> 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             <div className="col-span-1 md:col-span-1 lg:col-span-1">
               <AllUsers />
@@ -63,3 +63,4 @@ const DashboardMain: React.FC<DashboardMainProps> = ({ role }) => {
 };
 
 export default DashboardMain;
+*/
