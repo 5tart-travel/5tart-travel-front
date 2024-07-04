@@ -17,12 +17,12 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const handleResize = useCallback(() => {
-    const isSmallerScreen = window.innerWidth <= 640; // Define tu punto de quiebre para móvil
+    const isSmallerScreen = window.innerWidth <= 640; 
     setIsMobile(isSmallerScreen);
   }, []);
 
   useEffect(() => {
-    handleResize(); // Verificar el tamaño inicial al cargar
+    handleResize(); 
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
@@ -88,7 +88,7 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
               className="flex h-12 w-full gap-2 font-semibold items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 rounded-t-lg"
             >
               <FaRegUserCircle />
-              Dashboard
+              Mi cuenta
             </a>
           </li>
           <li>
@@ -97,10 +97,9 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
               className="flex h-12 w-full items-center gap-2 font-semibold px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-indigo-100 hover:text-indigo-600 rounded-b-lg"
             >
               <CiLogin />
-              Logout
+              Cerrar sesión
             </p>
           </li>
-          {/* Enlaces adicionales para dispositivos móviles */}
           {isOpen && isMobile && (
             <>
               <li>

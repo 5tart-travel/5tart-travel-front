@@ -1,4 +1,4 @@
-"use client";
+/*"use client";
 
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -46,3 +46,4 @@ const ToggleActiveShelter: React.FC<ToggleActiveShelterProps> = ({ shelterId, in
 };
 
 export default ToggleActiveShelter;
+*/

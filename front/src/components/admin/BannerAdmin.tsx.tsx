@@ -1,4 +1,4 @@
-// pages/admin/BannerAdmin.tsx
+/*// pages/admin/BannerAdmin.tsx
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
@@ -60,3 +60,4 @@ const BannerAdmin: React.FC = () => {
 };
 
 export default BannerAdmin;
+*/

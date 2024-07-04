@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 
 const NavMenu: React.FC = () => {
   return (
     <nav className="relative">
       <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-10 text-gray-100 text-base p-4 md:p-0">
-        <li className="hidden md:flex"> {/* Oculto en dispositivos móviles */}
+        <li className="hidden md:flex"> 
           <Link
             className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
             href={{
@@ -16,7 +15,7 @@ const NavMenu: React.FC = () => {
             Inicio
           </Link>
         </li>
-        <li className="hidden md:flex"> {/* Oculto en dispositivos móviles */}
+        <li className="hidden md:flex"> 
           <Link
             className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-transparent hover:after:bg-blue-300 transition-all duration-300"
             href={{
@@ -44,5 +43,8 @@ const NavMenu: React.FC = () => {
 };
 
 export default NavMenu;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 1a86e83a8c5c34f8bd60efea3c1fa63a70a660b3

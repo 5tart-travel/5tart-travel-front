@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { RiLoginCircleLine } from 'react-icons/ri';
-import useUserRole from '@/utils/userSession';
 import Search from './Search';
 import Logo from '../ui/Logo';
 import NavMenu from './NavMenu';
