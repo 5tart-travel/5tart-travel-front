@@ -1,14 +1,11 @@
 
 import React, { useState } from 'react';
-import { FaDonate, FaPaw, FaBell } from 'react-icons/fa';
-import DonationChart from '@/components/admin/DonationChart';
-import StatCard from '@/components/ui/StatCard';
 import { BarChartShelter } from '@/components/ui/BarChart';
 import AllUsers from '@/components/admin/AllUsers';
-import SheltersAll from '@/components/admin/SheltesAll';
+
 import PendingShelters from '@/components/admin/PendingShelters';
 import BannerAdmin from '../admin/BannerAdmin.tsx';
-import Link from 'next/link';
+
 
 interface DashboardMainProps {
   role: 'admin' | 'user' | 'shelter';
@@ -40,7 +37,7 @@ const DashboardMain: React.FC<DashboardMainProps> = ({ role }) => {
               <BarChartShelter />
             </div>
             <div className="col-span-1 md:col-span-1 lg:col-span-1">
-              <SheltersAll />
+           
             </div>
             <div className='col-span-1 md:col-span-1 lg:col-span-1'>
               <PendingShelters />
