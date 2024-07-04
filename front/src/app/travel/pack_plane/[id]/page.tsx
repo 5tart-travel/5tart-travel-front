@@ -8,6 +8,7 @@ import './PlaneDetail.css';
 import AgenciaGeolocation from '@/components/Maps/TourGeolocation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faBroom, faBus, faChain, faChair, faExchangeAlt, faParking, faPlaneDeparture, faSnowflake, faSwimmer, faT, faToilet, faTv, faUserShield, faUtensils, faWheelchairAlt, faWifi } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [busDetails, setBusDetails] = useState<IBusTour | null>(null);
@@ -59,6 +60,40 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
     }
   };
 
+  const handleCheckout = async () => {
+    try {
+      const response = await axios.post(`https://fivetart-travel-kafg.onrender.com/mercado-pago`, {
+        title: busDetails.title,
+        price: Number(busDetails.price),
+      });
+      const data = response.data;
+
+      if (data) {
+        const script = document.createElement('script');
+        script.src = 'https://sdk.mercadopago.com/js/v2';
+        script.async = true;
+        script.onload = () => {
+          const mp = new window.MercadoPago('TEST-5423250e-6e54-4e3b-a21b-160a1653fc7a', {
+            locale: 'es-AR',
+          });
+          mp.checkout({
+            preference: {
+              id: data
+            },
+            autoOpen: true,
+          });
+        };
+        document.body.appendChild(script);
+      } else {
+        alert('Error al crear la preferencia de pago');
+      }
+
+    } catch (error) {
+      console.error('Error al crear la preferencia de pago:', error);
+      alert('Error al crear la preferencia de pago');
+    }
+  };
+
   return (
     <div>
       <section className="text-base text-center mb-4">
@@ -80,25 +115,47 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 p-4">
             <h1 className="text-white text-4xl mb-4 text-left">{busDetails.title}</h1>
             <p className="text-white text-lg text-left">{busDetails.description}</p>
+            {/* Botón agregado en la esquina inferior derecha */}
+            <button
+              className="absolute bottom-0 right-0 mb-4 mr-4 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-full z-10 flex items-center justify-center shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1"
+              onClick={handleCheckout} // Agregar el evento onClick
+              style={{ minWidth: '150px' }} // Ajusta el ancho mínimo del botón según sea necesario
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              Pagar ${busDetails.price}
+            </button>
           </div>
         </div>
       </section>
-  
-  
+
+
       <section className="text-base flex items-center mt-20">
-  
+
         <div className="w-1/2 pr-4 h-full">
           <div className="bg-gray-200 p-4 rounded-lg h-full flex flex-col items-center justify-center ml-10 text-center">
             <h2 className="text-xl font-bold uppercase mb-2">{busDetails.hotel}</h2>
             <img src={busDetails.imgUrl} alt={busDetails.hotel} className="w-full h-auto rounded-lg" />
           </div>
         </div>
-  
-  
-  
+
+
+
         <div className="w-1/2 pl-4 h-full">
           <div className="bg-white p-4 rounded-lg flex flex-col justify-start items-center h-full">
-  
+
             <div className="text-left">
               <div className="flex items-center mb-1">
                 <hr className="border-gray-300 flex-grow opacity-20" />
@@ -109,7 +166,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
                 <p className="text-base"><strong><FontAwesomeIcon icon={faSwimmer} /> Piscina al aire libre de temporada</strong></p>
                 <p className="text-base"><strong><FontAwesomeIcon icon={faTv} /> TV en zonas comunes</strong></p>
               </div>
-  
+
               <div className="flex items-center mb-1">
                 <hr className="border-gray-300 flex-grow opacity-20" />
                 <h2 className="text-lg font-bold text-gray-300 mx-2">Alimentación</h2>
@@ -118,28 +175,28 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
               <div>
                 <p className="text-base"><strong><FontAwesomeIcon icon={faChair} /> Desayuno</strong></p>
               </div>
-  
+
               <div className="flex items-center mb-1">
                 <hr className="border-gray-300 flex-grow opacity-20" />
                 <h2 className="text-lg font-bold text-gray-300 mx-2">Estacionamiento y movilidad</h2>
                 <hr className="border-gray-300 flex-grow opacity-20" />
               </div>
               <p className="text-base"><strong><FontAwesomeIcon icon={faParking} /> Estacionamiento gratis</strong></p>
-  
+
               <div className="flex items-center mb-1">
                 <hr className="border-gray-300 flex-grow opacity-20" />
                 <h2 className="text-lg font-bold text-gray-300 mx-2">Seguridad</h2>
                 <hr className="border-gray-300 flex-grow opacity-20" />
               </div>
               <p className="text-base"><strong><FontAwesomeIcon icon={faUserShield} /> Seguridad 24 hrs</strong></p>
-  
+
               <div className="flex items-center mb-1">
                 <hr className="border-gray-300 flex-grow opacity-20" />
                 <h2 className="text-lg font-bold text-gray-300 mx-2">Información sobre accesibilidad</h2>
                 <hr className="border-gray-300 flex-grow opacity-20" />
               </div>
               <p className="text-base"><strong><FontAwesomeIcon icon={faWheelchairAlt} /> Unidades adaptadas a personas con movilidad reducida</strong></p>
-  
+
               <div className="flex items-center mb-1">
                 <hr className="border-gray-300 flex-grow opacity-20" />
                 <h2 className="text-lg font-bold text-gray-300 mx-2">Servicios en áreas comunes y habitación</h2>
@@ -147,7 +204,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
               </div>
               <p className="text-base"><strong><FontAwesomeIcon icon={faSnowflake} /> Aire acondicionado y calefacción</strong></p>
               <p className="text-base"><strong><FontAwesomeIcon icon={faWifi} /> Wi-Fi y Internet por cable gratis</strong></p>
-  
+
               <div className="flex items-center mb-1">
                 <hr className="border-gray-300 flex-grow opacity-20" />
                 <h2 className="text-lg font-bold text-gray-300 mx-2">Incluye</h2>
@@ -162,7 +219,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           </div>
         </div>
       </section>
-  
+
       <section className="text-base flex items-center mt-5">
         <div
           className="relative w-full sm:w-3/4 lg:w-3/4 mx-auto rounded-lg overflow-hidden"
@@ -202,7 +259,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
             <span className="text-lg font-bold text-gray-300 opacity-23">{busDetails.destino.toUpperCase()}</span>
             <hr className="border-gray-300 flex-grow opacity-20" />
           </div>
-  
+
           <div className="mt-4 ml-10 grid grid-cols-3 gap-4">
             {busDetails.touristPoints.map((point, index) => (
               <div key={index} className="text-base text-gray-500">
@@ -212,8 +269,8 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           </div>
         </section>
       )}
-  
-  
+
+
       <div className="flex items-center mb-1 mt-20">
         <hr className="border-gray-300 flex-grow opacity-20" />
         <h2 className="text-lg font-bold text-gray-300 mx-2">Detalle de </h2>
@@ -222,7 +279,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
       </div>
       <section className="text-base mt-8 mt-5">
         <div className="flex justify-between items-start max-w-6xl mx-auto text-center">
-  
+
           <div className="flex-1 bg-gray-100 p-4 rounded-lg mr-8">
             <div className="flex items-center mb-6 justify-center">
               <div className="mr-3">
@@ -230,7 +287,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
               </div>
               <div className="font-bold text-2xl">Ida</div>
             </div>
-  
+
             <div className="mb-6">
               <span className="font-bold text-lg">Fecha de salida:</span> {formattedFechaIngreso}
             </div>
@@ -241,12 +298,12 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
               <span className="font-bold text-lg">Empresa:</span> {busDetails.empresa.toUpperCase()}
             </div>
           </div>
-  
-  
+
+
           <div className="flex items-center justify-center mt-20">
             <FontAwesomeIcon icon={faExchangeAlt} className="text-gray-500 text-4xl mt-4" />
           </div>
-  
+
           <div className="flex-1 bg-gray-100 p-4 rounded-lg ml-8">
             <div className="flex items-center mb-6 justify-center">
               <div className="mr-3">
@@ -266,8 +323,8 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           </div>
         </div>
       </section>
-  
-      
+
+
     </div>
   );
 }
