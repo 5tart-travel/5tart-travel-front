@@ -1,4 +1,4 @@
-import axios from "axios";
+/*import axios from "axios";
 
 const handleCheckout = async () => {
     try {
@@ -33,4 +33,4 @@ const handleCheckout = async () => {
       alert('Error al crear la preferencia de pago');
     }
   };
-  
+  */
