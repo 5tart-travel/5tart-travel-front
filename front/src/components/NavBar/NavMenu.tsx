@@ -43,8 +43,3 @@ const NavMenu: React.FC = () => {
 };
 
 export default NavMenu;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 1a86e83a8c5c34f8bd60efea3c1fa63a70a660b3
