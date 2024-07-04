@@ -1,7 +1,5 @@
 # 5tart-Travel
 
-![Logo de 5tart-Travel](ruta/a/tu/logo.png)
-
 ## Descripción
 
 5tart-Travel es una aplicación donde las agencias de turismo pueden publicar sus paquetes turísticos. Nuestro objetivo es centralizar todos los paquetes turísticos de diferentes agencias para que los usuarios puedan tener más opciones a la hora de elegir según sea más conveniente para ellos.
@@ -65,19 +63,19 @@ Para más información o consultas, puedes contactarnos:
     </td>
   </tr>
   <tr>
+  <td align="center">
+      <a href="https://github.com/V-Mau">
+        <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/mauricio-villegas-63a308246/">
+        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
+      </a>
+    </td>
     <td align="center">
       <a href="https://github.com/Jongabee">
         <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
       </a>
       <a href="https://www.linkedin.com/in/jongabee/">
-        <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/V-Mau">
-        <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
-      </a>
-      <a href="https://www.linkedin.com/in/mauricio-villegas-63a308246/">
         <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
       </a>
     </td>
@@ -112,10 +110,10 @@ Para más información o consultas, puedes contactarnos:
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/MaxiSalguero">
+      <a href="https://github.com/mauro8778">
         <img src="https://img.shields.io/badge/GitHub-Profile-blue?style=flat-square&logo=github" alt="GitHub">
       </a>
-      <a href="https://www.linkedin.com/in/maximiliano-salguero/">
+      <a href="https://www.linkedin.com/in/mauro-diaz-a0b8916b/">
         <img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" alt="LinkedIn">
       </a>
     </td>

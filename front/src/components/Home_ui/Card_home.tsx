@@ -11,8 +11,8 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ src, alt,name,address  }) => {
   return (
-    <div className="flex w-full sm:w-[400px] h-auto sm:h-[150px] bg-white shadow-lg rounded-lg overflow-hidden">
-      <div className="w-full sm:w-[200px] h-[200px] sm:h-full relative">
+    <div className="flex w-full sm:w-[400px] h-auto sm:h-[150px] bg-white shadow-xl rounded-2xl overflow-hidden">
+      <div className="w-full sm:w-[300px] h-[200px] sm:h-full relative">
         <Image
           src={src}
           alt={alt}
