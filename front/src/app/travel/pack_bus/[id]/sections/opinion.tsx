@@ -63,11 +63,11 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ cards }) => {
 
   return (
     <section className="text-base mt-5">
-      <div className="relative w-full mx-auto rounded-lg overflow-hidden flex flex-wrap" style={{ width: '95%' }}>
+      <div className="container mx-auto flex flex-wrap justify-center">
         <div className="w-full sm:w-1/2 p-4">
           <div className="bg-gray-200 p-4 rounded-lg flex flex-col items-center justify-center text-center">
             <h2 className="text-2xl font-bold mb-4">Déjanos tu opinión</h2>
-            <form className="w-full max-w-lg" onSubmit={onFormSubmit}>
+            <form className="w-full max-w-md mx-auto" onSubmit={onFormSubmit}>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">
                   Nombre
@@ -124,7 +124,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ cards }) => {
                   placeholder="Calificación (1-5)"
                 />
               </div>
-              <div className="mb-4">
+              <div className="mb-4 text-center">
                 <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="submit"
@@ -138,20 +138,20 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ cards }) => {
 
         <div className="w-full sm:w-1/2 p-4">
           <div className="bg-gray-200 rounded-lg flex flex-col text-center h-full">
-            <h2 className="text-2xl font-bold mb-4 mt-4 ">Comentarios</h2>
+            <h2 className="text-2xl font-bold mb-4 mt-4">Comentarios</h2>
             <div className="comments-container h-96 ml-6 mr-6 overflow-y-auto">
               {cardsstate.map((card, index) => (
                 <div key={index} className="card bg-white shadow-md rounded p-4 mb-4 relative">
-                  <div className="absolute top-0 left-0 p-2 w-full">
-                    <h3 className="font-bold text-xl uppercase text-left">{card.nombre}</h3>
-                    <p className="text-gray-500 text-sm text-left">{card.fecha}</p>
-                  </div>
-                  <div className="absolute top-0 right-0 p-2">
-                    <div className="flex">
+                  <div className="flex justify-between mb-2">
+                    <div className="flex flex-col">
+                      <h3 className="font-bold text-xl text-left">{card.nombre}</h3>
+                      <p className="text-gray-500 text-sm text-left">{card.fecha}</p>
+                    </div>
+                    <div className="flex items-center">
                       {renderStars(card.calificacion)}
                     </div>
                   </div>
-                  <hr className="border-gray-300 flex-grow opacity-20 mt-10" />
+                  <hr className="border-gray-300 flex-grow opacity-20" />
                   <div className="flex items-center mt-4">
                     <FaSmile className="text-green-500 mr-2" />
                     <p><strong>Lo Bueno:</strong> {card.loBueno}</p>

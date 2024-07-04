@@ -14,10 +14,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [busDetails, setBusDetails] = useState<IBusTour | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [nombre, setNombre] = useState('');
-  const [loBueno, setLoBueno] = useState('');
-  const [loMalo, setLoMalo] = useState('');
-  const [calificacion, setCalificacion] = useState('');
+  
 
 
   useEffect(() => {
