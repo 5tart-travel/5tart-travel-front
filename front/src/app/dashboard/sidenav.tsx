@@ -50,9 +50,6 @@ const SideNav: React.FC = () => {
 
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2 m-0 p-0">
-      {/* <div className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40">
-        
-      </div> */}
       <div className="text-center mb-4">
         {isLoggedIn ? (
           <>
@@ -65,27 +62,24 @@ const SideNav: React.FC = () => {
                 height={100}
               />
             </div>
-            <div className="flex flex-col h-[100px] grow items-center justify-center gap-2 rounded-md bg-gray-200 p-3 text-sm font-medium hover:bg-pink-200 hover:text-pink-600 md:flex-none md:justify-start md:p-2 md:px-3">
+            <div className="flex flex-col items-center justify-center gap-2 rounded-md bg-gray-200 p-3 text-sm font-medium hover:bg-pink-200 hover:text-pink-600 md:flex-none md:justify-start md:p-2 md:px-3">
               {userData && (
                 <>
                   {userData.nickname && <p className="text-black"> {userData.nickname}</p>}
                   {userData.name && <p className="text-black"> {userData.name}</p>}
-                  {/* {userData.email && <p className="text-black"> {userData.email}</p>} */}
                 </>
               )}
             </div>
           </>
         ) : (
-          <div className="flex flex-col h-[100px] grow items-center justify-center gap-2 rounded-md bg-gray-200 p-3 text-sm font-medium hover:bg-blue-200 hover:text-pink-600 md:flex-none md:justify-start md:p-2 md:px-3">
+          <div className="flex flex-col items-center justify-center gap-2 rounded-md bg-gray-200 p-3 text-sm font-medium hover:bg-blue-200 hover:text-pink-600 md:flex-none md:justify-start md:p-2 md:px-3">
             <p className="text-black"><strong>Nombre:</strong></p>
             <p className="text-black"><strong>Email:</strong></p>
-            {/* <p className="text-black"><strong>Usuario:</strong></p> */}
           </div>
         )}
       </div>
-      <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
+      <div className="flex flex-col space-y-2">
         <NavLinks />
-        <div className="hidden h-auto w-full grow rounded-md bg-gray-200 md:block"></div>
         <form className="w-full">
           <Link href={'/'}>
             <button
