@@ -24,7 +24,7 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
           <Image
             className="w-full h-48 object-cover"
             src={tour.imgUrl}
-            alt={`Imagen de ${tour.destino}`}
+            alt={`Imagen de ${tour.averageRate}`}
             layout="responsive"
             width={500}
             height={300}

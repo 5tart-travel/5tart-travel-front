@@ -88,8 +88,8 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         <hr className="border-gray-300 flex-grow opacity-20" />
       </div>
 
-      <OpinionSection
-        cards={[]}
+      <OpinionSection tourId={params.id}
+
       />
     </div>
   );

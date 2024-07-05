@@ -1,58 +1,103 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaStar, FaRegStar, FaSmile, FaFrown } from 'react-icons/fa';
 
 export interface Card {
-  nombre: string;
-  loBueno: string;
-  loMalo: string;
-  calificacion: string;
-  fecha: string;
+  id: string;
+  username: string;
+  good: string;
+  bad: string;
+  rate: number;
+  tourId: string; // Agregar tourId para identificar el tour asociado
 }
 
 interface OpinionSectionProps {
-  cards: Card[];
+  tourId: string;
 }
 
-const OpinionSection: React.FC<OpinionSectionProps> = ({ cards }) => {
-  const [cardsstate, setCardsState] = useState<Card[]>(cards);
-  const [nombre, setNombre] = useState('');
-  const [loBueno, setLoBueno] = useState('');
-  const [loMalo, setLoMalo] = useState('');
-  const [calificacion, setCalificacion] = useState('');
+const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
+  const [cardsstate, setCardsState] = useState<Card[]>([]);
+  const [username, setUsername] = useState('');
+  const [good, setGood] = useState('');
+  const [bad, setBad] = useState('');
+  const [rate, setRate] = useState<number>(1); // Initialize rate with a default value
 
-  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    fetchComments();
+  }, [tourId]);
+
+  const fetchComments = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comment`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch comments');
+      }
+      const data = await response.json();
+      setCardsState(data);
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
+  };
+
+  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     const newCard: Card = {
-      nombre,
-      loBueno,
-      loMalo,
-      calificacion,
-      fecha: new Date().toLocaleDateString(),
+      username,
+      good,
+      bad,
+      rate,
+      id: '', // El ID será generado por el servidor
+      tourId,
     };
-
-    
-    setCardsState([...cardsstate, newCard]);
-
-    
-    setNombre('');
-    setLoBueno('');
-    setLoMalo('');
-    setCalificacion('');
+  
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comment/${tourId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newCard),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error al enviar el comentario');
+      }
+  
+      const responseData = await response.json();
+  
+      if (responseData && responseData.id) {
+        // Agregar el nuevo comentario al estado cardsstate
+        setCardsState(prevCards => [...prevCards, {
+          ...newCard,
+          id: responseData.id,
+        }]);
+      } else {
+        console.error('Respuesta del servidor no válida:', responseData);
+      }
+  
+      // Limpiar los campos de entrada después de la presentación exitosa
+      setUsername('');
+      setGood('');
+      setBad('');
+      setRate(1); // Restablecer rate al valor predeterminado
+  
+    } catch (error) {
+      console.error('Error al enviar el comentario:', error);
+    }
   };
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    if (name === 'nombre') setNombre(value);
-    if (name === 'loBueno') setLoBueno(value);
-    if (name === 'loMalo') setLoMalo(value);
-    if (name === 'calificacion') setCalificacion(value);
+    if (name === 'username') setUsername(value);
+    if (name === 'good') setGood(value);
+    if (name === 'bad') setBad(value);
+    if (name === 'rate') setRate(Number(value)); // Convert rate to number
   };
 
-  const renderStars = (rating: string) => {
+  const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
-      if (i <= Number(rating)) {
+      if (i <= rating) {
         stars.push(<FaStar key={i} className="text-yellow-500" />);
       } else {
         stars.push(<FaRegStar key={i} className="text-yellow-500" />);
@@ -69,57 +114,57 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ cards }) => {
             <h2 className="text-2xl font-bold mb-4">Déjanos tu opinión</h2>
             <form className="w-full max-w-md mx-auto" onSubmit={onFormSubmit}>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                   Nombre
                 </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="nombre"
-                  name="nombre"
+                  id="username"
+                  name="username"
                   type="text"
-                  value={nombre}
+                  value={username}
                   onChange={onInputChange}
                   placeholder="Nombre"
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="loBueno">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="good">
                   Lo Bueno
                 </label>
                 <textarea
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="loBueno"
-                  name="loBueno"
-                  value={loBueno}
+                  id="good"
+                  name="good"
+                  value={good}
                   onChange={onInputChange}
                   placeholder="Lo Bueno"
                 ></textarea>
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="loMalo">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="bad">
                   Lo Malo
                 </label>
                 <textarea
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="loMalo"
-                  name="loMalo"
-                  value={loMalo}
+                  id="bad"
+                  name="bad"
+                  value={bad}
                   onChange={onInputChange}
                   placeholder="Lo Malo"
                 ></textarea>
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="calificacion">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="rate">
                   Calificación
                 </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="calificacion"
-                  name="calificacion"
+                  id="rate"
+                  name="rate"
                   type="number"
                   min="1"
                   max="5"
-                  value={calificacion}
+                  value={rate}
                   onChange={onInputChange}
                   placeholder="Calificación (1-5)"
                 />
@@ -140,25 +185,33 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ cards }) => {
           <div className="bg-gray-200 rounded-lg flex flex-col text-center h-full">
             <h2 className="text-2xl font-bold mb-4 mt-4">Comentarios</h2>
             <div className="comments-container h-96 ml-6 mr-6 overflow-y-auto">
-              {cardsstate.map((card, index) => (
-                <div key={index} className="card bg-white shadow-md rounded p-4 mb-4 relative">
+              {cardsstate.map((card) => (
+                <div key={card.id} className="card bg-white shadow-md rounded p-4 mb-4 relative">
                   <div className="flex justify-between mb-2">
                     <div className="flex flex-col">
-                      <h3 className="font-bold text-xl text-left">{card.nombre}</h3>
-                      <p className="text-gray-500 text-sm text-left">{card.fecha}</p>
+                      <h3 className="font-bold text-xl text-left">{card.username}</h3>
+                      {/* No incluir la fecha aquí */}
                     </div>
                     <div className="flex items-center">
-                      {renderStars(card.calificacion)}
+                      {renderStars(card.rate)}
                     </div>
                   </div>
                   <hr className="border-gray-300 flex-grow opacity-20" />
                   <div className="flex items-center mt-4">
-                    <FaSmile className="text-green-500 mr-2" />
-                    <p><strong>Lo Bueno:</strong> {card.loBueno}</p>
+                    {card.rate >= 3 ? (
+                      <FaSmile className="text-green-500 mr-2" />
+                    ) : (
+                      <FaFrown className="text-red-500 mr-2" />
+                    )}
+                    <p><strong>Lo Bueno:</strong> {card.good}</p>
                   </div>
                   <div className="flex items-center mt-2">
-                    <FaFrown className="text-red-500 mr-2" />
-                    <p><strong>Lo Malo:</strong> {card.loMalo}</p>
+                    {card.rate < 3 ? (
+                      <FaFrown className="text-red-500 mr-2" />
+                    ) : (
+                      <FaSmile className="text-green-500 mr-2" />
+                    )}
+                    <p><strong>Lo Malo:</strong> {card.bad}</p>
                   </div>
                 </div>
               ))}

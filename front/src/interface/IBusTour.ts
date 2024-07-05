@@ -22,6 +22,7 @@ export interface IBusTour {
     empresa:string;
     agency:any;
     touristPoints:ITourisPoints[]
+    averageRate:number;
   }
   export interface ITourisPoints{
     name:string;

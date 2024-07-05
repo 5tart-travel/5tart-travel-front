@@ -74,7 +74,7 @@ const CompraSection: React.FC<CompraSectionProps> = ({ busDetails }) => {
           onClick={handleCheckout}
           className="bg-blue-500 text-white py-3 px-6 rounded-lg shadow-sm hover:bg-blue-400 hover:text-white transition duration-300 ease-in-out"
         >
-          Pagar con Mercado Pago
+          comprar
         </button>
     </div>
   </section>);
