@@ -6,6 +6,10 @@ import { FaHome } from "react-icons/fa";
 import { MdDashboardCustomize } from "react-icons/md";
 import { BiSolidDonateHeart } from "react-icons/bi";
 import { MdFavorite } from "react-icons/md";
+import { GiAirplaneDeparture } from "react-icons/gi";
+import { IoMdPlanet } from "react-icons/io";
+
+
 
 
 
@@ -14,6 +18,8 @@ const links = [
   { name: "Mi perfil", href: "/dashboard/mi-perfil", icon: MdDashboardCustomize },
   { name: "Compras", href: "/dashboard/compras", icon: BiSolidDonateHeart },
   { name: "Favoritos", href: "/dashboard/favoritos", icon: MdFavorite },
+  { name: "Agregar Tour", href: "/dashboard/agregar-tour", icon: GiAirplaneDeparture },
+  { name: "Mis Tours", href: "/dashboard/mis-tours", icon: IoMdPlanet },
 ];
 
 export default function NavLinks() {
