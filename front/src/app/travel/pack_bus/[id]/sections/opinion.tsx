@@ -46,7 +46,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
       good,
       bad,
       rate,
-      id: '', // El ID será generado por el servidor
+      id: '', 
       tourId,
     };
   
@@ -75,11 +75,11 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
         console.error('Respuesta del servidor no válida:', responseData);
       }
   
-      // Limpiar los campos de entrada después de la presentación exitosa
+      
       setUsername('');
       setGood('');
       setBad('');
-      setRate(1); // Restablecer rate al valor predeterminado
+      setRate(1); 
   
     } catch (error) {
       console.error('Error al enviar el comentario:', error);
@@ -190,7 +190,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
                   <div className="flex justify-between mb-2">
                     <div className="flex flex-col">
                       <h3 className="font-bold text-xl text-left">{card.username}</h3>
-                      {/* No incluir la fecha aquí */}
+                     
                     </div>
                     <div className="flex items-center">
                       {renderStars(card.rate)}

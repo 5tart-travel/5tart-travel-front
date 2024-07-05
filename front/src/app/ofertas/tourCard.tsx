@@ -1,7 +1,7 @@
-import { FaPlane, FaBus, FaHotel } from 'react-icons/fa';
-import { IBusTour } from '@/interface/IBusTour';
+import { FaPlane, FaBus, FaHotel, FaStar, FaRegStar } from 'react-icons/fa';
 import Image from 'next/image';
 import './tourCard.css';
+import { IBusTour } from '@/interface/IBusTour';
 
 interface TourCardProps {
   tour: IBusTour;
@@ -9,22 +9,56 @@ interface TourCardProps {
 }
 
 const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
+  function renderStars(rating: number) {
+    if (typeof rating !== 'number' || rating < 1 || rating > 5) {
+      return null; 
+    }
+
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      let starClass = "text-yellow-500 border-white";
+      let starIcon = <FaStar className={`${starClass}  text-white border-white`} />;
+      
+      if (i > rating) {
+        starIcon = <FaRegStar className={`${starClass}  text-white border-white`} />; // Estrella vacía
+      } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+        starIcon = <FaRegStar className={`${starClass}  text-white border-white`} />; // Estrella parcialmente llena
+      }
+
+      stars.push(
+        <span key={i} className="text-2xl">
+          {starIcon}
+        </span>
+      );
+    }
+
+    return (
+      <div className="flex space-x-1">
+        {stars}
+      </div>
+    );
+  }
+
   return (
     <div
       className="relative bg-white shadow-md rounded-lg overflow-hidden p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300"
       onClick={() => onClick(tour.id)}
     >
       <div className="flex flex-col relative">
-        <div className="w-full h-48 rounded-lg mb-4 overflow-hidden">
+        <div className="w-full h-48 rounded-lg mb-4 overflow-hidden relative">
           {tour.oferta && (
             <div className="ribbon ribbon-top-right text-center">
               <span>Oferta</span>
             </div>
           )}
+          {/* Renderizar averageRate como estrellas */}
+          <div className="absolute left-2 bottom-2">
+            {renderStars(tour.averageRate)}
+          </div>
           <Image
             className="w-full h-48 object-cover"
             src={tour.imgUrl}
-            alt={`Imagen de ${tour.averageRate}`}
+            alt={`Imagen de ${tour.destino}`}
             layout="responsive"
             width={500}
             height={300}
@@ -32,17 +66,17 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
           />
         </div>
       </div>
+
       <div className="grid grid-cols-1 items-center">
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-bold text-gray-700 truncate">
             {tour.destino}
           </h2>
           <p className="text-gray-500 font-bold">
-  {tour.agency.name_agency.length > 12
-    ? `${tour.agency.name_agency.substring(0, 12)}...`
-    : tour.agency.name_agency}
-</p>
-
+            {tour.agency.name_agency.length > 12
+              ? `${tour.agency.name_agency.substring(0, 12)}...`
+              : tour.agency.name_agency}
+          </p>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div className="text-gray-500 flex items-center">
@@ -52,13 +86,17 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
               <FaBus className="mr-2 h-5 w-5" />
             )}
             <p className="text-xs max-w-xs truncate">
-              {tour.empresa.length > 13 ? `${tour.empresa.substring(0, 13)}...` : tour.empresa}
+              {tour.empresa.length > 13
+                ? `${tour.empresa.substring(0, 13)}...`
+                : tour.empresa}
             </p>
           </div>
           <div className="text-gray-500 flex items-center">
             <FaHotel className="mr-2 h-5 w-5 self-start" />
             <p className="text-xs max-w-xs truncate">
-              {tour.hotel.length > 13 ? `${tour.hotel.substring(0, 13)}...` : tour.hotel}
+              {tour.hotel.length > 13
+                ? `${tour.hotel.substring(0, 13)}...`
+                : tour.hotel}
             </p>
           </div>
         </div>
