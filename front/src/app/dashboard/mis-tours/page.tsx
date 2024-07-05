@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { decodeJwt } from '@/utils/decodeJwt';
-import { ITours } from '@/interface/ITours';
+import CardGrid from '@/components/Card_grid/CardGrid';
+import Link from 'next/link';
+import { IBusTour } from '@/interface/IBusTour';
 
 const MisTours = () => {
-  const [tours, setTours] = useState<ITours[]>([]);
+  const [tours, setTours] = useState<IBusTour[]>([]);
   const router = useRouter();
   const [token, setToken] = useState<string | null>(null);
   const [agencyId, setAgencyId] = useState<string | null>(null);
@@ -47,15 +49,18 @@ const MisTours = () => {
   }, [token, agencyId]);
 
   return (
-    <div>
-      <h1>Mis Tours</h1>
-      <ul>
-        {tours.map((tour) => (
-          <li key={tour.id}>
-            {tour.title} - ${tour.price}
-          </li>
-        ))}
-      </ul>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+      {tours.map((tour) => (
+        <Link key={tour.id} href={`/travel/pack_plane/${tour.id}`}>
+          <CardGrid
+            title={tour.title}
+            price={tour.price}
+            region={tour.region}
+            imageUrl={tour.imgUrl}
+            oferta={tour.oferta}
+          />
+        </Link>
+      ))}
     </div>
   );
 };
