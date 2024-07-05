@@ -3,15 +3,11 @@ import { ICreateTourDto } from '@/interface/ICreateTourDto';
 import React, { useEffect, useState } from 'react';
 
 
-interface FormularioTourProps {
-  onClose: () => void;
-  onAddTour: (tour: ICreateTourDto) => void;
-}
 
-const FormularioTour: React.FC<FormularioTourProps> = ({
-  onClose,
-  onAddTour,
-}) => {
+
+const FormularioTour: React.FC = (
+
+) => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState<number | null>(null);
   const [description, setDescription] = useState('');
@@ -93,9 +89,9 @@ const FormularioTour: React.FC<FormularioTourProps> = ({
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4">Agregar Nuevo Tour</h2>
+<div className="flex justify-center items-center min-h-screen bg-gray-100">
+<div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md overflow-y-auto max-h-full">
+          <h2 className="text-2xl font-bold mb-4">Agregar Nuevo Tour</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -327,13 +323,7 @@ const FormularioTour: React.FC<FormularioTourProps> = ({
             >
               Agregar
             </button>
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
-            >
-              Cancelar
-            </button>
+            
           </div>
         </form>
       </div>
