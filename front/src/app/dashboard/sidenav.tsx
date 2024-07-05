@@ -4,14 +4,8 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import NavLinks from './nav_links';
 import { FaPowerOff } from 'react-icons/fa';
-import ImageLogo from '@/components/ui/imageLogo';
-import Image from 'next/image';
 import { decodeJwt } from '@/utils/decodeJwt';
 import { JwtPayload } from '@/types/index';
-import Logo from '@/components/ui/Logo';
-
-
-
 
 const SideNav: React.FC = () => {
   const [userData, setUserData] = useState<Partial<JwtPayload> | null>(null);
@@ -49,44 +43,16 @@ const SideNav: React.FC = () => {
   };
 
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2 m-0 p-0">
-      <div className="text-center mb-4">
-        {isLoggedIn ? (
-          <>
-            <div className="flex items-center justify-center mb-4">
-              <Image
-                className="rounded-full w-24 h-24"
-                alt="Avatar de usuario"
-                src={userData?.picture || '/avatar.webp'}
-                width={100}
-                height={100}
-              />
-            </div>
-            <div className="flex flex-col items-center justify-center gap-2 rounded-md bg-gray-200 p-3 text-sm font-medium hover:bg-pink-200 hover:text-pink-600 md:flex-none md:justify-start md:p-2 md:px-3">
-              {userData && (
-                <>
-                  {userData.nickname && <p className="text-black"> {userData.nickname}</p>}
-                  {userData.name && <p className="text-black"> {userData.name}</p>}
-                </>
-              )}
-            </div>
-          </>
-        ) : (
-          <div className="flex flex-col items-center justify-center gap-2 rounded-md bg-gray-200 p-3 text-sm font-medium hover:bg-blue-200 hover:text-pink-600 md:flex-none md:justify-start md:p-2 md:px-3">
-            <p className="text-black"><strong>Nombre:</strong></p>
-            <p className="text-black"><strong>Email:</strong></p>
-          </div>
-        )}
-      </div>
-      <div className="flex flex-col space-y-2">
+    <div className="flex h-full flex-col md:flex-row md:justify-between px-3 py-4 m-0 p-0">
+      <div className="flex flex-row space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinks />
-        <form className="w-full">
+        <form className="w-full md:w-auto">
           <Link href={'/'}>
             <button
               type="button"
               onClick={handleSignOut}
               className="flex h-[48px] w-full items-center justify-center gap-2 rounded-md bg-gray-200 p-3 text-sm font-medium hover:bg-blue-200 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
-            >
+              >
               <FaPowerOff className="w-6" />
               <div className="hidden md:block">Cerrar sesión</div>
             </button>
@@ -98,3 +64,4 @@ const SideNav: React.FC = () => {
 }
 
 export default SideNav;
+
