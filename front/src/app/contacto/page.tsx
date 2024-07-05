@@ -8,10 +8,10 @@ import Footer from "@/components/Footer/Footer";
 
 const Contacto: React.FC = () => {
   const [formData, setFormData] = useState({
-    nombre: '',
+    username: '',
     telefono: '',
-    email: '',
-    mensaje: ''
+    mail: '',
+    message: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -25,7 +25,7 @@ const Contacto: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('ACÁ LA URL ', formData); 
+      await axios.post('https://fivetart-travel-kafg.onrender.com/contact', formData); 
       alert('Formulario enviado con éxito');
     } catch (error) {
       alert('Hubo un error al enviar el formulario');
@@ -65,15 +65,15 @@ const Contacto: React.FC = () => {
       <div className="container mx-auto px-4 py-24 w-[700px] my-10">
         <form className="flex flex-col space-y-4 mt-8" onSubmit={handleSubmit}>
           <div className="w-full">
-            <label htmlFor="nombre" className="block text-sm font-medium text-gray-500">
+            <label htmlFor="username" className="block text-sm font-medium text-gray-500">
               Nombre <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              id="nombre"
-              name="nombre"
+              id="username"
+              name="username"
               className="bg-gray-50 mt-1 p-2 block w-full border-0 border-b-3 border-gray-400 focus:ring-0 focus:border-lime500"
-              value={formData.nombre}
+              value={formData.username}
               onChange={handleChange}
               required
             />
@@ -92,29 +92,29 @@ const Contacto: React.FC = () => {
             />
           </div>
           <div className="w-full">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="mail" className="block text-sm font-medium text-gray-700">
               Email <span className="text-red-500">*</span>
             </label>
             <input
               type="email"
-              id="email"
-              name="email"
+              id="mail"
+              name="mail"
               className="mt-1 p-2 block w-full border-0 border-b-3 border-gray-400 bg-gray-50 focus:ring-0 focus:border-lime500"
-              value={formData.email}
+              value={formData.mail}
               onChange={handleChange}
               required
             />
           </div>
           <div className="w-full">
-            <label htmlFor="mensaje" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="message" className="block text-sm font-medium text-gray-700">
               Mensaje <span className="text-red-500">*</span>
             </label>
             <textarea
-              id="mensaje"
-              name="mensaje"
+              id="message"
+              name="message"
               rows={3}
               className="mt-1 p-2 block w-full border-0 border-b-3 border-gray-400 bg-gray-50 focus:ring-0 focus:border-lime500"
-              value={formData.mensaje}
+              value={formData.message}
               onChange={handleChange}
               required
             />
