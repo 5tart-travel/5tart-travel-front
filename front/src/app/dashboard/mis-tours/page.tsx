@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { decodeJwt } from '@/utils/decodeJwt';
@@ -28,7 +29,7 @@ const MisTours = () => {
 
   useEffect(() => {
     if (token && agencyId) {
-      fetch(`https://fivetart-travel-kafg.onrender.com/agency/${agencyId}`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/agency/${agencyId}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
