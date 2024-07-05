@@ -7,48 +7,44 @@ export interface Card {
   good: string;
   bad: string;
   rate: number;
-  tourId: string; // Agregar tourId para identificar el tour asociado
+  tourId: string; 
 }
 
 interface OpinionSectionProps {
   tourId: string;
+  comments: Card[];
 }
 
-const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
-  const [cardsstate, setCardsState] = useState<Card[]>([]);
+const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => {
+  const [cardsState, setCardsState] = useState<Card[]>([]);
   const [username, setUsername] = useState('');
   const [good, setGood] = useState('');
   const [bad, setBad] = useState('');
-  const [rate, setRate] = useState<number>(1); // Initialize rate with a default value
+  const [rate, setRate] = useState<number>(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchComments();
-  }, [tourId]);
-
-  const fetchComments = async () => {
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comment`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch comments');
-      }
-      const data = await response.json();
-      setCardsState(data);
-    } catch (error) {
-      console.error('Error fetching comments:', error);
-    }
-  };
+    setCardsState(comments);
+  }, [comments]);
 
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!username || !good || !bad) {
+      alert('Por favor, complete todos los campos.');
+      return;
+    }
   
     const newCard: Card = {
+      id: '', 
       username,
       good,
       bad,
       rate,
-      id: '', 
       tourId,
     };
+
+    setLoading(true);
   
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comment/${tourId}`, {
@@ -66,7 +62,6 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
       const responseData = await response.json();
   
       if (responseData && responseData.id) {
-        // Agregar el nuevo comentario al estado cardsstate
         setCardsState(prevCards => [...prevCards, {
           ...newCard,
           id: responseData.id,
@@ -75,7 +70,6 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
         console.error('Respuesta del servidor no válida:', responseData);
       }
   
-      
       setUsername('');
       setGood('');
       setBad('');
@@ -83,6 +77,8 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
   
     } catch (error) {
       console.error('Error al enviar el comentario:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -91,7 +87,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
     if (name === 'username') setUsername(value);
     if (name === 'good') setGood(value);
     if (name === 'bad') setBad(value);
-    if (name === 'rate') setRate(Number(value)); // Convert rate to number
+    if (name === 'rate') setRate(Number(value)); 
   };
 
   const renderStars = (rating: number) => {
@@ -173,8 +169,9 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
                 <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="submit"
+                  disabled={loading}
                 >
-                  Enviar
+                  {loading ? 'Enviando...' : 'Enviar'}
                 </button>
               </div>
             </form>
@@ -185,7 +182,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId }) => {
           <div className="bg-gray-200 rounded-lg flex flex-col text-center h-full">
             <h2 className="text-2xl font-bold mb-4 mt-4">Comentarios</h2>
             <div className="comments-container h-96 ml-6 mr-6 overflow-y-auto">
-              {cardsstate.map((card) => (
+              {cardsState.map((card) => (
                 <div key={card.id} className="card bg-white shadow-md rounded p-4 mb-4 relative">
                   <div className="flex justify-between mb-2">
                     <div className="flex flex-col">
