@@ -1,25 +1,11 @@
 'use client';
+import { ICreateTourDto } from '@/interface/ICreateTourDto';
 import React, { useEffect, useState } from 'react';
 
-interface CreateTourDto {
-  title: string;
-  price: number | null;
-  description: string | null;
-  imgUrl?: string | null;
-  address: string | null;
-  fecha_ingreso: Date | null;
-  fecha_egreso: Date | null;
-  destino?: string | null;
-  salida?: string | null;
-  oferta?: boolean | null;
-  transportType: string | '' | null;
-  hotel?: string | null;
-  empresa?: string | null;
-}
 
 interface FormularioTourProps {
   onClose: () => void;
-  onAddTour: (tour: CreateTourDto) => void;
+  onAddTour: (tour: ICreateTourDto) => void;
 }
 
 const FormularioTour: React.FC<FormularioTourProps> = ({
@@ -58,7 +44,7 @@ const FormularioTour: React.FC<FormularioTourProps> = ({
 
     if (title && price !== null && description && address && transportType) {
       try {
-        const nuevoTour: CreateTourDto = {
+        const nuevoTour: ICreateTourDto = {
           title,
           price,
           description,
