@@ -119,13 +119,13 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
           )}
           {isAuthenticated && (
             <li>
-              <a
+              <Link
                 href="/dashboard/mi-perfil"
                 className="flex h-12 w-full gap-2 font-semibold items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 rounded-t-lg"
               >
                 <FaRegUserCircle />
                 Mi cuenta
-              </a>
+              </ Link>
             </li>
           )}
           {isAuthenticated && (
