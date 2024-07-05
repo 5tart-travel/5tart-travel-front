@@ -2,7 +2,7 @@ import FormularioTour from "@/components/formTour/formTour";
 
 const AgregarTour = () => {
   return (
-    <div className="p-4 md:p-8"> 
+    <div > 
       <FormularioTour />
     </div>
   );

@@ -89,9 +89,9 @@ const FormularioTour: React.FC = (
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4">Agregar Nuevo Tour</h2>
+<div className="flex justify-center items-center min-h-screen bg-gray-100">
+<div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md overflow-y-auto max-h-full">
+          <h2 className="text-2xl font-bold mb-4">Agregar Nuevo Tour</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
