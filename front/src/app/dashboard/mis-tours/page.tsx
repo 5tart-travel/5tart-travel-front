@@ -1,14 +1,62 @@
-import React from 'react'
+'use client';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { decodeJwt } from '@/utils/decodeJwt';
+import { ITours } from '@/interface/ITours';
 
 const MisTours = () => {
-  return (
-    <div className='  flex flex-col items-center justify-center bg-red-300 rounded-md md:h-[200px]  ' >
-        <div className='text-3xl font-mono font-bold ' >
-          Mis Tours
-        </div>
-    </div>
-   
-  )
-}
+  const [tours, setTours] = useState<ITours[]>([]);
+  const router = useRouter();
+  const [token, setToken] = useState<string | null>(null);
+  const [agencyId, setAgencyId] = useState<string | null>(null);
 
-export default MisTours
+  useEffect(() => {
+    const userSessionString: any = localStorage.getItem('userSession');
+
+    if (userSessionString) {
+      const userSession = JSON.parse(userSessionString);
+      const ntoken = userSession.token;
+      setToken(ntoken);
+
+      if (ntoken) {
+        const decoded: any = decodeJwt(ntoken);
+        const agencyId = decoded.id;
+        setAgencyId(agencyId);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (token && agencyId) {
+      fetch(`https://fivetart-travel-kafg.onrender.com/agency/${agencyId}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setTours(data.tours);
+        })
+        .catch((error) => {
+          console.error('Error al obtener los tours:', error);
+        });
+    }
+  }, [token, agencyId]);
+
+  return (
+    <div>
+      <h1>Mis Tours</h1>
+      <ul>
+        {tours.map((tour) => (
+          <li key={tour.id}>
+            {tour.title} - ${tour.price}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default MisTours;
