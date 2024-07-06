@@ -39,7 +39,7 @@ const EditTour: React.FC<Props> = ({
 
           <div className="flex justify-between">
             <button
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+              className="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
               onClick={handleSaveChanges}
             >
               Guardar

@@ -113,7 +113,7 @@ const CardTourDashboard: FC<CardTourDashboardProps> = ({
         <div className="absolute top-2 right-2 flex items-center">
           <button onClick={handleEditClick} className="group mr-2">
             <svg
-              className="h-6 w-6 text-lime500 group-hover:text-lime-400 rounded-full"
+              className="h-6 w-6 text-gray-400 group-hover:bg-gray-200 rounded-full"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
