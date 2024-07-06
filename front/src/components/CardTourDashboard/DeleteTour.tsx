@@ -8,13 +8,13 @@ const DeleteTour: React.FC<{
   const handleDeleteClick = async () => {
     if (tourId) {
       const result = await Swal.fire({
-        title: '¿Estás seguro de que quieres eliminar éste tour?',
+        title: '¿Estás seguro de que quieres eliminar este tour?',
         text: 'Esta acción no se puede deshacer',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, eliminarla!',
+        confirmButtonText: 'Sí, eliminarlo!',
         cancelButtonText: 'Cancelar',
       });
 
@@ -23,7 +23,7 @@ const DeleteTour: React.FC<{
           const response = await fetch(
             `https://fivetart-travel-kafg.onrender.com/tours/${tourId}`,
             {
-              method: 'POST',
+              method: 'DELETE',
             },
           );
 
@@ -31,7 +31,7 @@ const DeleteTour: React.FC<{
             console.log('Tour eliminado exitosamente!!');
             Swal.fire(
               'Eliminado!',
-              'El tour ha sido eliminada exitosamente.',
+              'El tour ha sido eliminado exitosamente.',
               'success',
             );
             onDelete(tourId);

@@ -63,11 +63,6 @@ const MisTours = () => {
     }
   }, [token, agencyId]);
 
-  // const handleEditClick = (tour: IToursDashboard) => {
-  //   setSelectedTour(tour);
-  //   setEditedTour(tour);
-  // };
-
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -118,6 +113,10 @@ const MisTours = () => {
     setEditedTour(null);
   };
 
+  const handleDeleteTour = (tourId: string) => {
+    setTours(tours.filter((tour) => tour.id !== tourId));
+  };
+
   return (
     <div className="p-6">
       {Array.isArray(tours) && tours.length === 0 ? (
@@ -145,7 +144,7 @@ const MisTours = () => {
                   tours.map((t) => (t.id === updatedTour.id ? updatedTour : t)),
                 )
               }
-              deleteTour={() => {}}
+              deleteTour={handleDeleteTour}
             />
           ))}
         </div>
