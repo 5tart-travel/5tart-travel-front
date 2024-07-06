@@ -1,22 +1,20 @@
 import React from 'react';
-import { ITours } from '@/interface/ITours';
+import { IToursDashboard } from './CardTourDashboard';
 
 interface Props {
-  editedTours: ITours;
+  editedTour: IToursDashboard;
   handleInputChange: (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>,
   ) => void;
-  handleSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleSaveChanges: () => void;
   handleModalClose: () => void;
 }
 
-const EditTours: React.FC<Props> = ({
-  editedTours,
+const EditTour: React.FC<Props> = ({
+  editedTour,
   handleInputChange,
-  handleSelectChange,
   handleSaveChanges,
   handleModalClose,
 }) => {
@@ -26,48 +24,19 @@ const EditTours: React.FC<Props> = ({
         <div className="h-full overflow-y-auto">
           <h2 className="text-lg font-semibold mb-4">Editar Tour</h2>
           <div className="mb-2">
-            <label htmlFor="name" className="block text-xs text-gray-600">
+            <label htmlFor="title" className="block text-xs text-gray-600">
               Título
             </label>
             <input
               type="text"
-              name="name"
-              id="name"
-              value={editedTours.title}
-              onChange={handleInputChange}
-              className="border border-gray-300 p-2 mb-2 rounded-lg w-full"
-            />
-          </div>
-          <div className="mb-2">
-            <label htmlFor="breed" className="block text-xs text-gray-600">
-              Precio
-            </label>
-            <input
-              type="number"
-              name="breed"
-              id="breed"
-              value={editedTours.price}
+              name="title"
+              id="title"
+              value={editedTour.title}
               onChange={handleInputChange}
               className="border border-gray-300 p-2 mb-2 rounded-lg w-full"
             />
           </div>
 
-          <div className="mb-2">
-            <label
-              htmlFor="description"
-              className="block text-xs text-gray-600"
-            >
-              Descripción
-            </label>
-            <textarea
-              name="description"
-              id="description"
-              value={editedTours.description}
-              onChange={handleInputChange}
-              rows={4}
-              className="border border-gray-300 p-2 mb-2 rounded-lg w-full resize-none"
-            />
-          </div>
           <div className="flex justify-between">
             <button
               className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
@@ -88,4 +57,4 @@ const EditTours: React.FC<Props> = ({
   );
 };
 
-export default EditTours;
+export default EditTour;

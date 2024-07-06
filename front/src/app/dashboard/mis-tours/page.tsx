@@ -1,17 +1,24 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { decodeJwt } from '@/utils/decodeJwt';
 import Link from 'next/link';
-import { IBusTour } from '@/interface/IBusTour';
-import CardTourDashboard from '@/components/CardTourDashboard/CardTourDashboard';
+import CardTourDashboard, {
+  IToursDashboard,
+} from '@/components/CardTourDashboard/CardTourDashboard';
+import EditTour from '@/components/CardTourDashboard/EditTour';
+import Swal from 'sweetalert2';
 
 const MisTours = () => {
-  const [tours, setTours] = useState<IBusTour[]>([]);
-  const router = useRouter();
+  const [tours, setTours] = useState<IToursDashboard[]>([]);
   const [token, setToken] = useState<string | null>(null);
   const [agencyId, setAgencyId] = useState<string | null>(null);
+  const [selectedTour, setSelectedTour] = useState<IToursDashboard | null>(
+    null,
+  );
+  const [editedTour, setEditedTour] = useState<IToursDashboard | null>(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     const userSessionString: any = localStorage.getItem('userSession');
@@ -56,6 +63,61 @@ const MisTours = () => {
     }
   }, [token, agencyId]);
 
+  // const handleEditClick = (tour: IToursDashboard) => {
+  //   setSelectedTour(tour);
+  //   setEditedTour(tour);
+  // };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    if (editedTour) {
+      setEditedTour({ ...editedTour, [e.target.name]: e.target.value });
+    }
+  };
+
+  const handleSaveChanges = async () => {
+    try {
+      if (editedTour && editedTour.id && token) {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/tours/${editedTour.id}`,
+          {
+            method: 'PUT',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(editedTour),
+          },
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setTours(tours.map((tour) => (tour.id === data.id ? data : tour)));
+          setSelectedTour(null);
+          setEditedTour(null);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un problema al actualizar el tour. Por favor, inténtalo de nuevo.',
+          });
+        }
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema al actualizar el tour. Por favor, inténtalo de nuevo.',
+      });
+    }
+  };
+
+  const handleModalClose = () => {
+    setSelectedTour(null);
+    setEditedTour(null);
+  };
+
   return (
     <div className="p-6">
       {Array.isArray(tours) && tours.length === 0 ? (
@@ -70,19 +132,31 @@ const MisTours = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {Array.isArray(tours) &&
-            tours.map((tour) => (
-              <Link key={tour.id} href={`/travel/pack_plane/${tour.id}`}>
-                <CardTourDashboard
-                  title={tour.title}
-                  price={tour.price}
-                  region={tour.region}
-                  imgUrl={tour.imgUrl}
-                  oferta={tour.oferta}
-                />
-              </Link>
-            ))}
+          {tours.map((tour) => (
+            <CardTourDashboard
+              key={tour.id}
+              id={tour.id}
+              title={tour.title}
+              price={tour.price}
+              imgUrl={tour.imgUrl}
+              oferta={tour.oferta}
+              updateTour={(updatedTour) =>
+                setTours(
+                  tours.map((t) => (t.id === updatedTour.id ? updatedTour : t)),
+                )
+              }
+              deleteTour={() => {}}
+            />
+          ))}
         </div>
+      )}
+      {selectedTour && editedTour && (
+        <EditTour
+          editedTour={editedTour}
+          handleInputChange={handleInputChange}
+          handleSaveChanges={handleSaveChanges}
+          handleModalClose={handleModalClose}
+        />
       )}
     </div>
   );
