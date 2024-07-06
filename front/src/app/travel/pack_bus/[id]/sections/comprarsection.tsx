@@ -1,27 +1,55 @@
-// CompraSection.tsx
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface CompraSectionProps {
   busDetails: {
     title: string;
     price: number;
-    // Otros detalles si los hay
+    
   };
+  tourId: string;
 }
 
-const CompraSection: React.FC<CompraSectionProps> = ({ busDetails }) => {
+const CompraSection: React.FC<CompraSectionProps> = ({ busDetails ,tourId}) => {
   const [favorited, setFavorited] = useState<boolean>(false);
+  const [token, setToken] = useState<string | null>(null);
+  useEffect(() => {
+    const userSessionString: any = localStorage.getItem('userSession');
+    console.log(userSessionString);
 
-  const toggleFavorite = () => {
-    setFavorited(!favorited);
-    if (favorited) {
-      console.log('Eliminado de favoritos');
-    } else {
-      console.log('Agregado a favoritos');
+    if (userSessionString) {
+      const userSession = JSON.parse(userSessionString);
+      const ntoken = userSession.token;
+      setToken(ntoken);
+      console.log('Token obtenido en useEffect:', ntoken);
+    }
+  }, []);
+  const toggleFavorite = async () => {
+    try {
+      const url = `https://fivetart-travel-kafg.onrender.com/user/tour/favorite/${tourId}`;
+      if (favorited) {
+        await axios.delete(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log('Eliminado de favoritos');
+      } else {
+        await axios.post(url, null, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log('Agregado a favoritos');
+      }
+      setFavorited(!favorited);
+    } catch (error) {
+      console.error('Error al actualizar favoritos:', error);
+      alert('Error al actualizar favoritos');
     }
   };
 
