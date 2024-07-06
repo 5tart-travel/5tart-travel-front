@@ -5,6 +5,7 @@ import { IBusTour } from '@/interface/IBusTour';
 import TourCard from '@/app/ofertas/tourCard';
 import Image from 'next/image';
 import Link from 'next/link';
+import BackButton from '@/components/ui/BackButton';
 
 
 
@@ -118,6 +119,12 @@ const PackBus: React.FC = () => {
           </div>
         ))}
       </div>
+      <div className='flex justify-center mb-16'>
+            <Link href={'/travel'}>
+             <BackButton />
+            </Link>
+       
+        </div>
     </main>
   );
 };

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import TourCard from '@/app/ofertas/tourCard';
 import { IPlaneTour } from '@/interface/IPlaneTuor';
 import Link from 'next/link';
+import BackButton from '@/components/ui/BackButton';
 
 const PackPlane: React.FC = () => {
   const router = useRouter();
@@ -137,6 +138,12 @@ const PackPlane: React.FC = () => {
           </div>
         ))}
       </div>
+      <div className='flex justify-center mb-16'>
+            <Link href={'/travel'}>
+             <BackButton />
+            </Link>
+       
+        </div>
     </main>
   );
 };

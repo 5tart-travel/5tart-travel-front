@@ -9,6 +9,8 @@ import BusImageSection from './sections/image';
 import MapSection from './sections/mapaSection';
 import TouristPointsSection from './sections/turispoint';
 import CompraSection from './sections/comprarsection';
+import Link from 'next/link';
+import BackButton from '@/components/ui/BackButton';
 
 const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [busDetails, setBusDetails] = useState<IBusTour | null>(null);
@@ -95,6 +97,12 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           )}
         </div>
       </div>
+      <div className='flex justify-center mb-16'>
+            <Link href={'/travel/pack_bus'}>
+             <BackButton />
+            </Link>
+       
+        </div>
     </div>
   );
 };

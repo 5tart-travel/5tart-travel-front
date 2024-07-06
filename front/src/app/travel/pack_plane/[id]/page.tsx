@@ -9,6 +9,8 @@ import TouristPointsSection from '../../pack_bus/[id]/sections/turispoint';
 import Pasage from '../../pack_bus/[id]/sections/Passage';
 import OpinionSection from '../../pack_bus/[id]/sections/opinion';
 import CompraSection from '../../pack_bus/[id]/sections/comprarsection';
+import Link from 'next/link';
+import BackButton from '@/components/ui/BackButton';
 
 const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [busDetails, setBusDetails] = useState<IBusTour | null>(null);
@@ -98,6 +100,12 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           )}
         </div>
       </div>
+      <div className='flex justify-center mb-16'>
+            <Link href={'/travel/pack_plane'}>
+             <BackButton />
+            </Link>
+       
+        </div>
     </div>
   );
 
