@@ -4,6 +4,9 @@ import { useRouter } from 'next/navigation';
 import { IBusTour } from '@/interface/IBusTour';
 import TourCard from '@/app/ofertas/tourCard';
 import Image from 'next/image';
+import Link from 'next/link';
+
+
 
 const PackBus: React.FC = () => {
   const router = useRouter();
@@ -63,7 +66,8 @@ const PackBus: React.FC = () => {
         {regions.map((region) => {
           if (groupedTours[region]) {
             return (
-              <a key={region} href={`#${region.toLowerCase().replace(/\s/g, '-')}`}>
+              <Link href={`#${region.toLowerCase().replace(/\s/g, '-')}`}>
+              
                 <div className="relative bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
                   <div className="w-full h-32 sm:h-40 rounded-lg overflow-hidden">
                     <Image
@@ -80,10 +84,11 @@ const PackBus: React.FC = () => {
                     </h3>
                   </div>
                 </div>
-              </a>
+              
+            </Link>
             );
           } else {
-            return null; // No renderiza nada si no existe la región
+            return null; 
           }
         })}
       </section>

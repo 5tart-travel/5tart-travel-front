@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import TourCard from '@/app/ofertas/tourCard';
 import { IPlaneTour } from '@/interface/IPlaneTuor';
+import Link from 'next/link';
 
 const PackPlane: React.FC = () => {
   const router = useRouter();
@@ -71,10 +72,8 @@ const PackPlane: React.FC = () => {
         {regions.map((region) => {
           if (groupedTours[region]) {
             return (
-              <a
-                key={region}
-                href={`#${region.toLowerCase().replace(/\s/g, '-')}`}
-              >
+              <Link href={`#${region.toLowerCase().replace(/\s/g, '-')}`}>
+              
                 <div className="relative bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
                   <div className="w-full h-32 sm:h-40 rounded-lg overflow-hidden">
                     <Image
@@ -91,10 +90,11 @@ const PackPlane: React.FC = () => {
                     </h3>
                   </div>
                 </div>
-              </a>
+              
+            </Link>
             );
           } else {
-            return null; // No renderiza nada si no existe la región
+            return null; 
           }
         })}
       </section>
