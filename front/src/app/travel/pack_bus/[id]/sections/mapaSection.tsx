@@ -39,13 +39,13 @@ const MapSection: React.FC<MapSectionProps> = ({ busDetails }) => {
         <div className="absolute bottom-0 left-0 bg-black bg-opacity-40 text-red-600 p-3" style={{ zIndex: 10, textAlign: 'left' }}>
           <p>Ubicación del hotel</p>
         </div>
-       {/* <button
+        <button
           onClick={toggleFullscreen}
           className="absolute bottom-0 right-0 bg-black bg-opacity-40 text-red-600 p-3"
           style={{ zIndex: 20 }}
         >
           Fullscreen
-        </button>*/}
+        </button>
       </div>
     </section>
   );
