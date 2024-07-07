@@ -20,7 +20,7 @@ const PackPlane: React.FC = () => {
           `${process.env.NEXT_PUBLIC_API_URL}/tours/plane`,
         );
         if (!response.ok) {
-          throw new Error('Falló el fetch de plane tours');
+          throw new Error('Falló el  fetch de plane tours');
         }
         const data: IPlaneTour[] = await response.json();
         setBuses(data);
