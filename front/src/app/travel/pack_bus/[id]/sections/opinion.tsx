@@ -22,7 +22,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
   const [bad, setBad] = useState('');
   const [rate, setRate] = useState<number>(1);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null); // Estado para manejar mensajes de error
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setCardsState(comments);
