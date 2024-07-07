@@ -121,8 +121,8 @@ const Form_Login: React.FC = () => {
           errorMessage = 'Error al iniciar sesión: Usuario o contraseña incorrectos.';
           errorTitle = '¡Error de autenticación!';
         } else if (error.message === 'I\'m a teapot') {
-          errorMessage = 'Error al iniciar sesión: Esta cuenta aun no esta activa. Intentelo mas tarde.';
-          errorTitle = '¡Error Usuario Inactivo!';
+          errorMessage = 'Esta cuenta se encuentra inactiva. Por favor aguarde hasta recibir el mail de activacion y intentelo nuevamente.';
+          errorTitle = '¡Error Cuenta Inactiva!';
         }
       }
     
