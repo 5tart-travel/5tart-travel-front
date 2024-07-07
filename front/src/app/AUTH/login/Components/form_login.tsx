@@ -82,7 +82,13 @@ const Form_Login: React.FC = () => {
       );
 
       if (!response.ok) {
-        throw new Error('Error al iniciar sesión');
+        if (response.status === 401) {
+          throw new Error('Unauthorized');
+        } else if (response.status === 418) {
+          throw new Error('I\'m a teapot');
+        } else {
+          throw new Error('Error al iniciar sesión');
+        }
       }
 
       const data = await response.json();
@@ -104,21 +110,35 @@ const Form_Login: React.FC = () => {
       }).then(() => {
         router.push('/');
       });
-    } catch (error) {
+    } catch (error:any) {
       console.error('Error al iniciar sesión:', error);
+    
+      let errorMessage = 'Hubo un error al iniciar sesión. Por favor, inténtalo nuevamente.';
+      let errorTitle = '¡Error!';
+    
+      if (error && error.message) {
+        if (error.message === 'Unauthorized') {
+          errorMessage = 'Error al iniciar sesión: Usuario o contraseña incorrectos.';
+          errorTitle = '¡Error de autenticación!';
+        } else if (error.message === 'I\'m a teapot') {
+          errorMessage = 'Esta cuenta se encuentra inactiva. Por favor aguarde hasta recibir el mail de activacion y intentelo nuevamente.';
+          errorTitle = '¡Error Cuenta Inactiva!';
+        }
+      }
+    
       Swal.fire({
-        title: '¡Error!',
-        text: 'Hubo un error al iniciar sesión. Por favor, inténtalo nuevamente.',
+        title: errorTitle,
+        text: errorMessage,
         icon: 'error',
         confirmButtonText: 'Aceptar',
-        timer: 2000,
+        timer: 3000,
         customClass: {
           popup: 'max-w-md w-full p-4 bg-white rounded-lg shadow-lg',
           title: 'text-xl font-bold text-gray-700',
           confirmButton: 'bg-green-500 text-white rounded px-4 py-2 mt-2',
         },
       });
-    }
+    };
   };
 
   const handleGoogleLogin = async () => {

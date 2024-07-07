@@ -3,13 +3,14 @@ import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { RiLoginCircleLine } from 'react-icons/ri';
-import useUserRole from '@/utils/userSession';
 import Search from './Search';
 import Logo from '../ui/Logo';
 import NavMenu from './NavMenu';
 import { decodeJwt } from '@/utils/decodeJwt';
 import { JwtPayload } from '@/types';
 import DesplegableUser from './desplegable';
+import { CiMenuBurger } from "react-icons/ci";
+
 
 const DEFAULT_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
 
@@ -81,13 +82,30 @@ const Navbar: React.FC = () => {
             </div>
           </div>
         ) : (
-          <button>
-            <Link href="/AUTH/login">
-              <div className="text-4xl text-white mr-6 hover:text-blue-300">
+        <div>
+
+          <Link href="/AUTH/login">
+              <div className="hidden md:flex items-center justify-center cursor-pointer text-white text-4xl mr-6 hover:text-blue-300">
                 <RiLoginCircleLine />
               </div>
             </Link>
-          </button>
+            <div className="flex items-center justify-center cursor-pointer md:hidden">
+              <div className="flex flex-col items-center">
+                <button ref={avatarButtonRef} onClick={handleAvatarClick}>
+                  <CiMenuBurger className='text-white'/>
+                </button>
+                <DesplegableUser isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+                <div className="mt-1 text-sm font-medium text-gray-50 hover:text-blue-300">
+                  {userData && userData.nickname && (
+                    <button className="focus:outline-none" onClick={handleAvatarClick}>
+                      {userData.nickname}
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+            </div>
+
         )}
       </div>
     </header>

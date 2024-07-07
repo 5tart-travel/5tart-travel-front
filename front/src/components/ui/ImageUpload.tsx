@@ -3,8 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 interface ImageUploadProps {
-  onUpload: (file: File) => void;
-  
+  onUpload: (file: File, url: string) => void;
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onUpload }) => {
@@ -17,8 +16,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUpload }) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       setSelectedFile(file);
-      onUpload(file);
-      uploadFile(file); // Llamamos a la función de subida de archivos aquí
+      uploadFile(file);
     }
   };
 
@@ -31,24 +29,21 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUpload }) => {
   const uploadFile = async (file: File) => {
     const formData = new FormData();
     formData.append('file', file);
-
     setUploading(true);
     setErrorMessage(null);
 
     try {
-      const response = await axios.post('https://huellasdesperanza.onrender.com/files/uploadFile', formData, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/files/uploadFile`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-
-      console.log('Archivo subido con éxito:', response.data);
+      onUpload(file, response.data);
       Swal.fire("Tu imagen se subió correctamente!");
     } catch (error) {
       console.error('Error al subir el archivo:', error);
       setErrorMessage('Error al subir el archivo');
-      Swal.fire("Ocurrió un error al subir tu imagen!");
-      
+      Swal.fire("Ocurrió un error al subir tu imagen!");   
     } finally {
       setUploading(false);
     }
@@ -56,7 +51,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUpload }) => {
 
   return (
     <div className="mt-4">
-      <label className="block text-sm font-medium text-gray-700">Imagen del Refugio</label>
       <input
         type="file"
         accept="image/*"
@@ -81,7 +75,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUpload }) => {
           {uploading ? 'Subiendo...' : 'Seleccionar'}
         </button>
       </div>
-      {errorMessage && <p className="mt-2 text-sm text-red-600">{errorMessage}</p>}
+      {errorMessage && (<p className="mt-2 text-sm text-red-600">{errorMessage}</p>)}
     </div>
   );
 };

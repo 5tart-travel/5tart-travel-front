@@ -22,9 +22,20 @@ export interface IBusTour {
     empresa:string;
     agency:any;
     touristPoints:ITourisPoints[]
+    averageRate:number;
+    comments:IComments[]
+    tourId: string;
+    
   }
   export interface ITourisPoints{
     name:string;
     lat:number;
     lon:number;
+  }
+  export interface IComments{
+    id:string
+    username:string;
+    bad:string
+    good:string
+    rate:number
   }

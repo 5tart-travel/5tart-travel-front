@@ -207,3 +207,13 @@
   left: -100px;
   animation: fly 5s linear infinite;
 }
+.tour-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.tour-card-container .TourCard {
+  width: 100%;
+  max-width: 100%;
+}
