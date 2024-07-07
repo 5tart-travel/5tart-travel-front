@@ -70,6 +70,38 @@ const PackPlane: React.FC = () => {
       </section>
 
       <section className="max-w-6xl w-full mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {regions.map((region, index) => {
+          if (groupedTours[region]) {
+            return (
+              <Link
+                href={`#${region.toLowerCase().replace(/\s/g, '-')}`}
+                key={`${region}-${index}`}
+              >
+                <div className="relative bg-white rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+                  <div className="w-full h-32 sm:h-40 rounded-lg overflow-hidden">
+                    <Image
+                      src={`/images/${region.toLowerCase()}.jpg`}
+                      alt={region}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-lg"
+                    />
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-lg font-semibold italic text-white bg-gray-800 bg-opacity-75 px-4 py-2 rounded-lg">
+                      {region}
+                    </h3>
+                  </div>
+                </div>
+              </Link>
+            );
+          } else {
+            return null;
+          }
+        })}
+      </section>
+
+      {/* <section className="max-w-6xl w-full mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {regions.map((region) => {
           if (groupedTours[region]) {
             return (
@@ -98,7 +130,7 @@ const PackPlane: React.FC = () => {
             return null; 
           }
         })}
-      </section>
+      </section> */}
 
       <section className="max-w-6xl w-full mb-8">
         <div className="flex items-center justify-center mb-4">
@@ -138,12 +170,11 @@ const PackPlane: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className='flex justify-center mb-16'>
-            <Link href={'/travel'}>
-             <BackButton />
-            </Link>
-       
-        </div>
+      <div className="flex justify-center mb-16">
+        <Link href={'/travel'}>
+          <BackButton />
+        </Link>
+      </div>
     </main>
   );
 };
