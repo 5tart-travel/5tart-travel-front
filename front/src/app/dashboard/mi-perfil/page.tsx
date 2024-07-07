@@ -36,7 +36,7 @@ const MiPerfil = () => {
           {userRole === 'user' && <User userData={userData} />}
         </div>
       ) : (
-        <div className="text-3xl font-mono font-bold">En reparación... Falta aplicar roles...</div>
+        <div className="text-3xl font-mono font-bold">Cargando</div>
       )}
     </div>
   );
