@@ -51,7 +51,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUpload }) => {
 
   return (
     <div className="mt-4">
-      <label className="block text-sm font-medium text-gray-700">Imagen de Agencia</label>
       <input
         type="file"
         accept="image/*"
