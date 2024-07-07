@@ -8,6 +8,7 @@ interface AgencyProps {
 const Agency: React.FC<AgencyProps> = ({ userData }) => {
   const [agencyName, setAgencyName] = useState(userData?.name_agency || '');
   const [contactEmail, setContactEmail] = useState(userData?.email || '');
+  const [address, setAddress] = useState(userData?.address || '');
 
   const handleAgencyNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAgencyName(event.target.value);
@@ -16,6 +17,13 @@ const Agency: React.FC<AgencyProps> = ({ userData }) => {
   const handleContactEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setContactEmail(event.target.value);
   };
+
+  const handleContactAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAddress(event.target.value);
+  };
+  console.log(userData?.name_agency);
+  console.log(userData);
+  
 
   return (
     <div>
@@ -46,6 +54,19 @@ const Agency: React.FC<AgencyProps> = ({ userData }) => {
             />
           </div>
           <p className='text-xs mt-2 text-gray-400 ml-32'>Ingresa un email válido de contacto.</p>
+
+          <hr className='mt-4'/>
+          <div className='mt-4 flex items-center'>
+            <p className='font-semibold w-32'>Dirección:</p>
+            <input
+              placeholder='Córdoba 123, Ciudad '
+              type='text'
+              value={address}
+              onChange={handleContactAddressChange}
+              className='border border-gray-300 rounded-md p-2'
+            />
+          </div>
+          <p className='text-xs mt-2 text-gray-400 ml-32'>Ingresa una dirección válida.</p>
           <br/>
           <hr className='mt-4'/>
           {/* <p className='mt-4'>Email de contacto actual: {userData.email}</p> */}

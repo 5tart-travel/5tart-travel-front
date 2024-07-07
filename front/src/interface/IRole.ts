@@ -5,5 +5,6 @@ export interface IRole {
       name_agency: string;
     };
     name_agency:string
+    address?:string
   }
   
