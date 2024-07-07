@@ -75,7 +75,7 @@ const Search: React.FC = () => {
         ) : results.length > 0 ? (
           <div className="flex flex-wrap gap-4">
             {results.map((result) => (
-              <Link key={result.id} href={`/adopta/${result.id}`}>
+              <Link key={result.id} href={`/travel/pack_plane/${result.id}`}>
                 <div className="flex flex-col backdrop-filter backdrop-blur bg-opacity-20 bg-gray-100 p-4 rounded-lg shadow-lg flex-shrink-0 w-64 cursor-pointer">
                   <Image
                     src={result.imgUrl}
