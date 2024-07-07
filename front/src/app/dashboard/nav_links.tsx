@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
@@ -8,10 +7,8 @@ import { BiSolidDonateHeart } from "react-icons/bi";
 import { MdFavorite } from "react-icons/md";
 import { GiAirplaneDeparture } from "react-icons/gi";
 import { IoMdPlanet } from "react-icons/io";
-
-
-
-
+import { useEffect, useState } from "react"; 
+import { decodeJwt } from "@/utils/decodeJwt";
 
 const links = [
   { name: "Inicio", href: "/", icon: FaHome },
@@ -23,11 +20,35 @@ const links = [
 ];
 
 export default function NavLinks() {
+  const [userRole, setUserRole] = useState(""); 
   const pathname = usePathname();
+
+  useEffect(() => {
+    const userSessionString = localStorage.getItem("userSession");
+
+    if (userSessionString) {
+      const userSession = JSON.parse(userSessionString);
+      const ntoken = userSession.token;
+
+      if (ntoken) {
+        const decoded = decodeJwt(ntoken);
+        setUserRole(decoded.role); 
+      }
+    }
+  }, []);
+
   return (
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
+
+        if (
+          (userRole === "agency" && (link.name === "Compras" || link.name === "Favoritos")) ||
+          (pathname === link.href)
+        ) {
+          return null; 
+        }
+
         return (
           <Link
             key={link.name}

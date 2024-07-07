@@ -1,21 +1,24 @@
 'use client'
-import { decodeJwt } from '@/utils/decodeJwt';
 import React, { useEffect, useState } from 'react';
+import { decodeJwt } from '@/utils/decodeJwt';
+import { IRole } from '@/interface/IRole';
+import Agency from '@/components/Dashboard/DatosRole/Agency';
+import Admin from '@/components/Dashboard/DatosRole/Admin';
+import User from '@/components/Dashboard/DatosRole/User';
 
 const MiPerfil = () => {
-  const [userRole, setUserRole] = useState(null);
-  const [userData, setUserData] = useState(null);
+  const [userRole, setUserRole] = useState<string | null>(null); 
+  const [userData, setUserData] = useState<IRole | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('userSession');
-    // console.log(token);
     
     if (token) {
       const decodedToken = decodeJwt(token);
       
       if (decodedToken) {
-        setUserRole(decodedToken.role); 
-        setUserData(decodedToken);
+        setUserRole(decodedToken.role);
+        setUserData(decodedToken as IRole); 
       } else {
         console.error('Token no válido');
       }
@@ -28,9 +31,9 @@ const MiPerfil = () => {
     <div className="flex flex-col items-center justify-center bg-red-300 rounded-md md:h-[200px]">
       {userRole ? (
         <div className="text-3xl font-mono font-bold">
-          {userRole === 'admin' && <div>Bienvenido Admin. Tus datos: {JSON.stringify(userData)}</div>}
-          {userRole === 'agency' && <div>Bienvenido Agencia. Tus datos: {(userData.name_agency)}</div>}
-          {userRole === 'user' && <div>Bienvenido Usuario. Tus datos: {JSON.stringify(userData)}</div>}
+          {userRole === 'admin' && <Admin userData={userData} />}
+          {userRole === 'agency' && <Agency userData={userData} />}
+          {userRole === 'user' && <User userData={userData} />}
         </div>
       ) : (
         <div className="text-3xl font-mono font-bold">En reparación... Falta aplicar roles...</div>
