@@ -1,7 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { FC } from 'react';
 
-interface CardGridProps {
+export interface CardGridProps {
+  id: string;
   title: string;
   price: number;
   location?: string;
@@ -15,6 +17,7 @@ interface CardGridProps {
 }
 
 const CardGrid: FC<CardGridProps> = ({
+  id,
   title,
   price,
   location,
@@ -28,6 +31,7 @@ const CardGrid: FC<CardGridProps> = ({
 }) => {
   return (
     <div className="w-full h-70 rounded-2xl shadow-2xl overflow-hidden relative">
+      <Link href={`/travel/pack_plane/${id}`} key={id}>
       <Image
         src={imageUrl}
         alt={title}
@@ -40,6 +44,7 @@ const CardGrid: FC<CardGridProps> = ({
           Oferta
         </div>
       )}
+
       <div className=" absolute bottom-0 left-0 p-2 bg-blue-600 bg-opacity-35 backdrop-blur-lg shadow-3xl w-[90%] h-auto rounded-2xl flex flex-col mx-4 mb-2 ">
         <h3 className="text-xl text-gray-50 text-shadow-semidark font-semibold">{title}</h3>
         <p className="text-2xl text-gray-50 text-shadow-semidark font-bold ">${price}</p>
@@ -50,6 +55,10 @@ const CardGrid: FC<CardGridProps> = ({
         {/* <p className="text-gray-500">{country}</p> */}
         <p className="text-gray-50">{empresa}</p>
       </div>
+      
+      </Link>
+
+      
     </div>
   );
 };
