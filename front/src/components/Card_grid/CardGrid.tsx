@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { FC } from 'react';
 
 export interface CardGridProps {
-  id: string;
+  id?: string;
   title: string;
   price: number;
   location?: string;
