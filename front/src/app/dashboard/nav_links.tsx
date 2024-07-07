@@ -48,6 +48,10 @@ export default function NavLinks() {
           return null; 
         }
 
+        if (userRole === "user" && (link.name === "Agregar Tour" || link.name === "Mis Tours")) {
+          return null;
+        }
+
         return (
           <Link
             key={link.name}
