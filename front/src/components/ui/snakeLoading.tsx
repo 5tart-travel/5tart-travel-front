@@ -37,7 +37,6 @@ const SnakeLoading = () => {
         animate={{ y: [0, 20, 0, -20, 0], rotate: [0, 45, 90, 135, 180] }}
         transition={{ duration: 2, repeat: Infinity }}
       />
-      {/* Agrega más divs con estilos y animaciones similares según sea necesario */}
     </div>
   );
 };
