@@ -43,8 +43,7 @@ export default function NavLinks() {
         const LinkIcon = link.icon;
 
         if (
-          (userRole === "agency" && (link.name === "Compras" || link.name === "Favoritos")) ||
-          (pathname === link.href)
+          (userRole === "agency" && (link.name === "Compras" || link.name === "Favoritos"))
         ) {
           return null; 
         }
