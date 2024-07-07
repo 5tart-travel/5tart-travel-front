@@ -28,9 +28,9 @@ const MiPerfil = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center bg-red-300 rounded-md md:h-[200px]">
+    <div className="flex flex-col rounded-md md:h-[200px]">
       {userRole ? (
-        <div className="text-3xl font-mono font-bold">
+        <div>
           {userRole === 'admin' && <Admin userData={userData} />}
           {userRole === 'agency' && <Agency userData={userData} />}
           {userRole === 'user' && <User userData={userData} />}
