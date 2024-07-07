@@ -35,6 +35,7 @@ interface MapsAgenciaProps {
 const MapsAgencia: React.FC<MapsAgenciaProps> = ({ address }) => {
   const mapRef = useRef<LeafletMap>(null);
   const [location, setLocation] = useState<LatLngExpression | null>(null);
+  const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,19 +52,26 @@ const MapsAgencia: React.FC<MapsAgenciaProps> = ({ address }) => {
         }
       } catch (error) {
         console.error("Error al obtener las coordenadas:", error);
+      } finally {
+        setMapReady(true);
       }
     };
 
     fetchData();
   }, [address]);
 
+  if (!mapReady) {
+    return null; 
+  }
+
   return (
-    <div>
+    <div style={{ padding: "10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div className="text-xl font-bold text-white mt-4 mb-4">DONDE ENCONTRARNOS</div>
       <MapContainer
         className="rounded-lg"
-        center={location || [0, 0]} // Usamos `location` si está definido, de lo contrario [0, 0]
-        zoom={13}
-        style={{ height: "300px", width: "100%", marginTop: "20px" }}
+        center={location || [0, 0]} 
+        zoom={location ? 16 : 1} 
+        style={{ height: "350px", width: "95%", marginTop: "10px", marginBottom: "20px" }}
         ref={mapRef}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

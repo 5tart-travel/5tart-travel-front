@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { ITours } from "./ITours";
 
 
 export interface IAgencias {
@@ -17,6 +18,7 @@ export interface IAgencias {
   lon: number;
   display_name: string;
   touristPoints: TouristPoint[];
+  tours:ITours[]
 }
 
   export interface TouristPoint {
