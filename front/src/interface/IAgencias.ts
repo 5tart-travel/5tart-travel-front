@@ -27,17 +27,6 @@ export interface IAgencias {
   }
   
 
-// export interface IAgencias {
-//    id: string,
-//     name_agency: string,
-//     mail: string,
-//     password: string,
-//     address: string,
-//     imgUrl: string 
-    
-   
-// }
-
 export interface IParams {
     id: string;
 

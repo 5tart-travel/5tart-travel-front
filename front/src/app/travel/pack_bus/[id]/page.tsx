@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import { IBusTour, ITourisPoints, IComments } from '@/interface/IBusTour';
+import { IBusTour,} from '@/interface/IBusTour';
 import './BusDetail.css';
 import Pasage from './sections/Passage';
 import TourDetails from './sections/tourDetail';

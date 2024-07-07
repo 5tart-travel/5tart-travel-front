@@ -51,7 +51,7 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
               <span>Oferta</span>
             </div>
           )}
-          {/* Renderizar averageRate como estrellas */}
+          
           <div className="absolute left-2 bottom-2">
             {renderStars(tour.averageRate)}
           </div>

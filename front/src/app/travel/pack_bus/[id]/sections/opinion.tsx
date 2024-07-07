@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaStar, FaRegStar, FaSmile, FaFrown } from 'react-icons/fa';
+import { FaSmile, FaFrown } from 'react-icons/fa';
 
 export interface Card {
   id: string;
@@ -22,6 +22,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
   const [bad, setBad] = useState('');
   const [rate, setRate] = useState<number>(1);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null); // Estado para manejar mensajes de error
 
   useEffect(() => {
     setCardsState(comments);
@@ -31,7 +32,15 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
     e.preventDefault();
 
     if (!username || !good || !bad) {
-      alert('Por favor, complete todos los campos.');
+      setError('Por favor, complete todos los campos.');
+      return;
+    }
+    if (username.length > 10 ) {
+      setError('Por favor, asegúrate de que el nombre no exceda los 10 caracteres.');
+      return;
+    }
+    if (username.length > 10 || good.length > 50 || bad.length > 50) {
+      setError('Por favor, asegúrate de que Lo Bueno y Lo Malo no excedan los 50 caracteres.');
       return;
     }
 
@@ -87,9 +96,11 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
       setGood('');
       setBad('');
       setRate(1);
+      setError(null); 
 
     } catch (error) {
       console.error('Error al enviar el comentario:', error);
+      setError('Hubo un problema al enviar el comentario. Por favor, intenta nuevamente más tarde.');
     } finally {
       setLoading(false);
     }
@@ -97,24 +108,26 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    if (name === 'username') setUsername(value);
-    if (name === 'good') setGood(value);
-    if (name === 'bad') setBad(value);
+    const truncatedValue = value.slice(0, 50);
+    if (name === 'username') setUsername(truncatedValue);
+    if (name === 'good') setGood(truncatedValue);
+    if (name === 'bad') setBad(truncatedValue);
     if (name === 'rate') setRate(Number(value));
+    setError(null); 
   };
 
-  const renderStars = (rating: number) => {
+  const renderStars = (rate: number) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
-      if (i <= rating) {
-        stars.push(<FaStar key={i} className="text-yellow-500" />);
+      if (i <= rate) {
+        stars.push(<span key={i} className="text-yellow-500 text-2xl">★</span>);
       } else {
-        stars.push(<FaRegStar key={i} className="text-yellow-500" />);
+        stars.push(<span key={i} className="text-yellow-500 text-2xl">☆</span>);
       }
     }
     return stars;
   };
-
+  
   return (
     <section className="text-base mt-5">
       <div className="container mx-auto flex flex-wrap justify-center">
@@ -122,6 +135,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
           <div className="bg-gray-200 p-4 rounded-lg flex flex-col items-center justify-center text-center">
             <h2 className="text-2xl font-bold mb-4">Déjanos tu opinión</h2>
             <form className="w-full max-w-md mx-auto" onSubmit={onFormSubmit}>
+              {error && <div className="text-red-500 mb-4">{error}</div>} {/* Mostrar mensaje de error */}
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                   Nombre
@@ -207,20 +221,20 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
                   </div>
                   <hr className="border-gray-300 flex-grow opacity-20" />
                   <div className="flex items-center mt-4">
-                    {card.rate >= 3 ? (
-                      <FaSmile className="text-green-500 mr-2" />
-                    ) : (
-                      <FaFrown className="text-red-500 mr-2" />
+                    {card.good && (
+                      <>
+                        <FaSmile className="text-green-500 mr-2" />
+                        <p className="text-green-500"><strong>Lo Bueno:</strong> {card.good}</p>
+                      </>
                     )}
-                    <p><strong>Lo Bueno:</strong> {card.good}</p>
                   </div>
                   <div className="flex items-center mt-2">
-                    {card.rate < 3 ? (
-                      <FaFrown className="text-red-500 mr-2" />
-                    ) : (
-                      <FaSmile className="text-green-500 mr-2" />
+                    {card.bad && (
+                      <>
+                        <FaFrown className="text-red-500 mr-2" />
+                        <p className="text-red-500"><strong>Lo Malo:</strong> {card.bad}</p>
+                      </>
                     )}
-                    <p><strong>Lo Malo:</strong> {card.bad}</p>
                   </div>
                 </div>
               ))}
