@@ -6,10 +6,15 @@ interface AgencyProps {
 }
 
 const User: React.FC<AgencyProps> = ({ userData }) => {
+  console.log(userData);
   return (
     <div>
       {userData && (
-        <h2>Bienvenido {userData.name_agency}</h2>
+        <div>
+          <h2>Bienvenido {userData.username}</h2>
+          <h2>Mail {userData.email}</h2>
+
+        </div>
       )}
     </div>
   );
