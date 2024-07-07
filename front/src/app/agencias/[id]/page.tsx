@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import React, { useEffect, useState } from 'react';
 import { IAgencias } from '@/interface/IAgencias';
 import { IBusTour } from '@/interface/IBusTour';
@@ -9,6 +9,7 @@ import Spiner from '@/components/ui/Spiner';
 import ImageAgency from '../section/imageAgency';
 import TourCard from '@/app/ofertas/tourCard';
 import ContactoSection from '../section/contactoSection';
+import MapsAgencia from '../section/mapsagencia';
 
 const AgenciaGeolocation = dynamic(() => import('@/components/Maps/TourGeolocation'), {
   ssr: false,
@@ -79,64 +80,53 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   }
 
   if (!agencyDetails) {
-    return (
-      <div className="container mx-auto p-4 flex justify-center">
-        <div className="bg-gray-100  rounded-lg overflow-hidden p-4 w-full h-[400px] max-w-2xl relative shadow-2xl ">
-          <div className="airplane"></div>
-          <h2 className=" flex justify-center text-gray-600 mt-[100px] text-3xl font-bold mb-4">Página en desarrollo</h2>
-          <p className=' flex justify-center text-gray-600' >Esta página está actualmente en desarrollo. Por favor, vuelve más tarde.</p>
-          <Link href={'/'}>
-            <h1 className=" flex justify-center text-orange-600 hover:text-orange-500 mt-[100px] text-3xl font-bold mb-4 cursor-pointer  "  > GO BACK</h1>
-          </Link>
-        </div>
-      </div>
-    );
+    return null; 
   }
-
 
   const planeTours = tours.filter(tour => tour.agency.id === params.id && tour.transportType === 'plane');
   const busTours = tours.filter(tour => tour.agency.id === params.id && tour.transportType === 'bus');
 
   return (
     <div className="relative">
+       
+
       <div>
         <ImageAgency
           imgUrl={agencyDetails.imgUrl}
           name_agency={agencyDetails.name_agency}
         />
       </div>
-      <>
       <ContactoSection agencyDetails={agencyDetails} />
-      </>
-      <div className="flex items-center mb-1 mt-20 mr-10 w-94">
-              <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-lg font-bold text-gray-300 mx-2">Paquetes Disponibles en Avión</h2>
-              <hr className="border-gray-300 flex-grow opacity-20" />
-            </div>
-      <div className="grid grid-cols-1 gap-4 mt-4 tour-card-container">
-        {planeTours.length > 0 && (
-          <>
-            
+      
+      {planeTours.length > 0 && (
+        <div>
+          <div className="flex items-center mb-1 mt-20 mr-10 w-94">
+            <hr className="border-gray-300 flex-grow opacity-20" />
+            <h2 className="text-lg font-bold text-gray-300 mx-2">Paquetes Disponibles en Avión</h2>
+            <hr className="border-gray-300 flex-grow opacity-20" />
+          </div>
+          <div className="grid grid-cols-1 gap-4 mt-4 tour-card-container">
             {planeTours.map(tour => (
               <TourCard key={tour.id} tour={tour} onClick={() => console.log(tour.id)} />
             ))}
-          </>
-        )}
-      </div>
-      <div className="flex items-center mb-1 mt-20">
-              <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-lg font-bold text-gray-300 mx-2">Paquetes disponibles en Bus</h2>
-              <hr className="border-gray-300 flex-grow opacity-20" />
-            </div>
-      <div className="grid grid-cols-1 gap-4 mt-4 tour-card-container">
-        {busTours.length > 0 && (
-          <>
+          </div>
+        </div>
+      )}
+
+      {busTours.length > 0 && (
+        <div>
+          <div className="flex items-center mb-1 mt-20">
+            <hr className="border-gray-300 flex-grow opacity-20" />
+            <h2 className="text-lg font-bold text-gray-300 mx-2">Paquetes disponibles en Bus</h2>
+            <hr className="border-gray-300 flex-grow opacity-20" />
+          </div>
+          <div className="grid grid-cols-1 gap-4 mt-4 tour-card-container">
             {busTours.map(tour => (
               <TourCard key={tour.id} tour={tour} onClick={() => console.log(tour.id)} />
             ))}
-          </>
-        )}
-      </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
