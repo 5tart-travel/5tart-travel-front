@@ -6,7 +6,6 @@ import HiddenNavBar from "@/components/hidden_navbar/HiddenNavBar";
 import Navbar from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
 import HiddenFooter from "@/components/hidden_footer/HiddenFooter";
-import GloboChat from "@/components/GloboChat/GloboChat";
 import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,7 +29,7 @@ export default function RootLayout({
         <HiddenFooter>
           <Footer username={null} />
         </HiddenFooter>
-        {/* <GloboChat /> */}
+        
         <Script id="landbot-script" strategy="lazyOnload">
           {`
             window.addEventListener('mouseover', initLandbot, { once: true });

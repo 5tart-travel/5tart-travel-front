@@ -6,7 +6,6 @@ import { FaPowerOff } from 'react-icons/fa';
 import Image from 'next/image';
 import { decodeJwt } from '@/utils/decodeJwt';
 import { JwtPayload } from '@/types/index';
-import useUserRole from '@/utils/userSession';
 import Logo from '../ui/Logo';
 
 const DEFAULT_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
@@ -14,7 +13,6 @@ const DEFAULT_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v17196
 const SideNav: React.FC<{ role: 'admin' | 'user' | 'agency' }> = ({ role }) => {
   const [userData, setUserData] = useState<Partial<JwtPayload> | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const userRole = useUserRole(); 
 
   useEffect(() => {
     const session = localStorage.getItem('userSession');
@@ -46,13 +44,11 @@ const SideNav: React.FC<{ role: 'admin' | 'user' | 'agency' }> = ({ role }) => {
 
   return (
     <div className="flex flex-col h-full px-2 w-56 py-2 md:px-2 z-0">
-      {userRole !== 'agency' && (
         <Link className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-950 p-4 md:h-40" href="/">
           <div className="w-32 text-white md:w-40">
             <Logo />
           </div>
         </Link>
-      )}
       <div className="text-center mb-4">
         {isLoggedIn ? (
           <>
