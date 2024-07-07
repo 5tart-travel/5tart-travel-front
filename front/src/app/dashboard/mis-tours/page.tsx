@@ -132,23 +132,21 @@ const MisTours = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {tours.map((tour) => (
-  <Link href={`/travel/pack_plane/${tour.id}`} key={tour.id}>
-    <CardTourDashboard
-      id={tour.id}
-      title={tour.title}
-      price={tour.price}
-      imgUrl={tour.imgUrl}
-      oferta={tour.oferta}
-      updateTour={(updatedTour) =>
-        setTours(
-          tours.map((t) => (t.id === updatedTour.id ? updatedTour : t)),
-        )
-      }
-      deleteTour={() => {}}
-    />
-  </Link>
-))}
-
+            <CardTourDashboard
+              key={tour.id}
+              id={tour.id}
+              title={tour.title}
+              price={tour.price}
+              imgUrl={tour.imgUrl}
+              oferta={tour.oferta}
+              updateTour={(updatedTour) =>
+                setTours(
+                  tours.map((t) => (t.id === updatedTour.id ? updatedTour : t)),
+                )
+              }
+              deleteTour={handleDeleteTour}
+            />
+          ))}
         </div>
       )}
       {selectedTour && editedTour && (

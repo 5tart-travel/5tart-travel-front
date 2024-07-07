@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { FC, useState } from 'react';
 import Swal from 'sweetalert2';
 import EditTour from './EditTour';
@@ -128,14 +129,16 @@ const CardTourDashboard: FC<CardTourDashboardProps> = ({
           </button>
           <DeleteTour tourId={id} onDelete={deleteTour} />
         </div>
-        <div className="absolute bottom-0 left-0 p-2 bg-blue-600 bg-opacity-35 backdrop-blur-lg shadow-3xl w-[90%] h-auto rounded-2xl flex flex-col mx-4 mb-2">
-          <h3 className="text-xl text-gray-50 text-shadow-semidark font-semibold">
-            {title}
-          </h3>
-          <p className="text-2xl text-gray-50 text-shadow-semidark font-bold ">
-            ${price}
-          </p>
-        </div>
+        <Link href={`/travel/pack_plane/${id}`} key={id}>
+          <div className="absolute bottom-0 left-0 p-2 bg-blue-600 hover:bg-blue-950 bg-opacity-35 backdrop-blur-lg shadow-3xl w-[90%] h-auto rounded-2xl flex flex-col mx-4 mb-2">
+            <h3 className="text-xl text-gray-50 text-shadow-semidark font-semibold">
+              {title}
+            </h3>
+            <p className="text-2xl text-gray-50 text-shadow-semidark font-bold ">
+              ${price}
+            </p>
+          </div>
+        </Link>
       </div>
 
       {isEditing && (
