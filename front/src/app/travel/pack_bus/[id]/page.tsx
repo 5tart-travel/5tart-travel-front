@@ -59,7 +59,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         />
       </div>
 
-      <CompraSection busDetails={busDetails} tourId={params.id} />
+      <CompraSection tourId={params.id}  busDetails={busDetails} />
       <div>
         <TourDetails busDetails={busDetails} />
       </div>

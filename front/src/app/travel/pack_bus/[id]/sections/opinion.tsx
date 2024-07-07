@@ -7,7 +7,7 @@ export interface Card {
   good: string;
   bad: string;
   rate: number;
-  tourId: string; 
+  tourId: string;
 }
 
 interface OpinionSectionProps {
@@ -34,9 +34,9 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
       alert('Por favor, complete todos los campos.');
       return;
     }
-  
+
     const newCard: Card = {
-      id: '', 
+      id: '',
       username,
       good,
       bad,
@@ -45,8 +45,9 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
     };
 
     setLoading(true);
-  
+
     try {
+      console.log('Enviando comentario:', newCard);
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comment/${tourId}`, {
         method: 'POST',
         headers: {
@@ -54,14 +55,26 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
         },
         body: JSON.stringify(newCard),
       });
-  
+
+      console.log('Respuesta del servidor:', response);
+      
       if (!response.ok) {
-        throw new Error('Error al enviar el comentario');
+        const errorText = await response.text();
+        console.log('Error al enviar el comentario:', errorText);
+        throw new Error(`Error al enviar el comentario: ${errorText}`);
       }
-  
-      const responseData = await response.json();
-  
-      if (responseData && responseData.id) {
+
+      const contentType = response.headers.get('content-type');
+      let responseData;
+
+      if (contentType && contentType.includes('application/json')) {
+        responseData = await response.json();
+      } else {
+        responseData = await response.text();
+        console.log('Respuesta del servidor no en JSON:', responseData);
+      }
+
+      if (responseData && typeof responseData === 'object' && responseData.id) {
         setCardsState(prevCards => [...prevCards, {
           ...newCard,
           id: responseData.id,
@@ -69,12 +82,12 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
       } else {
         console.error('Respuesta del servidor no válida:', responseData);
       }
-  
+
       setUsername('');
       setGood('');
       setBad('');
-      setRate(1); 
-  
+      setRate(1);
+
     } catch (error) {
       console.error('Error al enviar el comentario:', error);
     } finally {
@@ -87,7 +100,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
     if (name === 'username') setUsername(value);
     if (name === 'good') setGood(value);
     if (name === 'bad') setBad(value);
-    if (name === 'rate') setRate(Number(value)); 
+    if (name === 'rate') setRate(Number(value));
   };
 
   const renderStars = (rating: number) => {
@@ -187,7 +200,6 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({ tourId, comments }) => 
                   <div className="flex justify-between mb-2">
                     <div className="flex flex-col">
                       <h3 className="font-bold text-xl text-left">{card.username}</h3>
-                     
                     </div>
                     <div className="flex items-center">
                       {renderStars(card.rate)}

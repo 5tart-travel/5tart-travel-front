@@ -11,18 +11,18 @@ interface TourCardProps {
 const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
   function renderStars(rating: number) {
     if (typeof rating !== 'number' || rating < 1 || rating > 5) {
-      return null;
+      return null; 
     }
 
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       let starClass = "text-yellow-500 border-white";
-      let starIcon = <FaStar className={`${starClass} text-white border-white`} />;
+      let starIcon = <FaStar className={`${starClass}  text-white border-white`} />;
       
       if (i > rating) {
-        starIcon = <FaRegStar className={`${starClass} text-white border-white`} />;
+        starIcon = <FaRegStar className={`${starClass}  text-white border-white`} />; // Estrella vacía
       } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
-        starIcon = <FaRegStar className={`${starClass} text-white border-white`} />;
+        starIcon = <FaRegStar className={`${starClass}  text-white border-white`} />; // Estrella parcialmente llena
       }
 
       stars.push(
@@ -51,6 +51,7 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
               <span>Oferta</span>
             </div>
           )}
+          {/* Renderizar averageRate como estrellas */}
           <div className="absolute left-2 bottom-2">
             {renderStars(tour.averageRate)}
           </div>
@@ -71,13 +72,11 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
           <h2 className="text-lg font-bold text-gray-700 truncate">
             {tour.destino}
           </h2>
-          {tour.agency && tour.agency.length > 0 && (
-            <p className="text-gray-500 font-bold">
-              {tour.agency[0].name_agency.length > 12
-                ? `${tour.agency[0].name_agency.substring(0, 12)}...`
-                : tour.agency[0].name_agency}
-            </p>
-          )}
+          <p className="text-gray-500 font-bold">
+            {tour.agency.name_agency.length > 12
+              ? `${tour.agency.name_agency.substring(0, 12)}...`
+              : tour.agency.name_agency}
+          </p>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div className="text-gray-500 flex items-center">
