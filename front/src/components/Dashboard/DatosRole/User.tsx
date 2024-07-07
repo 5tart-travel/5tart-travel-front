@@ -33,7 +33,7 @@ const User: React.FC<AgencyProps> = ({ userData }) => {
               className='border border-gray-300 rounded-md p-2'
             />
           </div>
-          <p className='text-xs mt-2 text-gray-400 ml-32'>Usa tu nombre y apellidos reales.</p>
+          <p className='text-xs mt-2 text-gray-400 ml-32'>Usa tu nombre real.</p>
           <hr className='mt-4'/>
           <div className='mt-4 flex items-center'>
             <p className='font-semibold w-32'>Email:</p>
