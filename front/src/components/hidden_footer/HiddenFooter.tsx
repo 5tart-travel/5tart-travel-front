@@ -23,6 +23,7 @@ const HiddenFooter: React.FC<HiddenFooterProps> = ({ children }) => {
     '/dashboard/config-profile',
     '/dashboard/pets',
     '/contacto',
+    // '/minidashboard',
     
    
 

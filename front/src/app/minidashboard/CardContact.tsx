@@ -19,6 +19,7 @@ const CardContact: React.FC = () => {
     const fetchNotifications = async () => {
       try {
         const response = await axios.get('https://fivetart-travel-kafg.onrender.com/contact');
+        console.log('Fetched notifications:', response.data);
         setNotifications(response.data);
       } catch (error) {
         console.error('Error fetching notifications:', error);
@@ -33,11 +34,12 @@ const CardContact: React.FC = () => {
   };
 
   const closeModal = () => {
+    console.log('Closing modal');
     setIsModalOpen(false);
   };
 
   return (
-    <div className="relative p-4 bg-purple-700 rounded-2xl shadow-xl cursor-pointer text-white w-40 h-40" onClick={openModal}>
+    <div className="relative p-4 bg-purple-700 hover:bg-purple-800 rounded-2xl shadow-2xl cursor-pointer text-white w-60 h-[130px] hover:shadow-xl transition-shadow  " onClick={openModal}>
       <div className="absolute top-2 left-2 bg-white rounded-full p-2">
         <FiBell className="text-purple-700" size={24} />
       </div>
