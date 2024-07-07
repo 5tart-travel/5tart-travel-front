@@ -25,7 +25,7 @@ const User: React.FC<AgencyProps> = ({ userData }) => {
           <p className='text-sm mt-4 text-gray-500'>Te has registrado en 5tar-Travel, acá podrás editar la información de tu cuenta.</p>
           <hr className='mt-4'/>
           <div className='mt-4 flex items-center'>
-            <p className='font-semibold w-32'>Tu Nombre:</p>
+            <p className='font-semibold w-32'>Tu nombre:</p>
             <input
               type='text'
               value={username}
@@ -36,7 +36,7 @@ const User: React.FC<AgencyProps> = ({ userData }) => {
           <p className='text-xs mt-2 text-gray-400 ml-32'>Usa tu nombre real.</p>
           <hr className='mt-4'/>
           <div className='mt-4 flex items-center'>
-            <p className='font-semibold w-32'>Email:</p>
+            <p className='font-semibold w-32'>Tu email:</p>
             <input
               type='email'
               value={email}
