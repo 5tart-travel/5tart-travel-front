@@ -8,6 +8,7 @@ import TextArea from '@/components/ui/Textarea';
 import Swal from 'sweetalert2';
 import HomeButton from '@/components/ui/HomeButton';
 import Link from 'next/link';
+import ImageUpload from '@/components/ui/ImageUpload';
 
 interface FormData {
   name_agency: string;
@@ -15,6 +16,7 @@ interface FormData {
   password: string;
   confirm_password: string;
   address: string;
+  imgUrl?: string;
 }
 
 interface Validations {
@@ -137,6 +139,8 @@ const AgencyForm: React.FC = () => {
     event.preventDefault();
     setError(null);
 
+    /* console.log('Datos del formulario antes de enviar:', formData) */
+
     const someInvalid = Object.values(validations).some(
       (valid) => valid === false,
     );
@@ -185,6 +189,10 @@ const AgencyForm: React.FC = () => {
     } else {
       setError('Por favor, completa todos los campos correctamente.');
     }
+  };
+
+  const handleImageUpload = (file: File, url: string) => {
+    setFormData({ ...formData, imgUrl: url });
   };
 
   return (
@@ -278,6 +286,9 @@ const AgencyForm: React.FC = () => {
             ),
           )}
         </div>
+
+        <ImageUpload onUpload={handleImageUpload} />
+        
         <Button type="submit" label="Crear cuenta" className="w-full mt-4" />
         <div className="mt-5 mb-10 flex items-center justify-center gap-x-2">
           <p className="text-yellow500">¿Tienes una cuenta?</p>
