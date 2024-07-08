@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import TourCard from '@/app/ofertas/tourCard';
-import { IPlaneTour } from '@/interface/IPlaneTuor';
 import Link from 'next/link';
 import BackButton from '@/components/ui/BackButton';
+import { IBusTour } from '@/interface/IBusTour';
 
 const PackPlane: React.FC = () => {
   const router = useRouter();
-  const [buses, setBuses] = useState<IPlaneTour[]>([]);
+  const [buses, setBuses] = useState<IBusTour[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,7 +22,7 @@ const PackPlane: React.FC = () => {
         if (!response.ok) {
           throw new Error('Falló el  fetch de plane tours');
         }
-        const data: IPlaneTour[] = await response.json();
+        const data: IBusTour[] = await response.json();
         setBuses(data);
       } catch (err) {
         setError('Error fetch data');
@@ -46,7 +46,7 @@ const PackPlane: React.FC = () => {
     }
     acc[region].push(tour);
     return acc;
-  }, {} as Record<string, IPlaneTour[]>);
+  }, {} as Record<string, IBusTour[]>);
 
   const regions = [
     'Patagonia',
