@@ -25,6 +25,7 @@ export interface IBusTour {
     averageRate:number;
     comments:IComments[]
     tourId: string;
+    listImg:string[];
     
   }
   export interface ITourisPoints{

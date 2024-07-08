@@ -96,6 +96,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
                 ... comment,
                 tourId: params.id 
                 }))}
+                setBusDetails={setBusDetails}
             />
           )}
         </div>

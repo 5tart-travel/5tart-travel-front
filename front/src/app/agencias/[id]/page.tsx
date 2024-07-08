@@ -142,7 +142,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
 
       </div>
 
-      {/* Sección de Tours en Avión */}
+    
       {planeTours.length > 0 && (
         <div>
           <div className="flex items-center mb-1 mt-16 mr-10 w-94">
@@ -160,7 +160,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         </div>
       )}
 
-      {/* Sección de Tours en Bus */}
+     
       {busTours.length > 0 && (
         <div>
           <div className="flex items-center mb-1 mt-6">
@@ -178,7 +178,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         </div>
       )}
 
-      {/* Modal de Tours por Región */}
+      
       {selectedRegion && (
         <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg shadow-md max-w-5xl w-full mx-auto max-h-screen overflow-y-auto relative">

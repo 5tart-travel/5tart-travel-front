@@ -12,7 +12,7 @@ const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ busDetails 
 
   return (
     <section>
-      <div className="flex items-center mb-1 mt-10">
+      <div className="flex items-center mb-1 mt-20">
         <hr className="border-gray-300 flex-grow opacity-20" />
         <h2 className="text-lg font-bold text-gray-300 mx-2">Qué hacer en </h2>
         <span className="text-lg font-bold text-gray-300 opacity-23">{busDetails.destino.toUpperCase()}</span>
