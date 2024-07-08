@@ -70,12 +70,25 @@ const CompraSection: React.FC<CompraSectionProps> = ({ busDetails, tourId }) => 
 
   const handleCheckout = async () => {
     try {
+
+      const responss = await fetch(
+        'https://fivetart-travel-kafg.onrender.com/order',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({title: busDetails.title,
+                                price: Number(busDetails.price),}),
+        },)
+
       const response = await axios.post('https://fivetart-travel-kafg.onrender.com/mercado-pago', {
         title: busDetails.title,
         price: Number(busDetails.price),
       });
       const data = response.data;
-
+      
       if (data) {
         const script = document.createElement('script');
         script.src = 'https://sdk.mercadopago.com/js/v2';
