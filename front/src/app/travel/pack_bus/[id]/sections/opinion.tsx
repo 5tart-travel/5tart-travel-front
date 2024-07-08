@@ -29,6 +29,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
   const [rate, setRate] = useState<number>(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showBad, setShowBad] = useState(false);
 
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -150,7 +151,9 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
     }
     return stars;
   };
-
+  const toggleBad = () => {
+    setShowBad(!showBad);
+  };
   return (
     <section className="text-base mt-5">
       <div className="container mx-auto flex flex-wrap justify-center">
@@ -268,14 +271,17 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
                       </>
                     )}
                   </div>
-                  <div className="flex items-center mt-2">
-                    {card.bad && (
-                      <>
-                        <FaFrown className="text-red-500 mr-2" />
-                        <p className="text-red-500">
-                          <strong>Lo Malo:</strong> {card.bad}
-                        </p>
-                      </>
+                  <div className="flex items-center">
+                    {/* Carita de "Lo Malo" con lógica de clic */}
+                    <FaFrown
+                      className="text-red-500 mr-2 cursor-pointer"
+                      onClick={toggleBad}
+                    />
+                    {/* Muestra "Lo Malo" si showBad es true */}
+                    {showBad && (
+                      <p className="text-red-500">
+                        <strong>Lo Malo:</strong> {card.bad}
+                      </p>
                     )}
                   </div>
                 </div>

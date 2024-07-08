@@ -1,40 +1,43 @@
+/* Estilos para el botón de fullscreen y el contenedor del mapa */
 .map-container {
-    height: 300px; /* Altura inicial */
-    width: 95%;
-    position: relative;
-  }
-  
-  .map-container:fullscreen {
-    height: 100%; 
-    width: 100vw; 
-  }
-  
-  .map-content {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    overflow: hidden; 
-  }
-  
-  .fullscreen-button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.4);
-    color: #FF0000;
-    padding: 12px 20px; 
-    z-index: 20;
-  }
-  
-  .fullscreen-button:fullscreen {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    font-size: 18px; 
-    text-align: center; 
-  }
-  
+  position: relative;
+  height: 300px; /* Altura inicial */
+  width: 95%;
+}
+
+.map-container.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos en la página */
+}
+
+.map-content {
+  height: 100%;
+  width: 100%;
+}
+
+.fullscreen-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* Oculto inicialmente */
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro para el overlay */
+}
+
+.fullscreen-overlay.active {
+  display: block; /* Mostrar el overlay cuando está en fullscreen */
+}
+
+.fullscreen-button {
+  cursor: pointer;
+}
+
+.fullscreen-button.exiting-fullscreen {
+  /* Estilos para el botón cuando se está saliendo del modo fullscreen */
+  background-color: transparent; /* Cambia el color de fondo al salir del fullscreen */
+}

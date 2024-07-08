@@ -5,14 +5,13 @@ import { LatLngExpression, Icon, Map as LeafletMap } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-
 const AgencyIcon = new Icon({
   iconUrl: "/iconorojo.png",
   iconRetinaUrl: "/red-marker-icon-2x.png",
   shadowUrl: "/marker-shadow.png",
-  iconSize: [48, 42],
-  iconAnchor: [15, 42],
-  popupAnchor: [1, -34],
+  iconSize: [30, 26],
+  iconAnchor: [15, 26],
+  popupAnchor: [1, -20],
   shadowSize: [41, 41],
 });
 
@@ -25,7 +24,6 @@ const DefaultIcon = new Icon({
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
-
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
@@ -60,20 +58,20 @@ const AgenciaGeolocation: React.FC<AgenciaGeolocationProps> = ({
   const agencyPosition: LatLngExpression = [lat, lon];
 
   return (
-    <div>
+    <div style={{ height: "50vh", width: "100%", marginTop: "20px" }}>
       <MapContainer
         className="rounded-lg"
         center={agencyPosition}
         zoom={13}
-        style={{ height: "300px", width: "100%", marginTop: "20px" }}
+        style={{ height: "100%", width: "100%" }}
         ref={mapRef}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        
+
         <Marker position={agencyPosition} icon={AgencyIcon}>
           <Popup>{displayName}</Popup>
         </Marker>
-        
+
         {touristPoints.map((point, index) => (
           <Marker key={index} position={[point.lat, point.lon]} icon={DefaultIcon}>
             <Popup>{point.name}</Popup>

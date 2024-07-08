@@ -59,6 +59,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           imgUrl={busDetails.imgUrl}
           title={busDetails.title}
           description={busDetails.description}
+          averageRate={busDetails.averageRate}
         />
       </div>
 

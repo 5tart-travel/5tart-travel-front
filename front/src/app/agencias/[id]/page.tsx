@@ -9,6 +9,7 @@ import TourCard from '@/app/ofertas/tourCard';
 import ContactoSection from '../section/contactoSection';
 import MapsAgencia from '../section/mapsagencia';
 import Link from 'next/link';
+import BackButton from '@/components/ui/BackButton';
 
 const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [agencyDetails, setAgencyDetails] = useState<IAgencias | null>(null);
@@ -64,6 +65,33 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
     fetchTours();
   }, [params.id]);
 
+  useEffect(() => {
+    const handleEscapeClose = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (target.classList.contains('bg-gray-800')) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeClose);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeClose);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const closeModal = () => {
+    setSelectedRegion(null);
+  };
+
   if (loading) {
     return (
       <div className="container mx-auto p-4 flex justify-center">
@@ -84,17 +112,17 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
 
   const regions = [...new Set(tours.map(tour => tour.region))]; // Obtener regiones únicas
 
-
-
-  const closeModal = () => {
-    setSelectedRegion(null);
-  };
   const openRegionModal = (region: string) => {
     const toursInRegion = tours.filter(tour => tour.region === region && tour.agency.id === params.id);
     if (toursInRegion.length > 0) {
       setSelectedRegion(region);
     }
   };
+
+  function hasToursInRegion(region: string): boolean {
+    const toursInRegion = tours.filter(tour => tour.region === region && tour.agency.id === params.id);
+    return toursInRegion.length > 0;
+  }
 
   return (
     <div className="relative">
@@ -112,7 +140,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
 
           <div className="grid grid-cols-2 gap-10">
 
-            <div className="p-4 bg-black rounded-lg opacity-80 text-white">
+          <div className="p-4 bg-black bg-opacity-60 rounded-lg text-white">
               <MapsAgencia address={agencyDetails.address} />
             </div>
 
@@ -125,13 +153,15 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
               <div className="mt-6">
                 <h3 className="text-lg font-bold mb-2 text-center">Regiones de Tours</h3>
                 <div className="grid grid-cols-2 gap-4">
-                  {regions.map(region => (
-                    <div key={region} className="cursor-pointer" onClick={() => openRegionModal(region)}>
-                      <div className="p-2 bg-white rounded-lg shadow-md">
-                        <h4 className="text-md font-semibold text-center">{region}</h4>
+                  {regions
+                    .filter(region => hasToursInRegion(region))
+                    .map(region => (
+                      <div key={region} className="cursor-pointer" onClick={() => openRegionModal(region)}>
+                        <div className="p-2 bg-white rounded-lg shadow-md">
+                          <h4 className="text-md font-semibold text-center">{region}</h4>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </div>
             </div>
@@ -142,9 +172,8 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
 
       </div>
 
-    
       {planeTours.length > 0 && (
-        <div>
+        <div className="mx-10">
           <div className="flex items-center mb-1 mt-16 mr-10 w-94">
             <hr className="border-gray-300 flex-grow opacity-20" />
             <h2 className="text-lg font-bold text-gray-300 mx-2">Paquetes Disponibles en Avión</h2>
@@ -160,9 +189,8 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         </div>
       )}
 
-     
       {busTours.length > 0 && (
-        <div>
+        <div className="mx-10">
           <div className="flex items-center mb-1 mt-6">
             <hr className="border-gray-300 flex-grow opacity-20" />
             <h2 className="text-lg font-bold text-gray-300 mx-2">Paquetes disponibles en Bus</h2>
@@ -178,35 +206,51 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         </div>
       )}
 
-      
       {selectedRegion && (
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg shadow-md max-w-5xl w-full mx-auto max-h-screen overflow-y-auto relative">
-            <button className="absolute top-2 right-2 mt-2 mr-2 text-gray-500 hover:text-gray-700" onClick={closeModal}>
-              <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M13.293 6.293a1 1 0 0 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 1 1 1.414-1.414L10 12.586l3.293-3.293z" clipRule="evenodd" />
-              </svg>
-            </button>
-            <div className="p-4">
-              <h2 className="text-xl font-bold mb-4">Tours en {selectedRegion}</h2>
-              <div className="grid grid-cols-2 gap-4">
-                {tours.filter(tour => tour.region === selectedRegion && tour.agency.id === params.id).map(tour => (
-                  <Link key={tour.id} href={`/travel/${tour.transportType === 'plane' ? 'pack_plane' : 'pack_bus'}/${tour.id}`}>
-                    <div className="max-w-xs mx-auto mb-4">
-                      <TourCard tour={tour} onClick={function (id: string): void {
-                        throw new Error('Function not implemented.');
-                      }} />
-                    </div>
-                  </Link>
-                ))}
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-80 z-50 flex justify-center items-center mb-20"style={{ zIndex: 1000 }}>
+          <div className="bg-white shadow-md rounded-lg p-4 w-full max-w-3xl relative">
+            <h2 className="text-2xl font-bold mb-4 text-center">Región {selectedRegion}</h2>
+            <div className="overflow-y-auto max-h-96">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                {tours
+                  .filter(tour => tour.region === selectedRegion && tour.agency.id === params.id)
+                  .map(tour => (
+                    <Link href={`/travel/pack_bus/${tour.id}`} key={tour.id}>
+                      <TourCard key={tour.id} tour={tour} onClick={() => console.log(tour.id)} />
+                    </Link>
+                  ))}
               </div>
             </div>
           </div>
         </div>
       )}
+
+
+
+
+
+      {error && (
+        <div className="absolute top-0 left-0 w-full h-full bg-gray-800 bg-opacity-80 z-50 flex justify-center items-center">
+          <div className="bg-white shadow-md rounded-lg overflow-hidden p-4 w-full max-w-3xl">
+            <h2 className="text-2xl font-bold mb-4 text-center text-red-600">Error</h2>
+            <p className="text-center">{error}</p>
+            <button
+              className="absolute top-4 right-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded"
+              onClick={() => setError(null)}
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
+       <div className="flex justify-center mb-16">
+        <Link href={'/travel/pack_bus'}>
+          <BackButton />
+        </Link>
+      </div>
     </div>
+   
   );
 };
 
 export default AgencyDetail;
-
