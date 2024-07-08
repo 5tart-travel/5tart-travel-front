@@ -4,6 +4,7 @@ import { faBed, faBroom, faBus, faChain, faChair, faExchangeAlt, faParking, faPl
 import { format } from 'date-fns';
 import es from 'date-fns/locale/es';
 import { IBusTour } from '@/interface/IBusTour';
+import Carousel from './carrucelHotel';
 
 
 const TourDetails: React.FC<{ busDetails: IBusTour }> = ({ busDetails }) => {
@@ -19,13 +20,11 @@ const TourDetails: React.FC<{ busDetails: IBusTour }> = ({ busDetails }) => {
   const formattedFechaEgreso = format(new Date(busDetails.fecha_egreso), 'dd/MM/yyyy', { locale: es });
 
   return (
-    <section className="text-base flex flex-col md:flex-row items-center mt-10 md:mt-36">
+    <section className="text-base flex flex-col md:flex-row items-center mt-10 md:mt-36 ml-10 "style={{ width: '95vw' }}>
       <div className="w-full md:w-1/2 pr-0 md:pr-4 h-full mb-6 md:mb-0 md:mr-2">
         <div className="bg-gray-200 p-4 rounded-lg h-full flex flex-col items-center justify-center text-center">
           <h2 className="text-xl font-bold uppercase mb-2">{busDetails.hotel}</h2>
-          {busDetails.listImg && busDetails.listImg.map((imgUrl, index) => (
-            <img key={index} src={imgUrl} alt={busDetails.hotel} className="w-full h-auto rounded-lg mb-4" />
-          ))}
+          <Carousel listImg={busDetails.listImg} />
         </div>
       </div>
   
