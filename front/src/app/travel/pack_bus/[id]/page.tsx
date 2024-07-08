@@ -1,6 +1,6 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
-import { IBusTour,} from '@/interface/IBusTour';
+import { IBusTour } from '@/interface/IBusTour';
 import './BusDetail.css';
 import Pasage from './sections/Passage';
 import TourDetails from './sections/tourDetail';
@@ -20,7 +20,9 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   useEffect(() => {
     const fetchBusDetails = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours/${params.id}`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/tours/${params.id}`,
+        );
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -59,7 +61,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         />
       </div>
 
-      <CompraSection tourId={params.id}  busDetails={busDetails} />
+      <CompraSection tourId={params.id} busDetails={busDetails} />
       <div>
         <TourDetails busDetails={busDetails} />
       </div>
@@ -71,7 +73,9 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
       <div className="flex items-center mb-1 mt-20">
         <hr className="border-gray-300 flex-grow opacity-20" />
         <h2 className="text-lg font-bold text-gray-300 mx-2">Detalle de</h2>
-        <span className="text-lg font-bold text-gray-300 opacity-23">{busDetails.transportType.toUpperCase()}</span>
+        <span className="text-lg font-bold text-gray-300 opacity-23">
+          {busDetails.transportType.toUpperCase()}
+        </span>
         <hr className="border-gray-300 flex-grow opacity-20" />
       </div>
       <div>
@@ -89,20 +93,20 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           {busDetails && (
             <OpinionSection
               tourId={params.id}
-              comments={busDetails.comments.map(comment => ({
-                ... comment,
-                tourId: params.id 
-                }))}
+              comments={busDetails.comments.map((comment) => ({
+                ...comment,
+                tourId: params.id,
+              }))}
+              setBusDetails={setBusDetails}
             />
           )}
         </div>
       </div>
-      <div className='flex justify-center mb-16'>
-            <Link href={'/travel/pack_bus'}>
-             <BackButton />
-            </Link>
-       
-        </div>
+      <div className="flex justify-center mb-16">
+        <Link href={'/travel/pack_bus'}>
+          <BackButton />
+        </Link>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,40 @@
+.map-container {
+    height: 300px; /* Altura inicial */
+    width: 95%;
+    position: relative;
+  }
+  
+  .map-container:fullscreen {
+    height: 100%; 
+    width: 100vw; 
+  }
+  
+  .map-content {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    overflow: hidden; 
+  }
+  
+  .fullscreen-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    color: #FF0000;
+    padding: 12px 20px; 
+    z-index: 20;
+  }
+  
+  .fullscreen-button:fullscreen {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    font-size: 18px; 
+    text-align: center; 
+  }
+  
