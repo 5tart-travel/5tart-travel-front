@@ -19,7 +19,7 @@ const TourDetails: React.FC<{ busDetails: IBusTour }> = ({ busDetails }) => {
   const formattedFechaEgreso = format(new Date(busDetails.fecha_egreso), 'dd/MM/yyyy', { locale: es });
 
   return (
-    <section className="text-base flex items-center mt-20">
+    <section className="text-base flex items-center mt-36">
       <div className="w-1/2 pr-4 h-full">
         <div className="bg-gray-200 p-4 rounded-lg h-full flex flex-col items-center justify-center ml-10 text-center">
           <h2 className="text-xl font-bold uppercase mb-2">{busDetails.hotel}</h2>
