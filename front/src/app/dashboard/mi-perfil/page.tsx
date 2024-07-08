@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
 import { decodeJwt } from '@/utils/decodeJwt';
 import { IRole } from '@/interface/IRole';
@@ -7,18 +7,18 @@ import Admin from '@/components/Dashboard/DatosRole/Admin';
 import User from '@/components/Dashboard/DatosRole/User';
 
 const MiPerfil = () => {
-  const [userRole, setUserRole] = useState<string | null>(null); 
+  const [userRole, setUserRole] = useState<string | null>(null);
   const [userData, setUserData] = useState<IRole | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('userSession');
-    
+
     if (token) {
       const decodedToken = decodeJwt(token);
-      
+
       if (decodedToken) {
         setUserRole(decodedToken.role);
-        setUserData(decodedToken as IRole); 
+        setUserData(decodedToken as IRole);
       } else {
         console.error('Token no válido');
       }
