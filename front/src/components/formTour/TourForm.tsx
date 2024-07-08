@@ -147,6 +147,7 @@ export const TourForm: React.FC<TourFormProps> = ({
         </label>
         <input
           id="hotel"
+          placeholder="Mínimo 5 caracteres"
           type="text"
           value={hotel}
           onChange={(e) => setHotel(e.target.value)}

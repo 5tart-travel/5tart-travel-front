@@ -20,13 +20,10 @@ export const useTourForm = () => {
 
   useEffect(() => {
     const userSessionString: any = localStorage.getItem('userSession');
-    console.log(userSessionString);
-
     if (userSessionString) {
       const userSession = JSON.parse(userSessionString);
       const ntoken = userSession.token;
       setToken(ntoken);
-      console.log('Token obtenido en useEffect:', ntoken);
     }
   }, []);
 
@@ -85,8 +82,6 @@ export const useTourForm = () => {
           oferta,
         };
 
-        console.log('Datos del nuevo tour:', JSON.stringify(nuevoTour));
-
         const tourResponse = await fetch(
           'https://fivetart-travel-kafg.onrender.com/tours',
           {
@@ -101,7 +96,6 @@ export const useTourForm = () => {
 
         if (!tourResponse.ok) {
           const responseText = await tourResponse.text();
-          console.error('Respuesta del servidor:', responseText);
           throw new Error('Error al agregar el tour.');
         }
 
@@ -109,8 +103,22 @@ export const useTourForm = () => {
           icon: 'success',
           title: 'Tour agregado correctamente',
         });
+
+        // Limpiar los campos después del éxito
+        setTitle('');
+        setPrice(null);
+        setDescription('');
+        setAddress('');
+        setFecha_ingreso(null);
+        setFecha_egreso(null);
+        setDestino('');
+        setSalida('');
+        setTransportType('');
+        setImgUrl('');
+        setHotel('');
+        setEmpresa('');
+        setOferta(false);
       } catch (error) {
-        console.error('Error:', error);
         Swal.fire({
           icon: 'error',
           title: 'Error',
