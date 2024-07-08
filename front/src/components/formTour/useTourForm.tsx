@@ -60,7 +60,14 @@ export const useTourForm = () => {
       return;
     }
 
-    if (title && price !== null && description && address && transportType) {
+    if (
+      title &&
+      price !== null &&
+      description &&
+      address &&
+      transportType &&
+      imgUrl
+    ) {
       try {
         const nuevoTour: ICreateTourDto = {
           title,
@@ -74,7 +81,7 @@ export const useTourForm = () => {
           transportType,
           hotel,
           empresa,
-          // imgUrl,
+          imgUrl,
           oferta,
         };
 
@@ -144,6 +151,8 @@ export const useTourForm = () => {
     setEmpresa,
     oferta,
     setOferta,
+    imgUrl,
+    setImgUrl,
     token,
     handleSubmit,
   };

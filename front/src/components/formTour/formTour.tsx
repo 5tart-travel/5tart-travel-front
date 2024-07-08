@@ -27,6 +27,8 @@ const FormularioTour: React.FC = () => {
     setHotel,
     empresa,
     setEmpresa,
+    imgUrl,
+    setImgUrl,
     oferta,
     setOferta,
     handleSubmit,
@@ -59,6 +61,8 @@ const FormularioTour: React.FC = () => {
           setHotel={setHotel}
           empresa={empresa}
           setEmpresa={setEmpresa}
+          imgUrl={imgUrl}
+          setImgUrl={setImgUrl}
           oferta={oferta}
           setOferta={setOferta}
           handleSubmit={handleSubmit}
