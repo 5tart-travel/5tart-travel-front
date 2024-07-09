@@ -4,7 +4,6 @@ import StateFilter from './StateFilter';
 import OfferFilter from './OfferFilter';
 import PriceFilter from './PriceFilter';
 import { TbAdjustmentsHorizontal } from 'react-icons/tb';
-import { countAllTours } from './StateFilter';
 
 interface FilterComponentProps {
   buses: IBusTour[];
@@ -19,7 +18,6 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
   const [mostrarSoloOffer, setmostrarSoloOffer] = useState<boolean>(false);
   const [ordenarPrecio, setOrdenarPrecio] = useState<string>('');
   const [estadosDisponibles, setEstadosDisponibles] = useState<string[]>([]);
-  // const [stateFilterOpen, setStateFilterOpen] = useState<boolean>(true);
 
   useEffect(() => {
     const states = buses.map((tour) => tour.state);
@@ -74,21 +72,9 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
     setFilteredTours(buses);
   };
 
-  const allResults = countAllTours(buses);
-
-  // const toggleStateFilter = () => {
-  //   setStateFilterOpen(!stateFilterOpen);
-  // };
-
   return (
-    <main>
-      {/* <div className="px-10 py-10 text-black ">
-        <p className="text-xl font-bold ">Tours</p>
-        <p className="text-centertext-gray-400 text-sm">
-          {allResults} resultados
-        </p>
-      </div> */}
-      <div className="flex items-center text-xl">
+    <>
+      <div className="flex items-center text-xl ">
         <TbAdjustmentsHorizontal className="mr-2" />
         <h1 className="text-xl font-semibold">Filtros</h1>
         <button onClick={resetFilters} className="ml-auto text-sm">
@@ -106,55 +92,18 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
       />
 
       <div className="relative">
-        <div
-          className="flex items-center cursor-pointer justify-between mt-8"
-          // onClick={toggleStateFilter}
-        >
+        <div className="flex items-center font-bold cursor-pointer justify-between mt-8">
           <div className="mr-2 ">Ubicación:</div>
-          {/* <div className="transform transition-transform duration-300 "> */}
-          {/* {stateFilterOpen ? (
-              
-              <svg
-                className="fill-current text-gray-700"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                width="20"
-                height="20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 6l6 6H4l6-6z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            ):(<svg
-            className="fill-current text-gray-700"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            width="20"
-            height="20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 14l-6-6h12l-6 6z"
-              clipRule="evenodd"
-            />
-          </svg>
-        )} */}
-          {/* </div> */}
         </div>
-        {/* {stateFilterOpen && ( */}
+
         <StateFilter
           selectedRegion={selectedRegion}
           availableStates={estadosDisponibles}
           onFilterRegion={handleFiltroRegion}
           buses={buses}
         />
-        {/* )} */}
       </div>
-    </main>
+    </>
   );
 };
 

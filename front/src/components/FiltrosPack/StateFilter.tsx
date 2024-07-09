@@ -11,7 +11,7 @@ const countAllTours = (buses: IBusTour[]) => {
   return buses.length;
 };
 
-const RegionFilter: React.FC<RegionFilterProps> = ({
+const StateFilter: React.FC<RegionFilterProps> = ({
   selectedRegion,
   availableStates,
   onFilterRegion,
@@ -79,4 +79,4 @@ const RegionFilter: React.FC<RegionFilterProps> = ({
 };
 
 export { countAllTours };
-export default RegionFilter;
+export default StateFilter;

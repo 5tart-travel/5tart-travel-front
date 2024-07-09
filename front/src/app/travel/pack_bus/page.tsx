@@ -12,12 +12,14 @@ const PackBus: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [filteredTours, setFilteredTours] = useState<IBusTour[]>([]);
   const [noResults, setNoResults] = useState(false);
+  const [uniqueStates, setUniqueStates] = useState<string[]>([]);
+  const [selectedState, setSelectedState] = useState<string>('');
 
   useEffect(() => {
     const fetchBuses = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/tours/bus`,
+          `${process.env.NEXT_PUBLIC_API_URL}/tours/plane`,
         );
         if (!response.ok) {
           throw new Error('Falló el fetch de bus tours');
@@ -25,6 +27,10 @@ const PackBus: React.FC = () => {
         const data: IBusTour[] = await response.json();
         setBuses(data);
         setFilteredTours(data);
+
+        const uniqueStatesSet = new Set(data.map((tour) => tour.state));
+        const uniqueStatesArray = Array.from(uniqueStatesSet).sort();
+        setUniqueStates(uniqueStatesArray);
       } catch (err) {
         setError('Error fetch data');
         console.error(err);
@@ -44,17 +50,47 @@ const PackBus: React.FC = () => {
     router.push(`/travel/pack_bus/${id}`);
   };
 
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    setSelectedState(selectedValue);
+
+    if (selectedValue === '') {
+      setFilteredTours(buses);
+    } else {
+      const filtered = buses.filter((tour) => tour.state === selectedValue);
+      setFilteredTours(filtered);
+    }
+  };
+
   return (
-    <main className="flex bg-gray-100 min-h-screen bg-black">
-      <aside className="w-1/4 p-4 border-r border-gray-200 text-gray-500 ">
+    <main className="flex bg-gray-100 min-h-screen">
+      <aside className="hidden md:block w-1/4 p-4 border-r border-gray-200 text-gray-500 ">
         <FilterComponent buses={buses} setFilteredTours={setFilteredTours} />
       </aside>
       <div className="flex flex-col items-center p-4 w-full bg-gray-100">
+        <div className="relative w-full mb-4 sm:hidden">
+          <div className="relative">
+            <select
+              value={selectedState}
+              onChange={handleSelectChange}
+              className="block w-full px-4 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:border-blue-500 max-h-40 overflow-y-auto"
+              size={Math.min(uniqueStates.length, 4)}
+            >
+              <option value="">Todos</option>
+              {uniqueStates.map((state, index) => (
+                <option key={index} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
         <div className="max-w-6xl w-full flex bg-white rounded-md shadow-md">
-          <section className="p-4">
+          <section className="p-4 w-full">
             {noResults ? (
               <section className="max-w-6xl w-full mb-8">
-                <h2 className="text-xl font-bold text-center ">
+                <h2 className="text-xl font-bold text-center">
                   No se encontraron tours según los filtros aplicados
                 </h2>
               </section>
