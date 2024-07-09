@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { IBusTour } from '@/interface/IBusTour';
 import TourCard from '@/app/ofertas/tourCard';
 import FilterComponent from '@/components/FiltrosPack/FilterComponent';
+import './page.css';
 
 const PackBus: React.FC = () => {
   const router = useRouter();
@@ -89,11 +90,14 @@ const PackBus: React.FC = () => {
         <div className="max-w-6xl w-full flex bg-white rounded-md shadow-md">
           <section className="p-4 w-full">
             {noResults ? (
-              <section className="max-w-6xl w-full mb-8">
-                <h2 className="text-xl font-bold text-center">
-                  No se encontraron tours según los filtros aplicados
-                </h2>
-              </section>
+              <div className="container mx-auto p-4 flex justify-center">
+                <div className="rounded-lg overflow-hidden p-4 w-full h-[400px] max-w-2xl relative">
+                  <div className="airplane"></div>{' '}
+                  <h2 className="flex justify-center text-gray-600 mt-[100px] text-xl font-bold mb-4 ">
+                    No se encontraron tours según los filtros aplicados
+                  </h2>
+                </div>
+              </div>
             ) : (
               <div className="w-full">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
