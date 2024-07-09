@@ -5,14 +5,18 @@ interface Tour {
   state: string;
 }
 
-const Location = () => {
+interface LocationProps {
+  setSelectedLocation: (location: string | null) => void;
+}
+
+const Location: React.FC<LocationProps> = ({ setSelectedLocation }) => {
   const [locations, setLocations] = useState<
     { state: string; count: number }[]
   >([]);
   const router = useRouter();
 
   useEffect(() => {
-    fetch('https://fivetart-travel-kafg.onrender.com/tours')
+    fetch('https://fivetart-travel-kafg.onrender.com/filter')
       .then((response) => response.json())
       .then((data: Tour[]) => {
         const locationCounts = data.reduce(
@@ -37,7 +41,7 @@ const Location = () => {
   }, []);
 
   const handleLocationClick = (location: string) => {
-    router.push(``);
+    setSelectedLocation(location);
   };
 
   return (
