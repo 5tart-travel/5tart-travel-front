@@ -137,7 +137,7 @@ const TrendGraphs: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-4">
+    <div className="bg-gray-800 rounded-2xl shadow-sm p-4 h-64">
       <h3 className="text-xl font-bold mb-4">Gráficos de Tendencias</h3>
       <Line data={data} />
     </div>

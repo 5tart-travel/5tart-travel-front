@@ -3,9 +3,14 @@ export function decodeJwt(token: string): any {
   try {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map(function (c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join('')
+    );
 
     return JSON.parse(jsonPayload);
   } catch (error) {
@@ -14,20 +19,20 @@ export function decodeJwt(token: string): any {
   }
 }
 
-export function checkUserRole(): 'admin' | 'user' | 'shelter' {
+export function checkUserRole(): 'admin' | 'user' | 'agency' {
   const session = localStorage.getItem('userSession');
   if (session) {
     try {
-      const { id_token } = JSON.parse(session);
-      if (id_token) {
-        const decodedToken = decodeJwt(id_token);
+      const { token } = JSON.parse(session); 
+      if (token) {
+        const decodedToken = decodeJwt(token);
         if (decodedToken) {
-          const roles = decodedToken['https://huellasdesperanza.com/roles'];
-          if (roles) {
-            if (roles.includes('Admin')) {
+          const role = decodedToken['role'];
+          if (role) {
+            if (role === 'admin') {
               return 'admin';
-            } else if (roles.includes('Shelter')) {
-              return 'shelter';
+            } else if (role === 'agency') {
+              return 'agency';
             }
           }
         }
@@ -37,6 +42,5 @@ export function checkUserRole(): 'admin' | 'user' | 'shelter' {
     }
   }
 
-  return 'user'; // Return 'user' by default or in case of errors
+  return 'user';
 }
-

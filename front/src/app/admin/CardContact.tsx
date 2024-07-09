@@ -48,7 +48,7 @@ const CardContact: React.FC = () => {
       </div>
       <div className="flex flex-col items-center justify-center h-full">
         <p className="text-5xl font-bold">{notifications.length}</p>
-        <p className="text-lg">Notificaciones</p>
+        <p className="text-lg">Soporte</p>
       </div>
       {isModalOpen && (
         <NotificationModal notifications={notifications} onClose={closeModal} />

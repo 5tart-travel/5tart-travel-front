@@ -9,7 +9,7 @@
 //     try {
 //       const { access_token } = JSON.parse(userSession);
 //       const decodedToken = jwt.decode(access_token) as { [key: string]: any } | null;
-//       return decodedToken?.https['huellasdesperanza.com/role'] || null; 
+//       return decodedToken?.https['https://fivetart-travel-kafg.onrender.com/role'] || null; 
 //     } catch (error) {
 //       console.error('Error al decodificar el accessToken:', error);
 //     }

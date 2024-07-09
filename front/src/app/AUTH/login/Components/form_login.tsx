@@ -5,6 +5,7 @@ import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import Swal from 'sweetalert2';
 import ButtonGoogle from '@/components/ui/ButtonGoogle';
+import { checkUserRole } from '@/utils/decodeJwt';
 
 const Form_Login: React.FC = () => {
   const router = useRouter();
@@ -92,14 +93,14 @@ const Form_Login: React.FC = () => {
       }
 
       const data = await response.json();
-      console.log('Datos de la respuesta:', data);
-
-      const { token } = data; // <--- chachos el problema estaba q guardabamos access_token y tenia q ser token
+      const { token } = data;
       localStorage.setItem('userSession', JSON.stringify({ token }));
-      console.log(
-        'Datos de la sesión del usuario almacenados en localStorage:',
-        { token },
-      );
+
+      const role = checkUserRole();
+      let redirectTo = '/';
+      if (role === 'admin') {
+        redirectTo = '/admin';
+      }
 
       Swal.fire({
         title: '¡Inicio de sesión exitoso!',
@@ -108,14 +109,14 @@ const Form_Login: React.FC = () => {
         confirmButtonText: 'Aceptar',
         timer: 2000,
       }).then(() => {
-        router.push('/');
+        router.push(redirectTo);
       });
-    } catch (error:any) {
+    } catch (error: any) {
       console.error('Error al iniciar sesión:', error);
-    
+
       let errorMessage = 'Hubo un error al iniciar sesión. Por favor, inténtalo nuevamente.';
       let errorTitle = '¡Error!';
-    
+
       if (error && error.message) {
         if (error.message === 'Unauthorized') {
           errorMessage = 'Error al iniciar sesión: Usuario o contraseña incorrectos.';
@@ -125,7 +126,7 @@ const Form_Login: React.FC = () => {
           errorTitle = '¡Error Cuenta Inactiva!';
         }
       }
-    
+
       Swal.fire({
         title: errorTitle,
         text: errorMessage,
@@ -138,7 +139,7 @@ const Form_Login: React.FC = () => {
           confirmButton: 'bg-green-500 text-white rounded px-4 py-2 mt-2',
         },
       });
-    };
+    }
   };
 
   const handleGoogleLogin = async () => {

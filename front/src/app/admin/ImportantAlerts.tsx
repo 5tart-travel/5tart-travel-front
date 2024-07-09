@@ -5,14 +5,15 @@ const ImportantAlerts: React.FC = () => {
     'Solicitud pendiente de la agencia "Viajes XYZ".',
     'Problema de pago con el usuario "Juan Pérez".',
     'Nueva agencia registrada: "Turismo ABC".',
+    
   ];
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-4">
+    <div className="bg-sky-400 rounded-2xl  p-4 h-[250px] custom-scrollbar overflow-auto shadow-2xl ">
       <h3 className="text-xl font-bold mb-4">Alertas Importantes</h3>
       <ul className="space-y-2">
         {alerts.map((alert, index) => (
-          <li key={index} className="bg-red-100 text-red-700 p-2 rounded-lg shadow-sm">
+          <li key={index} className="bg-gray-100 text-gray-600 p-2 rounded-lg shadow-sm">
             {alert}
           </li>
         ))}
@@ -22,6 +23,7 @@ const ImportantAlerts: React.FC = () => {
 };
 
 export default ImportantAlerts;
+
 
 
 
