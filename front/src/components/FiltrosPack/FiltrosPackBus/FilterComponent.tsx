@@ -18,7 +18,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
   const [mostrarSoloOffer, setmostrarSoloOffer] = useState<boolean>(false);
   const [ordenarPrecio, setOrdenarPrecio] = useState<string>('');
   const [estadosDisponibles, setEstadosDisponibles] = useState<string[]>([]);
-  const [stateFilterOpen, setStateFilterOpen] = useState<boolean>(false); // Estado para controlar la apertura del filtro de estados
+  // const [stateFilterOpen, setStateFilterOpen] = useState<boolean>(true); 
 
   useEffect(() => {
     const states = buses.map((tour) => tour.state);
@@ -73,61 +73,17 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
     setFilteredTours(buses);
   };
 
-  const toggleStateFilter = () => {
-    setStateFilterOpen(!stateFilterOpen);
-  };
+  // const toggleStateFilter = () => {
+  //   setStateFilterOpen(!stateFilterOpen);
+  // };
 
   return (
     <div>
       <div className="flex items-center text-xl">
         <TbAdjustmentsHorizontal className="mr-2" />
-        <h1 className="text-xl">Filtros</h1>
+        <h1 className="text-xl font-semibold">Filtros</h1>
       </div>
-      <div className="relative">
-        <div
-          className="flex items-center cursor-pointer"
-          onClick={toggleStateFilter}
-        >
-          <span className="mr-2">Filtrar por estado</span>
-          <div className="transform transition-transform duration-300">
-            {stateFilterOpen ? (
-              <svg
-                className="fill-current text-gray-700"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 14l-6-6h12l-6 6z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            ) : (
-              <svg
-                className="fill-current text-gray-700"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 6l6 6H4l6-6z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            )}
-          </div>
-        </div>
-        {stateFilterOpen && (
-          <StateFilter
-            selectedRegion={selectedRegion}
-            availableStates={estadosDisponibles}
-            onFilterRegion={handleFiltroRegion}
-            buses={buses}
-          />
-        )}
-      </div>
+
       <OfferFilter
         showOffersOnly={mostrarSoloOffer}
         onToggleOffers={handlleSwitchOfertas}
@@ -136,8 +92,59 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
         sortByPrice={ordenarPrecio}
         onSortByPrice={ordenarPorPrecio}
       />
+      
+      <div className="relative">
+        <div
+          className="flex items-center cursor-pointer justify-between mt-8"
+          // onClick={toggleStateFilter}
+        >
+          <div className="mr-2 ">Ubicación:</div>
+          <div className="transform transition-transform duration-300 ">
+            {/* {stateFilterOpen ? (
+              
+              <svg
+                className="fill-current text-gray-700"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                width="20"
+                height="20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 6l6 6H4l6-6z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            ):(<svg
+            className="fill-current text-gray-700"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            width="20"
+            height="20"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 14l-6-6h12l-6 6z"
+              clipRule="evenodd"
+            />
+          </svg>
+        )} */}
+          </div>
+        </div>
+        {/* {stateFilterOpen && ( */}
+          <StateFilter
+            selectedRegion={selectedRegion}
+            availableStates={estadosDisponibles}
+            onFilterRegion={handleFiltroRegion}
+            buses={buses}
+          />
+        {/* )} */}
+      </div>
+      
       <button onClick={resetFilters} className="hover:underline mt-4">
-        Resetear Filtros
+        Limpiar Filtros
       </button>
     </div>
   );
