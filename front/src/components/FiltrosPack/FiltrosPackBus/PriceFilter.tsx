@@ -46,36 +46,3 @@ const PriceFilter: React.FC<PriceSorterProps> = ({
 
 export default PriceFilter;
 
-
-// interface PriceSorterProps {
-//   sortByPrice: string;
-//   onSortByPrice: (order: string) => void;
-// }
-
-// const PriceFilter: React.FC<PriceSorterProps> = ({
-//   sortByPrice,
-//   onSortByPrice,
-// }) => {
-//   return (
-//     <section className="max-w-6xl w-full mb-8 px-4 py-4 bg-white rounded-md">
-//   <h2 className="mb-2">Ordenar por:</h2>
-//   <div className="flex flex-col space-y-4 mt-5">
-//     <button
-//       className={`hover:underline ${sortByPrice === 'asc' && 'font-bold ' }`}
-//       onClick={() => onSortByPrice('asc')}
-//     >
-//       Menor a Mayor
-//     </button>
-//     <button
-//       className={`hover:underline ${sortByPrice === 'desc' && 'font-bold'}`}
-//       onClick={() => onSortByPrice('desc')}
-//     >
-//       Mayor a Menor
-//     </button>
-//   </div>
-// </section>
-
-//   );
-// };
-
-// export default PriceFilter;
