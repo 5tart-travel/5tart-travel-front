@@ -11,32 +11,34 @@ interface TourCardProps {
 const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
   function renderStars(rating: number) {
     if (typeof rating !== 'number' || rating < 1 || rating > 5) {
-      return null; 
+      return null;
     }
 
     const stars = [];
     for (let i = 1; i <= 5; i++) {
-      let starClass = "text-yellow-500 border-white";
-      let starIcon = <FaStar className={`${starClass}  text-white border-white`} />;
-      
+      let starClass = 'text-yellow-500 border-white';
+      let starIcon = (
+        <FaStar className={`${starClass}  text-white border-white`} />
+      );
+
       if (i > rating) {
-        starIcon = <FaRegStar className={`${starClass}  text-white border-white`} />; // Estrella vacía
+        starIcon = (
+          <FaRegStar className={`${starClass}  text-white border-white`} />
+        ); // Estrella vacía
       } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
-        starIcon = <FaRegStar className={`${starClass}  text-white border-white`} />; // Estrella parcialmente llena
+        starIcon = (
+          <FaRegStar className={`${starClass}  text-white border-white`} />
+        ); // Estrella parcialmente llena
       }
 
       stars.push(
         <span key={i} className="text-2xl">
           {starIcon}
-        </span>
+        </span>,
       );
     }
 
-    return (
-      <div className="flex space-x-1">
-        {stars}
-      </div>
-    );
+    return <div className="flex space-x-1">{stars}</div>;
   }
 
   return (
@@ -45,13 +47,13 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
       onClick={() => onClick(tour.id)}
     >
       <div className="flex flex-col relative">
-        <div className="w-full h-48 rounded-lg mb-4 overflow-hidden relative">
+        <div className="w-full h-48 rounded-lg mb-4 overflow-hidden">
           {tour.oferta && (
             <div className="ribbon ribbon-top-right text-center">
               <span>Oferta</span>
             </div>
           )}
-          
+
           <div className="absolute left-2 bottom-2">
             {renderStars(tour.averageRate)}
           </div>
