@@ -3,10 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { IBusTour } from '@/interface/IBusTour';
 import TourCard from '@/app/ofertas/tourCard';
-import Link from 'next/link';
-import BackButton from '@/components/ui/BackButton';
-import FilterComponent from '@/components/FiltrosPack/FiltrosPackBus/FilterComponent';
-import Swal from 'sweetalert2'; 
+import FilterComponent from '@/components/FiltrosPack/FilterComponent';
 
 const PackBus: React.FC = () => {
   const router = useRouter();
@@ -15,15 +12,6 @@ const PackBus: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [filteredTours, setFilteredTours] = useState<IBusTour[]>([]);
   const [noResults, setNoResults] = useState(false);
-
-  useEffect(() => {
-    Swal.fire({
-      title: 'NO TOCAR NADA!',
-      text: 'YA LO VOY A TERMINAR. :)',
-      icon: 'warning',
-      confirmButtonText: 'LOQUITA'
-    });
-  }, []);
 
   useEffect(() => {
     const fetchBuses = async () => {
@@ -61,8 +49,8 @@ const PackBus: React.FC = () => {
       <aside className="w-1/4 p-4 border-r border-gray-200 text-gray-500 ">
         <FilterComponent buses={buses} setFilteredTours={setFilteredTours} />
       </aside>
-      <div className="flex flex-col items-center p-4 w-full bg-blue-500">
-        <div className="max-w-6xl w-full flex bg-red-900 rounded-md shadow-md">
+      <div className="flex flex-col items-center p-4 w-full bg-gray-100">
+        <div className="max-w-6xl w-full flex bg-white rounded-md shadow-md">
           <section className="p-4">
             {noResults ? (
               <section className="max-w-6xl w-full mb-8">
@@ -83,12 +71,6 @@ const PackBus: React.FC = () => {
                 </div>
               </div>
             )}
-
-            <div className="flex justify-center mb-16">
-              <Link href={'/travel'}>
-                <BackButton />
-              </Link>
-            </div>
           </section>
         </div>
       </div>

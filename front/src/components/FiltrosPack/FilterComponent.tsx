@@ -4,6 +4,7 @@ import StateFilter from './StateFilter';
 import OfferFilter from './OfferFilter';
 import PriceFilter from './PriceFilter';
 import { TbAdjustmentsHorizontal } from 'react-icons/tb';
+import { countAllTours } from './StateFilter';
 
 interface FilterComponentProps {
   buses: IBusTour[];
@@ -18,7 +19,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
   const [mostrarSoloOffer, setmostrarSoloOffer] = useState<boolean>(false);
   const [ordenarPrecio, setOrdenarPrecio] = useState<string>('');
   const [estadosDisponibles, setEstadosDisponibles] = useState<string[]>([]);
-  // const [stateFilterOpen, setStateFilterOpen] = useState<boolean>(true); 
+  // const [stateFilterOpen, setStateFilterOpen] = useState<boolean>(true);
 
   useEffect(() => {
     const states = buses.map((tour) => tour.state);
@@ -73,15 +74,26 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
     setFilteredTours(buses);
   };
 
+  const allResults = countAllTours(buses);
+
   // const toggleStateFilter = () => {
   //   setStateFilterOpen(!stateFilterOpen);
   // };
 
   return (
-    <div>
+    <main>
+      {/* <div className="px-10 py-10 text-black ">
+        <p className="text-xl font-bold ">Tours</p>
+        <p className="text-centertext-gray-400 text-sm">
+          {allResults} resultados
+        </p>
+      </div> */}
       <div className="flex items-center text-xl">
         <TbAdjustmentsHorizontal className="mr-2" />
         <h1 className="text-xl font-semibold">Filtros</h1>
+        <button onClick={resetFilters} className="ml-auto text-sm">
+          Limpiar
+        </button>
       </div>
 
       <OfferFilter
@@ -92,15 +104,15 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
         sortByPrice={ordenarPrecio}
         onSortByPrice={ordenarPorPrecio}
       />
-      
+
       <div className="relative">
         <div
           className="flex items-center cursor-pointer justify-between mt-8"
           // onClick={toggleStateFilter}
         >
           <div className="mr-2 ">Ubicación:</div>
-          <div className="transform transition-transform duration-300 ">
-            {/* {stateFilterOpen ? (
+          {/* <div className="transform transition-transform duration-300 "> */}
+          {/* {stateFilterOpen ? (
               
               <svg
                 className="fill-current text-gray-700"
@@ -131,22 +143,18 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
             />
           </svg>
         )} */}
-          </div>
+          {/* </div> */}
         </div>
         {/* {stateFilterOpen && ( */}
-          <StateFilter
-            selectedRegion={selectedRegion}
-            availableStates={estadosDisponibles}
-            onFilterRegion={handleFiltroRegion}
-            buses={buses}
-          />
+        <StateFilter
+          selectedRegion={selectedRegion}
+          availableStates={estadosDisponibles}
+          onFilterRegion={handleFiltroRegion}
+          buses={buses}
+        />
         {/* )} */}
       </div>
-      
-      <button onClick={resetFilters} className="hover:underline mt-4">
-        Limpiar Filtros
-      </button>
-    </div>
+    </main>
   );
 };
 

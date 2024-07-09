@@ -22,7 +22,11 @@ const PriceFilter: React.FC<PriceSorterProps> = ({
             onChange={() => onSortByPrice('asc')}
             className="form-radio text-blue-600 h-4 w-4"
           />
-          <span className={`hover:underline ${sortByPrice === 'asc' && 'font-bold'}`}>
+          <span
+            className={` ${
+              sortByPrice === 'asc' && 'font-bold text-blue-500 ml-4'
+            }`}
+          >
             Menor precio
           </span>
         </label>
@@ -35,7 +39,11 @@ const PriceFilter: React.FC<PriceSorterProps> = ({
             onChange={() => onSortByPrice('desc')}
             className="form-radio text-blue-600 h-4 w-4"
           />
-          <span className={`hover:underline ${sortByPrice === 'desc' && 'font-bold'}`}>
+          <span
+            className={`${
+              sortByPrice === 'desc' && 'font-bold text-blue-500 ml-4'
+            }`}
+          >
             Mayor precio
           </span>
         </label>
@@ -45,4 +53,3 @@ const PriceFilter: React.FC<PriceSorterProps> = ({
 };
 
 export default PriceFilter;
-
