@@ -104,10 +104,12 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
         </div>
         <div className="grid grid-cols-2 gap-4 mt-2">
           <p className="bg-white rounded-full border border-gray-300 shadow-md px-4 py-1 text-gray-500 text-xs text-center">
-            Check-in: {new Date(tour.fecha_ingreso).toLocaleDateString()}
+            Check-in: <br />
+            {new Date(tour.fecha_ingreso).toLocaleDateString()}
           </p>
           <p className="bg-white rounded-full border border-gray-300 shadow-md px-4 py-1 text-gray-500 text-xs text-center">
-            Check-out: {new Date(tour.fecha_egreso).toLocaleDateString()}
+            Check-out: <br />
+            {new Date(tour.fecha_egreso).toLocaleDateString()}
           </p>
         </div>
         <div className="bg-blue-500 text-white font-bold text-center p-2 mt-4 rounded-md shadow-md">
