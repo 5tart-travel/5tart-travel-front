@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import CbuValidate, {
   IValidationResult,
-} from '@/components/Validaciones/CbuValidate'; // Importa la validación de CBU según tu estructura
+} from '@/components/Validaciones/CbuValidate'; 
 import NameValidate from '@/components/Validaciones/NameValidate';
 
 const DatosBank: React.FC = () => {
@@ -63,7 +63,7 @@ const DatosBank: React.FC = () => {
       </p>
 
       <div className="mt-4">
-        <NameValidate /> {/* Aquí integras el componente NameValidate */}
+        <NameValidate /> 
       </div>
 
       <div className="mt-4 flex items-center">
