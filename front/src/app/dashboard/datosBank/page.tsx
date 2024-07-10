@@ -46,7 +46,7 @@ const DatosBank: React.FC = () => {
       <div className="mt-4 flex items-center">
         <p className="font-semibold w-32">Cbu:</p>
         <input
-          type="text"
+          type="number"
           value={cbu}
           onChange={handleCbuChange}
           className={`border ${
@@ -62,17 +62,11 @@ const DatosBank: React.FC = () => {
         números.
       </p>
 
-      <div className="mt-4">
-        <NameValidate /> 
-      </div>
-
       <div className="mt-4 flex items-center">
         <p className="font-semibold w-32">Nombre completo:</p>
         <input type="text" className="border border-gray-300 rounded-md p-2 " />
       </div>
-      <p className="text-xs mt-2 text-gray-400 ml-32">
-        Ingresa su nombre completo.
-      </p>
+      <p className="text-xs mt-2 text-gray-400 ml-32">Ingrese su nombre completo</p>
 
       <div className="mt-4 flex items-center">
         <p className="font-semibold w-32">Dni:</p>

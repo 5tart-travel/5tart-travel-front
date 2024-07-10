@@ -10,6 +10,8 @@ import { IoMdPlanet } from 'react-icons/io';
 import { useEffect, useState } from 'react';
 import { decodeJwt } from '@/utils/decodeJwt';
 import { AiFillDollarCircle } from 'react-icons/ai';
+import { BsBank2 } from "react-icons/bs";
+
 
 const links = [
   { name: 'Inicio', href: '/', icon: FaHome },
@@ -30,6 +32,11 @@ const links = [
     name: 'Datos bancarios',
     href: '/dashboard/datosBank',
     icon: AiFillDollarCircle,
+  },
+  {
+    name: 'Pagos',
+    href: '/dashboard/pagos',
+    icon: BsBank2,
   },
 ];
 
