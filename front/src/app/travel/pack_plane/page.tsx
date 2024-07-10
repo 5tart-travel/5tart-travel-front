@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { IBusTour } from '@/interface/IBusTour';
 import TourCard from '@/app/ofertas/tourCard';
 import FilterComponent from '@/components/FiltrosPack/FilterComponent';
-import './page.css';
+import '../../../components/Styles/ErrorPlane.css';
 
 const PackPlane: React.FC = () => {
   const router = useRouter();
