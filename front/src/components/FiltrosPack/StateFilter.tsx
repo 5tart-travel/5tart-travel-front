@@ -68,7 +68,10 @@ const StateFilter: React.FC<RegionFilterProps> = ({
                 }`}
                 onClick={() => onFilterRegion(state)}
               >
-                {state} ({countToursByState(state)})
+                {state} {' '}
+                <span className="text-gray-400 text-sm">
+                  ({countToursByState(state)})
+                </span>
               </button>
             </li>
           ))}
