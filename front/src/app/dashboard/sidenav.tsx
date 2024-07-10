@@ -52,7 +52,7 @@ const SideNav: React.FC = () => {
               type="button"
               onClick={handleSignOut}
               className="flex h-[48px] w-full items-center justify-center gap-2 rounded-md bg-gray-200 p-3 text-sm font-medium hover:bg-blue-200 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
-              >
+            >
               <FaPowerOff className="w-6" />
               <div className="hidden md:block">Cerrar sesión</div>
             </button>
@@ -61,7 +61,6 @@ const SideNav: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SideNav;
-
