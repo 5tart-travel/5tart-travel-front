@@ -212,6 +212,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
                   value={good}
                   onChange={onInputChange}
                   placeholder="Comentario"
+                  disabled={userRole === 'agency'}
                 ></textarea>
               </div>
               <div className="mb-4">
