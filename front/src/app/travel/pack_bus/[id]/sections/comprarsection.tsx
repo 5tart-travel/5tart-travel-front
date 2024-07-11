@@ -3,6 +3,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Contador from '@/components/TravelDetail/Contador';
+import { checkUserRole } from '@/utils/decodeJwt';
 
 interface CompraSectionProps {
   busDetails: {
@@ -21,6 +22,8 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   const [token, setToken] = useState<string | null>(null);
   const [peopleCount, setPeopleCount] = useState(1);
   const [totalPrice, setTotalPrice] = useState<number>(busDetails.price);
+
+  const userRole = checkUserRole();
 
   useEffect(() => {
     // Obtener token de autenticación
@@ -131,10 +134,6 @@ const CompraSection: React.FC<CompraSectionProps> = ({
     }
   };
 
-  const handlePeopleChange = (event: { target: { value: string } }) => {
-    setPeopleCount(parseInt(event.target.value));
-  };
-
   useEffect(() => {
     setTotalPrice(busDetails.price * peopleCount);
   }, [busDetails.price, peopleCount]);
@@ -142,6 +141,9 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   const handleQuantityChange = (newQuantity: number) => {
     setPeopleCount(newQuantity);
   };
+  if (userRole === 'agency') {
+    return null;
+  }
 
   return (
     <section>

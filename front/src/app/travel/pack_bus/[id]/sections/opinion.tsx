@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { FaSmile, FaFrown } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import StarRatings from 'react-star-ratings';
+import { checkUserRole } from '@/utils/decodeJwt';
 
 export interface Card {
   id: string;
@@ -31,6 +32,8 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showBad, setShowBad] = useState(false);
+
+  const userRole = checkUserRole();
 
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -141,6 +144,10 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
     setError(null);
   };
 
+  const toggleBad = () => {
+    setShowBad(!showBad);
+  };
+
   const renderStars = (rate: number) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -160,9 +167,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
     }
     return stars;
   };
-  const toggleBad = () => {
-    setShowBad(!showBad);
-  };
+
   return (
     <section className="text-base mt-5">
       <div className="container mx-auto flex flex-wrap justify-center">
@@ -179,13 +184,16 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
                   Nombre
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                    userRole === 'agency' ? 'bg-gray-300' : ''
+                  }`}
                   id="username"
                   name="username"
                   type="text"
                   value={username}
                   onChange={onInputChange}
                   placeholder="Nombre"
+                  disabled={userRole === 'agency'}
                 />
               </div>
               <div className="mb-4">
@@ -196,7 +204,9 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
                   Lo Bueno
                 </label>
                 <textarea
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                    userRole === 'agency' ? 'bg-gray-300' : ''
+                  }`}
                   id="good"
                   name="good"
                   value={good}
@@ -212,12 +222,15 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
                   Lo Malo
                 </label>
                 <textarea
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                    userRole === 'agency' ? 'bg-gray-300' : ''
+                  }`}
                   id="bad"
                   name="bad"
                   value={bad}
                   onChange={onInputChange}
                   placeholder="Comentario"
+                  disabled={userRole === 'agency'}
                 ></textarea>
               </div>
 
@@ -246,12 +259,13 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
                   />
                 </div>
               </div>
-
               <div className="mb-4 text-center mt-4">
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+                    userRole === 'agency' ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || userRole === 'agency'}
                 >
                   {loading ? 'Enviando...' : 'Enviar'}
                 </button>
