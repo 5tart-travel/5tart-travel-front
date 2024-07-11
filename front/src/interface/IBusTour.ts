@@ -32,6 +32,7 @@ export interface IBusTour {
     name:string;
     lat:number;
     lon:number;
+    price:number;
   }
   export interface IComments{
     id:string
