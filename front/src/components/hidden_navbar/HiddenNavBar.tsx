@@ -30,7 +30,7 @@ const HiddenNavBar: React.FC<HiddenNavBarProps> = ({ children }) => {
     '/AUTH/new_password',
     '/AUTH/callback',
     '/contacto',
-    // '/minidashboard',
+    // '/admin',
 
 ];
   const isHidden = hiddenPaths.includes(pathname);

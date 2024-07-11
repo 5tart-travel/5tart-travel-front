@@ -41,7 +41,7 @@ const CardAgency: React.FC = () => {
   };
 
   return (
-    <div className="relative p-4 bg-lime-600 hover:bg-lime-700 rounded-2xl shadow-2xl cursor-pointer text-white w-60 h-[130px] hover:shadow-2xl transition-shadow" onClick={openModal}>
+    <div className="relative p-4 bg-white hover:bg-slate-50  rounded-2xl shadow-xl cursor-pointer text-white w-60 h-[110px] hover:shadow-2xl transition-shadow" onClick={openModal}>
       <div className="absolute top-2 left-2 bg-white rounded-full p-2">
         <TbBrandGoogleHome className="text-lime-700" size={24} />
       </div>
@@ -49,8 +49,8 @@ const CardAgency: React.FC = () => {
         <TbBrandGoogleHome className="text-orange-500" size={24} />
       </div>
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-5xl font-bold">{agencies.length}</p>
-        <p className="text-lg">Agencias</p>
+        <p className="text-5xl text-gray-600 text-shadow-medium font-bold">{agencies.length}</p>
+        <p className="text-xl text-shadow-medium text-gray-600 font-semibold  ">Agencias</p>
       </div>
       {isModalOpen && (
         <AgencyModal agencies={agencies} onClose={closeModal} />

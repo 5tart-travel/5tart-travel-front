@@ -9,7 +9,7 @@ const SideNavAdmin: React.FC = () => {
   };
 
   return (
-    <div className='bg-gray-700 rounded-br-full ' >
+    <div className='  bg-cyan-50' >
     <div className="flex flex-col h-full px-2 w-48 py-2 md:px-2 z-0  ">
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinksAdmin />
@@ -17,7 +17,7 @@ const SideNavAdmin: React.FC = () => {
           <button
             type="button"
             onClick={handleSignOut}
-            className="flex h-[48px] w-full mb-8 items-center justify-center gap-2 rounded-md bg-gray-200 p-3 text-sm font-medium hover:bg-indigo-200 hover:text-indigo-600 md:flex-none md:justify-start md:p-2 md:px-3"
+            className="flex h-[48px] w-full mb-[180px] items-center justify-center gap-2 rounded-md bg-white rounded-br-3xl rounded-tl-3xl shadow-xl p-3 text-sm font-medium hover:bg-indigo-200 hover:text-indigo-600 md:flex-none md:justify-start md:p-2 md:px-3"
           >
             <FaPowerOff className="w-6" />
             <div className="hidden md:block">Cerrar sesión</div>

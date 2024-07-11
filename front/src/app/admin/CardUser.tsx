@@ -69,18 +69,18 @@ const CardContact: React.FC = () => {
 
   return (
     <div
-      className="relative p-4 bg-gray-700 hover:bg-gray-800 rounded-2xl shadow-xl cursor-pointer text-white w-60 h-[130px] hover:shadow-2xl transition-shadow"
+      className="relative p-4 bg-white hover:bg-slate-50 rounded-2xl shadow-xl cursor-pointer text-white w-60 h-[110px] hover:shadow-2xl transition-shadow"
       onClick={openModal}
     >
       <div className="absolute top-2 left-2 bg-white rounded-full p-2">
-        <PiUsersThreeBold className="text-purple-700" size={24} />
+        <PiUsersThreeBold className="text-lime-700" size={36} />
       </div>
       <div className="absolute bottom-2 right-2">
-        <PiUsersThreeBold className="text-orange-500" size={24} />
+        <PiUsersThreeBold className="text-yellow-500" size={36} />
       </div>
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-5xl font-bold">{users.length}</p>
-        <p className="text-lg">Usuarios</p>
+        <p className="text-5xl text-gray-600 text-shadow-medium font-bold">{users.length}</p>
+        <p className="text-xl text-gray-600 text-shadow-medium font-semibold ">Usuarios</p>
       </div>
       {isModalOpen && (
         <UserModal users={users} onClose={closeModal} />
