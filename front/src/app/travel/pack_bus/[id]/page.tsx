@@ -59,7 +59,6 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           title={busDetails.title}
           description={busDetails.description}
           averageRate={busDetails.averageRate}
-          
         />
       </div>
 
@@ -91,19 +90,19 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
       </div>
 
       <div className="w-full p-10">
-  <div className="bg-gray-200 rounded-md p-5">
-    {busDetails && (
-      <OpinionSection
-        tourId={params.id}
-        comments={busDetails.comments.map((comment) => ({
-          ...comment,
-          tourId: params.id,
-        }))}
-        setBusDetails={setBusDetails}
-      />
-    )}
-  </div>
-</div>
+        <div className="bg-gray-200 rounded-md p-5">
+          {busDetails && (
+            <OpinionSection
+              tourId={params.id}
+              comments={busDetails.comments.map((comment) => ({
+                ...comment,
+                tourId: params.id,
+              }))}
+              setBusDetails={setBusDetails}
+            />
+          )}
+        </div>
+      </div>
 
       <div className="flex justify-center mb-16">
         <Link href={'/travel/pack_bus'}>

@@ -2,6 +2,7 @@ import { IBusTour } from '@/interface/IBusTour';
 import React, { useState } from 'react';
 import { FaSmile, FaFrown } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import StarRatings from 'react-star-ratings';
 
 export interface Card {
   id: string;
@@ -26,7 +27,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
   const [username, setUsername] = useState('');
   const [good, setGood] = useState('');
   const [bad, setBad] = useState('');
-  const [rate, setRate] = useState<number>(1);
+  const [rate, setRate] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showBad, setShowBad] = useState(false);
@@ -93,10 +94,18 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
         console.error('Respuesta del servidor no válida:', responseData);
       }
 
-      setBusDetails((prevBusDetails) => ({
-        ...prevBusDetails!,
-        comments: [...prevBusDetails!.comments, newCard],
-      }));
+      setBusDetails((prevBusDetails) => {
+        const updatedComments = [...prevBusDetails!.comments, newCard];
+        const newAverageRate =
+          updatedComments.reduce((acc, comment) => acc + comment.rate, 0) /
+          updatedComments.length;
+
+        return {
+          ...prevBusDetails!,
+          comments: updatedComments,
+          averageRate: newAverageRate,
+        };
+      });
 
       setUsername('');
       setGood('');
@@ -192,7 +201,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
                   name="good"
                   value={good}
                   onChange={onInputChange}
-                  placeholder="Lo Bueno"
+                  placeholder="Comentario"
                 ></textarea>
               </div>
               <div className="mb-4">
@@ -208,29 +217,37 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
                   name="bad"
                   value={bad}
                   onChange={onInputChange}
-                  placeholder="Lo Malo"
+                  placeholder="Comentario"
                 ></textarea>
               </div>
-              <div className="mb-4">
+
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
                   htmlFor="rate"
+                  className="block text-gray-700 text-sm font-bold mb-2"
                 >
-                  Calificación
+                  Califica este tour:
                 </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="rate"
-                  name="rate"
-                  type="number"
-                  min="1"
-                  max="5"
-                  value={rate}
-                  onChange={onInputChange}
-                  placeholder="Calificación (1-5)"
-                />
+                <div>
+                  <StarRatings
+                    rating={rate}
+                    starRatedColor="gold"
+                    starHoverColor="gold"
+                    starDimension="25px"
+                    numberOfStars={5}
+                    name="rate"
+                    changeRating={(newRating) => setRate(newRating)}
+                  />
+                </div>
               </div>
-              <div className="mb-4 text-center">
+
+              <div className="mb-4 text-center mt-4">
                 <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="submit"
