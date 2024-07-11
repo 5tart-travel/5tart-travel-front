@@ -262,7 +262,9 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
               <div className="mb-4 text-center mt-4">
                 <button
                   className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
-                    userRole === 'agency' ? 'opacity-50 cursor-not-allowed' : ''
+                    userRole === 'agency'
+                      ? 'opacity-50 cursor-not-allowed hover:bg-blue-500'
+                      : ''
                   }`}
                   type="submit"
                   disabled={loading || userRole === 'agency'}
