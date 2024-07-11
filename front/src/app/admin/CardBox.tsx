@@ -79,52 +79,91 @@
 
 
 'use client';
+import socket from '@/hooks/useSocket';
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { BsFillInboxesFill } from "react-icons/bs";
 
-interface Notification {
-  type: 'user' | 'agency';
-  message: string;
+// interface Notification {
+//   type: 'user' | 'agency';
+//   message: string;
+// }
+
+
+export interface Agency {
+  id: string;
+  name_agency: string;
 }
 
 const CardBox: React.FC = () => {
-  const [notifications, setNotifications] = useState<Notification[]>([]);
+    const [agencies, setAgencies] = useState<Agency[]>([]);
 
   useEffect(() => {
-    
-    const hardcodedNotifications: Notification[] = [
-      {
-        type: 'user',
-        message: 'Nuevo usuario registrado.',
-      },
-      {
-        type: 'agency',
-        message: 'Nueva agencia para activar.',
-      },
-      {
-        type: 'user',
-        message: 'Nuevo usuario registrado.',
-      },
-      {
-        type: 'agency',
-        message: 'Nueva agencia para activar.',
-      },
-      {
-        type: 'user',
-        message: 'Nuevo usuario registrado.',
-      },
-      {
-        type: 'agency',
-        message: 'Nueva agencia para activar.',
-      },
-      {
-        type: 'user',
-        message: 'Nuevo usuario registrado.',
-      },
-    ];
+    const fetchInitialData = async () => {
+      try {
+        const response = await axios.get<Agency[]>('https://fivetart-travel-kafg.onrender.com/agency/disable');
+        setAgencies(response.data);
+      } catch (error) {
+        console.error('Error fetching initial data:', error);
+      }
+    };
 
-    setNotifications(hardcodedNotifications);
+    fetchInitialData();
+
+    socket.on('connect', () => {
+      console.log('Connected to server');
+      socket.emit('getAllItems');
+    });
+
+    socket.on('allDisableAgency', (items: Agency[]) => {
+      console.log('Received disabled agencies from server:', items);
+      setAgencies(items);
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Disconnected from server');
+    });
+
+    return () => {
+      socket.off('connect');
+      socket.off('allDisableAgency');
+      socket.off('disconnect');
+    };
   }, []);
+
+
+    // const hardcodedNotifications: Notification[] = [
+    //   {
+    //     type: 'user',
+    //     message: 'Nuevo usuario registrado.',
+    //   },
+    //   {
+    //     type: 'agency',
+    //     message: 'Nueva agencia para activar.',
+    //   },
+    //   {
+    //     type: 'user',
+    //     message: 'Nuevo usuario registrado.',
+    //   },
+    //   {
+    //     type: 'agency',
+    //     message: 'Nueva agencia para activar.',
+    //   },
+    //   {
+    //     type: 'user',
+    //     message: 'Nuevo usuario registrado.',
+    //   },
+    //   {
+    //     type: 'agency',
+    //     message: 'Nueva agencia para activar.',
+    //   },
+    //   {
+    //     type: 'user',
+    //     message: 'Nuevo usuario registrado.',
+    //   },
+    // ];
+
+  
 
   return (
     <div
@@ -138,13 +177,13 @@ const CardBox: React.FC = () => {
       </div>
       <div className="flex flex-col items-center justify-center mt-4">
         <p className="text-xl text-gray-600 font-semibold">Inbox</p>
-        <p className="text-3xl text-gray-600 font-bold">{notifications.length}</p>
+        <p className="text-3xl text-gray-600 font-bold">{agencies.length}</p>
       </div>
       <div className="mt-4 w-full">
-        {notifications.length > 0 ? (
-          notifications.map((notification, index) => (
-            <div key={index} className="p-2 border-b border-gray-200 bg-white hover:bg-blue-100 text-gray-700 rounded-md shadow-md mb-2 overflow-hidden">
-              <p className="text-sm font-semibold truncate">{notification.message}</p>
+        {agencies.length > 0 ? (
+          agencies.map((notification) => (
+            <div key={notification.id} className="p-2 border-b border-gray-200 bg-white hover:bg-blue-100 text-gray-700 rounded-md shadow-md mb-2 overflow-hidden">
+              <p className="text-sm font-semibold truncate">Nueva agencia: {notification.name_agency} para activar</p>
             </div>
           ))
         ) : (
