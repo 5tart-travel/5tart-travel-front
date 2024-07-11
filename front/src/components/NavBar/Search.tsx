@@ -55,11 +55,11 @@ const Search: React.FC = () => {
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           placeholder="Buscar"
-          className="flex-grow px-2 text-gray-700 focus:outline-none rounded-l-2xl"
+          className="flex-grow px-2 text-gray-700 focus:outline-none rounded-l-3xl border-none "
         />
         <button
           type="submit"
-          className="flex items-center justify-center px-4 text-white bg-gray-700 rounded-r-2xl focus:outline-none"
+          className="flex items-center justify-center px-4 text-white bg-gray-700 rounded-r-3xl focus:outline-none"
         >
           <RiSearchLine className="w-5 h-5" />
         </button>
