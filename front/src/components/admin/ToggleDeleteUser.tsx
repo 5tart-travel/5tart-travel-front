@@ -29,7 +29,7 @@ const ToggleDeleteUser: React.FC<ToggleDeleteUserProps> = ({ userId, onDelete })
         text: 'No se pudo eliminar el usuario.',
         icon: 'error',
       });
-    }
+    // }
   };
 
   return (

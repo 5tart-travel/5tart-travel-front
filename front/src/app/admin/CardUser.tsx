@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserModal from './UserModal';
 import { PiUsersThreeBold } from "react-icons/pi";
-import { checkUserRole } from '@/utils/decodeJwt'; 
 
 interface Users {
   id?: string;
@@ -17,48 +17,33 @@ interface Users {
   orders?: [];
 }
 
-const CardContact: React.FC = () => {
+interface CardContactProps {
+  token: string;
+}
+
+const CardContact: React.FC<CardContactProps> = ({ token }) => {
   const [users, setUsers] = useState<Users[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get('https://fivetart-travel-kafg.onrender.com/user', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setUsers(response.data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
+
   useEffect(() => {
-    const fetchUsers = async () => {
-      const role = checkUserRole(); // Verifica el rol del usuario
-      if (role !== 'admin') {
-        console.error('User is not authorized to view all users');
-        return;
-      }
-
-      const session = localStorage.getItem('userSession');
-      if (!session) {
-        console.error('Session is missing');
-        return;
-      }
-
-      const { id_token: token } = JSON.parse(session);
-
-      if (!token) {
-        console.error('Token is missing');
-        return;
-      }
-
-      try {
-        const response = await axios.get('https://fivetart-travel-kafg.onrender.com/user', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log('Fetched users:', response.data);
-        setUsers(response.data);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    };
-
     fetchUsers();
-  }, []);
+  }, [token]);
 
   const openModal = () => {
+    fetchUsers();
     setIsModalOpen(true);
   };
 
@@ -80,7 +65,7 @@ const CardContact: React.FC = () => {
       </div>
       <div className="flex flex-col items-center justify-center h-full">
         <p className="text-5xl text-gray-600 text-shadow-medium font-bold">{users.length}</p>
-        <p className="text-xl text-gray-600 text-shadow-medium font-semibold ">Usuarios</p>
+        <p className="text-xl text-gray-600 text-shadow-medium font-semibold">Usuarios</p>
       </div>
       {isModalOpen && (
         <UserModal users={users} onClose={closeModal} />

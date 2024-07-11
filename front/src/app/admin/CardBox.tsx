@@ -132,36 +132,7 @@ const CardBox: React.FC = () => {
   }, []);
 
 
-    // const hardcodedNotifications: Notification[] = [
-    //   {
-    //     type: 'user',
-    //     message: 'Nuevo usuario registrado.',
-    //   },
-    //   {
-    //     type: 'agency',
-    //     message: 'Nueva agencia para activar.',
-    //   },
-    //   {
-    //     type: 'user',
-    //     message: 'Nuevo usuario registrado.',
-    //   },
-    //   {
-    //     type: 'agency',
-    //     message: 'Nueva agencia para activar.',
-    //   },
-    //   {
-    //     type: 'user',
-    //     message: 'Nuevo usuario registrado.',
-    //   },
-    //   {
-    //     type: 'agency',
-    //     message: 'Nueva agencia para activar.',
-    //   },
-    //   {
-    //     type: 'user',
-    //     message: 'Nuevo usuario registrado.',
-    //   },
-    // ];
+   
 
   
 
