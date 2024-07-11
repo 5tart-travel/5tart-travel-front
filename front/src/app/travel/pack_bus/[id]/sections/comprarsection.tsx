@@ -5,6 +5,7 @@ import axios from 'axios';
 
 interface CompraSectionProps {
   busDetails: {
+    id: string
     title: string;
     price: number;
   };
@@ -15,6 +16,7 @@ const CompraSection: React.FC<CompraSectionProps> = ({ busDetails, tourId }) => 
   const [favorited, setFavorited] = useState<boolean>(false);
   const [token, setToken] = useState<string | null>(null);
   const [peopleCount, setPeopleCount] = useState(1);
+  const [totalPrice, setTotalPrice] = useState<number>(busDetails.price);
 
   useEffect(() => {
     // Obtener token de autenticación
@@ -73,7 +75,7 @@ const CompraSection: React.FC<CompraSectionProps> = ({ busDetails, tourId }) => 
     try {
 
       const responss = await fetch(
-        'https://fivetart-travel-kafg.onrender.com/order',
+        `https://fivetart-travel-kafg.onrender.com/order`,
         {
           method: 'POST',
           headers: {
@@ -121,7 +123,12 @@ const CompraSection: React.FC<CompraSectionProps> = ({ busDetails, tourId }) => 
     setPeopleCount(parseInt(event.target.value));
   };
 
-  const totalPrice = busDetails.price * peopleCount;
+  useEffect(() => {
+
+    setTotalPrice(busDetails.price * peopleCount);
+
+  }, [busDetails.price, peopleCount]);
+
 
   return (
     <section>

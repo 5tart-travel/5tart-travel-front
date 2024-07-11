@@ -1,13 +1,39 @@
 'use client';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const ResumenFinanciero: React.FC = () => {
-  const totalIngresos = 1872;
+  const [totalIngresos, setTotalIngresos] = useState<number>(1872);
   const porcentajeGasto = 60; // Porcentaje del círculo en color azul
   const porcentajeReferencia = 40; // Porcentaje del círculo en color morado
 
+  useEffect(() => {
+
+    const calcularBruto = async () => {
+      try {
+        const response = await axios.get('https://fivetart-travel-kafg.onrender.com/order');
+
+        const data: any = response.data;
+        
+        let total = 0
+        
+        for (let i = 0; i < data.length; i++) {
+          total += data[i].price
+        }
+        
+        setTotalIngresos(total);
+      
+      } catch (error) {
+        console.error('Error fetching initial data:', error);
+      }
+    }
+    
+    calcularBruto()
+
+  }, [])
+  
   return (
     <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition duration-300 ease-in-out hover:bg-slate-50 cursor-pointer text-center">
       <h3 className="text-lg text-gray-700 font-bold mb-4">Resumen Financiero</h3>
