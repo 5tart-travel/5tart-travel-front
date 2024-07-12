@@ -1,4 +1,5 @@
 import ImageUpload from '../ui/ImageUpload';
+import MultipleImageUpload from '../ui/MultipleImageUpload';
 import Provincia from './ReturnFormulario/Provincia';
 import Titulo from './ReturnFormulario/Tititulo';
 import Precio from './ReturnFormulario/Precio';
@@ -41,12 +42,18 @@ export const TourForm: React.FC<ITourFormProps> = ({
   setEmpresa,
   imgUrl,
   setImgUrl,
+  listImg,
+  setListImg,
   oferta,
   setOferta,
   handleSubmit,
 }) => {
   const handleUpload = (file: File, imageUrl: string) => {
     setImgUrl(imageUrl);
+  };
+
+  const handleUploadList = (file: File, imageUrl: string) => {
+    setListImg((prevListImg) => [...prevListImg, imageUrl]);
   };
 
   return (
@@ -76,9 +83,8 @@ export const TourForm: React.FC<ITourFormProps> = ({
       <NombreEmpresaTrans empresa={empresa} setEmpresa={setEmpresa} />
       <AeropuertoTerminal salida={salida} setSalida={setSalida} />
       <CheckOferta oferta={oferta} setOferta={setOferta} />
-
       <ImageUpload onUpload={handleUpload} />
-
+      <MultipleImageUpload onUpload={handleUploadList} />{' '}
       <div className="flex justify-between">
         <button
           type="submit"
