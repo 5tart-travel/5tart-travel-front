@@ -129,7 +129,7 @@ const TrendGraphs: React.FC = () => {
       },
       {
         label: 'Ingresos',
-        data: [65, 59, 80, 81, 56, 55],
+        data: [90, 79, 53, 70, 46, 100],
         borderColor: 'rgba(255,159,64,1)',
         backgroundColor: 'rgba(255,159,64,0.2)',
       },
