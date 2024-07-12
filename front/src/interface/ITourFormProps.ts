@@ -25,6 +25,8 @@ export interface ITourFormProps {
   setEmpresa: React.Dispatch<React.SetStateAction<string>>;
   imgUrl: string;
   setImgUrl: React.Dispatch<React.SetStateAction<string>>;
+  listImg: string[];
+  setListImg: React.Dispatch<React.SetStateAction<string[]>>;
   oferta: boolean;
   setOferta: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: (e: React.FormEvent) => void;

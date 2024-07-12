@@ -13,4 +13,5 @@ export interface ICreateTourDto {
   hotel?: string | null;
   empresa?: string | null;
   region?: string;
+  listImg: string[];
 }

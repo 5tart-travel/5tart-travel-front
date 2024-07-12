@@ -3,6 +3,8 @@ import Swal from 'sweetalert2';
 import { ICreateTourDto } from '@/interface/ICreateTourDto';
 
 export const useTourForm = () => {
+  const initialListImg: string[] = [];
+
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState<number | null>(null);
   const [description, setDescription] = useState('');
@@ -14,6 +16,7 @@ export const useTourForm = () => {
   const [transportType, setTransportType] = useState<string | ''>('');
   const [region, setRegion] = useState<string | ''>('');
   const [imgUrl, setImgUrl] = useState('');
+  const [listImg, setListImg] = useState<string[]>(initialListImg);
   const [hotel, setHotel] = useState('');
   const [empresa, setEmpresa] = useState('');
   const [oferta, setOferta] = useState<boolean>(false);
@@ -82,8 +85,11 @@ export const useTourForm = () => {
           hotel,
           empresa,
           imgUrl,
+          listImg,
           oferta,
         };
+
+        console.log('Tour a enviar:', nuevoTour);
 
         const tourResponse = await fetch(
           'https://fivetart-travel-kafg.onrender.com/tours',
@@ -107,20 +113,21 @@ export const useTourForm = () => {
           title: 'Tour agregado correctamente',
         });
 
-        setTitle('');
-        setPrice(null);
-        setDescription('');
-        setAddress('');
-        setFecha_ingreso(null);
-        setFecha_egreso(null);
-        setDestino('');
-        setSalida('');
-        setTransportType('');
-        setImgUrl('');
-        setHotel('');
-        setEmpresa('');
-        setOferta(false);
-        setRegion('');
+        // setTitle('');
+        // setPrice(null);
+        // setDescription('');
+        // setAddress('');
+        // setFecha_ingreso(null);
+        // setFecha_egreso(null);
+        // setDestino('');
+        // setSalida('');
+        // setTransportType('');
+        // setImgUrl('');
+        // setListImg(initialListImg);
+        // setHotel('');
+        // setEmpresa('');
+        // setOferta(false);
+        // setRegion('');
       } catch (error) {
         Swal.fire({
           icon: 'error',
@@ -166,6 +173,8 @@ export const useTourForm = () => {
     setOferta,
     imgUrl,
     setImgUrl,
+    listImg,
+    setListImg,
     token,
     handleSubmit,
   };

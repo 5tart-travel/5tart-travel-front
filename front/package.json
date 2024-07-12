@@ -52,7 +52,7 @@
     "react-router-dom": "^6.23.1",
     "react-slick": "^0.30.2",
     "react-star-ratings": "^2.3.0",
-    "react-swipeable": "^7.0.1",
+    "react-youtube": "^10.1.0",
     "simplebar-react": "^3.2.6",
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.7.5",
