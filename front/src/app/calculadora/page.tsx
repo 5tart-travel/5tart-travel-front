@@ -6,6 +6,8 @@ import FoodSelection from './section/foodselection';
 import RegionFilter from './section/filterregion';
 import TouristPointsSection from './section/turispointsection';
 import PackageList from './section/packagelist';
+import Link from 'next/link';
+import BackButton from '@/components/ui/BackButton';
 
 interface TouristPoint {
   name: string;
@@ -68,6 +70,11 @@ const Calculadora: React.FC = () => {
       setFilteredTours(filtered);
     }
   };
+  useEffect(() => {
+
+    setSelectedTouristPoints([]);
+    setTotalFoodBudget(0);
+  }, [selectedPackage]);
 
   const handleSelectPackage = (tour: IBusTour) => {
     setSelectedPackage(tour === selectedPackage ? null : tour);
@@ -141,12 +148,56 @@ const Calculadora: React.FC = () => {
       }
 
       selectedPackageDetails = (
-        <div style={{ textAlign: 'center', marginTop: '20px', padding: '10px', border: '1px solid #ddd', borderRadius: '8px', backgroundColor: '#f9f9f9' }}>
-          <h3>Paquete Seleccionado: </h3>
-          <p>{selectedPackage.title}</p>
-          <p>Duración: {tourDuration} días, {noches} noches</p>
-          <p>Precio: ${selectedPackage.price.toLocaleString()}</p>
+        <div
+        key={selectedPackage.id}
+        style={{
+          border: '1px solid #ddd',
+          borderRadius: '8px',
+          padding: '20px',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          cursor: 'pointer',
+          backgroundColor: selectedPackage && selectedPackage.id === selectedPackage.id ? '#e0f7fa' : 'white',
+          backgroundImage: `url(${selectedPackage.imgUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ textAlign: 'center', maxWidth: '160px' }}>
+            <h3
+              style={{
+                fontSize: '1rem',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                color: 'white',
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                padding: '5px',
+                borderRadius: '5px',
+                margin: '0 auto',  
+              }}
+            >
+              {selectedPackage.title}
+              <p style={{ textAlign: 'left', margin: '5px 0' }}>{tourDuration} días, {noches} noches</p>
+            </h3>
+      
+            <div style={{
+              marginTop: '5px',
+              padding: '2px',
+              border: '1px solid blue',
+              borderRadius: '5px',
+              backgroundColor: 'blue',
+              color: 'white',
+              margin: '0 auto',  
+              width: 'fit-content'  
+            }}>
+              <p>Precio: ${selectedPackage.price.toLocaleString()}</p>
+            </div>
+          </div>
         </div>
+      </div>
+      
       );
     }
   }
@@ -167,67 +218,207 @@ const Calculadora: React.FC = () => {
 
     calculateTotalGeneral();
   }, [totalFoodBudget, selectedTouristPoints, selectedPackage]);
-
+  const handleClearAll = () => {
+    setSelectedPackage(null);
+    setTouristPoints([]);
+    setSelectedRegion(null);
+    setSelectedMeals([]);
+    setTotalBudget(0);
+    setTotalFoodBudget(0);
+    setSelectedTouristPoints([]);
+    setTotalGeneral(0);
+  };
 
   return (
     <div>
-      <section style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        {/* Card principal */}
-        <div style={{ backgroundColor: '#f0f0f0', padding: '20px', marginBottom: '20px' }}>
-          <h2 style={{ textAlign: 'center' }}>Calculadora de Gastos</h2>
-          <p style={{ textAlign: 'center' }}>
-            Ingrese lo que desea realizar durante el viaje, el paquete que desea comprar y las comidas por día para realizar un estimado del gasto total del viaje.
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '95%', margin: '0 auto' }}>
+        <div style={{ backgroundColor: '#f0f0f0', padding: '20px', marginBottom: '20px', width: '100%', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+          <h2 style={{ textAlign: 'center', color: '#333', textTransform: 'uppercase', fontSize: '24px', marginBottom: '15px' }}>Planificador de Gastos de Viaje</h2>
+          <p style={{ textAlign: 'center', color: '#666', fontSize: '16px', lineHeight: '1.6' }}>
+            Seleccione los campos a continuación para estimar el costo total de su viaje, incluyendo actividades, paquetes y alimentación diaria.
           </p>
         </div>
 
-        {/* División vertical entre las dos secciones */}
-        <div style={{ display: 'flex', gap: '20px', textAlign: 'center' }}>
-          {/* Primera tarjeta: Detalles del Paquete y Tours Seleccionados */}
-          <div style={{ backgroundColor: '#f0f0f0', padding: '20px', flex: '1 1 auto', marginBottom: '20px' }}>
-            {/* Detalles del Paquete Turístico */}
-            {selectedPackageDetails}
+        <div style={{ display: 'flex', gap: '20px', width: '100%' }}>
+          <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '20px', width: '50%' }}>
+            <div style={{ backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+              {selectedPackageDetails ? (
+                <div style={{ marginBottom: '20px' }}>
+                  <h3 style={{ textAlign: 'center' }}>Paquete Seleccionado</h3>
+                  <p>{selectedPackageDetails}</p>
+                </div>
+              ) : (
+                <div style={{ marginBottom: '20px', borderRadius: '10px' }}>
+                  <p style={{ textAlign: 'center' }}>No hay paquete seleccionado</p>
+                  <p style={{ textAlign: 'center' }}>Total: $0</p>
+                </div>
+              )}
+            </div>
 
-            {/* Tours Seleccionados */}
-            {selectedTouristPoints.length > 0 && (
-              <div style={{ marginTop: '20px' }}>
-                <h3 style={{ textAlign: 'center', marginBottom: '10px' }}>Tours Seleccionados</h3>
-                {selectedTouristPoints.map((point, index) => (
-                  <div key={index}>
-                    <p>{point.name}: ${point.price.toLocaleString()}</p>
+            <div style={{
+              backgroundColor: '#f0f0f0',
+              padding: '20px',
+              borderRadius: '8px',
+              boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+              maxHeight: '57vh',
+              minHeight: '57vh',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column'
+            }}>
+              <h3 style={{ textAlign: 'center', marginBottom: '30px' }}>Actividades Seleccionadas</h3>
 
-                  </div>
-                ))}
-                <p style={{ marginTop: '10px', textAlign: 'center' }}>Total de Tours: ${calculateSelectedTouristPointsTotal().toLocaleString()}</p>
-
+              <div style={{
+                marginBottom: '20px',
+                overflowY: 'auto',
+                flex: '1'  
+              }}>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '10px',
+                  marginBottom: '10px'
+                }}>
+                  {selectedTouristPoints.map((point, index) => (
+                    <div key={index} style={{
+                      backgroundColor: '#ffffff',
+                      borderRadius: '5px',
+                      padding: '10px',
+                      textAlign: 'center',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between'
+                    }}>
+                      <p style={{
+                        margin: '0',
+                        fontSize: '0.8em',
+                        fontWeight: 'bold',
+                        minHeight: '40px'
+                      }}>{point.name}</p>
+                      <div style={{
+                        backgroundColor: '#007bff',
+                        color: 'white',
+                        borderRadius: '5px',
+                        padding: '5px'
+                      }}>
+                        <p style={{ margin: '0', fontSize: '0.8em' }}>${point.price.toLocaleString()}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            )}
-            <p style={{ marginTop: '30px', textAlign: 'left', fontSize: '0.8em', color: 'green' }}>*Se reconmienda no colocar mas de 2 tours x</p>
+
+              <p style={{
+                textAlign: 'center',
+                marginBottom: '20px',
+                backgroundColor: 'blue',
+                color: 'white',
+                borderRadius: '5px',
+                padding: '10px'
+              }}>
+                Total de Actividades: ${calculateSelectedTouristPointsTotal().toLocaleString()}
+              </p>
+
+              <p style={{ marginTop: '10px', textAlign: 'left', fontSize: '0.8em', color: 'green' }}>
+                * Se recomienda no seleccionar más de 2 actividades
+              </p>
+            </div>
 
           </div>
+          <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '20px', width: '50%' }}>
+            <div style={{ backgroundColor: '#f0f0f0', marginBottom: '23px', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+              <h4 style={{ textAlign: 'center' }}>Paquete Seleccionado</h4>
+              <div style={{
+                marginTop: '30px',
+                textAlign: 'center',
+                padding: '5px 10px',
+                border: '1px solid blue',
+                borderRadius: '5px',
+                backgroundColor: 'blue',
+                color: 'white'
+              }}>
+                ${selectedPackage ? selectedPackage.price.toLocaleString() : '0'}
+              </div>
+            </div>
+            <div style={{ backgroundColor: '#f0f0f0', padding: '20px', marginBottom: '23px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+              <h4 style={{ textAlign: 'center' }}>Comida por Día</h4>
+              <div style={{
+                marginTop: '30px',
+                textAlign: 'center',
+                padding: '5px 10px',
+                border: '1px solid blue',
+                borderRadius: '5px',
+                backgroundColor: 'blue',
+                color: 'white'
+              }}>
+                ${totalBudget.toLocaleString()}
+              </div>
+            </div>
+            <div style={{ backgroundColor: '#f0f0f0', padding: '20px', marginBottom: '23px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+              <h4 style={{ textAlign: 'center' }}>Comida total del viaje</h4>
+              <div style={{
+                marginTop: '30px',
+                textAlign: 'center',
+                padding: '5px 10px',
+                border: '1px solid blue',
+                borderRadius: '5px',
+                backgroundColor: 'blue',
+                color: 'white'
+              }}>
+                ${totalFoodBudget.toLocaleString()}
+              </div>
+              <p style={{ marginTop: '30px', textAlign: 'left', fontSize: '0.8em', color: 'green' }}>* Calculado por la cantidad de noches del paquete seleccionado.</p>
 
-          {/* Segunda tarjeta: Totales */}
-          <div style={{ backgroundColor: '#f0f0f0', padding: '20px', flex: '1 1 auto', marginBottom: '20px' }}>
-            <h3 style={{ textAlign: 'center' }}>Presupuesto Total</h3>
-            {selectedPackage && (
-              <p style={{ marginTop: '10px', textAlign: 'center' }}>Total de Paquete Seleccionado: ${selectedPackage.price.toLocaleString()}</p>
-            )}
-            <p style={{ marginTop: '10px', textAlign: 'center' }}>Total de Comida por Día: ${totalBudget.toLocaleString()}</p>
-            <p style={{ marginTop: '10px', textAlign: 'center' }}>Total de Comida: ${totalFoodBudget.toLocaleString()}</p>
+            </div>
+            <div style={{ backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+              <h4 style={{ textAlign: 'center' }}>Total Actividades</h4>
+              <div style={{
+                marginTop: '30px',
+                textAlign: 'center',
+                padding: '5px 10px',
+                border: '1px solid blue',
+                borderRadius: '5px',
+                backgroundColor: 'blue',
+                color: 'white'
+              }}>
+                ${calculateSelectedTouristPointsTotal().toLocaleString()}
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <p style={{ marginTop: '10px', textAlign: 'center' }}>Total de Tours: ${calculateSelectedTouristPointsTotal().toLocaleString()}</p>
-
-            <h3 style={{ marginTop: '20px', textAlign: 'center' }}>Total</h3>
-            <p style={{ textAlign: 'center', fontSize: '1.5em' }}>${totalGeneral.toLocaleString()}</p>
-            <p style={{ marginTop: '30px', textAlign: 'left', fontSize: '0.8em', color: 'green' }}>* El presupuesto de la comida se saca por la cantidad de noches del paquete</p>
-
+        <div style={{ marginTop: '10px', backgroundColor: '#f0f0f0', padding: '20px', textAlign: 'center', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+          <h3 style={{ textAlign: 'center' }}>Total General</h3>
+          <div style={{
+            marginTop: '30px',
+            textAlign: 'center',
+            padding: '5px 10px',
+            border: '1px solid blue',
+            borderRadius: '5px',
+            backgroundColor: 'blue',
+            color: 'white'
+          }}>
+            ${totalGeneral.toLocaleString()}
           </div>
         </div>
       </section>
-
-
-
-
-
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+        <button
+          onClick={handleClearAll}
+          style={{
+            padding: '10px 20px',
+            fontSize: '16px',
+            backgroundColor: 'blue',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer'
+          }}
+        >
+          Limpiar Todos los Campos
+        </button>
+      </div>
 
       <div style={{ display: 'flex', gap: '20px' }}>
         <FoodSelection selectedMeals={selectedMeals} handleSelectMeal={handleSelectMeal} />
@@ -237,25 +428,38 @@ const Calculadora: React.FC = () => {
           handleSelectRegion={handleSelectRegion}
         />
       </div>
+      <hr className='mt-10' />
 
-      <section>
-        <hr className='mt-10' />
-        <div>
-          <h2 style={{ marginBottom: '20px', marginTop: '20px', textAlign: 'center' }}>Paquetes Disponibles</h2>
-          <PackageList
-            tours={tours}
-            filteredTours={filteredTours}
-            selectedPackage={selectedPackage}
-            handleSelectPackage={handleSelectPackage}
-          />
+      <section style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+        <div style={{ flex: '1', marginRight: '20px' }}>
+          <div>
+            <h2 style={{ marginBottom: '20px', marginTop: '20px', textAlign: 'center' }}>Paquetes Disponibles</h2>
+            <PackageList
+              tours={tours}
+              filteredTours={filteredTours}
+              selectedPackage={selectedPackage}
+              handleSelectPackage={handleSelectPackage}
+            />
+          </div>
+        </div>
+        <div style={{ flex: '1', marginLeft: '20px' }}>
+          <div>
+            <h2 style={{ marginBottom: '20px', marginTop: '20px', textAlign: 'center' }}>Actividades Disponibles</h2>
+
+            <TouristPointsSection
+              touristPoints={touristPoints}
+              selectedPoints={selectedTouristPoints}
+              setSelectedPoints={setSelectedTouristPoints}
+            />
+          </div>
         </div>
       </section>
+      <div className="flex justify-center mb-16">
+        <Link href={'/travel/pack_bus'}>
+          <BackButton />
+        </Link>
+      </div>
 
-      <TouristPointsSection
-        touristPoints={touristPoints}
-        selectedPoints={selectedTouristPoints}
-        setSelectedPoints={setSelectedTouristPoints}
-      />
     </div>
   );
 };

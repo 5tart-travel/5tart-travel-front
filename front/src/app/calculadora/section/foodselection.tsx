@@ -14,26 +14,29 @@ const FoodSelection: React.FC<FoodSelectionProps> = ({ selectedMeals, handleSele
   };
 
   return (
-    <div className="mt-10 text-center" style={{ flex: '1', maxWidth: '50%', border: '2px solid #007BFF', borderRadius: '8px', padding: '10px', maxHeight: '70vh', overflowY: 'auto' }}>
-      <h2 className='text-center'><strong>Selección de Comidas</strong></h2>
-      <h2 className='bg-green-500 text-white mt-4 pl-4 w-full'>* Precio por Persona</h2>
-      <hr className='mt-1' />
-      <div className="mt-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
-        {Object.keys(mealPrices).map((meal) => (
-          <div key={meal}>
-            <label style={{ display: 'flex', alignItems: 'center' }}>
+    <div className="mt-10 text-center" style={{ flex: '1', textAlign: 'center', maxWidth: '50%', border: '2px solid #007BFF', borderRadius: '8px', padding: '10px', maxHeight: '70vh', overflowY: 'auto' }}>
+      <h2 className='text-center mb-3'><strong>Selección de Comidas</strong></h2>
+      <hr className='mt-1 mb-1' />     
+        <div className="mt-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 18rem)', gap: '10px' }}>
+          {Object.keys(mealPrices).map((meal) => (
+            <div key={meal} style={{ display: 'flex', alignItems: 'center' }}>
               <input
                 type="checkbox"
                 checked={selectedMeals.includes(meal)}
                 onChange={() => handleSelectMeal(meal, mealPrices[meal])}
+                style={{ marginRight: '20px',marginLeft:'90px' }}
               />
-              <span style={{ marginLeft: '10px', fontSize: '14px' }}>
-                <strong>{meal}</strong> - ${mealPrices[meal].toLocaleString()}
+              <span style={{ flex: 1, fontSize: '14px', textAlign: 'center' }}>
+                <strong>{meal}</strong>
               </span>
-            </label>
-          </div>
-        ))}
-      </div>
+              <span style={{ backgroundColor: 'blue', color: 'white', borderRadius: '5px', padding: '5px', textAlign: 'center', minWidth: '80px' }}>
+                ${mealPrices[meal].toLocaleString()}
+              </span>
+            </div>
+          ))}
+        </div>
+      
+      <h2 style={{ textAlign: 'left', color: 'green', marginTop: '30px', fontSize: '0.7rem' }}>* Precio por Persona</h2>
     </div>
   );
 };

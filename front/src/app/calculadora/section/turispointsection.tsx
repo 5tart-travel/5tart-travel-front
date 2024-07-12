@@ -7,7 +7,7 @@ interface TouristPoint {
 
 interface TouristPointsSectionProps {
   touristPoints: TouristPoint[];
-  selectedPoints: TouristPoint[];  
+  selectedPoints: TouristPoint[];
   setSelectedPoints: React.Dispatch<React.SetStateAction<TouristPoint[]>>;
 }
 
@@ -27,16 +27,14 @@ const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ touristPoin
   };
 
   return (
-    <div className='mt-20'>
-      <hr className='mt-20px'/>
-      <h2 style={{ marginBottom: '10px', textAlign: 'center', marginTop: '20px' }}>Tours Disponibles</h2>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gap: '10px'
-      }}>
-        {touristPoints.length > 0 ? (
-          touristPoints.map((point, index) => (
+    <div style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+      {touristPoints.length > 0 ? (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '10px',
+        }}>
+          {touristPoints.map((point, index) => (
             <div key={index} style={{
               border: '1px solid #ddd',
               borderRadius: '8px',
@@ -53,14 +51,16 @@ const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ touristPoin
                 onChange={() => togglePointSelection(point.name)}
                 style={{ marginBottom: '5px' }}
               />
-              <label style={{ marginBottom: '5px' }}>{point.name}</label>
-              <p>Precio por persona: ${point.price}</p>
+              <p style={{ margin: '0', textAlign: 'center', fontSize: '0.9em', fontWeight: 'bold', minHeight: '40px' }}>{point.name}</p>
+              <div style={{ backgroundColor: '#007bff', color: 'white', borderRadius: '5px', padding: '5px' }}>
+                <p style={{ margin: '0', fontSize: '0.8em' }}>${point.price.toLocaleString()}</p>
+              </div>
             </div>
-          ))
-        ) : (
-          <p>No se han seleccionado puntos turísticos.</p>
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p style={{ textAlign: 'center', marginTop: '10px' }}>No hay Actividades disponibles para este destino.</p>
+      )}
     </div>
   );
 };
