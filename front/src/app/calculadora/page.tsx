@@ -230,7 +230,7 @@ const Calculadora: React.FC = () => {
   };
 
   return (
-    <div>
+    <div style={{marginTop:'10px'}}>
       <section style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '95%', margin: '0 auto' }}>
         <div style={{ backgroundColor: '#f0f0f0', padding: '20px', marginBottom: '20px', width: '100%', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
           <h2 style={{ textAlign: 'center', color: '#333', textTransform: 'uppercase', fontSize: '24px', marginBottom: '15px' }}>Planificador de Gastos de Viaje</h2>

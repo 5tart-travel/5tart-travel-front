@@ -16,15 +16,14 @@ const Carousel: React.FC<CarouselProps> = ({ listImg }) => {
   };
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 5000); // Auto slide every 5 seconds
+    const interval = setInterval(nextSlide, 5000); 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div id="default-carousel" className="relative w-full" data-carousel="slide">
-      {/* Carousel wrapper */}
+      
       <div className="relative h-56 md:h-96 overflow-hidden rounded-lg">
-        {/* Render each carousel item */}
         {listImg.map((imageUrl, index) => (
           <div
             key={index}
@@ -41,7 +40,6 @@ const Carousel: React.FC<CarouselProps> = ({ listImg }) => {
           </div>
         ))}
       </div>
-      {/* Slider indicators */}
       <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-3 rtl:space-x-reverse z-30">
         {listImg.map((_, index) => (
           <button
@@ -54,7 +52,6 @@ const Carousel: React.FC<CarouselProps> = ({ listImg }) => {
           ></button>
         ))}
       </div>
-      {/* Slider controls */}
       {listImg.length > 1 && (
         <>
           <button
