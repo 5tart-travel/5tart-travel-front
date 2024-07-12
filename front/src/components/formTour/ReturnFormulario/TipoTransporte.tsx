@@ -1,9 +1,11 @@
-interface ITourFormProps {
+import React from 'react';
+
+interface TipoTransporteProps {
   transportType: string;
   setTransportType: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const TipoTransporte: React.FC<ITourFormProps> = ({
+const TipoTransporte: React.FC<TipoTransporteProps> = ({
   transportType,
   setTransportType,
 }) => {

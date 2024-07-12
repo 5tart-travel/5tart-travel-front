@@ -12,7 +12,7 @@ const Precio: React.FC<ITourFormProps> = ({ price, setPrice }) => {
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 mr-9">
       <label
         htmlFor="price"
         className="block text-sm font-medium text-gray-700"

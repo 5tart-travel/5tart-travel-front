@@ -1,17 +1,41 @@
-import { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
-interface ITourFormProps {
+interface NombreEmpresaTransProps {
   empresa: string;
   setEmpresa: React.Dispatch<React.SetStateAction<string>>;
+  transportType: string;
 }
 
-const NombreEmpresaTrans: React.FC<ITourFormProps> = ({
+const EmpresaPlane = [
+  'Turkish Airlines',
+  'LATAM Airlines',
+  'Jetsmart',
+  'Iberia',
+  'Avianca',
+  'Flybondi',
+  'Aerolineas Argentinas',
+  'American Airlines',
+  'Air Canada',
+];
+
+const EmpresaBus = [
+  'Andesmar',
+  'Via Bariloche',
+  'Iryo',
+  'Plusmar',
+  'Colonia Express',
+  'Flixbus',
+  'CATA Internacional',
+  'BlaBlaCar',
+  'Alsa',
+];
+
+const NombreEmpresaTrans: React.FC<NombreEmpresaTransProps> = ({
   empresa,
   setEmpresa,
+  transportType,
 }) => {
   const [showRequirements, setShowRequirements] = useState(false);
-
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const showDropdown = () => {
     setShowRequirements(true);
@@ -20,59 +44,43 @@ const NombreEmpresaTrans: React.FC<ITourFormProps> = ({
   const hideDropdown = () => {
     setShowRequirements(false);
   };
+
+  const getOptions = () => {
+    if (transportType === 'plane') {
+      return EmpresaPlane;
+    }
+    if (transportType === 'bus') {
+      return EmpresaBus;
+    }
+    return [];
+  };
+
   return (
     <div className="mb-4">
       <label
-        htmlFor="hotel"
+        htmlFor="empresa"
         className="block text-sm font-medium text-gray-700"
       >
-        Nombre empresa trans{' '}
+        Nombre empresa trans
       </label>
 
       <div className="flex">
-        <input
-          id="hotel"
-          placeholder="Mínimo 5 caracteres"
-          type="text"
+        <select
+          id="empresa"
           value={empresa}
           onChange={(e) => setEmpresa(e.target.value)}
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-        <div
-          className="flex items-center px-3 cursor-pointer"
-          onMouseEnter={showDropdown}
-          onMouseLeave={hideDropdown}
         >
-          <svg
-            className="h-3 w-3 text-blue-600"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            {' '}
-            <circle cx="12" cy="12" r="10" />{' '}
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />{' '}
-            <line x1="12" y1="17" x2="12.01" y2="17" />
-          </svg>
-        </div>
+          <option value="" disabled>
+            Seleccione una empresa
+          </option>
+          {getOptions().map((empresa) => (
+            <option key={empresa} value={empresa}>
+              {empresa}
+            </option>
+          ))}
+        </select>
       </div>
-      {showRequirements && (
-        <div className="relative" ref={dropdownRef}>
-          <div
-            id="dropdownDelay"
-            className="absolute left-full top-[-10px] z-10 ml-2 w-48 rounded-lg shadow-xl border-t-4 border-lime-500 bg-white block"
-          >
-            <div className="py-2 px-4 bg-yellow-100 rounded-tr-xl rounded-br-xl rounded-bl-lg">
-              <p className="text-gray-700 text-sm">
-                Este campo es obligatorio.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

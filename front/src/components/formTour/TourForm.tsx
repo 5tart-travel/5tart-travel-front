@@ -62,25 +62,29 @@ export const TourForm: React.FC<ITourFormProps> = ({
       className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4"
     >
       <Provincia destino={destino} setDestino={setDestino} />
-      <FechaEgreso
-        fecha_egreso={fecha_egreso}
-        setFecha_egreso={setFecha_egreso}
-      />
-      <Titulo title={title} setTitle={setTitle} />
       <FechaIngreso
         fecha_ingreso={fecha_ingreso}
         setFecha_ingreso={setFecha_ingreso}
       />
-      <Hotel hotel={hotel} setHotel={setHotel} />
+      <Titulo title={title} setTitle={setTitle} />
+      <FechaEgreso
+        fecha_egreso={fecha_egreso}
+        setFecha_egreso={setFecha_egreso}
+      />
       <Precio price={price} setPrice={setPrice} />
-      <DirecHotel address={address} setAddress={setAddress} />
       <TipoTransporte
         transportType={transportType}
         setTransportType={setTransportType}
       />
+      <Hotel hotel={hotel} setHotel={setHotel} />
+      <NombreEmpresaTrans
+        empresa={empresa}
+        setEmpresa={setEmpresa}
+        transportType={transportType}
+      />
+      <DirecHotel address={address} setAddress={setAddress} />
       <Descripcion description={description} setDescription={setDescription} />
       <NacionalInter region={region} setRegion={setRegion} />
-      <NombreEmpresaTrans empresa={empresa} setEmpresa={setEmpresa} />
       <AeropuertoTerminal salida={salida} setSalida={setSalida} />
       <CheckOferta oferta={oferta} setOferta={setOferta} />
       <ImageUpload onUpload={handleUpload} />

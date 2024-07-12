@@ -23,13 +23,13 @@ const Titulo: React.FC<ITourFormProps> = ({ title, setTitle }) => {
         htmlFor="hotel"
         className="block text-sm font-medium text-gray-700"
       >
-        Titulo
+        Titulo del tour
       </label>
 
       <div className="flex">
         <input
           id="hotel"
-          placeholder="Mínimo 5 caracteres"
+          placeholder="Faltan Validaciones"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}

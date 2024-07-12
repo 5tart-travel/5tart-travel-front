@@ -23,7 +23,7 @@ const Hotel: React.FC<ITourFormProps> = ({ hotel, setHotel }) => {
         htmlFor="hotel"
         className="block text-sm font-medium text-gray-700"
       >
-        Hotel
+        Nombre del hotel
       </label>
 
       <div className="flex">
