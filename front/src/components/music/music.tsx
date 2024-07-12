@@ -1,8 +1,8 @@
-"use client";
+'use client'
+import React, { useState } from 'react';
 import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause, faVolumeHigh, faRadiation, faRadio, faVolumeControlPhone, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { faPlay, faPause, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
 
 export type PlaylistItem = {
   title: string;
@@ -13,10 +13,12 @@ interface MusicPlayerProps {
   playlist: PlaylistItem[];
 }
 
-const MusicPlayer = ({ playlist }: MusicPlayerProps) => {
+const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlist }) => {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [player, setPlayer] = useState<any>(null);
+  const [currentVolume, setCurrentVolume] = useState(50); // Volumen inicial al 50%
+  const [showVolumeControl, setShowVolumeControl] = useState(false); // Estado para mostrar/ocultar el control de volumen
 
   const handleTrackEnd = () => {
     setCurrentTrack((prev) => (prev + 1) % playlist.length);
@@ -25,6 +27,7 @@ const MusicPlayer = ({ playlist }: MusicPlayerProps) => {
   const onPlayerReady = (event: any) => {
     setPlayer(event.target);
     event.target.playVideo();
+    event.target.setVolume(currentVolume); // Establece el volumen inicial
   };
 
   const handlePlayPause = () => {
@@ -34,6 +37,22 @@ const MusicPlayer = ({ playlist }: MusicPlayerProps) => {
       player.playVideo();
     }
     setIsPlaying(!isPlaying);
+  };
+
+  const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = Number(event.target.value);
+    player.setVolume(newVolume);
+    setCurrentVolume(newVolume);
+  
+    // Ocultar el control de volumen después de 2 segundos (2000 milisegundos)
+    setTimeout(() => {
+      setShowVolumeControl(false);
+    }, 1500); // Ajusta el tiempo según lo necesario
+  };
+  
+
+  const toggleVolumeControl = () => {
+    setShowVolumeControl(!showVolumeControl);
   };
 
   const opts = {
@@ -46,10 +65,24 @@ const MusicPlayer = ({ playlist }: MusicPlayerProps) => {
 
   return (
     <div>
-      
-      <FontAwesomeIcon icon={faVolumeHigh} size="1x" style={{ marginRight: '10px',color:'white' }} />
+      <div onClick={toggleVolumeControl} style={{ display: 'inline-block', cursor: 'pointer' }}>
+        <FontAwesomeIcon icon={faVolumeHigh} size="1x" style={{ marginRight: '10px', color: 'white' }} />
+      </div>
+      {showVolumeControl && (
+        <div style={{ display: 'inline-block', marginLeft: '10px' }}>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={currentVolume}
+            onChange={handleVolumeChange}
+            style={{ width: '100px', verticalAlign: 'middle' }}
+          />
+          <span style={{ marginLeft: '5px', color: 'white' }}>{currentVolume}</span>
+        </div>
+      )}
       <button onClick={handlePlayPause}>
-        <FontAwesomeIcon icon={isPlaying ? faPause : faPlay}style={{ marginRight: '10px',color:'white' }} />
+        <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} style={{ marginLeft: '10px', color: 'white' }} />
       </button>
       <YouTube
         videoId={new URL(playlist[currentTrack].url).searchParams.get('v')}
@@ -62,3 +95,5 @@ const MusicPlayer = ({ playlist }: MusicPlayerProps) => {
 };
 
 export default MusicPlayer;
+
+
