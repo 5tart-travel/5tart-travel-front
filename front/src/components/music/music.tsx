@@ -17,8 +17,8 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlist }) => {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [player, setPlayer] = useState<any>(null);
-  const [currentVolume, setCurrentVolume] = useState(50); // Volumen inicial al 50%
-  const [showVolumeControl, setShowVolumeControl] = useState(false); // Estado para mostrar/ocultar el control de volumen
+  const [currentVolume, setCurrentVolume] = useState(50); 
+  const [showVolumeControl, setShowVolumeControl] = useState(false); 
 
   const handleTrackEnd = () => {
     setCurrentTrack((prev) => (prev + 1) % playlist.length);
@@ -27,7 +27,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlist }) => {
   const onPlayerReady = (event: any) => {
     setPlayer(event.target);
     event.target.playVideo();
-    event.target.setVolume(currentVolume); // Establece el volumen inicial
+    event.target.setVolume(currentVolume); 
   };
 
   const handlePlayPause = () => {
@@ -43,13 +43,11 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlist }) => {
     const newVolume = Number(event.target.value);
     player.setVolume(newVolume);
     setCurrentVolume(newVolume);
-  
-    // Ocultar el control de volumen después de 2 segundos (2000 milisegundos)
+
     setTimeout(() => {
       setShowVolumeControl(false);
-    }, 1500); // Ajusta el tiempo según lo necesario
+    }, 2000); 
   };
-  
 
   const toggleVolumeControl = () => {
     setShowVolumeControl(!showVolumeControl);
@@ -95,5 +93,4 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlist }) => {
 };
 
 export default MusicPlayer;
-
 
