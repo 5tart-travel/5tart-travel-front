@@ -123,6 +123,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
     const toursInRegion = tours.filter(tour => tour.region === region && tour.agency.id === params.id);
     return toursInRegion.length > 0;
   }
+  
 
   return (
     <div className="relative">
@@ -248,7 +249,9 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           <BackButton />
         </Link>
       </div>
+      
     </div>
+
    
   );
 };
