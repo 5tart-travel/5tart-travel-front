@@ -11,8 +11,8 @@ import { JwtPayload } from '@/types';
 import DesplegableUser from './desplegable';
 import { CiMenuBurger } from "react-icons/ci";
 
-
 const DEFAULT_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
+const ADMIN_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/How-To-Fit-An-MX-5-Into-A-Pickup-Truck-Speedhunters_zy37c4';
 
 const Navbar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
         if (decodedToken) {
           setUserData({
             nickname: decodedToken.username,
-            picture: decodedToken.picture || DEFAULT_AVATAR,
+            picture: decodedToken.role === 'admin' ? ADMIN_AVATAR : (decodedToken.picture || DEFAULT_AVATAR),
             email: decodedToken.email,
             role: decodedToken.role,
           });
@@ -64,11 +64,11 @@ const Navbar: React.FC = () => {
             <div className="flex flex-col items-center">
               <button ref={avatarButtonRef} onClick={handleAvatarClick}>
                 <Image
-                  className="rounded-full w-8 h-8 mt-4 border-blue-300 border-3 hover:animate-spin"
+                  className="rounded-full w-10 h-10 mt-4 border-blue-300 border-3 hover:animate-spin"
                   alt="Avatar de usuario"
                   src={userData?.picture || DEFAULT_AVATAR}
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                 />
               </button>
               <DesplegableUser isOpen={isMenuOpen} toggleMenu={toggleMenu} />
@@ -82,9 +82,8 @@ const Navbar: React.FC = () => {
             </div>
           </div>
         ) : (
-        <div>
-
-          <Link href="/AUTH/login">
+          <div>
+            <Link href="/AUTH/login">
               <div className="hidden md:flex items-center justify-center cursor-pointer text-white text-4xl mr-6 hover:text-blue-300">
                 <RiLoginCircleLine />
               </div>
@@ -104,12 +103,11 @@ const Navbar: React.FC = () => {
                 </div>
               </div>
             </div>
-            </div>
-
+          </div>
         )}
       </div>
     </header>
   );
 };
 
-export default Navbar
+export default Navbar;

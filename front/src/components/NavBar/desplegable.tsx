@@ -3,9 +3,9 @@ import { CiLogin } from "react-icons/ci";
 import { FaRegUserCircle, FaHome } from "react-icons/fa";
 import { GiAirplaneDeparture } from "react-icons/gi";
 import { IoIosPeople } from "react-icons/io";
-
 import Link from 'next/link';
 import Search from './Search';
+import { checkUserRole, decodeJwt } from '../../utils/decodeJwt';
 
 interface DesplegableUserProps {
   isOpen: boolean;
@@ -16,14 +16,15 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   const handleResize = useCallback(() => {
-    const isSmallerScreen = window.innerWidth <= 640; 
+    const isSmallerScreen = window.innerWidth <= 640;
     setIsMobile(isSmallerScreen);
   }, []);
 
   useEffect(() => {
-    handleResize(); 
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
@@ -49,7 +50,7 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
 
   const handleLogout = () => {
     localStorage.removeItem('userSession');
-    window.location.href = '/'; 
+    window.location.href = '/';
   };
 
   useEffect(() => {
@@ -78,7 +79,19 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
 
   useEffect(() => {
     const userSession = localStorage.getItem('userSession');
-    setIsAuthenticated(!!userSession); 
+    setIsAuthenticated(!!userSession);
+
+    if (userSession) {
+      try {
+        const { token } = JSON.parse(userSession);
+        const decodedToken = decodeJwt(token);
+        console.log('Decoded Token:', decodedToken); // Log the decoded token
+        const role = decodedToken?.role;
+        setIsAdmin(role === 'admin');
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      }
+    }
   }, []);
 
   return (
@@ -90,9 +103,10 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
         <ul className="py-2">
           {isOpen && isMobile && (
             <>
-              <Search/>
+              <Search />
               <li>
-                <Link href="/"
+                <Link
+                  href="/"
                   className="flex h-12 w-full items-center gap-2 font-semibold px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-indigo-100 hover:text-indigo-600 rounded-b-lg"
                 >
                   <FaHome />
@@ -100,7 +114,8 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
                 </Link>
               </li>
               <li>
-                <Link href="/travel"
+                <Link
+                  href="/travel"
                   className="flex h-12 w-full items-center gap-2 font-semibold px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-indigo-100 hover:text-indigo-600 rounded-b-lg"
                 >
                   <GiAirplaneDeparture />
@@ -108,7 +123,8 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
                 </Link>
               </li>
               <li>
-                <Link href="/nosotros"
+                <Link
+                  href="/nosotros"
                   className="flex h-12 w-full items-center gap-2 font-semibold px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-indigo-100 hover:text-indigo-600 rounded-b-lg"
                 >
                   <IoIosPeople />
@@ -120,36 +136,36 @@ const DesplegableUser: React.FC<DesplegableUserProps> = ({ isOpen, toggleMenu })
           {isAuthenticated && (
             <li>
               <Link
-                href="/dashboard/mi-perfil"
+                href={isAdmin ? "/admin" : "/dashboard/mi-perfil"}
                 className="flex h-12 w-full gap-2 font-semibold items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 rounded-t-lg"
               >
                 <FaRegUserCircle />
                 Mi cuenta
-              </ Link>
+              </Link>
             </li>
           )}
           {isAuthenticated && (
-
-          <li>
-            <p
-              onClick={handleLogout}
-            className="flex h-12 w-full items-center gap-2 font-semibold px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-indigo-100 hover:text-indigo-600 rounded-b-lg"
-          >
-              <CiLogin />
-              Cerrar sesión
-            </p>
-          </li>
+            <li>
+              <p
+                onClick={handleLogout}
+                className="flex h-12 w-full items-center gap-2 font-semibold px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-indigo-100 hover:text-indigo-600 rounded-b-lg"
+              >
+                <CiLogin />
+                Cerrar sesión
+              </p>
+            </li>
           )}
-                    {!isAuthenticated && (
-          <li>
-            <Link href="/AUTH/login"
-            className="flex h-12 w-full items-center gap-2 font-semibold px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-indigo-100 hover:text-indigo-600 rounded-b-lg"
-          >
-              <CiLogin />
-              Iniciar sesión
-            </Link>
-          </li>
-                    )}
+          {!isAuthenticated && (
+            <li>
+              <Link
+                href="/AUTH/login"
+                className="flex h-12 w-full items-center gap-2 font-semibold px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-indigo-100 hover:text-indigo-600 rounded-b-lg"
+              >
+                <CiLogin />
+                Iniciar sesión
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>
