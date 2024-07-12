@@ -1,8 +1,8 @@
-import FormularioTour from "@/components/formTour/formTour";
+import FormularioTour from '@/components/formTour/formTour';
 
 const AgregarTour = () => {
   return (
-    <div > 
+    <div>
       <FormularioTour />
     </div>
   );

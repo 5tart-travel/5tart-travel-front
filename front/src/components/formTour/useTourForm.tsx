@@ -12,6 +12,7 @@ export const useTourForm = () => {
   const [destino, setDestino] = useState('');
   const [salida, setSalida] = useState('');
   const [transportType, setTransportType] = useState<string | ''>('');
+  const [region, setRegion] = useState<string | ''>('');
   const [imgUrl, setImgUrl] = useState('');
   const [hotel, setHotel] = useState('');
   const [empresa, setEmpresa] = useState('');
@@ -63,6 +64,7 @@ export const useTourForm = () => {
       description &&
       address &&
       transportType &&
+      region &&
       imgUrl
     ) {
       try {
@@ -76,6 +78,7 @@ export const useTourForm = () => {
           destino,
           salida,
           transportType,
+          region,
           hotel,
           empresa,
           imgUrl,
@@ -104,7 +107,6 @@ export const useTourForm = () => {
           title: 'Tour agregado correctamente',
         });
 
-        // Limpiar los campos después del éxito
         setTitle('');
         setPrice(null);
         setDescription('');
@@ -118,6 +120,7 @@ export const useTourForm = () => {
         setHotel('');
         setEmpresa('');
         setOferta(false);
+        setRegion('');
       } catch (error) {
         Swal.fire({
           icon: 'error',
@@ -153,6 +156,8 @@ export const useTourForm = () => {
     setSalida,
     transportType,
     setTransportType,
+    region,
+    setRegion,
     hotel,
     setHotel,
     empresa,

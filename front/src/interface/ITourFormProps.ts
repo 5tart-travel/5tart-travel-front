@@ -1,0 +1,33 @@
+export interface ITourFormProps {
+  title: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  price: number | null;
+  setPrice: React.Dispatch<React.SetStateAction<number | null>>;
+  description: string;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  address: string;
+  setAddress: React.Dispatch<React.SetStateAction<string>>;
+  fecha_ingreso: Date | null;
+  setFecha_ingreso: React.Dispatch<React.SetStateAction<Date | null>>;
+  fecha_egreso: Date | null;
+  setFecha_egreso: React.Dispatch<React.SetStateAction<Date | null>>;
+  destino: string;
+  setDestino: React.Dispatch<React.SetStateAction<string>>;
+  salida: string;
+  setSalida: React.Dispatch<React.SetStateAction<string>>;
+  transportType: string;
+  setTransportType: React.Dispatch<React.SetStateAction<string>>;
+  region: string;
+  setRegion: React.Dispatch<React.SetStateAction<string>>;
+  hotel: string;
+  setHotel: React.Dispatch<React.SetStateAction<string>>;
+  empresa: string;
+  setEmpresa: React.Dispatch<React.SetStateAction<string>>;
+  imgUrl: string;
+  setImgUrl: React.Dispatch<React.SetStateAction<string>>;
+  oferta: boolean;
+  setOferta: React.Dispatch<React.SetStateAction<boolean>>;
+  handleSubmit: (e: React.FormEvent) => void;
+  isOpen?: boolean;
+  toggleMenu?: () => void;
+}

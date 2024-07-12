@@ -23,6 +23,8 @@ const FormularioTour: React.FC = () => {
     setSalida,
     transportType,
     setTransportType,
+    region,
+    setRegion,
     hotel,
     setHotel,
     empresa,
@@ -36,7 +38,7 @@ const FormularioTour: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md overflow-y-auto max-h-full">
+      <div className="w-full max-w-6xl p-6 bg-white rounded-lg shadow-md overflow-y-auto max-h-full">
         <h2 className="text-2xl font-bold mb-4">Agregar Nuevo Tour</h2>
         <TourForm
           title={title}
@@ -57,6 +59,8 @@ const FormularioTour: React.FC = () => {
           setSalida={setSalida}
           transportType={transportType}
           setTransportType={setTransportType}
+          region={region}
+          setRegion={setRegion}
           hotel={hotel}
           setHotel={setHotel}
           empresa={empresa}
