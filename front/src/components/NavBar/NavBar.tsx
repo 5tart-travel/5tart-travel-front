@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
 
       <div className="flex items-center">
         {isLoggedIn ? (
-          <div className="flex items-center justify-center cursor-pointer">
+          <div className="flex items-center justify-center cursor-pointer mx-10 ">
             <div className="flex flex-col items-center">
               <button ref={avatarButtonRef} onClick={handleAvatarClick}>
                 <Image
