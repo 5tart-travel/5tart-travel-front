@@ -1,8 +1,8 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
+
 
 interface ToggleUserProps {
   userId: string;
@@ -27,7 +27,16 @@ const ToggleUser: React.FC<ToggleUserProps> = ({ userId, isActive, onToggle }) =
       await axios.put(url);
       setIsChecked(newStatus); //? Solo se cambia el estado si la petición es exitosa
       onToggle(userId, newStatus);
-      Swal.fire(`Usuario ${newStatus ? 'activado' : 'desactivado'}`);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Usuario ${newStatus ? "activado" : "desactivado"}`,
+        showConfirmButton: false ,
+        timer: 2000,
+        customClass: {
+          popup: 'custom-swal2-popup',
+        },
+      });
     } catch (error: AxiosError | any) {
       console.error(
         `Error actualizando el estado del usuario con ID ${userId}:`,
@@ -36,10 +45,22 @@ const ToggleUser: React.FC<ToggleUserProps> = ({ userId, isActive, onToggle }) =
       if (error.response && error.response.status === 400) {
         const errorMessage = error.response.data.message;
         if (errorMessage.includes('ya se encuentra inactivo')) {
-          Swal.fire('Usuario Desactivado');
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Usuario Desactivado",
+            showConfirmButton: false ,
+            timer: 1500
+          });
           
         } else if (errorMessage.includes('ya esta activo')) {
-          Swal.fire('Usuario Activado');
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Usuario Activado",
+            showConfirmButton: false ,
+            timer: 1500
+          });
           
         } else {
           Swal.fire(`Error: ${errorMessage}`);
@@ -47,8 +68,13 @@ const ToggleUser: React.FC<ToggleUserProps> = ({ userId, isActive, onToggle }) =
         }
       } else {
         console.error("Error details:", error);
-        Swal.fire("Error actualizando el estado del usuario.!");
-        
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Error al actualizar el estado del usuario",
+          showConfirmButton: false ,
+          timer: 1500
+        });
       }
     }
   };

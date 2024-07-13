@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
+import Swal from 'sweetalert2';
 
 interface ToggleAgencyProps {
   agencyId: string;
@@ -26,7 +27,16 @@ const ToggleAgency: React.FC<ToggleAgencyProps> = ({ agencyId, isActive, onToggl
       await axios.put(url);
       setIsChecked(newStatus); // Solo se cambia el estado si la petición es exitosa
       onToggle(agencyId, newStatus);
-      alert(`Agencia ${newStatus ? 'activada' : 'desactivada'}`);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Agencia ${newStatus ? "activado" : "desactivado"}`,
+        showConfirmButton: false ,
+        timer: 2000,
+        customClass: {
+          popup: 'custom-swal2-popup',
+        },
+      });
     } catch (error: AxiosError | any) {
       console.error(
         `Error actualizando el estado de la agencia con ID ${agencyId}:`,
@@ -35,15 +45,42 @@ const ToggleAgency: React.FC<ToggleAgencyProps> = ({ agencyId, isActive, onToggl
       if (error.response && error.response.status === 400) {
         const errorMessage = error.response.data.message;
         if (errorMessage.includes('ya se encuentra inactiva')) {
-          alert('La agencia ya se encuentra inactiva.');
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "La agencia ya se encuentra inactiva",
+            showConfirmButton: false ,
+            timer: 2000,
+            customClass: {
+              popup: 'custom-swal2-popup',
+            },
+          });
         } else if (errorMessage.includes('ya esta activa')) {
-          alert('La agencia ya está activa.');
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "La agencia ya se encuentra activa",
+            showConfirmButton: false ,
+            timer: 2000,
+            customClass: {
+              popup: 'custom-swal2-popup',
+            },
+          });
         } else {
           alert(`Error: ${errorMessage}`);
         }
       } else {
         console.error("Error details:", error);
-        alert('Error actualizando el estado de la agencia.');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title:"Error al actualizar el estado de la agencia",
+          showConfirmButton: false ,
+          timer: 2000,
+          customClass: {
+            popup: 'custom-swal2-popup',
+          },
+        });
       }
     }
   };
