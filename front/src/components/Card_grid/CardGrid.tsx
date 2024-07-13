@@ -30,7 +30,7 @@ const CardGrid: FC<CardGridProps> = ({
   empresa,
 }) => {
   return (
-    <div className="w-full h-70 rounded-2xl shadow-2xl overflow-hidden relative">
+    <div className="w-full h-[300px] rounded-2xl shadow-2xl overflow-hidden relative">
       <Link href={`/travel/pack_plane/${id}`} key={id}>
       <Image
         src={imageUrl}
