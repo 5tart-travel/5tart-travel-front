@@ -83,17 +83,13 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   const handleCheckout = async () => {
     try {
       const responss = await fetch(
-        `https://fivetart-travel-kafg.onrender.com/order`,
+        `https://fivetart-travel-kafg.onrender.com/order/${busDetails.id}`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            title: busDetails.title,
-            price: totalPrice,
-          }),
         },
       );
 
