@@ -74,7 +74,7 @@ const UserModal: React.FC<UserModalProps> = ({ users, onClose }) => {
                         src={user.avatar || 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp'}
                         alt="Avatar"
                         className="w-full h-full object-cover"
-                        width={48} // Adjust width and height as per your design
+                        width={48} 
                         height={48}
                       />
                     </div>

@@ -89,6 +89,50 @@
   }
 }
 
+/*? Estilos para Sweet Alert */
+
+
+.swal2-popup {
+  border-radius: 10px;
+  max-width: 90%; /* Ancho máximo relativo a la pantalla */
+  width: auto; /* Ancho automático basado en el contenido */
+}
+
+.swal2-title {
+  color: #ff5a5f;
+}
+
+.swal2-confirm {
+  background-color: #007bff !important;
+  color: white !important;
+  border-radius: 50px !important; /* Más redondeado */
+  padding: 10px 20px !important;
+  transition: background-color 0.3s, transform 0.3s; /* Transición para el efecto hover */
+}
+
+.swal2-cancel {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border-radius: 50px !important; /* Más redondeado */
+  padding: 10px 20px !important;
+  transition: background-color 0.3s, transform 0.3s; /* Transición para el efecto hover */
+}
+
+.swal2-confirm:hover {
+  background-color: #0056b3 !important; /* Color de fondo al hacer hover */
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño al hacer hover */
+}
+
+.swal2-cancel:hover {
+  background-color: #c82333 !important; /* Color de fondo al hacer hover */
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño al hacer hover */
+}
+
+.swal2-close {
+  color: #ff5a5f;
+}
+
+
 
 /* Reset CSS */
 html, body, div, span, applet, object, iframe,

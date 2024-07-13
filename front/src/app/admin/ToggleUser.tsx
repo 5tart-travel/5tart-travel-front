@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
+import Swal from 'sweetalert2';
 
 interface ToggleUserProps {
   userId: string;
@@ -24,9 +25,9 @@ const ToggleUser: React.FC<ToggleUserProps> = ({ userId, isActive, onToggle }) =
         ? `https://fivetart-travel-kafg.onrender.com/user/active/${userId}`
         : `https://fivetart-travel-kafg.onrender.com/user/disable/${userId}`;
       await axios.put(url);
-      setIsChecked(newStatus); // Solo se cambia el estado si la petición es exitosa
+      setIsChecked(newStatus); //? Solo se cambia el estado si la petición es exitosa
       onToggle(userId, newStatus);
-      alert(`Usuario ${newStatus ? 'activado' : 'desactivado'}`);
+      Swal.fire(`Usuario ${newStatus ? 'activado' : 'desactivado'}`);
     } catch (error: AxiosError | any) {
       console.error(
         `Error actualizando el estado del usuario con ID ${userId}:`,
@@ -35,15 +36,19 @@ const ToggleUser: React.FC<ToggleUserProps> = ({ userId, isActive, onToggle }) =
       if (error.response && error.response.status === 400) {
         const errorMessage = error.response.data.message;
         if (errorMessage.includes('ya se encuentra inactivo')) {
-          alert('El usuario ya se encuentra inactivo.');
+          Swal.fire('Usuario Desactivado');
+          
         } else if (errorMessage.includes('ya esta activo')) {
-          alert('El usuario ya está activo.');
+          Swal.fire('Usuario Activado');
+          
         } else {
-          alert(`Error: ${errorMessage}`);
+          Swal.fire(`Error: ${errorMessage}`);
+          
         }
       } else {
         console.error("Error details:", error);
-        alert('Error actualizando el estado del usuario.');
+        Swal.fire("Error actualizando el estado del usuario.!");
+        
       }
     }
   };

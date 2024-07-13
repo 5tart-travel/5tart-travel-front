@@ -82,18 +82,20 @@ const CarouselWithThumbnails: React.FC = () => {
             <p>No agencias available</p>
           ) : (
             <Slider {...settings}>
-              {agencias.map((agencia) => (
-                <div className="px-4" key={agencia.id}>
-                  <Link href={`/agencias/${agencia.id}`} passHref>
-                    <Card
-                      src={agencia.imgUrl || '/default-image.png'}
-                      alt={agencia.name_agency}
-                      name={agencia.name_agency}
-                      address={agencia.address}
-                    />
-                  </Link>
-                </div>
-              ))}
+              {agencias
+                .filter((agencia) => agencia.isActive) //? Agregue el filtro para solo mostrar agencias activadas por el adminw
+                .map((agencia) => (
+                  <div className="px-4" key={agencia.id}>
+                    <Link href={`/agencias/${agencia.id}`} passHref>
+                      <Card
+                        src={agencia.imgUrl || '/default-image.png'}
+                        alt={agencia.name_agency}
+                        name={agencia.name_agency}
+                        address={agencia.address}
+                      />
+                    </Link>
+                  </div>
+                ))}
             </Slider>
           )}
         </div>
