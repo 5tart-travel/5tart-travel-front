@@ -45,7 +45,7 @@ const CardContact: React.FC = () => {
 
   return (
     <div
-      className="relative p-4 bg-white rounded-2xl shadow-xl cursor-pointer text-gray-600 w-60 h-[110px] hover:bg-slate-50 hover:shadow-2xl transition-shadow"
+      className="relative p-4 bg-white rounded-2xl shadow-xl cursor-pointer text-gray-600 w-60 h-[150px] hover:bg-slate-50 hover:shadow-2xl transition-shadow"
       onClick={handleCardClick}
     >
       <div className="absolute top-2 left-2 bg-white rounded-full p-2">

@@ -55,7 +55,7 @@ const CardUser: React.FC<CardContactProps> = () => {
 
   return (
     <div
-      className="relative p-4 bg-white hover:bg-slate-50 rounded-2xl shadow-xl cursor-pointer text-white w-60 h-[110px] hover:shadow-2xl transition-shadow"
+      className="relative p-4 bg-white hover:bg-slate-50 rounded-2xl shadow-xl cursor-pointer text-white w-60 h-[150px] hover:shadow-2xl transition-shadow"
       onClick={openModal}
     >
       <div className="absolute top-2 left-2 bg-white rounded-full p-2">
