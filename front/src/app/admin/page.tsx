@@ -13,7 +13,7 @@ const minidashboar: React.FC = () => {
       {/* Columna izquierda */}
       <div className="flex flex-col space-y-4">
         <CardContact />
-        <CardUser />
+        <CardUser  />
         <CardAgency />
       </div>
       
