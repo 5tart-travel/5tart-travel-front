@@ -8,7 +8,7 @@ const AeropuertoTerminal: React.FC<ITourFormProps> = ({
   setSalida,
 }) => {
   return (
-    <div className="mb-4">
+    <div className="mb-4 mr-9">
       <label
         htmlFor="salida"
         className="block text-sm font-medium text-gray-700"

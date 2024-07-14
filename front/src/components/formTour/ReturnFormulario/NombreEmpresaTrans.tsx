@@ -56,12 +56,12 @@ const NombreEmpresaTrans: React.FC<NombreEmpresaTransProps> = ({
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 mr-9">
       <label
         htmlFor="empresa"
         className="block text-sm font-medium text-gray-700"
       >
-        Nombre empresa trans
+        Nombre de la empresa transporte
       </label>
 
       <div className="flex">

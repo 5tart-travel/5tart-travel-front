@@ -4,7 +4,6 @@ import FechaIngreso from './ReturnFormulario/FechaIngreso';
 import Titulo from './ReturnFormulario/Tititulo';
 import FechaEgreso from './ReturnFormulario/FechaEgreso';
 import Precio from './ReturnFormulario/Precio';
-import TipoTransporte from './ReturnFormulario/TipoTransporte';
 import { ITourFormProps } from '@/interface/ITourFormProps';
 
 const Step1: React.FC<ITourFormProps> = ({
@@ -18,24 +17,18 @@ const Step1: React.FC<ITourFormProps> = ({
   setFecha_egreso,
   price,
   setPrice,
-  transportType,
-  setTransportType,
 }) => (
   <div>
     <Provincia destino={destino} setDestino={setDestino} />
+    <Titulo title={title} setTitle={setTitle} />
+    <Precio price={price} setPrice={setPrice} />
     <FechaIngreso
       fecha_ingreso={fecha_ingreso}
       setFecha_ingreso={setFecha_ingreso}
     />
-    <Titulo title={title} setTitle={setTitle} />
     <FechaEgreso
       fecha_egreso={fecha_egreso}
       setFecha_egreso={setFecha_egreso}
-    />
-    <Precio price={price} setPrice={setPrice} />
-    <TipoTransporte
-      transportType={transportType}
-      setTransportType={setTransportType}
     />
   </div>
 );

@@ -8,7 +8,7 @@ const FechaIngreso: React.FC<ITourFormProps> = ({
   setFecha_ingreso,
 }) => {
   return (
-    <div className="mb-4">
+    <div className="mb-4 mr-9">
       <label
         htmlFor="fecha_ingreso"
         className="block text-sm font-medium text-gray-700"

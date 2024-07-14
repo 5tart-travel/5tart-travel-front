@@ -1,33 +1,29 @@
 import React from 'react';
-import Descripcion from './ReturnFormulario/Descripcion';
-import ImageUpload from '../ui/ImageUpload';
-import MultipleImageUpload from '../ui/MultipleImageUpload';
-import CheckOferta from './ReturnFormulario/CheckOferta';
+import Hotel from './ReturnFormulario/Hotel';
+import DirecHotel from './ReturnFormulario/DirecHotel';
 import { ITourFormProps } from '@/interface/ITourFormProps';
+import MultipleImageUpload from '../ui/MultipleImageUpload';
 
-const Step3: React.FC<ITourFormProps> = ({
-  description,
-  setDescription,
-  handleUpload,
+interface Step3Props extends ITourFormProps {
+  handleUploadList: (file: File, url: string) => void;
+}
+
+const Step3: React.FC<Step3Props> = ({
+  hotel,
+  setHotel,
+  address,
+  setAddress,
   handleUploadList,
-  oferta,
-  setOferta,
 }) => (
   <div>
-    <Descripcion description={description} setDescription={setDescription} />
+    <Hotel hotel={hotel} setHotel={setHotel} />
+    <DirecHotel address={address} setAddress={setAddress} />
     <div>
-      <p className="mb-1">Imagenes del hotel</p>
+      <p className="mb-1">Imágenes del hotel</p>
       <div className="mt-1">
         <MultipleImageUpload onUpload={handleUploadList} />
       </div>
     </div>
-    <div>
-      <p className="mb-1">Imagen del tour</p>
-      <div className="mt-1 ">
-        <ImageUpload onUpload={handleUpload} />
-      </div>
-    </div>
-    <CheckOferta oferta={oferta} setOferta={setOferta} />
   </div>
 );
 
