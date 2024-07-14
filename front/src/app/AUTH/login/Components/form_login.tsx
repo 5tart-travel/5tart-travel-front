@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
-import Swal from 'sweetalert2';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 import ButtonGoogle from '@/components/ui/ButtonGoogle';
 import { checkUserRole } from '@/utils/decodeJwt';
 
@@ -116,23 +116,28 @@ const Form_Login: React.FC = () => {
 
       let errorMessage = 'Hubo un error al iniciar sesión. Por favor, inténtalo nuevamente.';
       let errorTitle = '¡Error!';
+      let errorIcon: SweetAlertIcon = 'error';
+      let timerAlert = 3000
 
       if (error && error.message) {
         if (error.message === 'Unauthorized') {
-          errorMessage = 'Error al iniciar sesión: Usuario o contraseña incorrectos.';
-          errorTitle = '¡Error de autenticación!';
+          errorMessage = 'Las credenciales proporcionadas son incorrectas.\nPor favor, verifica tu usuario y contraseña e intenta nuevamente.';
+          errorTitle = 'Error de Autenticación';
+          timerAlert = 4000
         } else if (error.message === 'I\'m a teapot') {
-          errorMessage = 'Esta cuenta se encuentra inactiva. Por favor aguarde hasta recibir el mail de activacion y intentelo nuevamente.';
-          errorTitle = '¡Error Cuenta Inactiva!';
+          errorMessage = 'Esta cuenta se encuentra inactiva. Por favor, aguarde hasta recibir el correo de activación y vuelva a intentarlo.';
+          errorTitle = 'Cuenta Inactiva';
+          errorIcon = 'info'
+          timerAlert = 4000
         }
       }
 
       Swal.fire({
         title: errorTitle,
         text: errorMessage,
-        icon: 'error',
+        icon: errorIcon,
         confirmButtonText: 'Aceptar',
-        timer: 3000,
+        timer: timerAlert,
         customClass: {
           popup: 'max-w-md w-full p-4 bg-white rounded-lg shadow-lg',
           title: 'text-xl font-bold text-gray-700',
@@ -143,9 +148,29 @@ const Form_Login: React.FC = () => {
   };
 
   const handleGoogleLogin = async () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/google`;
+    const hasConfirmed = localStorage.getItem('googleLoginConfirmed');
+  
+    if (hasConfirmed) {
+      window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/google`;
+    } else {
+      Swal.fire({
+        title: '¡Advertencia!',
+        html: `El acceso con Google te proporcionará una cuenta de usuario (no de agencia).<br><br>¿Desea continuar?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Continuar',
+        cancelButtonText: 'Cancelar',
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          localStorage.setItem('googleLoginConfirmed', 'true');
+          window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/google`;
+        }
+      });
+    }
   };
-
+  
   return (
     <div className="w-full max-w-md">
       <div className="mb-5">
