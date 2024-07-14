@@ -68,7 +68,7 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
   };
 
   return (
-    <div className="mt-6">
+    <div>
       <input
         type="file"
         accept="image/*"

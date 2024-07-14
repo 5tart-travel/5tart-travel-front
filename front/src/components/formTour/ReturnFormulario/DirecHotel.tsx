@@ -29,7 +29,7 @@ const DirecHotel: React.FC<ITourFormProps> = ({ address, setAddress }) => {
       <div className="flex">
         <input
           id="hotel"
-          placeholder="Mínimo 5 caracteres"
+          placeholder="Ej: Calle 123, Buenos Aires"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
@@ -64,7 +64,8 @@ const DirecHotel: React.FC<ITourFormProps> = ({ address, setAddress }) => {
           >
             <div className="py-2 px-4 bg-yellow-100 rounded-tr-xl rounded-br-xl rounded-bl-lg">
               <p className="text-gray-700 text-sm">
-                Este campo es obligatorio.
+                Coloque el nombre de la calle o avenida y su altura, seguido de
+                una &quot;,&quot; y luego la provincia.
               </p>
             </div>
           </div>

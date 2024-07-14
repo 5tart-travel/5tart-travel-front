@@ -59,7 +59,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUpload }) => {
   };
 
   return (
-    <div className="mt-6">
+    <div>
       <input
         type="file"
         accept="image/*"
