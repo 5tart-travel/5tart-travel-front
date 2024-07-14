@@ -1,3 +1,4 @@
+'use client';
 import FormularioTour from '@/components/formTour/formTour';
 
 const AgregarTour = () => {
