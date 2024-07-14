@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Spiner from '@/components/ui/Spiner';
+import styles from './Callback.module.css'
 
 const Callback = () => {
   const router = useRouter();
@@ -13,20 +14,23 @@ const Callback = () => {
 
     if (accessToken) {
       localStorage.setItem("userSession", JSON.stringify({ token: accessToken }));
-      console.log('Datos de la sesión del usuario almacenados en localStorage:', { access_token: accessToken });
-
-      router.push('/');
+      setTimeout(() => {
+        router.push('/');
+      }, 2000);
     } else {
       console.error('Tokens not found in the URL');
     }
   }, [router]);
 
   return (
-    <div style={{ display:"flex", alignItems:"center", justifyContent:"center" } }>
-        <h1 style={ {fontSize: '2.5rem', color: "#6366f1", fontWeight:"bold", marginRight:"1.5rem"} }>Cargando...</h1>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>Preparando todo...</h1>
+        <p className={styles.message}>Estamos procesando tu autenticación. Por favor, aguarde unos segundos.</p>
         <Spiner/>
+      </div>
     </div>
-    );
+  );
 };
 
 export default Callback;
