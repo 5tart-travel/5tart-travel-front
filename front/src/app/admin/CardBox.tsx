@@ -210,9 +210,9 @@ const CardBox: React.FC = () => {
     socket.on('allDisableAgency', (items: any) => {
       if (Array.isArray(items)) {
         setAgencies(items);
-        console.log('New notification received'); // Log to confirm event received
+        console.log('Nueva notificacion recibida'); 
         if (audioRef.current) {
-          audioRef.current.play().catch(error => console.error('Error playing audio:', error));
+          audioRef.current.play().catch(error => console.error('Error de audio:', error));
         }
       } else {
         console.error('Received items are not an array:', items);
@@ -244,16 +244,16 @@ const CardBox: React.FC = () => {
     setAgencies(agencies.filter((agency) => agency.id !== id));
     closeModal();
   };
-
+//  ? Funcion para simular una notificacion y probar el sonido de la notificacion xD
   const simulateNotification = () => {
     const newNotification: Agency = {
-      id: `${Date.now()}`, // Genera un ID único basado en la fecha y hora actual
+      id: `${Date.now()}`, //? Genera un ID único basado en la fecha y hora actual
       name_agency: 'Agencia de Prueba',
     };
     setAgencies(prevAgencies => [newNotification, ...prevAgencies]);
     console.log('Simulated notification received');
     if (audioRef.current) {
-      audioRef.current.play().catch(error => console.error('Error playing audio:', error));
+      audioRef.current.play().catch(error => console.error('Error de audio:', error));
     }
   };
 

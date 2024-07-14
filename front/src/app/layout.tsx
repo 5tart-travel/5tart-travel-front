@@ -21,6 +21,8 @@ export default function RootLayout({
       <head>
         <title>{String(metadata.title) || "Título por defecto"}</title>
         <meta name="description" content={String(metadata.description) || "Descripción por defecto"} />
+        <link rel="icon" href="/ico_travel.ico" />
+
       </head>
       <body className={inter.className}>
         <HiddenNavBar>

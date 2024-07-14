@@ -21,7 +21,7 @@ const ResumenFinanciero: React.FC = () => {
         }
 
         setTotalIngresos(total);
-        setGanancia(total * 0.1); // 10% de los ingresos totales
+        setGanancia(total * 0.1); //? 10% de los ingresos totales
 
       } catch (error) {
         console.error('Error fetching initial data:', error);
@@ -32,8 +32,8 @@ const ResumenFinanciero: React.FC = () => {
 
   }, []);
 
-  const porcentajeGasto = totalIngresos ? (totalIngresos / totalIngresos) * 100 : 0; // Siempre será 100%
-  const porcentajeReferencia = totalIngresos ? (ganancia / totalIngresos) * 100 : 0; // 10% de los ingresos totales
+  const porcentajeGasto = totalIngresos ? (totalIngresos / totalIngresos) * 100 : 0; //? Siempre será 100%
+  const porcentajeReferencia = totalIngresos ? (ganancia / totalIngresos) * 100 : 0; //? 10% de los ingresos totales
 
   return (
     <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition duration-300 ease-in-out hover:bg-slate-50 cursor-pointer text-center">
@@ -67,13 +67,19 @@ const ResumenFinanciero: React.FC = () => {
         </CircularProgressbarWithChildren>
       </div>
       <div className="flex justify-around mt-4">
-        <div className="flex items-center">
-          <div className="w-3 h-3 bg-[#36A2EB] rounded-full mr-2"></div>
-          <span className="text-sm text-gray-600">Ingresos Totales</span>
+        <div className="flex flex-col items-center">
+          <div className="flex items-center">
+            <div className="w-3 h-3 bg-[#36A2EB] rounded-full mr-2"></div>
+            <span className="text-sm text-gray-600">Ingresos Totales</span>
+          </div>
+          <span className="text-sm text-gray-600">${totalIngresos.toFixed(2)}</span>
         </div>
-        <div className="flex items-center">
-          <div className="w-3 h-3 bg-[#6a1b9a] rounded-full mr-2"></div>
-          <span className="text-sm text-gray-600">Ganancia (10%)</span>
+        <div className="flex flex-col items-center">
+          <div className="flex items-center">
+            <div className="w-3 h-3 bg-[#6a1b9a] rounded-full mr-2"></div>
+            <span className="text-sm text-gray-600">Ganancia (10%)</span>
+          </div>
+          <span className="text-sm text-gray-600">${ganancia.toFixed(2)}</span>
         </div>
       </div>
     </div>
