@@ -98,23 +98,22 @@ const CardTourDashboard: FC<CardTourDashboardProps> = ({
 
   return (
     <>
-      <div className="w-full h-70 rounded-2xl shadow-2xl overflow-hidden relative">
+      <div className="w-full h-80 rounded-2xl shadow-2xl overflow-hidden relative">
         <Image
           src={imgUrl}
           alt={title}
-          className="w-full h-full object-cover transform hover:scale-110 transition duration-300 ease-in-out"
-          width={500}
-          height={500}
+          className="object-cover"
+          layout="fill"
         />
         {oferta && (
           <div className="absolute top-0 left-0 bg-blue-950 text-white font-bold py-2 px-4 rounded-br-full">
             Oferta
           </div>
         )}
-        <div className="absolute top-2 right-2 flex items-center">
+        <div className="absolute top-0 right-0 flex bg-blue-950 py-1 px-4 rounded-bl-full">
           <button onClick={handleEditClick} className="group mr-2">
             <svg
-              className="h-6 w-6 text-gray-400 group-hover:bg-gray-200 rounded-full"
+              className="h-6 w-6 text-white rounded-full group-hover:bg-blue-900"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
