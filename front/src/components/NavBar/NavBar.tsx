@@ -60,11 +60,11 @@ const Navbar: React.FC = () => {
 
       <div className="flex items-center">
         {isLoggedIn ? (
-          <div className="flex items-center justify-center cursor-pointer mx-10 ">
+          <div className="flex items-center justify-center cursor-pointer mx-4 md:mx-3 sm:mx-2 ">
             <div className="flex flex-col items-center">
               <button ref={avatarButtonRef} onClick={handleAvatarClick}>
                 <Image
-                  className="rounded-full w-10 h-10 mt-4 border-blue-300 border-3 hover:animate-spin"
+                  className="rounded-full w-10 h-10 lg:w-10 lg:h-10  md:w-6 md:h-6 sm:w-6 sm:h-6 mt-4 border-blue-300 border-3 hover:animate-spin "
                   alt="Avatar de usuario"
                   src={userData?.picture || DEFAULT_AVATAR}
                   width={200}
