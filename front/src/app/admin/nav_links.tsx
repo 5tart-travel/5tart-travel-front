@@ -2,27 +2,27 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { FaHome } from "react-icons/fa";
-import { MdDashboardCustomize } from "react-icons/md";
-import { BiSolidDonateHeart } from "react-icons/bi";
-import { MdFavorite } from "react-icons/md";
+import { MdDashboardCustomize, MdSupportAgent } from "react-icons/md";
 import { GiAirplaneDeparture } from "react-icons/gi";
-import { IoMdPlanet } from "react-icons/io";
+import { FaWallet } from "react-icons/fa";
+import { FaUserFriends } from "react-icons/fa"; 
+import { FaSuitcaseRolling } from "react-icons/fa"; 
 
 const adminLinks = [
   { name: "Inicio", href: "/", icon: FaHome },
   { name: "Overview", href: "/admin", icon: MdDashboardCustomize },
-  { name: "Agencias", href: "/admin/agencies", icon: BiSolidDonateHeart },
-  { name: "Paquetes", href: "/admin/packages", icon: MdFavorite },
-  { name: "Soporte", href: "/admin/reportes", icon: GiAirplaneDeparture },
-  { name: "Usuarios", href: "/admin/users", icon: IoMdPlanet },
-  { name: "Billetera", href: "/admin/billetera", icon: IoMdPlanet },
+  { name: "Agencias", href: "/admin/agencies", icon: GiAirplaneDeparture },
+  { name: "Paquetes", href: "/admin/packages", icon: FaSuitcaseRolling }, 
+  { name: "Soporte", href: "/admin/reportes", icon: MdSupportAgent },
+  { name: "Usuarios", href: "/admin/users", icon: FaUserFriends }, 
+  { name: "Billetera", href: "/admin/billetera", icon: FaWallet },
 ];
 
 const NavLinksAdmin: React.FC = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col gap-2  ">
+    <div className="flex flex-col gap-2">
       {adminLinks.map((link) => {
         const LinkIcon = link.icon;
         return (
@@ -30,7 +30,7 @@ const NavLinksAdmin: React.FC = () => {
             key={link.name}
             href={link.href}
             className={clsx(
-              "flex h-[48px] grow items-center justify-center gap-2  bg-white rounded-br-3xl rounded-tl-3xl shadow-xl p-3 text-sm font-medium hover:bg-blue-200 hover:text-blue-900 md:flex-none md:justify-start md:p-2 md:px-3",
+              "flex h-[48px] grow items-center justify-center gap-2 bg-white rounded-br-3xl rounded-tl-3xl shadow-xl p-3 text-sm font-medium hover:bg-blue-200 hover:text-blue-900 md:flex-none md:justify-start md:p-2 md:px-3",
               {
                 "bg-blue-100 text-blue-600": pathname === link.href,
               }
