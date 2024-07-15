@@ -49,7 +49,7 @@ const QuienesSomos = () => {
             <Title className="text-center my-5">SOBRE NUESTRA PAGINA</Title>
             <Img src={currentImage} alt="Imagen Ilustrativa"></Img>
             <p className="text-lg leading-6">
-               Posicionada como una revelacion en la web, <span className="italic font-bold">5tart Travel</span> trae lo mejor del mundo de los viajes y el turismo a tu alcance. Fundada con el objetivo de revolucionar la forma en que las personas planifican y reservan sus aventuras, <span className="italic font-bold">5tart Travel</span> reúne a las mejores agencias de viaje y a los usuarios que buscan experiencias inolvidables en una sola plataforma.
+               Posicionada como una revelación en la web, <span className="italic font-bold">5tart Travel</span> trae lo mejor del mundo de los viajes y el turismo a tu alcance. Fundada con el objetivo de revolucionar la forma en que las personas planifican y reservan sus aventuras, <span className="italic font-bold">5tart Travel</span> reúne a las mejores agencias de viaje y a los usuarios que buscan experiencias inolvidables en una sola plataforma.
               <br />
               <br />
               <span className="italic">Nuestra misión es: <span className="font-bold">"Facilitar el acceso a las mejores experiencias de viaje, conectando a los viajeros con las agencias más destacadas y ofreciendo una amplia variedad de paquetes para todos los gustos y presupuestos".</span></span>
@@ -59,11 +59,11 @@ const QuienesSomos = () => {
             </p>
 			   </section>
          <section className="py-3">
-            <h3 className="text-center mt-12 mb-4 italic text-2xl">Animate a explorar el mundo con nosotros</h3>
+            <h3 className="text-center mt-12 mb-4 italic text-2xl">Anímate a explorar el mundo con nosotros</h3>
             <div className="video w-full max-w-7xl mx-auto">
             <iframe
               height="300"
-              src="https://www.youtube.com/embed/BSVpBFlg1jg?si=XnXnJI4U0HwiEefq&controls=0&showinfo=0&rel=0&fs=0&autohide=1&modestbranding=1"
+              src="https://www.youtube.com/embed/BSVpBFlg1jg?si=XnXnJI4U0HwiEefq&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;fs=0&amp;autohide=1&amp;modestbranding=1"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
@@ -76,7 +76,7 @@ const QuienesSomos = () => {
          <hr className="border-black border-opacity-50 mt-2 w-full"></hr>
          <div className={styles.Slider_div__2ugI6}>
             <div className={styles.Slider_container__TdW1j}>
-                <Title>TECNOLOGIAS UTILIZADAS</Title>
+                <Title>TECNOLOGÍAS UTILIZADAS</Title>
                 <div className={styles.Slider_inner__EcdOK}>
                     <div className={styles.Slider_tag__MsWMp}><img src="https://res.cloudinary.com/dd1yaduhv/image/upload/v1720978824/docker-svgrepo-com_nkgelp.svg" alt="Docker" /></div>
                     <div className={styles.Slider_tag__MsWMp}><img src="https://res.cloudinary.com/dd1yaduhv/image/upload/v1720978909/nestjs-svgrepo-com_mila6v.svg" alt="NestJS" /></div>
