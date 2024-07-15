@@ -52,7 +52,7 @@ const QuienesSomos = () => {
                Posicionada como una revelación en la web, <span className="italic font-bold">5tart Travel</span> trae lo mejor del mundo de los viajes y el turismo a tu alcance. Fundada con el objetivo de revolucionar la forma en que las personas planifican y reservan sus aventuras, <span className="italic font-bold">5tart Travel</span> reúne a las mejores agencias de viaje y a los usuarios que buscan experiencias inolvidables en una sola plataforma.
               <br />
               <br />
-              <span className="italic">Nuestra misión es: <span className="font-bold">"Facilitar el acceso a las mejores experiencias de viaje, conectando a los viajeros con las agencias más destacadas y ofreciendo una amplia variedad de paquetes para todos los gustos y presupuestos".</span></span>
+              <span className="italic">Nuestra misión es: <span className="font-bold">Facilitar el acceso a las mejores experiencias de viaje, conectando a los viajeros con las agencias más destacadas y ofreciendo una amplia variedad de paquetes para todos los gustos y presupuestos.</span></span>
               <br />
               <br />
               Ofrecemos un espacio donde las pequeñas y grandes agencias de turismo pueden destacar sus mejores ofertas, mientras que los usuarios disfrutan de un proceso de búsqueda y compra sencillo y eficiente. En <span className="italic">5tart Travel</span>, nos aseguramos de que cada viaje sea único y memorable, garantizando calidad y satisfacción en cada paso del camino.
