@@ -13,14 +13,18 @@ const buses = [
   { name: "El Rosarino", logoSrc: "https://res.cloudinary.com/dia2gautk/image/upload/v1719862034/llxctyt2xiu5thir4lhc.png", href: "https://www.elrosarino.com.ar" },
 ];
 
-const BusGrid = () => {
+interface BusGridProps {
+  tema: boolean;
+}
+
+const BusGrid: React.FC<BusGridProps> = ({tema}) => {
   const firstRow = buses.slice(0, 5);
   const secondRow = buses.slice(5);
 
   return (
     <section>
       <div className="p-6">
-        <h2 className="flex justify-center text-3xl text-gray-600 font-bold mb-4 text-shadow-semilight">Top Buses</h2>
+      <h2 className={`flex justify-center text-3xl ${ tema ? 'text-white' : 'text-gray-600' } font-bold mb-4 text-shadow-semilight`}>Top Buses</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-4">
           {firstRow.map((bus, index) => (
             <Link href={bus.href} key={index}>

@@ -13,14 +13,18 @@ const airlines = [
   { name: "Air Canada", logoSrc: "https://res.cloudinary.com/dia2gautk/image/upload/v1719859255/uz3y7zanbwsh9dqmzhmy.svg", href: "https://www.aircanada.com" },
 ];
 
-const AirlineGrid = () => {
+interface AirlineGridProps {
+  tema: boolean;
+}
+
+const AirlineGrid: React.FC<AirlineGridProps> = ({ tema }) => {
   const firstRow = airlines.slice(0, 5);
   const secondRow = airlines.slice(5);
 
   return (
     <section>
       <div className="p-6">
-        <h2 className="flex justify-center text-3xl text-gray-600 font-bold mb-4 text-shadow-semilight">Top Aerolíneas</h2>
+        <h2 className={`flex justify-center text-3xl ${ tema ? 'text-white' : 'text-gray-600' } font-bold mb-4 text-shadow-semilight`}>Top Aerolíneas</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-4">
           {firstRow.map((airline, index) => (
             <Link href={airline.href} key={index}>

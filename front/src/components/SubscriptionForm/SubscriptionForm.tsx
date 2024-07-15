@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-const SubscriptionForm: React.FC = () => {
+interface SubscriptionProps {
+  tema: boolean;
+}
+
+const SubscriptionForm: React.FC<SubscriptionProps> = ({ tema }) => {
+
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
@@ -35,8 +40,8 @@ const SubscriptionForm: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-8 px-4 bg-gray-100">
-      <p className="mb-4 text-lg font-semibold text-gray-800 text-center">
+    <div className={`flex flex-col items-center justify-center py-8 px-4 ${ tema ? 'bg-grey' : 'bg-gray-100'} `}>
+      <p className={`mb-4 text-lg font-semibold ${ tema ? 'text-white' : 'text-gray-800'}  text-center`}>
         ¿Querés ser el primero en enterarte cuando hay ofertas?
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row w-full max-w-md">

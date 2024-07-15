@@ -16,6 +16,7 @@ export default function RootLayout({
 }: {
   children: ReactNode;
 }) {
+
   return (
     <html lang="es">
       <head>
@@ -30,7 +31,7 @@ export default function RootLayout({
         </HiddenNavBar>
         {children}
         <HiddenFooter>
-          <Footer username={null} />
+          <Footer tema={null} username={null} />
         </HiddenFooter>
         
         <Script id="landbot-script" strategy="lazyOnload">

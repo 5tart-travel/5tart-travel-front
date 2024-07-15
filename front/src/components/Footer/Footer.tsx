@@ -6,14 +6,15 @@ import MusicPlayer, { PlaylistItem } from "../music/music";
 interface FooterProps {
   username: string | null;
   className?: string;
+  tema: boolean | null;
 }
 const playlist: PlaylistItem[] = [
   { title: 'relax', url: 'https://www.youtube.com/watch?v=m_HdyEbpd7o' },
 ];
 
-const Footer: React.FC<FooterProps> = ({ username, className }) => {
+const Footer: React.FC<FooterProps> = ({ username, className, tema }) => {
   return (
-    <footer className={`bg-blue-950 font-sans mt-0 ${className}`}>
+    <footer className={`${ tema ? 'bg-black' : 'bg-blue-950'} font-sans mt-0 ${className}`}>
       <div className="container mx-auto py-2">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center">

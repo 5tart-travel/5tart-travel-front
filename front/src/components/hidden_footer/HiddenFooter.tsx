@@ -10,7 +10,7 @@ interface HiddenFooterProps {
 const HiddenFooter: React.FC<HiddenFooterProps> = ({ children }) => {
   const pathname = usePathname();
   const hiddenPaths = [ 
-    
+    '/',
     '/dashboard', 
     '/dashboard/admin', 
     '/dashboard/user',
@@ -24,10 +24,8 @@ const HiddenFooter: React.FC<HiddenFooterProps> = ({ children }) => {
     '/dashboard/pets',
     '/contacto',
     // '/minidashboard',
-    
-   
-
-];
+  ];
+  
   const isHidden = hiddenPaths.includes(pathname);
 
   return (

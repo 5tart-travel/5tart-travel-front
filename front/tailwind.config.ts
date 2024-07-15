@@ -12,6 +12,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      height: {
+        'custom-1': '14rem',
+        'custom-2': '20rem',
+      },
+      invert: {
+        100: '1',
+      },
       animation: {
         'bounce': 'bounce 1.5s infinite',
       },
@@ -46,8 +53,7 @@ const config: Config = {
         orange500: "#d17533",
         yellow500: "#af8f2c",
         lime500: "#88a147",
-        
-
+        customGray: 'rgb(92, 91, 94)',
         // primary: '#41d3be',
         // secondary: '#8AFF70',
         // tertiary: '#708aff',

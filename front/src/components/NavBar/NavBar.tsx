@@ -10,11 +10,15 @@ import { decodeJwt } from '@/utils/decodeJwt';
 import { JwtPayload } from '@/types';
 import DesplegableUser from './desplegable';
 import { CiMenuBurger } from "react-icons/ci";
+import SwitcherTema from './SwitcherTema';
 
 const DEFAULT_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
 const ADMIN_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/How-To-Fit-An-MX-5-Into-A-Pickup-Truck-Speedhunters_zy37c4';
 
-const Navbar: React.FC = () => {
+const Navbar = ( props:any ) => {
+
+  const { toggleTema, tema} = props
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState<Partial<JwtPayload> | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,13 +54,16 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="bg-blue-950 h-24 flex items-center justify-between px-4">
+    <header className={`${ tema ? 'bg-black' : 'bg-blue-950'}  h-24 flex items-center justify-between px-4`}>
       <div className="flex items-center justify-center mb-10">
         <Logo />
       </div>
 
       <NavMenu />
       <Search />
+      <div onClick={toggleTema} className="absolute top-[3.6vh] right-[6rem] bg-inherit border-none cursor-pointer">
+          <SwitcherTema tema={tema} />
+      </div>
 
       <div className="flex items-center">
         {isLoggedIn ? (
