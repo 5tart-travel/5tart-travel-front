@@ -151,7 +151,7 @@ const Calculadora: React.FC = () => {
         <div
           key={selectedPackage.id}
           style={{
-            border: '1px solid #ddd',
+            border: '1px solid #1e3a8a',
             borderRadius: '8px',
             padding: '20px',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
@@ -185,9 +185,9 @@ const Calculadora: React.FC = () => {
               <div style={{
                 marginTop: '5px',
                 padding: '2px',
-                border: '1px solid blue',
+                border: '1px solid #172554',
                 borderRadius: '5px',
-                backgroundColor: 'blue',
+                backgroundColor: '#172554',
                 color: 'white',
                 margin: '0 auto',
                 width: 'fit-content'
@@ -232,9 +232,9 @@ const Calculadora: React.FC = () => {
   return (
     <div style={{ marginTop: '10px' }}>
       <section style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '95%', margin: '0 auto' }}>
-        <div style={{ backgroundColor: '#f0f0f0', padding: '20px', marginBottom: '20px', width: '100%', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
-          <h2 style={{ textAlign: 'center', color: '#333', textTransform: 'uppercase', fontSize: '24px', marginBottom: '15px' }}>Planificador de Gastos de Viaje</h2>
-          <p style={{ textAlign: 'center', color: '#666', fontSize: '16px', lineHeight: '1.6' }}>
+        <div style={{ backgroundColor: '#172554', padding: '20px', marginBottom: '20px', width: '100%', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+          <h2 style={{ textAlign: 'center', color: 'white', textTransform: 'uppercase', fontSize: '24px', marginBottom: '15px' }}>Planificador de Gastos de Viaje</h2>
+          <p style={{ textAlign: 'center', color: 'white', fontSize: '16px', lineHeight: '1.6' }}>
             Seleccione los campos a continuación para estimar el costo total de su viaje, incluyendo actividades, paquetes y alimentación diaria.
           </p>
         </div>
@@ -285,7 +285,7 @@ const Calculadora: React.FC = () => {
                       borderRadius: '5px',
                       padding: '10px',
                       textAlign: 'center',
-                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      boxShadow: '0 2px 4px #172554',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'space-between'
@@ -297,7 +297,7 @@ const Calculadora: React.FC = () => {
                         minHeight: '40px'
                       }}>{point.name}</p>
                       <div style={{
-                        backgroundColor: '#007bff',
+                        backgroundColor: '#172554',
                         color: 'white',
                         borderRadius: '5px',
                         padding: '5px'
@@ -312,7 +312,7 @@ const Calculadora: React.FC = () => {
               <p style={{
                 textAlign: 'center',
                 marginBottom: '20px',
-                backgroundColor: 'blue',
+                backgroundColor: '#172554',
                 color: 'white',
                 borderRadius: '5px',
                 padding: '10px'
@@ -333,9 +333,9 @@ const Calculadora: React.FC = () => {
                 marginTop: '30px',
                 textAlign: 'center',
                 padding: '5px 10px',
-                border: '1px solid blue',
+                border: '1px solid #172554',
                 borderRadius: '5px',
-                backgroundColor: 'blue',
+                backgroundColor: '#172554',
                 color: 'white'
               }}>
                 ${selectedPackage ? selectedPackage.price.toLocaleString() : '0'}
@@ -347,9 +347,9 @@ const Calculadora: React.FC = () => {
                 marginTop: '30px',
                 textAlign: 'center',
                 padding: '5px 10px',
-                border: '1px solid blue',
+                border: '1px solid #172554',
                 borderRadius: '5px',
-                backgroundColor: 'blue',
+                backgroundColor: '#172554',
                 color: 'white'
               }}>
                 ${totalBudget.toLocaleString()}
@@ -361,9 +361,9 @@ const Calculadora: React.FC = () => {
                 marginTop: '30px',
                 textAlign: 'center',
                 padding: '5px 10px',
-                border: '1px solid blue',
+                border: '1px solid #172554',
                 borderRadius: '5px',
-                backgroundColor: 'blue',
+                backgroundColor: '#172554',
                 color: 'white'
               }}>
                 ${totalFoodBudget.toLocaleString()}
@@ -377,9 +377,9 @@ const Calculadora: React.FC = () => {
                 marginTop: '30px',
                 textAlign: 'center',
                 padding: '5px 10px',
-                border: '1px solid blue',
+                border: '1px solid #172554',
                 borderRadius: '5px',
-                backgroundColor: 'blue',
+                backgroundColor: '#172554',
                 color: 'white'
               }}>
                 ${calculateSelectedTouristPointsTotal().toLocaleString()}
@@ -394,9 +394,9 @@ const Calculadora: React.FC = () => {
             marginTop: '30px',
             textAlign: 'center',
             padding: '5px 10px',
-            border: '1px solid blue',
+            border: '1px solid #172554',
             borderRadius: '5px',
-            backgroundColor: 'blue',
+            backgroundColor: '#172554',
             color: 'white'
           }}>
             ${totalGeneral.toLocaleString()}
@@ -409,7 +409,7 @@ const Calculadora: React.FC = () => {
           style={{
             padding: '10px 20px',
             fontSize: '16px',
-            backgroundColor: 'blue',
+            backgroundColor: '#172554',
             color: 'white',
             border: 'none',
             borderRadius: '5px',

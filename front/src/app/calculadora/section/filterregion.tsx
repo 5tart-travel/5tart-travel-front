@@ -9,7 +9,7 @@ interface RegionFilterProps {
 const RegionFilter: React.FC<RegionFilterProps> = ({ selectedRegion, regions, handleSelectRegion }) => {
   return (
     <div className="mt-10" style={{ flex: '1', maxWidth: '50%', overflowY: 'auto' }}>
-      <div style={{ border: '2px solid #007BFF', borderRadius: '8px', padding: '10px', maxHeight: '70vh' }}>
+      <div style={{ border: '2px solid #172554', borderRadius: '8px', padding: '10px', maxHeight: '70vh' }}>
         <h2 className="text-center" style={{ marginBottom: '10px' }}>Filtrar por Región</h2>
         <hr className='mt-1 mb-10' />
 
@@ -20,9 +20,9 @@ const RegionFilter: React.FC<RegionFilterProps> = ({ selectedRegion, regions, ha
               onClick={() => handleSelectRegion(region)}
               style={{
                 gridColumn: 'span 1',
-                backgroundColor: selectedRegion === region ? '#007BFF' : 'white',
-                color: selectedRegion === region ? 'white' : '#007BFF',
-                border: '1px solid #007BFF',
+                backgroundColor: selectedRegion === region ? '#172554' : 'white',
+                color: selectedRegion === region ? 'white' : '#172554',
+                border: '1px solid #172554',
                 borderRadius: '4px',
                 padding: '8px',
                 cursor: 'pointer'

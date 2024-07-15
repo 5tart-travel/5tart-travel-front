@@ -36,7 +36,7 @@ const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ touristPoin
         }}>
           {touristPoints.map((point, index) => (
             <div key={index} style={{
-              border: '1px solid #ddd',
+              border: '1px solid #172554',
               borderRadius: '8px',
               padding: '10px',
               display: 'flex',
@@ -52,7 +52,7 @@ const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ touristPoin
                 style={{ marginBottom: '5px' }}
               />
               <p style={{ margin: '0', textAlign: 'center', fontSize: '0.9em', fontWeight: 'bold', minHeight: '40px' }}>{point.name}</p>
-              <div style={{ backgroundColor: '#007bff', color: 'white', borderRadius: '5px', padding: '5px' }}>
+              <div style={{ backgroundColor: '#172554', color: 'white', borderRadius: '5px', padding: '5px' }}>
                 <p style={{ margin: '0', fontSize: '0.8em' }}>${point.price.toLocaleString()}</p>
               </div>
             </div>

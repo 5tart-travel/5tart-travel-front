@@ -112,7 +112,7 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
             {new Date(tour.fecha_egreso).toLocaleDateString()}
           </p>
         </div>
-        <div className="bg-blue-500 text-white font-bold text-center p-2 mt-4 rounded-md shadow-md">
+        <div className="bg-blue-950 hover:bg-blue-900 text-white font-bold text-center p-2 mt-4 rounded-md shadow-md">
           {`$${tour.price}`}
         </div>
       </div>

@@ -35,12 +35,12 @@ const PackageList: React.FC<PackageListProps> = ({ tours, filteredTours, selecte
             <div
               key={tour.id}
               style={{
-                border: '1px solid #ddd',
+                border: '1px solid #172554',
                 borderRadius: '8px',
                 padding: '20px',
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                boxShadow: '0 4px 8px #172554',
                 cursor: 'pointer',
-                backgroundColor: selectedPackage && selectedPackage.id === tour.id ? '#e0f7fa' : 'white',
+                backgroundColor: selectedPackage && selectedPackage.id === tour.id ? '#172554' : 'white',
                 backgroundImage: `url(${tour.imgUrl})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
@@ -58,7 +58,7 @@ const PackageList: React.FC<PackageListProps> = ({ tours, filteredTours, selecte
                       textOverflow: 'ellipsis',
                       maxWidth: '160px',
                       color: 'white',
-                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                      backgroundColor: '#172554',
                       padding: '5px',
                       borderRadius: '5px'
                     }}
@@ -71,9 +71,9 @@ const PackageList: React.FC<PackageListProps> = ({ tours, filteredTours, selecte
                     marginTop: '5px',
                     textAlign: 'center',
                     padding: '2px',
-                    border: '1px solid blue',
+                    border: '1px solid #172554',
                     borderRadius: '5px',
-                    backgroundColor: 'blue',
+                    backgroundColor: '#172554',
                     color: 'white'
                   }}>
                     <p>Precio: ${tour.price.toLocaleString()}</p>

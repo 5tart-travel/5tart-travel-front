@@ -182,7 +182,7 @@ const CompraSection: React.FC<CompraSectionProps> = ({
 
         <button
           onClick={handleCheckout}
-          className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-sm hover:bg-blue-400 hover:text-white transition duration-300 ease-in-out"
+          className="bg-blue-950 text-white py-2 px-4 rounded-lg shadow-sm hover:bg-blue-900 hover:text-white transition duration-300 ease-in-out"
         >
           Comprar
         </button>
