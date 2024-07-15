@@ -83,11 +83,12 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlist }) => {
         <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} style={{ marginLeft: '10px', color: 'white' }} />
       </button>
       <YouTube
-        videoId={new URL(playlist[currentTrack].url).searchParams.get('v')||null }
-        opts={opts}
-        onReady={onPlayerReady}
-        onEnd={handleTrackEnd}
-      />
+  videoId={(new URL(playlist[currentTrack].url).searchParams.get('v') || '') as string}
+  opts={opts}
+  onReady={onPlayerReady}
+  onEnd={handleTrackEnd}
+/>
+
     </div>
   );
 };
