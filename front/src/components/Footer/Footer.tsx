@@ -6,7 +6,7 @@ import MusicPlayer, { PlaylistItem } from "../music/music";
 interface FooterProps {
   username: string | null;
   className?: string;
-  tema: boolean | null;
+  tema?: boolean | null;
 }
 const playlist: PlaylistItem[] = [
   { title: 'relax', url: 'https://www.youtube.com/watch?v=m_HdyEbpd7o' },
