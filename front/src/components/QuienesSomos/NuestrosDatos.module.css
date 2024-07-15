@@ -1,0 +1,36 @@
+.techFav_cards{
+    display: flex;
+    justify-content: center;
+}
+
+.techFav_cards li{
+    display: inline-block;
+    width: 16%;
+    margin: 2.5% 1.5%;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 0.5rem
+}
+
+.techFav_cards li:hover {
+    border-color: rgba(43, 119, 243, 0.918);
+    background-color: black;
+    padding: 0%;
+    transition: 1s all;
+    transform: scale(1.1);
+}
+
+.techFav_cards li:hover h2{
+    font-size: 33px;
+}
+
+.techFav_cards h2{
+    font-size: 30px;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.iconContainer{
+    background-color: rgba(76, 125, 204, 0.918);
+}

@@ -57,6 +57,7 @@
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.7.5",
     "strapi-provider-upload-cloudinary": "^3.1.4",
+    "styled-components": "^6.1.11",
     "sweetalert2": "^11.6.13",
     "tailwind-scrollbar": "^3.1.0"
   },

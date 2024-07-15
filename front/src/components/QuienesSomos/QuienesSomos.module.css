@@ -1,0 +1,46 @@
+@keyframes slider-loop {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.Slider_div__2ugI6 {
+    display: flex;
+    justify-content: center;
+}
+
+.Slider_container__TdW1j {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.Slider_inner__EcdOK {
+    width: fit-content;
+    display: flex;
+    animation: slider-loop 30s linear infinite;
+}
+
+.Slider_tag__MsWMp {
+    width: 200px;
+    display: flex;
+    background-color: #f3f4f6;
+    padding: .5rem .8rem;
+    margin: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06);
+}
+
+.Slider_fade__xptsz {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.container{
+    font-family: "Montserrat", sans-serif;
+}
+
+.video{
+    width: 95%;
+    margin: 1em 2rem;
+}

@@ -22,7 +22,7 @@ export default function RootLayout({
         <title>{String(metadata.title) || "Título por defecto"}</title>
         <meta name="description" content={String(metadata.description) || "Descripción por defecto"} />
         <link rel="icon" href="/ico_travel.ico" />
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" />
       </head>
       <body className={inter.className}>
         <HiddenNavBar>
