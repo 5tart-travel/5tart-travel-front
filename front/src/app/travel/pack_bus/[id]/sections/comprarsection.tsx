@@ -90,6 +90,10 @@ const CompraSection: React.FC<CompraSectionProps> = ({
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
+          body: JSON.stringify({
+            title: busDetails.title,
+            price: totalPrice,
+          }),
         },
       );
 
