@@ -3,8 +3,10 @@ import ContactoUi from "@/components/ContactoUi/ContactoUi";
 import Image from "next/image";
 import Link from "next/link";
 import axios from 'axios';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
 import Footer from "@/components/Footer/Footer"; 
+import Swal from "sweetalert2";
 
 const Contacto: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +15,19 @@ const Contacto: React.FC = () => {
     mail: '',
     message: ''
   });
+
+  const router = useRouter();
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const userSession = localStorage.getItem('userSession');
+    if (userSession) {
+      const session = JSON.parse(userSession);
+      if (session.token) {
+        setIsUserLoggedIn(true);
+      }
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,11 +39,18 @@ const Contacto: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!isUserLoggedIn) {
+      Swal.fire('Debes estar logueado para enviar un mensaje.');
+      router.push('/AUTH/login');
+      return;
+    }
+
     try {
       await axios.post('https://fivetart-travel-kafg.onrender.com/contact', formData); 
-      alert('Formulario enviado con éxito');
+      Swal.fire('Formulario enviado con éxito');
     } catch (error) {
-      alert('Hubo un error al enviar el formulario');
+      Swal.fire('Hubo un error al enviar el formulario');
     }
   };
 
@@ -129,7 +151,7 @@ const Contacto: React.FC = () => {
           </div>
         </form>
       </div>
-      <Footer className="w-full" username={null} />
+      <Footer className="w-full" username={null} tema={null} />
     </div>
   );
 };
