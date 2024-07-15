@@ -1,9 +1,10 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { decodeJwt } from '@/utils/decodeJwt';
 import Link from 'next/link';
 import CardGrid from '@/components/Card_grid/CardGrid';
+import AuthGuardUser from '@/components/AuthGuard/AuthGuardUser';
 
 interface ITour {
   id: string;
@@ -71,34 +72,35 @@ const Favoritos = () => {
     }
   }, [token, userId]);
 
-
   return (
-    <div className="p-6">
-      {Array.isArray(favorites) && favorites.length === 0 ? (
-        <div className="text-center">
-          <p>
-            No tienes favoritos, has click{' '}
-            <Link href="/travel" className="text-blue-500">
-              aquí
-            </Link>{' '}
-            para crear uno.
-          </p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {favorites.map((tour) => (
-            <CardGrid
-              key={tour.id}
-              id={tour.id}
-              title={tour.title}
-              price={tour.price}
-              imageUrl={tour.imgUrl}
-              oferta={tour.oferta}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+    <AuthGuardUser>
+      <div className="p-6">
+        {Array.isArray(favorites) && favorites.length === 0 ? (
+          <div className="text-center">
+            <p>
+              No tienes favoritos, has click{' '}
+              <Link href="/travel" className="text-blue-500">
+                aquí
+              </Link>{' '}
+              para crear uno.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {favorites.map((tour) => (
+              <CardGrid
+                key={tour.id}
+                id={tour.id}
+                title={tour.title}
+                price={tour.price}
+                imageUrl={tour.imgUrl}
+                oferta={tour.oferta}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </AuthGuardUser>
   );
 };
 

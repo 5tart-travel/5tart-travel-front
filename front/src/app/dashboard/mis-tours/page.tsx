@@ -8,6 +8,7 @@ import CardTourDashboard, {
 } from '@/components/CardTourDashboard/CardTourDashboard';
 import EditTour from '@/components/CardTourDashboard/EditTour';
 import Swal from 'sweetalert2';
+import AuthGuardAgency from '@/components/AuthGuard/AuthGuardAgency';
 
 const MisTours = () => {
   const [tours, setTours] = useState<IToursDashboard[]>([]);
@@ -118,46 +119,50 @@ const MisTours = () => {
   };
 
   return (
-    <div className="p-6">
-      {Array.isArray(tours) && tours.length === 0 ? (
-        <div className="text-center">
-          <p>
-            Aún no tienes tours, has click{' '}
-            <Link href="/dashboard/agregar-tour" className="text-blue-500">
-              aquí
-            </Link>{' '}
-            para crear uno.
-          </p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {tours.map((tour) => (
-            <CardTourDashboard
-              key={tour.id}
-              id={tour.id}
-              title={tour.title}
-              price={tour.price}
-              imgUrl={tour.imgUrl}
-              oferta={tour.oferta}
-              updateTour={(updatedTour) =>
-                setTours(
-                  tours.map((t) => (t.id === updatedTour.id ? updatedTour : t)),
-                )
-              }
-              deleteTour={handleDeleteTour}
-            />
-          ))}
-        </div>
-      )}
-      {selectedTour && editedTour && (
-        <EditTour
-          editedTour={editedTour}
-          handleInputChange={handleInputChange}
-          handleSaveChanges={handleSaveChanges}
-          handleModalClose={handleModalClose}
-        />
-      )}
-    </div>
+    <AuthGuardAgency>
+      <div className="p-6">
+        {Array.isArray(tours) && tours.length === 0 ? (
+          <div className="text-center">
+            <p>
+              Aún no tienes tours, has click{' '}
+              <Link href="/dashboard/agregar-tour" className="text-blue-500">
+                aquí
+              </Link>{' '}
+              para crear uno.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {tours.map((tour) => (
+              <CardTourDashboard
+                key={tour.id}
+                id={tour.id}
+                title={tour.title}
+                price={tour.price}
+                imgUrl={tour.imgUrl}
+                oferta={tour.oferta}
+                updateTour={(updatedTour) =>
+                  setTours(
+                    tours.map((t) =>
+                      t.id === updatedTour.id ? updatedTour : t,
+                    ),
+                  )
+                }
+                deleteTour={handleDeleteTour}
+              />
+            ))}
+          </div>
+        )}
+        {selectedTour && editedTour && (
+          <EditTour
+            editedTour={editedTour}
+            handleInputChange={handleInputChange}
+            handleSaveChanges={handleSaveChanges}
+            handleModalClose={handleModalClose}
+          />
+        )}
+      </div>
+    </AuthGuardAgency>
   );
 };
 

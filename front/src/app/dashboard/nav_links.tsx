@@ -73,7 +73,8 @@ export default function NavLinks() {
           userRole === 'user' &&
           (link.name === 'Agregar Tour' ||
             link.name === 'Mis Tours' ||
-            link.name === 'Datos bancarios')
+            link.name === 'Datos bancarios' ||
+            link.name === 'Pagos')
         ) {
           return null;
         }

@@ -1,11 +1,14 @@
 'use client';
+import AuthGuardAgency from '@/components/AuthGuard/AuthGuardAgency';
 import FormularioTour from '@/components/formTour/formTour';
 
 const AgregarTour = () => {
   return (
-    <div>
-      <FormularioTour />
-    </div>
+    <AuthGuardAgency>
+      <div>
+        <FormularioTour />
+      </div>
+    </AuthGuardAgency>
   );
 };
 
