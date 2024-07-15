@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+
 'use client';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -17,16 +17,17 @@ interface Users {
   orders?: [];
 }
 
-interface CardContactProps {
-  token: string;
-}
+interface CardContactProps {}
 
-const CardContact: React.FC<CardContactProps> = ({ token }) => {
+const CardUser: React.FC<CardContactProps> = () => {
   const [users, setUsers] = useState<Users[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchUsers = async () => {
     try {
+      const userSession = localStorage.getItem('userSession');
+      const token = userSession ? JSON.parse(userSession).token : '';
+
       const response = await axios.get('https://fivetart-travel-kafg.onrender.com/user', {
         headers: {
           Authorization: `Bearer ${token}`
@@ -40,7 +41,7 @@ const CardContact: React.FC<CardContactProps> = ({ token }) => {
 
   useEffect(() => {
     fetchUsers();
-  }, [token]);
+  }, []);
 
   const openModal = () => {
     fetchUsers();
@@ -54,7 +55,7 @@ const CardContact: React.FC<CardContactProps> = ({ token }) => {
 
   return (
     <div
-      className="relative p-4 bg-white hover:bg-slate-50 rounded-2xl shadow-xl cursor-pointer text-white w-60 h-[110px] hover:shadow-2xl transition-shadow"
+      className="relative p-4 bg-white hover:bg-slate-50 rounded-2xl shadow-xl cursor-pointer text-white w-60 h-[150px] hover:shadow-2xl transition-shadow"
       onClick={openModal}
     >
       <div className="absolute top-2 left-2 bg-white rounded-full p-2">
@@ -74,4 +75,4 @@ const CardContact: React.FC<CardContactProps> = ({ token }) => {
   );
 };
 
-export default CardContact;
+export default CardUser;

@@ -32,4 +32,6 @@ export interface ITourFormProps {
   handleSubmit: (e: React.FormEvent) => void;
   isOpen?: boolean;
   toggleMenu?: () => void;
+  handleUpload?: (file: File, imageUrl: string) => void;
+  handleUploadList?: (file: File, imageUrl: string) => void;
 }

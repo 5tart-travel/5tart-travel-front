@@ -110,8 +110,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const planeTours = tours.filter(tour => tour.agency.id === params.id && tour.transportType === 'plane');
   const busTours = tours.filter(tour => tour.agency.id === params.id && tour.transportType === 'bus');
 
-  const regions = [...new Set(tours.map(tour => tour.region))]; // Obtener regiones únicas
-
+  const regions = [...new Set(tours.map(tour => tour.region))]; 
   const openRegionModal = (region: string) => {
     const toursInRegion = tours.filter(tour => tour.region === region && tour.agency.id === params.id);
     if (toursInRegion.length > 0) {

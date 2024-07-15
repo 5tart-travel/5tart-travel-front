@@ -56,7 +56,7 @@ const DeleteTour: React.FC<{
   return (
     <button onClick={handleDeleteClick} className="group">
       <svg
-        className="rounded-full h-6 w-6 text-gray-400 group-hover:bg-gray-200"
+        className="rounded-full h-6 w-6 text-white group-hover:bg-blue-900"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

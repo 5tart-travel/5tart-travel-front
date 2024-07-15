@@ -121,7 +121,7 @@ const Calculadora: React.FC = () => {
   };
 
   const regions = [
-    'Patagonia',
+    'Patagonica',
     'Noroeste',
     'Cuyo',
     'Pampeana',
@@ -149,55 +149,55 @@ const Calculadora: React.FC = () => {
 
       selectedPackageDetails = (
         <div
-        key={selectedPackage.id}
-        style={{
-          border: '1px solid #ddd',
-          borderRadius: '8px',
-          padding: '20px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-          cursor: 'pointer',
-          backgroundColor: selectedPackage && selectedPackage.id === selectedPackage.id ? '#e0f7fa' : 'white',
-          backgroundImage: `url(${selectedPackage.imgUrl})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-        
-      >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ textAlign: 'center', maxWidth: '160px' }}>
-            <h3
-              style={{
-                fontSize: '1rem',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                color: 'white',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                padding: '5px',
+          key={selectedPackage.id}
+          style={{
+            border: '1px solid #ddd',
+            borderRadius: '8px',
+            padding: '20px',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            cursor: 'pointer',
+            backgroundColor: selectedPackage && selectedPackage.id === selectedPackage.id ? '#e0f7fa' : 'white',
+            backgroundImage: `url(${selectedPackage.imgUrl})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ textAlign: 'center', maxWidth: '160px' }}>
+              <h3
+                style={{
+                  fontSize: '1rem',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  color: 'white',
+                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                  padding: '5px',
+                  borderRadius: '5px',
+                  margin: '0 auto',
+                }}
+              >
+                {selectedPackage.title}
+                <p style={{ textAlign: 'left', margin: '5px 0' }}>{tourDuration} días, {noches} noches</p>
+              </h3>
+
+              <div style={{
+                marginTop: '5px',
+                padding: '2px',
+                border: '1px solid blue',
                 borderRadius: '5px',
-                margin: '0 auto',  
-              }}
-            >
-              {selectedPackage.title}
-              <p style={{ textAlign: 'left', margin: '5px 0' }}>{tourDuration} días, {noches} noches</p>
-            </h3>
-      
-            <div style={{
-              marginTop: '5px',
-              padding: '2px',
-              border: '1px solid blue',
-              borderRadius: '5px',
-              backgroundColor: 'blue',
-              color: 'white',
-              margin: '0 auto',  
-              width: 'fit-content'  
-            }}>
-              <p>Precio: ${selectedPackage.price.toLocaleString()}</p>
+                backgroundColor: 'blue',
+                color: 'white',
+                margin: '0 auto',
+                width: 'fit-content'
+              }}>
+                <p>Precio: ${selectedPackage.price.toLocaleString()}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
+
       );
     }
   }
@@ -230,7 +230,7 @@ const Calculadora: React.FC = () => {
   };
 
   return (
-    <div style={{marginTop:'10px'}}>
+    <div style={{ marginTop: '10px' }}>
       <section style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '95%', margin: '0 auto' }}>
         <div style={{ backgroundColor: '#f0f0f0', padding: '20px', marginBottom: '20px', width: '100%', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
           <h2 style={{ textAlign: 'center', color: '#333', textTransform: 'uppercase', fontSize: '24px', marginBottom: '15px' }}>Planificador de Gastos de Viaje</h2>
@@ -271,7 +271,7 @@ const Calculadora: React.FC = () => {
               <div style={{
                 marginBottom: '20px',
                 overflowY: 'auto',
-                flex: '1'  
+                flex: '1'
               }}>
                 <div style={{
                   display: 'grid',
@@ -420,7 +420,14 @@ const Calculadora: React.FC = () => {
         </button>
       </div>
 
-      <div style={{ display: 'flex', gap: '20px' }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        gap: '20px',
+        padding: '10px',
+        flexWrap: 'wrap',
+        justifyContent: 'center'
+      }}>
         <FoodSelection selectedMeals={selectedMeals} handleSelectMeal={handleSelectMeal} />
         <RegionFilter
           selectedRegion={selectedRegion}
@@ -429,6 +436,9 @@ const Calculadora: React.FC = () => {
         />
       </div>
       <hr className='mt-10' />
+
+     
+
 
       <section style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
         <div style={{ flex: '1', marginRight: '20px' }}>
@@ -459,6 +469,7 @@ const Calculadora: React.FC = () => {
           <BackButton />
         </Link>
       </div>
+      
 
     </div>
   );

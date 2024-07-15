@@ -73,7 +73,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onUpload }) => {
           readOnly
           value={selectedFile ? selectedFile.name : ''}
           placeholder="Selecciona una imagen..."
-          className="mr-2 flex-1 block w-full text-sm text-gray-900 border border-lime-500 rounded-xl cursor-pointer bg-gray-50 focus:outline-none px-3 py-2 shadow-xl"
+          className="mr-2 block w-80 text-sm text-gray-900 border border-lime-500 rounded-xl cursor-pointer bg-gray-50 focus:outline-none px-3 py-2 shadow-xl"
         />
         <button
           type="button"

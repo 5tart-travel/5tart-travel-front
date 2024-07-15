@@ -37,7 +37,7 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
       const uploadPromises = files.map((file) => uploadFile(file));
       await Promise.all(uploadPromises);
       setUploadSuccess(true);
-      Swal.fire('Tus imágenes se subieron correctamente!');
+      // Swal.fire('Tus imágenes se subieron correctamente!');
     } catch (error) {
       console.error('Error al subir los archivos:', error);
       setErrorMessage(
@@ -87,7 +87,7 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
               : ''
           }
           placeholder="Selecciona imágenes..."
-          className="mr-2 flex-1 block w-full text-sm text-gray-900 border border-lime-500 rounded-xl cursor-pointer bg-gray-50 focus:outline-none px-3 py-2 shadow-xl"
+          className="mr-2 block w-80 text-sm text-gray-900 border border-lime-500 rounded-xl cursor-pointer bg-gray-50 focus:outline-none px-3 py-2 shadow-xl"
         />
         <button
           type="button"
