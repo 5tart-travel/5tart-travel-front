@@ -1,9 +1,10 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { decodeJwt } from '@/utils/decodeJwt';
+import { checkUserRole, decodeJwt } from '@/utils/decodeJwt';
 import { useRouter } from 'next/navigation';
 import OrderCard from '@/components/CardTourDashboard/OrderCard';
+import { log } from 'console';
 
 interface IOrder {
   id: string;
@@ -75,7 +76,7 @@ const Compras = () => {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex flex-wrap">
           {orders.map((order) => (
             <OrderCard key={order.id} order={order} />
           ))}
