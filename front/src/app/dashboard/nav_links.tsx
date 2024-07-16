@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaMoneyCheckAlt } from 'react-icons/fa';
 import { MdDashboardCustomize } from 'react-icons/md';
 import { BiSolidDonateHeart } from 'react-icons/bi';
 import { MdFavorite } from 'react-icons/md';
@@ -13,7 +13,7 @@ import { AiFillDollarCircle } from 'react-icons/ai';
 import { BsBank2 } from 'react-icons/bs';
 
 const links = [
-  { name: 'Inicio', href: '/', icon: FaHome },
+  // { name: 'Inicio', href: '/', icon: FaHome },
   {
     name: 'Mi perfil',
     href: '/dashboard/mi-perfil',
@@ -36,6 +36,11 @@ const links = [
     name: 'Pagos',
     href: '/dashboard/pagos',
     icon: BsBank2,
+  },
+  {
+    name: 'Mis ventas',
+    href: '/dashboard/mis-ventas',
+    icon: FaMoneyCheckAlt,
   },
 ];
 
@@ -74,7 +79,8 @@ export default function NavLinks() {
           (link.name === 'Agregar Tour' ||
             link.name === 'Mis Tours' ||
             link.name === 'Datos bancarios' ||
-            link.name === 'Pagos')
+            link.name === 'Pagos' ||
+            link.name === 'Mis ventas')
         ) {
           return null;
         }
