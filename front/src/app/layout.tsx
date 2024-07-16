@@ -45,7 +45,7 @@ export default function RootLayout({
                 var s = document.createElement('script');s.type = 'text/javascript';s.async = true;
                 s.addEventListener('load', function() {
                   var myLandbot = new Landbot.Livechat({
-                    configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-2540817-1JWJESKA59LWGPZ1/index.json',
+                    configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-2554135-FF1JTNYN4JZ5723O/index.json',
                   });
                 });
                 s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.js';
