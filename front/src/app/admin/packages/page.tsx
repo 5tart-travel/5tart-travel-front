@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaBus, FaHotel, FaShieldAlt } from 'react-icons/fa';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 interface Package {
   id: string;
@@ -27,9 +26,7 @@ interface Package {
 
 const Packages: React.FC = () => {
   const [packages, setPackages] = useState<Package[]>([]);
-  const router = useRouter();
-  const searchParams = new URLSearchParams(window.location.search);
-  const searchQuery = searchParams.get('search') || '';
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -59,6 +56,13 @@ const Packages: React.FC = () => {
     <div>
       <div className="flex justify-center min-h-screen p-6">
         <div className="flex flex-col space-y-4 w-full max-w-4xl">
+          <input
+            type="text"
+            placeholder="Search packages..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className="mb-4 p-2 border rounded"
+          />
           {filteredPackages.map((pkg) => (
             <div
               key={pkg.id}
