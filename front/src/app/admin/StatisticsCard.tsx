@@ -8,7 +8,7 @@ import { FaUsers, FaBuilding } from 'react-icons/fa';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const MIN_USERS = 100;
+const MIN_TOTAL = 100;
 const POLLING_INTERVAL = 5000; // 5 segundos
 
 const StatisticsCard: React.FC = () => {
@@ -60,15 +60,18 @@ const StatisticsCard: React.FC = () => {
     return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
   }, []);
 
-  const chartData = (value: number, total: number, color: string) => ({
-    datasets: [
-      {
-        data: [value, total - value],
-        backgroundColor: [color, '#e0e0e0'],
-        borderWidth: 1,
-      },
-    ],
-  });
+  const chartData = (value: number, total: number, color: string) => {
+    const adjustedTotal = total < MIN_TOTAL ? MIN_TOTAL : total;
+    return {
+      datasets: [
+        {
+          data: [value, adjustedTotal - value],
+          backgroundColor: [color, '#e0e0e0'],
+          borderWidth: 1,
+        },
+      ],
+    };
+  };
 
   const charts = [
     { label: 'Activos', value: data.activeUsers, total: data.totalUsers, color: '#36a2eb', icon: <FaUsers className="text-white text-lg" /> },
@@ -78,7 +81,7 @@ const StatisticsCard: React.FC = () => {
   ];
 
   const calculatePercentage = (value: number, total: number) => {
-    const adjustedTotal = total < MIN_USERS ? MIN_USERS : total;
+    const adjustedTotal = total < MIN_TOTAL ? MIN_TOTAL : total;
     return ((value / adjustedTotal) * 100).toFixed(0);
   };
 
