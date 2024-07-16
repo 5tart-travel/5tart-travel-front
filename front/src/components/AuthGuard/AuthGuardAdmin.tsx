@@ -1,20 +1,26 @@
 import { checkUserRole } from '@/utils/decodeJwt';
 import { useRouter } from 'next/navigation';
-import { useEffect, ReactNode } from 'react';
+import { useEffect, ReactNode, useState } from 'react';
 
-interface AuthGuardAdminProps {
+interface AuthGuardProps {
   children: ReactNode;
 }
 
-const AuthGuardAdmin = ({ children }: AuthGuardAdminProps) => {
+const AuthGuardAdmin = ({ children }: AuthGuardProps) => {
   const router = useRouter();
-  const role = checkUserRole();
+  const [role, setRole] = useState<string | null>(null);
 
   useEffect(() => {
-    if (role !== 'agency') {
+    const userRole = checkUserRole();
+    setRole(userRole);
+    if (userRole !== 'admin') {
       router.push('/');
     }
-  }, [role, router]);
+  }, [router]);
+
+  if (role === null) {
+    return null;
+  }
 
   return <>{children}</>;
 };
