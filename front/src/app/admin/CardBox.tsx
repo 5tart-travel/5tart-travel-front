@@ -170,7 +170,7 @@
 // export default CardBox;
 import socket from '@/hooks/useSocket';
 import axios from 'axios';
-import { useState, useEffect, useRef, Fragment } from 'react';
+import { useState, useEffect, useRef, Fragment, use } from 'react';
 import { BsFillInboxesFill } from "react-icons/bs";
 import { MdDelete } from 'react-icons/md';
 import { Dialog, Transition } from '@headlessui/react';
@@ -178,27 +178,49 @@ import { Dialog, Transition } from '@headlessui/react';
 export interface Agency {
   id: string;
   name_agency: string;
+  date?: any;
+  type: 'agency'
+}
+
+export interface User {
+  id: string;
+  username: string;
+  date?: any;
+  type: 'user'
+
+
 }
 
 const CardBox: React.FC = () => {
   const [agencies, setAgencies] = useState<Agency[]>([]);
-  const [selectedNotification, setSelectedNotification] = useState<Agency | null>(null);
+  const [users, setUsers] = useState<User[]>([]);
+  const [selectedNotification, setSelectedNotification] = useState< Agency | User | any | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const response = await axios.get<Agency[]>('https://fivetart-travel-kafg.onrender.com/agency/disable');
+        const response = await axios.get<Agency[]>('https://fivetart-travel-kafg.onrender.com/agency/disable/seen');
         if (Array.isArray(response.data)) {
           setAgencies(response.data);
         } else {
           console.error('Response data is not an array:', response.data);
         }
+
+        const response2 = await axios.get<User[]>('https://fivetart-travel-kafg.onrender.com/user/disable/seen');
+        if (Array.isArray(response2.data)) {
+          setUsers(response2.data);
+        } else {
+          console.error('Response data is not an array:', response2.data);
+        }
+
+
       } catch (error) {
         console.error('Error fetching initial data:', error);
       }
     };
+
 
     fetchInitialData();
 
@@ -210,7 +232,19 @@ const CardBox: React.FC = () => {
     socket.on('allDisableAgency', (items: any) => {
       if (Array.isArray(items)) {
         setAgencies(items);
-        console.log('Nueva notificacion recibida'); 
+        console.log('Nueva notificacion recibida');
+        if (audioRef.current) {
+          audioRef.current.play().catch(error => console.error('Error de audio:', error));
+        }
+      } else {
+        console.error('Received items are not an array:', items);
+      }
+    });
+
+    socket.on('allUsers', (items: any) => {
+      if (Array.isArray(items)) {
+        setUsers(items);
+        console.log('Nueva notificacion recibida');
         if (audioRef.current) {
           audioRef.current.play().catch(error => console.error('Error de audio:', error));
         }
@@ -240,22 +274,45 @@ const CardBox: React.FC = () => {
     setSelectedNotification(null);
   };
 
-  const deleteNotification = (id: string) => {
-    setAgencies(agencies.filter((agency) => agency.id !== id));
-    closeModal();
-  };
-//  ? Funcion para simular una notificacion y probar el sonido de la notificacion xD
-  const simulateNotification = () => {
-    const newNotification: Agency = {
-      id: `${Date.now()}`, //? Genera un ID único basado en la fecha y hora actual
-      name_agency: 'Agencia de Prueba',
-    };
-    setAgencies(prevAgencies => [newNotification, ...prevAgencies]);
-    console.log('Simulated notification received');
-    if (audioRef.current) {
-      audioRef.current.play().catch(error => console.error('Error de audio:', error));
+  const deleteNotification = async (id: string, type: 'agency' | 'user') => {
+    try {
+      const url = `https://fivetart-travel-kafg.onrender.com/agency/disable/seen/${id}`;
+      await axios.put(url);
+  
+      if (type == 'agency') {
+        setAgencies(prevAgencies => prevAgencies.filter(agency => agency.id !== id));
+        closeModal();
+      } else {
+        setUsers(prevUsers => prevUsers.filter(user => user.id !== id));
+        closeModal();
+      }  
+    } catch (error) {
+      console.error('Error al eliminar la notificación:', error);      
+      throw new Error('Error al eliminar la notificación');
     }
   };
+
+
+  //  ? Funcion para simular una notificacion y probar el sonido de la notificacion xD
+  // const simulateNotification = () => {
+  //   const newNotification: Agency = {
+  //     id: `${Date.now()}`, //? Genera un ID único basado en la fecha y hora actual
+  //     name_agency: 'Agencia de Prueba',
+  //   };
+  //   setAgencies(prevAgencies => [newNotification, ...prevAgencies]);
+  //   console.log('Simulated notification received');
+  //   if (audioRef.current) {
+  //     audioRef.current.play().catch(error => console.error('Error de audio:', error));
+  //   }
+  // };
+
+  // Combina los dos arrays
+  const notification: any = [...agencies, ...users];
+
+  // Ordena el array combinado por la propiedad date
+  notification.sort((a: any, b: any) => b.date - a.date);
+
+  console.log(notification);
 
   return (
     <div className="relative p-4 bg-white rounded-2xl shadow-2xl cursor-pointer w-60 h-full transition-all duration-500 custom-scrollbar overflow-y-auto">
@@ -268,32 +325,36 @@ const CardBox: React.FC = () => {
       </div>
       <div className="flex flex-col items-center justify-center mt-4">
         <p className="text-xl text-gray-600 font-semibold">Inbox</p>
-        <p className="text-3xl text-gray-600 font-bold">{agencies.length}</p>
+        <p className="text-3xl text-gray-600 font-bold">{notification.length}</p>
       </div>
       <div className="mt-4 w-full">
-        {agencies.length > 0 ? (
-          agencies.map((notification) => (
+        {notification.length > 0 ? (
+          notification.map((item: any) => (
             <div
-              key={notification.id}
+              key={item.id}
               className="p-2 border-b border-gray-200 bg-white hover:bg-blue-100 text-gray-700 rounded-md shadow-md mb-2 overflow-hidden"
-              onClick={() => openModal(notification)}
+              onClick={() => openModal(item)}
             >
-              <p className="text-sm font-semibold truncate">Nueva agencia: {notification.name_agency} para activar</p>
+              {item.name_agency ? (
+                <p className="text-sm font-semibold truncate">Nueva agencia: {item.name_agency} para activar</p>
+              ) : (
+                <p className="text-sm font-semibold truncate">Nuevo usuario: {item.username} registrado</p>
+              )}
             </div>
           ))
         ) : (
-          <div className='flex flex-col items-center justify-center bg-white shadow-xl rounded-2xl py-4 w-full'>
+          <div className="flex flex-col items-center justify-center bg-white shadow-xl rounded-2xl py-4 w-full">
             <p className="text-sm text-gray-500">No hay notificaciones</p>
           </div>
         )}
       </div>
-      <button
+      {/* <button
         type="button"
         className="mt-4 inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
         onClick={simulateNotification}
       >
         Simular Notificación
-      </button>
+      </button> */}
 
       <Transition appear show={isModalOpen} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>
@@ -334,7 +395,7 @@ const CardBox: React.FC = () => {
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
-                    onClick={() => deleteNotification(selectedNotification!.id)}
+                    onClick={() => deleteNotification(selectedNotification!.id, selectedNotification!.type)}
                   >
                     <MdDelete size={20} className="mr-1" />
                     Eliminar

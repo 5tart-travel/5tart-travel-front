@@ -60,7 +60,7 @@ const ResumenFinanciero: React.FC = () => {
             })}
           >
             <div className="text-center">
-              <p className="text-2xl text-gray-800 font-bold">${ganancia.toFixed(2)}</p>
+              <p className="text-2xl text-gray-800 font-bold">${totalIngresos.toFixed(2)}</p>
               <p className="text-sm text-gray-600">Ganancia</p>
             </div>
           </CircularProgressbarWithChildren>
