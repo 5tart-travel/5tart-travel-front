@@ -1,6 +1,6 @@
 import { checkUserRole } from '@/utils/decodeJwt';
 import { useRouter } from 'next/navigation';
-import { useEffect, ReactNode } from 'react';
+import { useEffect, ReactNode, useState } from 'react';
 
 interface AuthGuardAgencyProps {
   children: ReactNode;
@@ -8,13 +8,19 @@ interface AuthGuardAgencyProps {
 
 const AuthGuardAgency = ({ children }: AuthGuardAgencyProps) => {
   const router = useRouter();
-  const role = checkUserRole();
+  const [role, setRole] = useState<string | null>(null);
 
   useEffect(() => {
-    if (role !== 'agency') {
+    const userRole = checkUserRole();
+    setRole(userRole);
+    if (userRole !== 'agency') {
       router.push('/');
     }
-  }, [role, router]);
+  }, [router]);
+
+  if (role === null) {
+    return null;
+  }
 
   return <>{children}</>;
 };
