@@ -5,7 +5,11 @@ import Card from '@/components/Home_ui/Card_home';
 import BouncingDotsLoader from '@/components/ui/BouncingDotsLoader';
 import Link from 'next/link';
 
-const CarouselWithThumbnails: React.FC = () => {
+interface CarouselProps {
+  tema: boolean;
+}
+
+const CarouselWithThumbnails: React.FC<CarouselProps> = ({tema}) => {
   const [agencias, setAgencias] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -81,7 +85,7 @@ const CarouselWithThumbnails: React.FC = () => {
 
         <div className="absolute xl:top-[260px] xl:right-[530px] lg:top-[260px] lg:right-[500px] md:top-[260px] md:right-[400px] sm:top-[130px] sm:right-[380px] xs:top-[170px] xs:right-[50px] xxs:top-[140px] xxs:right-[70px]">
           <Link href="/travel">
-            <button className="mt-4 px-6 py-3 bg-blue-950 rounded-xl hover:bg-blue-900 shadow-xl text-white sm:px-4 sm:py-2 sm:mb-96 md:px-5 md:py-2.5 lg:px-6 lg:py-3">
+            <button className={`mt-4 px-6 py-3 ${ tema ?  'bg-black hover:bg-gray-900' : 'bg-blue-950 hover:bg-blue-900' } rounded-xl  shadow-xl text-white sm:px-4 sm:py-2 sm:mb-96 md:px-5 md:py-2.5 lg:px-6 lg:py-3`}>
               Buscar viajes
             </button>
           </Link>
@@ -106,6 +110,7 @@ const CarouselWithThumbnails: React.FC = () => {
                         alt={agencia.name_agency}
                         name={agencia.name_agency}
                         address={agencia.address}
+                        tema={tema}
                       />
                     </Link>
                   </div>

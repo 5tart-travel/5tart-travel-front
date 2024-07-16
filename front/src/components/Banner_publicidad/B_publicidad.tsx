@@ -1,14 +1,17 @@
 import Link from 'next/link';
 import React from 'react';
 
-const TravelBanner: React.FC = () => {
+interface TravelBannerProps {
+  tema: boolean;
+}
+
+const TravelBanner: React.FC<TravelBannerProps> = ({tema}) => {
   return (
     <div
-      className="relative w-full min-h-screen flex flex-col justify-center items-center text-center text-gray-700 bg-no-repeat bg-center bg-contain"
+      className={`relative w-full min-h-screen flex flex-col justify-center items-center text-center ${ tema ? 'text-white' : 'text-gray-700'} bg-no-repeat bg-center bg-contain`}
       style={{
-        backgroundImage: "url('https://res.cloudinary.com/dia2gautk/image/upload/v1719538399/qlk0ggedcdxekt6jvs1j.webp')",
+        backgroundImage: `url(${ tema ? 'https://res.cloudinary.com/dd1yaduhv/image/upload/v1721118148/viajes_irgos1_1_bytcn4.png' : 'https://res.cloudinary.com/dia2gautk/image/upload/v1719538399/qlk0ggedcdxekt6jvs1j.webp'})`,
         paddingTop: '50px',
-        minHeight: 'calc(100vh - 90px)',
         maxWidth: '100vw',
       }}
     >
@@ -22,7 +25,7 @@ const TravelBanner: React.FC = () => {
 
         <div className="mt-10">
           <Link href="/ofertas">
-            <button className="bg-blue-950 hover:bg-blue-800 text-white font-bold py-4 px-4 rounded-2xl shadow-lg xxs:py-2 xxs:px-3 xs:py-3 xs:px-4 sm:py-2 sm:px-3 md:py-3 md:px-4">
+            <button className={`${ tema ? 'bg-gray-900 hover:bg-black' : 'bg-blue-950 hover:bg-blue-800'}  text-white font-bold py-4 px-4 rounded-2xl shadow-lg xxs:py-2 xxs:px-3 xs:py-3 xs:px-4 sm:py-2 sm:px-3 md:py-3 md:px-4`}>
               Explora ofertas
             </button>
           </Link>

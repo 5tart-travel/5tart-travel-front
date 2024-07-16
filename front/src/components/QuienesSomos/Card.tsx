@@ -16,7 +16,7 @@ const Card = ( props:any ) => {
               <img src="https://res.cloudinary.com/dd1yaduhv/image/upload/v1720991036/github-142-svgrepo-com_ef0qdj.svg" alt="github" className="h-14 hover:opacity-75 bg-white rounded-full"></img>
             </a>
             <a href={linkedin} target="_blank">
-              <img src="https://res.cloudinary.com/dd1yaduhv/image/upload/v1720984185/linkedin-svgrepo-com_sclucp.svg" alt="linkedin" className="h-16 hover:opacity-75"></img>
+              <img src="https://res.cloudinary.com/dd1yaduhv/image/upload/v1720991036/linkedin-round-svgrepo-com_psegzi.svg" alt="linkedin" className="h-custom-3 hover:opacity-75 bg-white rounded-full"></img>
             </a>
           </div>
         </li>

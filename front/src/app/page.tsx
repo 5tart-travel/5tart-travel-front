@@ -31,7 +31,7 @@ export default function Home() {
         <GlobalStyles />
         <Navbar toggleTema={toggleTema} tema={tema} />
         <div className="flex">
-          <CarouselWithThumbnails />
+          <CarouselWithThumbnails tema={tema}/>
         </div>
         <div>
           <ViajaPorElMundo tema={tema}/>
@@ -40,7 +40,7 @@ export default function Home() {
           <CardInternacional />
         </div>
         <div className="flex justify-center items-center ">
-          <TravelBanner />
+          <TravelBanner tema={tema}/>
         </div>
         <div>
           <ViajesNacionales tema={tema} />

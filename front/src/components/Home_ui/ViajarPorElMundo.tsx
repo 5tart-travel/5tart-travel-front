@@ -8,7 +8,7 @@ interface ViajaProps {
 const ViajaPorElMundo: React.FC<ViajaProps> = ({ tema }) => {
 
   return (
-    <div className={`flex flex-col md:flex-row items-center mt-20 md:mt-30 ${ tema ? 'bg-customGray' : 'bg-gray-100'} h-auto md:h-custom-1`}>
+    <div className={`flex flex-col md:flex-row items-center mt-20 ${ tema ? 'bg-customGray md:mt-30' : 'bg-gray-100 md:mt-40'} h-auto md:h-custom-1`}>
       <div className="hidden md:block relative w-full md:w-auto justify-center items-center">
         <Image 
           src="https://res.cloudinary.com/dia2gautk/image/upload/v1719784196/v0zrrldwojrq457qhjbt.webp" 

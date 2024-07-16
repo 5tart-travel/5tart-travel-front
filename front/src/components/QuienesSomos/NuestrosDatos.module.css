@@ -8,14 +8,15 @@
     width: 16%;
     margin: 2.5% 1.5%;
     box-sizing: border-box;
-    border: 2px solid black;
+    border: 2px solid rgb(4, 4, 56);
     border-radius: 10px;
-    padding: 0.5rem
+    padding: 4px;
 }
 
 .techFav_cards li:hover {
-    border-color: rgba(43, 119, 243, 0.918);
-    background-color: black;
+    border: none;
+    cursor: pointer;
+    background-color: #f3f4f6;
     padding: 0%;
     transition: 1s all;
     transform: scale(1.1);
@@ -28,9 +29,9 @@
 .techFav_cards h2{
     font-size: 30px;
     text-align: center;
-    color: whitesmoke;
+    color: #f3f4f6;
 }
 
 .iconContainer{
-    background-color: rgba(76, 125, 204, 0.918);
+    background-color: rgb(23 37 84);
 }

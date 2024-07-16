@@ -15,6 +15,7 @@ const config: Config = {
       height: {
         'custom-1': '14rem',
         'custom-2': '20rem',
+        'custom-3': '3.5rem',
       },
       invert: {
         100: '1',
