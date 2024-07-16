@@ -14,7 +14,7 @@ export interface CardGridProps {
   state?: string;
   country?: string;
   empresa?: string;
-  transportType: 'plane' | 'bus';
+  transportType: 'plane' | 'bus'; // Nueva prop
 }
 
 const CardGrid: FC<CardGridProps> = ({
@@ -48,12 +48,8 @@ const CardGrid: FC<CardGridProps> = ({
             </div>
           )}
           <div className="absolute bottom-0 left-0 p-2 bg-blue-600 bg-opacity-35 backdrop-blur-lg shadow-3xl w-[90%] h-auto rounded-2xl flex flex-col mx-4 mb-2">
-            <h3 className="text-xl text-gray-50 text-shadow-semidark font-semibold">
-              {title}
-            </h3>
-            <p className="text-2xl text-gray-50 text-shadow-semidark font-bold">
-              ${price}
-            </p>
+            <h3 className="text-xl text-gray-50 text-shadow-semidark font-semibold">{title}</h3>
+            <p className="text-2xl text-gray-50 text-shadow-semidark font-bold">${price}</p>
             <p className="text-gray-50">{empresa}</p>
           </div>
         </div>

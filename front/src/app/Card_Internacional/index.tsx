@@ -22,13 +22,9 @@ const CardInternacional: React.FC = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await fetch(
-          'https://fivetart-travel-kafg.onrender.com/tours',
-        );
+        const response = await fetch('https://fivetart-travel-kafg.onrender.com/tours');
         const data: Tour[] = await response.json();
-        const internationalTours = data.filter(
-          (tour) => tour.region === 'Internacional',
-        );
+        const internationalTours = data.filter(tour => tour.region === 'Internacional');
         setTours(internationalTours);
       } catch (error) {
         console.error('Error fetching tours:', error);
@@ -40,7 +36,7 @@ const CardInternacional: React.FC = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-      {tours.map((tour) => (
+      {tours.map(tour => (
         <CardGrid
           key={tour.id}
           id={tour.id}
