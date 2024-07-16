@@ -2,87 +2,102 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaUsers, FaBuilding, FaDollarSign, FaPercentage } from 'react-icons/fa';
+import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { FaUsers, FaBuilding } from 'react-icons/fa';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+const MIN_USERS = 100;
+const POLLING_INTERVAL = 5000; // 5 segundos
 
 const StatisticsCard: React.FC = () => {
-  const [totalUsers, setTotalUsers] = useState(0);
-  const [activeUsers, setActiveUsers] = useState(0);
-  const [inactiveUsers, setInactiveUsers] = useState(0);
-  const [totalAgencies, setTotalAgencies] = useState(0);
-  const [activeAgencies, setActiveAgencies] = useState(0);
-  const [inactiveAgencies, setInactiveAgencies] = useState(0);
-  const [totalIncome, setTotalIncome] = useState(0);
-  const [totalProfit, setTotalProfit] = useState(0);
+  const [data, setData] = useState({
+    totalUsers: 0,
+    activeUsers: 0,
+    inactiveUsers: 0,
+    totalAgencies: 0,
+    activeAgencies: 0,
+    inactiveAgencies: 0,
+  });
+
+  const fetchData = async () => {
+    try {
+      const [userResponse, agencyResponse] = await Promise.all([
+        axios.get('https://fivetart-travel-kafg.onrender.com/user'),
+        axios.get('https://fivetart-travel-kafg.onrender.com/agency'),
+      ]);
+
+      const users = userResponse.data;
+      const agencies = agencyResponse.data;
+
+      const activeUsersCount = users.filter((user: any) => user.isActive).length;
+      const inactiveUsersCount = users.length - activeUsersCount;
+
+      const activeAgenciesCount = agencies.filter((agency: any) => agency.isActive).length;
+      const inactiveAgenciesCount = agencies.length - activeAgenciesCount;
+
+      setData({
+        totalUsers: users.length,
+        activeUsers: activeUsersCount,
+        inactiveUsers: inactiveUsersCount,
+        totalAgencies: agencies.length,
+        activeAgencies: activeAgenciesCount,
+        inactiveAgencies: inactiveAgenciesCount,
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userResponse = await axios.get('https://fivetart-travel-kafg.onrender.com/user');
-        const agencyResponse = await axios.get('https://fivetart-travel-kafg.onrender.com/agency');
-        const orderResponse = await axios.get('https://fivetart-travel-kafg.onrender.com/order');
-
-        const users = userResponse.data;
-        const agencies = agencyResponse.data;
-        const orders = orderResponse.data;
-
-        const activeUsersCount = users.filter((user: any) => user.isActive).length;
-        const inactiveUsersCount = users.length - activeUsersCount;
-
-        const activeAgenciesCount = agencies.filter((agency: any) => agency.isActive).length;
-        const inactiveAgenciesCount = agencies.length - activeAgenciesCount;
-
-        const income = orders.reduce((acc: number, order: any) => acc + order.price, 0);
-        const profit = income * 0.1;
-
-        setTotalUsers(users.length);
-        setActiveUsers(activeUsersCount);
-        setInactiveUsers(inactiveUsersCount);
-        setTotalAgencies(agencies.length);
-        setActiveAgencies(activeAgenciesCount);
-        setInactiveAgencies(inactiveAgenciesCount);
-        setTotalIncome(income);
-        setTotalProfit(profit);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
     fetchData();
+
+    const interval = setInterval(() => {
+      fetchData();
+    }, POLLING_INTERVAL);
+
+    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
   }, []);
 
-  const stats = [
-    { label: 'Usuarios Activos', value: activeUsers, total: totalUsers, color: 'bg-green-500', icon: <FaUsers /> },
-    { label: 'Usuarios Inactivos', value: inactiveUsers, total: totalUsers, color: 'bg-blue-500', icon: <FaUsers /> },
-    { label: 'Agencias Activas', value: activeAgencies, total: totalAgencies, color: 'bg-pink-500', icon: <FaBuilding /> },
-    { label: 'Agencias Inactivas', value: inactiveAgencies, total: totalAgencies, color: 'bg-yellow-500', icon: <FaBuilding /> },
-    { label: 'Total Ingresos', value: totalIncome, total: totalIncome, color: 'bg-orange-500', icon: <FaDollarSign /> },
-    { label: 'Total Ganancias', value: totalProfit, total: totalIncome, color: 'bg-purple-500', icon: <FaPercentage /> },
+  const chartData = (value: number, total: number, color: string) => ({
+    datasets: [
+      {
+        data: [value, total - value],
+        backgroundColor: [color, '#e0e0e0'],
+        borderWidth: 1,
+      },
+    ],
+  });
+
+  const charts = [
+    { label: 'Activos', value: data.activeUsers, total: data.totalUsers, color: '#36a2eb', icon: <FaUsers className="text-white text-lg" /> },
+    { label: 'Inactivos', value: data.inactiveUsers, total: data.totalUsers, color: '#ff6384', icon: <FaUsers className="text-white text-lg" /> },
+    { label: 'Agen. Activas', value: data.activeAgencies, total: data.totalAgencies, color: '#4bc0c0', icon: <FaBuilding className="text-white text-lg" /> },
+    { label: 'Agen. Inactivas', value: data.inactiveAgencies, total: data.totalAgencies, color: '#ffcd56', icon: <FaBuilding className="text-white text-lg" /> },
   ];
 
+  const calculatePercentage = (value: number, total: number) => {
+    const adjustedTotal = total < MIN_USERS ? MIN_USERS : total;
+    return ((value / adjustedTotal) * 100).toFixed(0);
+  };
+
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 space-y-4">
-      <div className="flex space-x-4 justify-around">
-        {stats.map((stat, index) => (
-          <div key={index} className="flex flex-col items-center space-y-2">
-            <div className="relative w-12 h-48 bg-gray-200 rounded-lg flex justify-center items-end overflow-hidden">
-              <div
-                className={`absolute bottom-0 w-full ${stat.color} flex justify-center items-center`}
-                style={{ height: `${stat.total > 0 ? (stat.value / stat.total) * 100 : 0}%` }}
-              >
-                <span className="text-white text-sm font-semibold transform rotate-90">
-                  {stat.total > 0 ? `${((stat.value / stat.total) * 100).toFixed(2)}%` : '0%'}
-                </span>
-              </div>
-              <div className="absolute bottom-0 flex flex-col items-center justify-center h-full w-full p-2">
-                <div className="text-white text-sm font-semibold transform rotate-90">
-                  {stat.label}
+    <div className="bg-white rounded-lg shadow-md p-6 space-y-8">
+      <h2 className="text-2xl font-bold text-gray-600 text-shadow-medium">Agencias y usuarios</h2>
+      <div className="flex flex-wrap justify-around">
+        {charts.map((chart, index) => (
+          <div key={index} className="flex flex-col items-center w-1/4">
+            <div className="relative w-32 h-w-32">
+              <Doughnut data={chartData(chart.value, chart.total, chart.color)} options={{ cutout: '70%' }} />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className={`rounded-full w-12 h-12 flex items-center justify-center`} style={{ backgroundColor: chart.color }}>
+                  {chart.icon}
                 </div>
               </div>
             </div>
-            <div className={`text-white p-2 rounded-full ${stat.color}`}>
-              {stat.icon}
-            </div>
-            <p className="text-lg font-semibold text-gray-700">{stat.value}</p>
+            <p className="text-xl font-semibold text-gray-700 mt-4">{calculatePercentage(chart.value, chart.total)}%</p>
+            <p className="text-md text-gray-500">{chart.label}</p>
           </div>
         ))}
       </div>

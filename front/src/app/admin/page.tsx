@@ -3,7 +3,6 @@ import React from 'react'
 import CardContact from './CardContact'
 import CardUser from './CardUser'
 import CardAgency from './CardAgency'
-import TrendGraphs from './TrendGraphs'
 import ImportantAlerts from './ResumenFinanciero'
 import CardBox from './CardBox'
 import CardTours from './CardTours'
@@ -24,7 +23,7 @@ const minidashboar: React.FC = () => {
       <div className="flex flex-col flex-1 space-y-4">
         <ImportantAlerts />
         <StatisticsCard />
-        {/* <TrendGraphs /> */}
+       
       </div>
       
       {/* Columna derecha */}

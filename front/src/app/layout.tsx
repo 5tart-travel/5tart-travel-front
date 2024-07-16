@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
