@@ -20,7 +20,7 @@ const TotalMount = () => {
       setToken(ntoken);
 
       if (ntoken) {
-        decodeJwt(ntoken); // Decodificar token si es necesario para otro uso
+        decodeJwt(ntoken);
       }
     }
   }, []);
