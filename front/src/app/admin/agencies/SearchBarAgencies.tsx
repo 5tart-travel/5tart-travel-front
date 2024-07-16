@@ -1,19 +1,18 @@
-
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense, ChangeEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const SearchBar: React.FC = () => {
+const SearchBarComponent: React.FC = () => {
   const [query, setQuery] = useState('');
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => { // Corregir el tipo aquí
     const newQuery = event.target.value;
     setQuery(newQuery);
 
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams as any); 
     if (newQuery) {
       params.set('search', newQuery);
     } else {
@@ -28,9 +27,15 @@ const SearchBar: React.FC = () => {
       value={query}
       onChange={handleSearch}
       placeholder="Buscar agencias..."
-      className=" p-2 my-4 rounded-2xl border-none  shadow-black/30 shadow-lg "
+      className="p-2 my-4 rounded-2xl border-none shadow-black/30 shadow-lg"
     />
   );
 };
+
+const SearchBar: React.FC = () => (
+  <Suspense fallback={<div>Cargando...</div>}>
+    <SearchBarComponent />
+  </Suspense>
+);
 
 export default SearchBar;

@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const SearchBar: React.FC = () => {
+const SearchBarComponent: React.FC = () => {
   const [query, setQuery] = useState('');
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -31,5 +31,11 @@ const SearchBar: React.FC = () => {
     />
   );
 };
+
+const SearchBar: React.FC = () => (
+  <Suspense fallback={<div>Cargando...</div>}>
+    <SearchBarComponent />
+  </Suspense>
+);
 
 export default SearchBar;
