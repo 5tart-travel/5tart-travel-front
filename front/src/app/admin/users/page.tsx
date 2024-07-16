@@ -5,7 +5,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import ToggleUser from '../ToggleUser';
 import { useSearchParams } from 'next/navigation';
-// import SearchBar from './SearchBarUsers';
+
 
 interface Users {
   id?: string;
@@ -52,7 +52,7 @@ const Users: React.FC = () => {
 
   return (
     <div className="p-4">
-      {/* <SearchBar /> */}
+     
       {filteredUsers.map(user => (
         <div
           key={user.id}

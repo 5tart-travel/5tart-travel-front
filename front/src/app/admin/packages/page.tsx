@@ -5,7 +5,8 @@ import axios from 'axios';
 import { FaBus, FaHotel, FaShieldAlt } from 'react-icons/fa';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-// import SearchBar from './SearchPackages';
+
+
 
 interface Package {
   id: string;
@@ -51,14 +52,14 @@ const Packages: React.FC = () => {
     fetchPackages();
   }, []);
 
-  // Aplicar el filtro basado en la búsqueda
+  
   const filteredPackages = packages.filter(pkg =>
     pkg.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div>
-      {/* <SearchBar /> */}
+     
       <div className="flex justify-center min-h-screen p-6">
         <div className="flex flex-col space-y-4 w-full max-w-4xl">
           {filteredPackages.map((pkg) => (
