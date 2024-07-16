@@ -8,7 +8,7 @@ const SearchBarComponent: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => { // Corregir el tipo aquí
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => { 
     const newQuery = event.target.value;
     setQuery(newQuery);
 

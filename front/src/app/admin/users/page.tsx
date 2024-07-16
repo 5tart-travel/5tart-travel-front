@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import ToggleUser from '../ToggleUser';
-import { useSearchParams } from 'next/navigation';
-import SearchBar from './SearchBarUsers';
 
 interface Users {
   id?: string;
@@ -18,8 +16,7 @@ interface Users {
 
 const Users: React.FC = () => {
   const [users, setUsers] = useState<Users[]>([]);
-  const searchParams = useSearchParams();
-  const searchQuery = searchParams.get('search') || '';
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -52,7 +49,13 @@ const Users: React.FC = () => {
 
   return (
     <div className="p-4">
-      <SearchBar />
+      <input
+        type="text"
+        placeholder="Search users..."
+        value={searchQuery}
+        onChange={e => setSearchQuery(e.target.value)}
+        className="mb-4 p-2 border rounded"
+      />
       {filteredUsers.map(user => (
         <div
           key={user.id}
@@ -89,4 +92,3 @@ const Users: React.FC = () => {
 };
 
 export default Users;
-
