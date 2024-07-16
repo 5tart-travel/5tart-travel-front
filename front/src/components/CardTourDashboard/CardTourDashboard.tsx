@@ -12,6 +12,7 @@ export interface IToursDashboard {
   imgUrl: string;
   oferta?: boolean;
   description?: string;
+  date?: string;
 }
 
 interface CardTourDashboardProps extends IToursDashboard {
