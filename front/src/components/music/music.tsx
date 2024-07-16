@@ -95,3 +95,4 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlist }) => {
 
 export default MusicPlayer;
 
+

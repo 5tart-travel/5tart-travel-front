@@ -1,16 +1,13 @@
 import Link from "next/link";
 import { FaInstagram, FaYoutube, FaTwitter, FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 import Logo from "@/components/ui/Logo";
-import MusicPlayer, { PlaylistItem } from "../music/music";
 
 interface FooterProps {
   username: string | null;
   className?: string;
   tema?: boolean | null;
 }
-const playlist: PlaylistItem[] = [
-  { title: 'relax', url: 'https://www.youtube.com/watch?v=m_HdyEbpd7o' },
-];
+
 
 const Footer: React.FC<FooterProps> = ({ username, className, tema }) => {
   return (
@@ -33,9 +30,7 @@ const Footer: React.FC<FooterProps> = ({ username, className, tema }) => {
             <Link href="/nosotros">
               <p className="text-gray-50 hover:text-blue-300 hover:underline">Nosotros</p>
             </Link>
-            <div>
-              <MusicPlayer playlist={playlist} />
-            </div>
+            
           </div>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <Link href="https://www.instagram.com/" target="_blank">
