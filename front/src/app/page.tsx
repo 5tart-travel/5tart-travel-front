@@ -12,19 +12,31 @@ import CardInternacional from './Card_Internacional';
 import AirlineGrid from '@/components/AirLineGrid.tsx/AirLineGrid';
 import BusGrid from '@/components/BusGrid/BuasGrid';
 import { ThemeProvider } from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { lightTheme, darkTheme } from '../components/ui/Theme';
 import { GlobalStyles } from '@/components/ui/GlobalStyle';
 import Footer from '@/components/Footer/Footer';
 
 export default function Home() {
   const [tema, setTema] = useState(false);
+
+  useEffect(() => {
+    const savedTema = localStorage.getItem('tema');
+    if (savedTema) {
+      setTema(JSON.parse(savedTema));
+    }
+  }, []);
+
   const theme = tema ? darkTheme : lightTheme;
 
   const toggleTema = () => {
-    setTema((tema) => !tema);
+    setTema((prevTema) => {
+      const newTema = !prevTema;
+      localStorage.setItem('tema', JSON.stringify(newTema));
+      return newTema;
+    });
   };
-
+  
   return (
     <ThemeProvider theme={theme}> 
       <>

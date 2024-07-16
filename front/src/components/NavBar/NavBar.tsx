@@ -11,11 +11,13 @@ import { JwtPayload } from '@/types';
 import DesplegableUser from './desplegable';
 import { CiMenuBurger } from "react-icons/ci";
 import SwitcherTema from './SwitcherTema';
+import { usePathname } from 'next/navigation'
 
 const DEFAULT_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
 const ADMIN_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/How-To-Fit-An-MX-5-Into-A-Pickup-Truck-Speedhunters_zy37c4';
 
 const Navbar = ( props:any ) => {
+  const pathname = usePathname()
 
   const { toggleTema, tema} = props
 
@@ -60,10 +62,12 @@ const Navbar = ( props:any ) => {
       </div>
 
       <NavMenu />
-      <Search />
-      <div onClick={toggleTema} className="absolute top-[3.6vh] right-[6rem] bg-inherit border-none cursor-pointer">
+      <Search />      
+      {pathname === '/' && (
+        <div onClick={toggleTema} className="absolute top-[3.6vh] right-[6rem] bg-inherit border-none cursor-pointer">
           <SwitcherTema tema={tema} />
-      </div>
+        </div>
+      )}
 
       <div className="flex items-center">
         {isLoggedIn ? (
