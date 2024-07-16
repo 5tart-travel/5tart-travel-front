@@ -54,7 +54,13 @@ const TotalMount = () => {
     }
   }, [token]);
   const formatPrice = (price: number) => {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const roundedPrice = Math.round(price * 100) / 100;
+    return roundedPrice.toLocaleString('es-CL', {
+      style: 'currency',
+      currency: 'CLP',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
   };
 
   return (
@@ -63,7 +69,7 @@ const TotalMount = () => {
         {error ? (
           <p>{error}</p>
         ) : total !== null ? (
-          <p>Saldo actual ${formatPrice(total)}</p>
+          <p>Saldo actual {formatPrice(total)}</p>
         ) : (
           <p>Loading...</p>
         )}
