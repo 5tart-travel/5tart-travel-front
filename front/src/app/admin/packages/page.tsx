@@ -56,13 +56,7 @@ const Packages: React.FC = () => {
     <div>
       <div className="flex justify-center min-h-screen p-6">
         <div className="flex flex-col space-y-4 w-full max-w-4xl">
-          <input
-            type="text"
-            placeholder="Search packages..."
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            className="mb-4 p-2 border rounded"
-          />
+          
           {filteredPackages.map((pkg) => (
             <div
               key={pkg.id}

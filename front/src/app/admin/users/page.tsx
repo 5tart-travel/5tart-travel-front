@@ -49,13 +49,7 @@ const Users: React.FC = () => {
 
   return (
     <div className="p-4">
-      <input
-        type="text"
-        placeholder="Search users..."
-        value={searchQuery}
-        onChange={e => setSearchQuery(e.target.value)}
-        className="mb-4 p-2 border rounded"
-      />
+     
       {filteredUsers.map(user => (
         <div
           key={user.id}
