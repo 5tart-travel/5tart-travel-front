@@ -40,7 +40,7 @@ const datosNosotros = [
 const NuestrosDatos = () => {
   return (
     <section id="techFav">
-      <hr className="border-black border-opacity-50 my-4 w-full"></hr>
+      <hr className="  border-black border-opacity-50 my-4 w-full"></hr>
       <Title>SOBRE NOSOTROS</Title>
       <Text/> 
       <ul className={styles.techFav_cards}>

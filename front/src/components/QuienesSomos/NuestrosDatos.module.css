@@ -8,9 +8,9 @@
     width: 16%;
     margin: 2.5% 1.5%;
     box-sizing: border-box;
-    border: 2px solid rgb(4, 4, 56);
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 4px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.459), 0 2px 4px -1px rgba(0, 0, 0, 0.452);
 }
 
 .techFav_cards li:hover {
@@ -34,4 +34,5 @@
 
 .iconContainer{
     background-color: rgb(23 37 84);
+    
 }

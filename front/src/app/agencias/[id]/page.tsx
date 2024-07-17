@@ -244,7 +244,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         </div>
       )}
        <div className="flex justify-center mb-16">
-        <Link href={'/travel/pack_bus'}>
+        <Link href={'/'}>
           <BackButton />
         </Link>
       </div>

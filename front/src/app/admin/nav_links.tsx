@@ -4,9 +4,9 @@ import clsx from "clsx";
 import { FaHome } from "react-icons/fa";
 import { MdDashboardCustomize, MdSupportAgent } from "react-icons/md";
 import { GiAirplaneDeparture } from "react-icons/gi";
-import { FaWallet } from "react-icons/fa";
 import { FaUserFriends } from "react-icons/fa"; 
 import { FaSuitcaseRolling } from "react-icons/fa"; 
+import { TbBeta } from "react-icons/tb";
 
 const adminLinks = [
   { name: "Inicio", href: "/", icon: FaHome },
@@ -15,7 +15,7 @@ const adminLinks = [
   { name: "Paquetes", href: "/admin/packages", icon: FaSuitcaseRolling }, 
   { name: "Soporte", href: "/admin/reportes", icon: MdSupportAgent },
   { name: "Usuarios", href: "/admin/users", icon: FaUserFriends }, 
-  
+  {name:'Betas', href: '/admin/betas', icon: TbBeta}
 ];
 
 const NavLinksAdmin: React.FC = () => {

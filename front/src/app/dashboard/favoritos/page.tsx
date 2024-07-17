@@ -94,8 +94,7 @@ const Favoritos = () => {
                 title={tour.title}
                 price={tour.price}
                 imageUrl={tour.imgUrl}
-                oferta={tour.oferta}
-              />
+                oferta={tour.oferta} transportType={'plane'}              />
             ))}
           </div>
         )}

@@ -21,7 +21,7 @@ const ViajesNacionales: React.FC<ViajesNacProps> = ({ tema }) => {
       </div>
       <div className="relative flex items-center w-full md:w-auto">
         <div className="absolute left-0 right-0 h-1 border-dotted border-b border-yellow-500 z-0"></div>
-        <h2 className={`relative z-10 px-4 text-2xl md:text-4xl font-bold ${ tema ? 'text-white' : 'text-blue-950'} text-shadow-semidark text-center md:text-left sm:text-4xl xs:text-5xl xxs:text-5xl`}>Viajes Nacionales</h2>
+        <h2 className={`relative z-10 px-4 lg:text-3xl md:text-4xl font-bold ${ tema ? 'text-white' : 'text-blue-950'} text-shadow-semidark text-center md:text-left sm:text-4xl xs:text-5xl xxs:text-5xl`}>Viajes Nacionales</h2>
       </div>
       <div className="hidden md:block relative w-full md:w-auto  justify-center items-center">
         <Image 

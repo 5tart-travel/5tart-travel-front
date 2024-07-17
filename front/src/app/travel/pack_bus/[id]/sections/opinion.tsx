@@ -135,6 +135,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
   const onInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
+    
     const { name, value } = e.target;
     const truncatedValue = value.slice(0, 50);
     if (name === 'username') setUsername(truncatedValue);

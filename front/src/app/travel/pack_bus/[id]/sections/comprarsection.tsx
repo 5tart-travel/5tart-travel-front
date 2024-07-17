@@ -26,7 +26,6 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   const userRole = checkUserRole();
 
   useEffect(() => {
-    // Obtener token de autenticación
     const userSessionString: any = localStorage.getItem('userSession');
     if (userSessionString) {
       const userSession = JSON.parse(userSessionString);
@@ -35,7 +34,6 @@ const CompraSection: React.FC<CompraSectionProps> = ({
       console.log('Token obtenido en useEffect:', ntoken);
     }
 
-    // Obtener el estado de favoritos desde localStorage
     const favoritedToursString = localStorage.getItem('favoritedTours');
     if (favoritedToursString) {
       const favoritedTours = JSON.parse(favoritedToursString);
@@ -44,6 +42,8 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   }, [tourId]);
 
   const toggleFavorite = async () => {
+    
+    
     try {
       const url = `https://fivetart-travel-kafg.onrender.com/user/tour/favorite/${tourId}`;
       if (favorited) {
@@ -62,7 +62,6 @@ const CompraSection: React.FC<CompraSectionProps> = ({
         console.log('Agregado a favoritos');
       }
 
-      // Actualizar el estado y localStorage
       setFavorited(!favorited);
       const favoritedToursString = localStorage.getItem('favoritedTours');
       let favoritedTours = favoritedToursString
@@ -81,6 +80,7 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   };
 
   const handleCheckout = async () => {
+   
     try {
       const responss = await fetch(
         `https://fivetart-travel-kafg.onrender.com/order/${busDetails.id}`,
@@ -199,3 +199,5 @@ const CompraSection: React.FC<CompraSectionProps> = ({
 };
 
 export default CompraSection;
+
+

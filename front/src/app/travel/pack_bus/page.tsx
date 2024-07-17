@@ -5,6 +5,8 @@ import { IBusTour } from '@/interface/IBusTour';
 import TourCard from '@/app/ofertas/tourCard';
 import FilterComponent from '@/components/FiltrosPack/FilterComponent';
 import '../../../components/Styles/ErrorBus.css';
+import { checkUserRole } from '@/utils/decodeJwt';
+
 
 const PackBus: React.FC = () => {
   const router = useRouter();
@@ -15,6 +17,8 @@ const PackBus: React.FC = () => {
   const [noResults, setNoResults] = useState(false);
   const [uniqueStates, setUniqueStates] = useState<string[]>([]);
   const [selectedState, setSelectedState] = useState<string>('');
+
+
 
   useEffect(() => {
     const fetchBuses = async () => {
@@ -48,9 +52,12 @@ const PackBus: React.FC = () => {
   }, [filteredTours]);
 
   const handleCardClick = (id: string) => {
+    
     router.push(`/travel/pack_bus/${id}`);
-  };
+};
 
+ 
+ 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     setSelectedState(selectedValue);
@@ -119,3 +126,5 @@ const PackBus: React.FC = () => {
 };
 
 export default PackBus;
+
+
