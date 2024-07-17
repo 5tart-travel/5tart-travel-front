@@ -10,7 +10,7 @@ interface AuthLayoutProps {
 const images = [
     'https://res.cloudinary.com/dia2gautk/image/upload/v1719431097/jirv2wvfrh537g5xjide.webp',
     'https://res.cloudinary.com/dia2gautk/image/upload/v1719431099/nwyjnt9orild91firajr.webp',
-    // 'https://res.cloudinary.com/dia2gautk/image/upload/v1719436143/bqgzygdkbjb5odbszsaf.webp',
+    
 ];
 
 const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
@@ -30,11 +30,13 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
 
   return (
     <main className='min-h-screen grid grid-cols-1 lg:grid-cols-2 p-5'>
-      <section className='hidden h-full lg:flex flex-col items-center justify-center gap-y-5 rounded-2xl bg-blue-950 relative'>
-        <div className='absolute top-[-60px] right-5 m-5 '>
+      <section className='hidden h-full lg:flex flex-col items-center justify-center gap-y-5 rounded-2xl bg-blue-950 relative overflow-hidden'>
+        <div className='absolute top-[-60px] right-5 m-5'>
           <Logo />
         </div>
-        <Image src={currentImage} alt='Promo' width={500} height={500} className='rounded-br-full rounded-tr-full mr-52' />
+        <div className='w-full h-[700px] flex items-center justify-center'>
+          <Image src={currentImage} alt='Promo' width={500} height={500} className='rounded-br-full rounded-tr-full object-contain max-w-full max-h-full' />
+        </div>
       </section>
       {children}
     </main>
