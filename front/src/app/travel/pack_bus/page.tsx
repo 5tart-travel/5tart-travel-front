@@ -5,6 +5,7 @@ import { IBusTour } from '@/interface/IBusTour';
 import TourCard from '@/app/ofertas/tourCard';
 import FilterComponent from '@/components/FiltrosPack/FilterComponent';
 import '../../../components/Styles/ErrorBus.css';
+import AuthGuardUser from '@/components/AuthGuard/AuthGuardUser';
 
 const PackBus: React.FC = () => {
   const router = useRouter();
