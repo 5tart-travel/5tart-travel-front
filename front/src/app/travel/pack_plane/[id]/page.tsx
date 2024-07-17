@@ -32,7 +32,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         cancelButtonText: 'No',
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push('/login');
+          router.push('/AUTH/login');
         } else {
           router.back();
         }
