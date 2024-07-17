@@ -58,20 +58,20 @@ const QuienesSomos = () => {
               Ofrecemos un espacio donde las pequeñas y grandes agencias de turismo pueden destacar sus mejores ofertas, mientras que los usuarios disfrutan de un proceso de búsqueda y compra sencillo y eficiente. En <span className="italic">5tart Travel</span>, nos aseguramos de que cada viaje sea único y memorable, garantizando calidad y satisfacción en cada paso del camino.
             </p>
 			   </section>
-         <section className="py-3">
+         {/*<section className="py-3">
             <h3 className="text-center mt-12 mb-4 italic text-2xl">Anímate a explorar el mundo con nosotros</h3>
             <div className="video w-full max-w-7xl mx-auto">
-            <iframe
-              height="300"
-              src="https://www.youtube.com/embed/BSVpBFlg1jg?si=XnXnJI4U0HwiEefq&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;fs=0&amp;autohide=1&amp;modestbranding=1"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
+            <iframe 
+              height="300" 
+              src="https://www.youtube.com/embed/JqqiM0DsBeE?si=gL0e8ikqtxHGcyBg&amp;showinfo=0&amp;rel=0&amp;autohide=1&amp;modestbranding=1" 
+              title="YouTube video player" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerPolicy="strict-origin-when-cross-origin" 
               allowFullScreen
               className="w-full h-64 sm:h-80 md:h-96 lg:h-[35rem] rounded-br-md rounded-bl-lg rounded-tr-md rounded-tl-lg"
             ></iframe>
             </div>
-         </section>
+         </section>*/}
          <NuestrosDatos/>
          <hr className="border-black border-opacity-50 mt-2 w-full"></hr>
          <div className={styles.Slider_div__2ugI6}>
