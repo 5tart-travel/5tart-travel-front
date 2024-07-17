@@ -13,7 +13,7 @@ const config: Config = {
   theme: {
     extend: {
       width: {
-        'nav': '36rem',
+        'nav': '29rem',
       },
       height: {
         'custom-1': '14rem',

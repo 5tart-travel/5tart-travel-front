@@ -64,11 +64,11 @@ const Navbar = (props: any) => {
 
       <NavMenu />
 
-      <div className="flex justify-evenly w-nav h-custom-4">
+      <div className="w-1/12 md:w-1/12 lg:w-nav lg:flex justify-between h-custom-4">
         <Search />
 
         {pathname === '/' && (
-          <div onClick={toggleTema} className="bg-inherit border-none cursor-pointer">
+          <div onClick={toggleTema} className="hidden lg:flex bg-inherit border-none cursor-pointer">
             <SwitcherTema tema={tema} />
           </div>
         )}
