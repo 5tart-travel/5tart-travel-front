@@ -1,5 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 import { IBusTour } from '@/interface/IBusTour';
 import './BusDetail.css';
 import Pasage from './sections/Passage';
@@ -16,8 +18,28 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [busDetails, setBusDetails] = useState<IBusTour | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
+    const userSession = localStorage.getItem('userSession');
+    if (!userSession) {
+      Swal.fire({
+        title: 'Debe estar logueado para acceder a esta página',
+        text: '¿Desea iniciar sesión?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push('/login');
+        } else {
+          router.back();
+        }
+      });
+      return;
+    }
+
     const fetchBusDetails = async () => {
       try {
         const response = await fetch(
@@ -37,7 +59,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
     };
 
     fetchBusDetails();
-  }, [params.id]);
+  }, [params.id, router]);
 
   if (loading) {
     return <p>Loading...</p>;
