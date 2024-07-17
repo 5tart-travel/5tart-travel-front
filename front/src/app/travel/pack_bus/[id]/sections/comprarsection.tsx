@@ -80,10 +80,7 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   };
 
   const handleCheckout = async () => {
-    if (userRole !== 'admin' && userRole !== 'user' && userRole !== 'agency') {
-      alert('Debes estar registrado para ingresar.');
-      return;
-    }
+   
     try {
       const responss = await fetch(
         `https://fivetart-travel-kafg.onrender.com/order/${busDetails.id}`,

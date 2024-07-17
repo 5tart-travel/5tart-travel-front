@@ -18,7 +18,6 @@ const PackBus: React.FC = () => {
   const [uniqueStates, setUniqueStates] = useState<string[]>([]);
   const [selectedState, setSelectedState] = useState<string>('');
 
-  const userRole = checkUserRole();
 
 
   useEffect(() => {
