@@ -3,16 +3,24 @@ import React, { useEffect } from 'react';
 
 const Intro: React.FC = () => {
   useEffect(() => {
-    const iframe = document.querySelector('iframe');
+    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
 
     const onVideoEnd = () => {
       window.location.href = '/';
     };
 
-    iframe?.addEventListener('ended', onVideoEnd);
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data === 'ended') {
+        onVideoEnd();
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    iframe?.contentWindow?.postMessage('{"event":"listening","id":1}', '*');
 
     return () => {
-      iframe?.removeEventListener('ended', onVideoEnd);
+      window.removeEventListener('message', handleMessage);
     };
   }, []);
 
@@ -21,10 +29,10 @@ const Intro: React.FC = () => {
   };
 
   return (
-    <div style={{ width: '100%', backgroundImage: "url('https://res.cloudinary.com/dd1yaduhv/image/upload/v1721215931/background_ey5evs.jpg')", minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div style={{ width: '100%', backgroundImage: "url('https://res.cloudinary.com/dd1yaduhv/image/upload/v1721215931/backgroundHome_o6bgia.jpg')", minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div style={{ width: '50%', maxWidth: '800px', margin: 'auto', position: 'relative', height: '0', paddingBottom: '30%', overflow: 'hidden', borderRadius: '1rem', background: 'linear-gradient(145deg, #333, #000)', boxShadow: '20px 20px 60px black, -20px -20px 60px black' }}>
         <iframe
-          src="https://www.youtube.com/embed/JqqiM0DsBeE?autoplay=1&controls=0&showinfo=0&rel=0&autohide=1&modestbranding=1"
+          src="https://www.youtube.com/embed/JqqiM0DsBeE?autoplay=1&controls=0&showinfo=0&rel=0&autohide=1&modestbranding=1&mute=1&enablejsapi=1"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
