@@ -42,10 +42,8 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   }, [tourId]);
 
   const toggleFavorite = async () => {
-    if (userRole !== 'user'||'agency'||'admin') {
-      alert('Debe estar logueado como usuario para colocar en favorito');
-      return;
-  }
+    
+    
     try {
       const url = `https://fivetart-travel-kafg.onrender.com/user/tour/favorite/${tourId}`;
       if (favorited) {
@@ -82,10 +80,10 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   };
 
   const handleCheckout = async () => {
-    if (userRole !== 'user'||'agency'||'admin') {
-      alert('Debe estar logueado como usuario para realizar una compra.');
+    if (userRole !== 'admin' && userRole !== 'user' && userRole !== 'agency') {
+      alert('Debes estar registrado para ingresar.');
       return;
-  }
+    }
     try {
       const responss = await fetch(
         `https://fivetart-travel-kafg.onrender.com/order/${busDetails.id}`,
