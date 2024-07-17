@@ -10,15 +10,14 @@ import { motion } from 'framer-motion';
 export interface Agency {
   id: string;
   name_agency: string;
-  date?: any;
-  type: 'agency'
+  date: string;
+
 }
 
 export interface User {
   id: string;
   username: string;
-  date?: any;
-  type: 'user'
+  date: string;
 }
 
 const CardBox: React.FC = () => {
@@ -71,6 +70,8 @@ const CardBox: React.FC = () => {
 
     socket.on('allUsers', (items: any) => {
       if (Array.isArray(items)) {
+        console.log(items);
+        
         setUsers(items);
         console.log('Nueva notificacion recibida');
         if (audioRef.current) {
@@ -102,26 +103,40 @@ const CardBox: React.FC = () => {
     setSelectedNotification(null);
   };
 
-  const deleteNotification = async (id: string, type: 'agency' | 'user') => {
-    try {
+  const deleteNotification = async (id: string, type: any) => {
       const url = `https://fivetart-travel-kafg.onrender.com/agency/disable/seen/${id}`;
       await axios.put(url);
   
-      if (type == 'agency') {
+      if (type.name_agency) {
         setAgencies(prevAgencies => prevAgencies.filter(agency => agency.id !== id));
         closeModal();
       } else {
         setUsers(prevUsers => prevUsers.filter(user => user.id !== id));
         closeModal();
       }  
-    } catch (error) {
-      console.error('Error al eliminar la notificación:', error);      
-      throw new Error('Error al eliminar la notificación');
-    }
+    
+    console.error('Error al eliminar la notificación:');      
+      
   };
 
-  const notification: any = [...agencies, ...users];
-  notification.sort((a: any, b: any) => b.date - a.date);
+  const desord: any[] = [...agencies, ...users]; // Combinar agencias y usuarios en un solo array
+  const notification = desord.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB.getTime() - dateA.getTime();
+  });
+
+  console.log(notification);
+  
+
+  const formatDate = (dateString: string) => {
+    const optionss: any = {
+      year: 'numeric', month: 'short', day: 'numeric',
+      hour: 'numeric', minute: 'numeric', second: 'numeric',
+      hour12: false, // Formato de 24 horas
+    };
+    return new Date(dateString).toLocaleDateString('es-ES', optionss);
+  };
 
   return (
     <div className="relative p-4 bg-white rounded-2xl shadow-2xl cursor-pointer w-60 h-full transition-all duration-500 custom-scrollbar overflow-y-auto">
@@ -151,6 +166,7 @@ const CardBox: React.FC = () => {
                 transition={{ type: 'spring', stiffness: 50 }}
               >
                 {item.name_agency ? `Nueva agencia: ${item.name_agency} para activar` : `Nuevo usuario: ${item.username} registrado`}
+                <p className="text-xs text-gray-500">{formatDate(item.date)}</p>
               </motion.p>
             </div>
           ))
@@ -200,7 +216,7 @@ const CardBox: React.FC = () => {
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
-                    onClick={() => deleteNotification(selectedNotification!.id, selectedNotification!.type)}
+                    onClick={() => deleteNotification(selectedNotification!.id, selectedNotification!)}
                   >
                     <MdDelete size={20} className="mr-1" />
                     

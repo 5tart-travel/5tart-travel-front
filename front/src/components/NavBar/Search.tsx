@@ -7,6 +7,7 @@ import LoadingSpinner from "@/components/LoadingSniper/LoadingSniper";
 import { MdOutlinePets } from "react-icons/md";
 import hardcodedResults from "@/utils/harcodedResults";
 import { ISearch } from "@/interface/ISearch";
+import axios from "axios";
 
 const Search: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,31 +17,26 @@ const Search: React.FC = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSearch = (event: React.FormEvent) => {
+  const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
     setError("");
     setResults([]);
     setIsModalOpen(true);
     console.log("Searching for:", searchTerm);
+    try {
+      const response = await axios.get(`https://fivetart-travel-kafg.onrender.com/search?q=${searchTerm}`)
 
-    const filteredResults = hardcodedResults.filter(result =>
-      result.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      result.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      result.display_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      result.destino.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      result.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      result.state.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      result.transportType.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      result.hotel.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      result.empresa.toLowerCase().includes(searchTerm.toLowerCase())  ||
-      result.agency.name_agency.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+      const filteredResults = response.data
+      
+      setTimeout(() => {
+        setResults(filteredResults);
+        setLoading(false);
+      }, 1000);
 
-    setTimeout(() => {
-      setResults(filteredResults);
-      setLoading(false);
-    }, 1000);
+    } catch (error) {
+      throw new Error('Error al buscar')
+    }
   };
 
   const handleCloseModal = () => {
