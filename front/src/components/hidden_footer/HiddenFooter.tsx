@@ -11,6 +11,7 @@ const HiddenFooter: React.FC<HiddenFooterProps> = ({ children }) => {
   const pathname = usePathname();
   const hiddenPaths = [ 
     '/',
+    '/intro',
     '/dashboard', 
     '/dashboard/admin', 
     '/dashboard/user',

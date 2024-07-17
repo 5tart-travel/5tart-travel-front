@@ -58,7 +58,7 @@ const QuienesSomos = () => {
               Ofrecemos un espacio donde las pequeñas y grandes agencias de turismo pueden destacar sus mejores ofertas, mientras que los usuarios disfrutan de un proceso de búsqueda y compra sencillo y eficiente. En <span className="italic">5tart Travel</span>, nos aseguramos de que cada viaje sea único y memorable, garantizando calidad y satisfacción en cada paso del camino.
             </p>
 			   </section>
-         <section className="py-3">
+         {/*<section className="py-3">
             <h3 className="text-center mt-12 mb-4 italic text-2xl">Anímate a explorar el mundo con nosotros</h3>
             <div className="video w-full max-w-7xl mx-auto">
             <iframe 
@@ -71,7 +71,7 @@ const QuienesSomos = () => {
               className="w-full h-64 sm:h-80 md:h-96 lg:h-[35rem] rounded-br-md rounded-bl-lg rounded-tr-md rounded-tl-lg"
             ></iframe>
             </div>
-         </section>
+         </section>*/}
          <NuestrosDatos/>
          <hr className="border-black border-opacity-50 mt-2 w-full"></hr>
          <div className={styles.Slider_div__2ugI6}>
