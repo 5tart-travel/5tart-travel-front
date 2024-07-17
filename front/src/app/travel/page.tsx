@@ -37,7 +37,7 @@ const Pk_viajes: React.FC = () => {
             width={300} 
             height={600}
           />
-          <div className="absolute inset-0 flex flex-col justify-start items-center mt-10 p-4 text-center  rounded-xl">
+          <div className="absolute inset-0 flex flex-col justify-end items-center mb-20 p-4 text-center  rounded-xl">
             {/* Posición del texto manejada aquí */}
             <p className="text-xl font-semibold mt-2 text-purple-100 text-shadow-dark xxs:text-sm xs:text-base sm:text-base md:text-lg lg:text-xl">
               Alcanza nuevas alturas con nuestros paquetes de vuelos.
