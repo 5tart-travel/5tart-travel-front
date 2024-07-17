@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable @next/next/no-page-custom-font */
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -8,7 +10,7 @@ import Navbar from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
 import HiddenFooter from "@/components/hidden_footer/HiddenFooter";
 import Script from 'next/script';
-
+import { usePathname } from 'next/navigation'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +19,7 @@ export default function RootLayout({
 }: {
   children: ReactNode;
 }) {
+  const pathname = usePathname();
 
   return (
     <html lang="es">
@@ -34,8 +37,8 @@ export default function RootLayout({
         <HiddenFooter>
           <Footer tema={null} username={null} />
         </HiddenFooter>
-        
-        <Script id="landbot-script" strategy="lazyOnload">
+        {pathname !== '/intro' && (
+          <Script id="landbot-script" strategy="lazyOnload">
           {`
             window.addEventListener('mouseover', initLandbot, { once: true });
             window.addEventListener('touchstart', initLandbot, { once: true });
@@ -54,7 +57,8 @@ export default function RootLayout({
               }
             }
           `}
-        </Script>
+          </Script>
+        )}
       </body>
     </html>
   );

@@ -54,4 +54,5 @@ export interface JwtPayload {
     nickname: string;
     picture?: string;
     role?: string;
+    name_agency?:string;
   }

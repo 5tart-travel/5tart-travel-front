@@ -21,8 +21,8 @@ const Intro: React.FC = () => {
   };
 
   return (
-    <div style={{ backgroundColor: 'black', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <div style={{ width: '50%', maxWidth: '800px', margin: 'auto', position: 'relative', paddingBottom: '28.125%', overflow: 'hidden', borderRadius: '1rem', background: 'linear-gradient(145deg, #333, #000)', boxShadow: '20px 20px 60px #1a1a1a, -20px -20px 60px #4d4d4d' }}>
+    <div style={{ width: '100%', backgroundImage: "url('https://res.cloudinary.com/dd1yaduhv/image/upload/v1721215931/background_ey5evs.jpg')", minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ width: '50%', maxWidth: '800px', margin: 'auto', position: 'relative', height: '0', paddingBottom: '30%', overflow: 'hidden', borderRadius: '1rem', background: 'linear-gradient(145deg, #333, #000)', boxShadow: '20px 20px 60px black, -20px -20px 60px black' }}>
         <iframe
           src="https://www.youtube.com/embed/JqqiM0DsBeE?autoplay=1&controls=0&showinfo=0&rel=0&autohide=1&modestbranding=1"
           title="YouTube video player"

@@ -12,10 +12,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      width: {
+        'nav': '36rem',
+      },
       height: {
         'custom-1': '14rem',
         'custom-2': '20rem',
         'custom-3': '3.5rem',
+        'custom-4': '2.8125rem',
       },
       invert: {
         100: '1',
