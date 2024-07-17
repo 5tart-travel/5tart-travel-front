@@ -5,7 +5,6 @@ import { decodeJwt } from '@/utils/decodeJwt';
 import { IToursDashboard } from '@/components/CardTourDashboard/CardTourDashboard';
 import AuthGuardAgency from '@/components/AuthGuard/AuthGuardAgency';
 import TotalMount from '@/components/Dashboard/TotalMount';
-import DeleteOrders from '@/components/Dashboard/DeleteOrders';
 
 const MisVentas = () => {
   const [orders, setOrders] = useState<IToursDashboard[]>([]);
@@ -68,40 +67,33 @@ const MisVentas = () => {
 
   return (
     <AuthGuardAgency>
-      <div className="flex">
-        <div className="w-full">
-          {orders.map((order, index) => (
-            <div
-              key={index}
-              className="mt-5 w-full max-w-md bg-gray-200 border border-gray-200 rounded-br-3xl shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flow-root">
-                  <ul>
-                    <li className="py-3 sm:py-4">
-                      <div className="flex items-center">
-                        <div className="flex-1 min-w-0 ms-4">
-                          <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            {order.title}
-                          </p>
-                          <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                            {formatDate(order.date!)}
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  ${formatPrice(order.price)}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="flex flex-col gap-4">
         <div>
           <TotalMount />
         </div>
+
+        <div className="flex justify-between font-bold px-8 mt-10">
+          <div>Título</div>
+          <div>Fecha</div>
+          <div>Precio</div>
+        </div>
+
+        {orders.map((order, index) => (
+          <div
+            key={index}
+            className="flex flex-col border border-gray-300 p-4 rounded-lg bg-gray-100"
+          >
+            <div className="flex justify-between">
+              <div className="flex-1">{order.title}</div>
+              <div className="flex-1 text-center">
+                {formatDate(order.date!)}
+              </div>
+              <div className="flex-1 text-right">
+                ${formatPrice(order.price)}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </AuthGuardAgency>
   );
