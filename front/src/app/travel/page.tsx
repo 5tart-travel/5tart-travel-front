@@ -7,11 +7,11 @@ const Pk_viajes: React.FC = () => {
     <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-2 mx-4 my-16 md:my-5">
       <div className="relative w-full md:w-1/2 hover:grayscale transition duration-300">
         <Link href="/travel/pack_bus">
-          <Image 
-            src="https://res.cloudinary.com/dia2gautk/image/upload/v1719447152/i8t9qrkqawuxnx5k2wsl.webp" 
-            alt="Paquete de Bus" 
+          <Image
+            src="https://res.cloudinary.com/dia2gautk/image/upload/v1719447152/i8t9qrkqawuxnx5k2wsl.webp"
+            alt="Paquete de Bus"
             className="w-full h-auto md:h-[600px] object-cover rounded-xl shadow-lg"
-            width={300} 
+            width={300}
             height={600}
           />
           <div className="absolute inset-0 flex flex-col justify-start items-center mt-10 p-4 text-center  rounded-xl">
@@ -30,11 +30,11 @@ const Pk_viajes: React.FC = () => {
       </div>
       <div className="relative w-full md:w-1/2 hover:grayscale transition duration-300">
         <Link href="/travel/pack_plane">
-          <Image 
-            src="https://res.cloudinary.com/dia2gautk/image/upload/v1719447152/cpkgaywutd8tzxwqwaoa.webp" 
-            alt="Paquete de Aéreo" 
+          <Image
+            src="https://res.cloudinary.com/dia2gautk/image/upload/v1721168839/anlvd0krubbddd0kuvn7.png"
+            alt="Paquete de Aéreo"
             className="w-full h-auto md:h-[600px] object-cover rounded-xl shadow-lg"
-            width={300} 
+            width={300}
             height={600}
           />
           <div className="absolute inset-0 flex flex-col justify-end items-center mb-20 p-4 text-center  rounded-xl">
