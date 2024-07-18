@@ -20,7 +20,14 @@ const Img = styled.img`
   margin: 0 40px 20px 0;
   transition: 400ms;
   box-shadow: 8px 10px 27px 10px black;
-` 
+
+  @media (max-width: 590px) {
+    width: 100%;
+    height: 25rem;
+    float: none;
+    margin: 0 0 2rem 0;
+  }
+`;
 
 const images = [
   'https://res.cloudinary.com/dd1yaduhv/image/upload/v1720999091/sobre_wwnxut.jpg',

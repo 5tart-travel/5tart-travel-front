@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -9,12 +9,14 @@ import NavMenu from './NavMenu';
 import { decodeJwt } from '@/utils/decodeJwt';
 import { JwtPayload } from '@/types';
 import DesplegableUser from './desplegable';
-import { CiMenuBurger } from "react-icons/ci";
+import { CiMenuBurger } from 'react-icons/ci';
 import SwitcherTema from './SwitcherTema';
-import { usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation';
 
-const DEFAULT_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
-const ADMIN_AVATAR = 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/How-To-Fit-An-MX-5-Into-A-Pickup-Truck-Speedhunters_zy37c4';
+const DEFAULT_AVATAR =
+  'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
+const ADMIN_AVATAR =
+  'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/How-To-Fit-An-MX-5-Into-A-Pickup-Truck-Speedhunters_zy37c4';
 
 const Navbar = (props: any) => {
   const pathname = usePathname();
@@ -24,6 +26,7 @@ const Navbar = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState<Partial<JwtPayload> | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDarkThemeActive, setIsDarkThemeActive] = useState(false);
   const avatarButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -35,10 +38,13 @@ const Navbar = (props: any) => {
         if (decodedToken) {
           setUserData({
             nickname: decodedToken.username,
-            picture: decodedToken.role === 'admin' ? ADMIN_AVATAR : (decodedToken.picture || DEFAULT_AVATAR),
+            picture:
+              decodedToken.role === 'admin'
+                ? ADMIN_AVATAR
+                : decodedToken.picture || DEFAULT_AVATAR,
             email: decodedToken.email,
             role: decodedToken.role,
-            name_agency: decodedToken.name_agency
+            name_agency: decodedToken.name_agency,
           });
           setIsLoggedIn(true);
         }
@@ -46,7 +52,18 @@ const Navbar = (props: any) => {
     } else {
       setIsLoggedIn(false);
     }
-  }, []);
+
+    const savedFeatures = localStorage.getItem('newFeatures');
+    if (savedFeatures) {
+      const features = JSON.parse(savedFeatures);
+      const darkThemeFeature = features.find(
+        (feature: { title: string; isActive: boolean }) => feature.title === 'Modo Oscuro'
+      );
+      if (darkThemeFeature) {
+        setIsDarkThemeActive(darkThemeFeature.isActive);
+      }
+    }
+  }, [pathname]);
 
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
@@ -57,7 +74,11 @@ const Navbar = (props: any) => {
   };
 
   return (
-    <header className={`${tema ? 'bg-black' : 'bg-blue-950'} h-24 flex items-center justify-between px-4`}>
+    <header
+      className={`${
+        tema ? 'bg-black' : 'bg-blue-950'
+      } h-24 flex items-center justify-between px-4`}
+    >
       <div className="flex items-center justify-center mb-10">
         <Logo />
       </div>
@@ -67,8 +88,11 @@ const Navbar = (props: any) => {
       <div className="w-1/12 md:w-1/12 lg:w-nav lg:flex justify-between h-custom-4">
         <Search />
 
-        {pathname === '/' && (
-          <div onClick={toggleTema} className="hidden lg:flex bg-inherit border-none cursor-pointer">
+        {isDarkThemeActive && pathname === '/' && (
+          <div
+            onClick={toggleTema}
+            className="hidden lg:flex bg-inherit border-none cursor-pointer"
+          >
             <SwitcherTema tema={tema} />
           </div>
         )}
@@ -88,17 +112,21 @@ const Navbar = (props: any) => {
                 </button>
                 <DesplegableUser isOpen={isMenuOpen} toggleMenu={toggleMenu} />
                 <div className="mt-1 text-sm font-medium text-gray-50 hover:text-blue-300">
-                  {  userData && userData.nickname ? 
-                    (
-                    <button className="focus:outline-none" onClick={handleAvatarClick}>
+                  {userData && userData.nickname ? (
+                    <button
+                      className="focus:outline-none"
+                      onClick={handleAvatarClick}
+                    >
                       {userData.nickname}
-                    </button> ) : 
-                    (  
-                    <button className="focus:outline-none" onClick={handleAvatarClick}>
+                    </button>
+                  ) : (
+                    <button
+                      className="focus:outline-none"
+                      onClick={handleAvatarClick}
+                    >
                       {userData?.name_agency}
-                    </button>  
-                    )
-                  }
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -112,12 +140,18 @@ const Navbar = (props: any) => {
               <div className="flex items-center justify-center cursor-pointer md:hidden">
                 <div className="flex flex-col items-center">
                   <button ref={avatarButtonRef} onClick={handleAvatarClick}>
-                    <CiMenuBurger className='text-white' />
+                    <CiMenuBurger className="text-white" />
                   </button>
-                  <DesplegableUser isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+                  <DesplegableUser
+                    isOpen={isMenuOpen}
+                    toggleMenu={toggleMenu}
+                  />
                   <div className="mt-1 text-sm font-medium text-gray-50 hover:text-blue-300">
                     {userData && userData.nickname && (
-                      <button className="focus:outline-none" onClick={handleAvatarClick}>
+                      <button
+                        className="focus:outline-none"
+                        onClick={handleAvatarClick}
+                      >
                         {userData.nickname}
                       </button>
                     )}

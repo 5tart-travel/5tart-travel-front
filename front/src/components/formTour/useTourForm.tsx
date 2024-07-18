@@ -113,21 +113,21 @@ export const useTourForm = () => {
           title: 'Tour agregado correctamente',
         });
 
-        // setTitle('');
-        // setPrice(null);
-        // setDescription('');
-        // setAddress('');
-        // setFecha_ingreso(null);
-        // setFecha_egreso(null);
-        // setDestino('');
-        // setSalida('');
-        // setTransportType('');
-        // setImgUrl('');
-        // setListImg(initialListImg);
-        // setHotel('');
-        // setEmpresa('');
-        // setOferta(false);
-        // setRegion('');
+        setTitle('');
+        setPrice(null);
+        setDescription('');
+        setAddress('');
+        setFecha_ingreso(null);
+        setFecha_egreso(null);
+        setDestino('');
+        setSalida('');
+        setTransportType('');
+        setImgUrl('');
+        setListImg(initialListImg);
+        setHotel('');
+        setEmpresa('');
+        setOferta(false);
+        setRegion('');
       } catch (error) {
         Swal.fire({
           icon: 'error',

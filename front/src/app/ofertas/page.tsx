@@ -19,7 +19,8 @@ const Ofertas: React.FC = () => {
           throw new Error("Falló el fetch de bus tours");
         }
         const data = await response.json();
-        setBuses(data);
+        const activeBuses = data.filter((tour: { isActive: any; }) => tour.isActive);
+      setBuses(activeBuses);
       } catch (err) {
         setError("Error al obtener los datos");
         console.error(err);

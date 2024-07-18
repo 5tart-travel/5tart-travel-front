@@ -16,7 +16,7 @@ const ContactoSection: React.FC<ContactoSectionProps> = ({ agencyDetails }) => {
 
   return (
     <section className="relative">
-      <div className="absolute top-0 right-0 bg-white text-center border-10 border-blue-950 rounded-lg p-12 z-10 mt-4 mr-8 shadow-lg"
+      <div className="absolute top-0 right-0 bg-white text-center border-10 border-blue-950 rounded-lg p-4 md:p-12 z-10 mt-4 md:mt-8 mr-4 md:mr-8 shadow-lg"
            style={{ marginTop: "-150px" }}>
         <h2 className="text-xl font-bold mb-4">{agencyDetails.name_agency}</h2>
         

@@ -64,7 +64,7 @@ const Hotel: React.FC<ITourFormProps> = ({ hotel, setHotel }) => {
           >
             <div className="py-2 px-4 bg-yellow-100 rounded-tr-xl rounded-br-xl rounded-bl-lg">
               <p className="text-gray-700 text-sm">
-                Este campo es obligatorio.
+                La cantidad de caracteres debe ser de mínimo 5 y máximo 30
               </p>
             </div>
           </div>

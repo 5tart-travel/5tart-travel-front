@@ -12,7 +12,7 @@ const datosNosotros = [
     github: 'https://github.com/MaxiSalguero'
   },
   {
-    name:'Jonatan',
+    name:'Jona',
     imgUrl:'https://res.cloudinary.com/dd1yaduhv/image/upload/v1720981080/Jona_nzsvwl.jpg',
     linkedin: 'https://www.linkedin.com/in/jongabee/',
     github: 'https://github.com/Jongabee'
@@ -40,7 +40,7 @@ const datosNosotros = [
 const NuestrosDatos = () => {
   return (
     <section id="techFav">
-      <hr className="  border-black border-opacity-50 my-4 w-full"></hr>
+      <hr className="border-black border-opacity-50 my-4 w-full"></hr>
       <Title>SOBRE NOSOTROS</Title>
       <Text/> 
       <ul className={styles.techFav_cards}>

@@ -1,58 +1,19 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { decodeJwt } from '@/utils/decodeJwt';
 import AuthGuardAgency from '@/components/AuthGuard/AuthGuardAgency';
 
-const TotalMount = () => {
-  const [total, setTotal] = useState<number | null>(null);
+interface TotalMountProps {
+  total: number | null;
+  refreshTotal: () => void;
+}
+
+const TotalMount = ({ total, refreshTotal }: TotalMountProps) => {
   const [error, setError] = useState<string | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-
-  const router = useRouter();
 
   useEffect(() => {
-    const userSessionString: any = localStorage.getItem('userSession');
+    refreshTotal();
+  }, [refreshTotal]);
 
-    if (userSessionString) {
-      const userSession = JSON.parse(userSessionString);
-      const ntoken = userSession.token;
-      setToken(ntoken);
-
-      if (ntoken) {
-        decodeJwt(ntoken);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (token) {
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/agency/totalMount`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          if (typeof data === 'number') {
-            setTotal(data);
-          } else {
-            throw new Error('Unexpected response structure');
-          }
-        })
-        .catch((error) => {
-          console.error('Error fetching total mount:', error);
-          setError('Error fetching total mount');
-        });
-    }
-  }, [token]);
   const formatPrice = (price: number) => {
     const roundedPrice = Math.round(price * 100) / 100;
     return roundedPrice.toLocaleString('es-CL', {

@@ -39,7 +39,6 @@ const Provincia: React.FC<ITourFormProps> = ({ destino, setDestino }) => {
   const [showRequirements, setShowRequirements] = useState(false);
   const [filteredProvincias, setFilteredProvincias] = useState<string[]>([]);
   const [selectedIdx, setSelectedIdx] = useState<number>(-1);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -112,9 +111,10 @@ const Provincia: React.FC<ITourFormProps> = ({ destino, setDestino }) => {
       }
     }
   };
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="mb-4 mr-9">
+    <div className="mb-4">
       <label
         htmlFor="provincia"
         className="block text-sm font-medium text-gray-700"
@@ -122,33 +122,50 @@ const Provincia: React.FC<ITourFormProps> = ({ destino, setDestino }) => {
         Provincia de destino
       </label>
 
-      <div className="flex flex-col relative">
+      <div className="flex ">
         <input
           id="provincia"
           type="text"
           value={destino}
+          placeholder="Minimo 4 caracteres"
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           onFocus={showDropdown}
           onBlur={hideDropdown}
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
-        {showRequirements && filteredProvincias.length > 0 && (
-          <div
-            ref={dropdownRef}
-            className="absolute top-full left-0 right-0 z-10 bg-white border border-gray-300 rounded-md shadow-lg mt-1"
+        <div
+          className="flex items-center px-3 cursor-pointer"
+          onMouseEnter={showDropdown}
+          onMouseLeave={hideDropdown}
+        >
+          <svg
+            className="h-3 w-3 text-blue-600"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
-            {filteredProvincias.map((provincia, index) => (
-              <div
-                key={provincia}
-                onClick={() => handleSuggestionClick(provincia)}
-                className={`cursor-pointer px-3 py-2 hover:bg-gray-200 ${
-                  selectedIdx === index ? 'bg-gray-200' : ''
-                }`}
-              >
-                {provincia}
+            {' '}
+            <circle cx="12" cy="12" r="10" />{' '}
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />{' '}
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+        </div>
+        {showRequirements && (
+          <div className="relative" ref={dropdownRef}>
+            <div
+              id="dropdownDelay"
+              className="absolute left-full top-[-10px] z-10 ml-2 w-48 rounded-lg shadow-xl border-t-4 border-lime-500 bg-white block"
+            >
+              <div className="py-2 px-4 bg-yellow-100 rounded-tr-xl rounded-br-xl rounded-bl-lg">
+                <p className="text-gray-700 text-sm">
+                  La cantidad de caracteres debe ser de mínimo 4 y máximo 30
+                </p>
               </div>
-            ))}
+            </div>
           </div>
         )}
       </div>

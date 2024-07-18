@@ -30,10 +30,11 @@ const PackBus: React.FC = () => {
           throw new Error('Falló el fetch de bus tours');
         }
         const data: IBusTour[] = await response.json();
-        setBuses(data);
-        setFilteredTours(data);
+        const activeBuses = data.filter(tour => tour.isActive);
+        setBuses(activeBuses);
+        setFilteredTours(activeBuses);
 
-        const uniqueStatesSet = new Set(data.map((tour) => tour.state));
+        const uniqueStatesSet = new Set(activeBuses.map((tour) => tour.state));
         const uniqueStatesArray = Array.from(uniqueStatesSet).sort();
         setUniqueStates(uniqueStatesArray);
       } catch (err) {
@@ -52,12 +53,12 @@ const PackBus: React.FC = () => {
   }, [filteredTours]);
 
   const handleCardClick = (id: string) => {
-    
-    router.push(`/travel/pack_bus/${id}`);
-};
 
- 
- 
+    router.push(`/travel/pack_bus/${id}`);
+  };
+
+
+
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     setSelectedState(selectedValue);

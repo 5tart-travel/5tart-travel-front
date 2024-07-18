@@ -29,7 +29,7 @@ const Titulo: React.FC<ITourFormProps> = ({ title, setTitle }) => {
       <div className="flex">
         <input
           id="hotel"
-          placeholder="Faltan Validaciones"
+          placeholder="Mínimo 2 caracteres"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -64,7 +64,7 @@ const Titulo: React.FC<ITourFormProps> = ({ title, setTitle }) => {
           >
             <div className="py-2 px-4 bg-yellow-100 rounded-tr-xl rounded-br-xl rounded-bl-lg">
               <p className="text-gray-700 text-sm">
-                Este campo es obligatorio.
+                La cantidad de caracteres debe ser de mínimo 2 y máximo 30
               </p>
             </div>
           </div>
