@@ -64,26 +64,27 @@ const MapsAgencia: React.FC<MapsAgenciaProps> = ({ address }) => {
     return null; 
   }
 
-  return (
+ return (
     <div style={{ padding: "10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div className="text-xl font-bold text-white mt-4 mb-4">DONDE ENCONTRARNOS</div>
-      <MapContainer
-        className="rounded-lg"
-        center={location || [0, 0]} 
-        zoom={location ? 16 : 1} 
-        style={{ height: "350px", width: "95%", marginTop: "10px", marginBottom: "20px" }}
-        ref={mapRef}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        
-        {location && (
-          <Marker position={location} icon={AgencyIcon}>
-            <Popup>{address}</Popup>
-          </Marker>
-        )}
-      </MapContainer>
+        <div className="text-xl font-bold text-white mt-4 mb-4">DONDE ENCONTRARNOS</div>
+        <MapContainer
+            className="rounded-lg"
+            center={location || [0, 0]} 
+            zoom={location ? 16 : 1} 
+            style={{ height: "350px", width: "95%", marginTop: "10px", marginBottom: "20px" }}
+            ref={mapRef}
+        >
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            
+            {location && (
+                <Marker position={location}>
+                    <Popup>{address}</Popup>
+                </Marker>
+            )}
+        </MapContainer>
     </div>
-  );
+);
+
 };
 
 export default MapsAgencia;

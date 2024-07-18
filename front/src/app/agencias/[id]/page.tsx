@@ -139,21 +139,25 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
 
         <div className="mt-32 mx-auto max-w-6xl" style={{ width: '95%' }}>
 
-          <div className="grid grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-            <div className="p-4 bg-black bg-opacity-60 rounded-lg text-white">
+            <div className="p-4 bg-black bg-opacity-60 z-20 rounded-lg text-white">
               <MapsAgencia address={agencyDetails.address} />
             </div>
 
             <div className="p-4 bg-red rounded-lg opacity-80 shadow-lg">
-              <h2 className="text-xl font-bold mb-4 text-center"> QUIENES SOMOS</h2>
-              <p>Somos {agencyDetails.name_agency}, ubicados en {agencyDetails.address}, Buenos Aires. Somos tu puerta de entrada a experiencias inolvidables en el corazón de Argentina. Nuestro compromiso es ofrecerte los destinos más emocionantes y seguros, combinando naturaleza, cultura y aventura en cada uno de nuestros tours.</p>
-              <p>Operamos en todo el país, desde los picos nevados de la Patagonia hasta las cálidas aguas del Litoral. Descubre con nosotros la diversidad de paisajes y actividades que Argentina tiene para ofrecer.</p>
+              <h2 className="text-xl font-bold mb-4 text-center">QUIENES SOMOS</h2>
+              <p>
+                Somos {agencyDetails.name_agency}, ubicados en {agencyDetails.address}, Buenos Aires. Somos tu puerta de entrada a experiencias inolvidables en el corazón de Argentina. Nuestro compromiso es ofrecerte los destinos más emocionantes y seguros, combinando naturaleza, cultura y aventura en cada uno de nuestros tours.
+              </p>
+              <p>
+                Operamos en todo el país, desde los picos nevados de la Patagonia hasta las cálidas aguas del Litoral. Descubre con nosotros la diversidad de paisajes y actividades que Argentina tiene para ofrecer.
+              </p>
               <p>¡Déjate llevar por Turismo Aventura Argentina y vive una experiencia única en cada viaje!</p>
 
               <div className="mt-6">
                 <h3 className="text-lg font-bold mb-2 text-center">Regiones de Tours</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {regions
                     .filter(region => hasToursInRegion(region))
                     .map(region => (
@@ -166,8 +170,8 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
                 </div>
               </div>
             </div>
-
           </div>
+
 
         </div>
 
@@ -207,24 +211,27 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         </div>
       )}
 
-      {selectedRegion && (
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-80 z-50 flex justify-center items-center mb-20" style={{ zIndex: 1000 }}>
-          <div className="bg-white shadow-md rounded-lg p-4 w-full max-w-3xl relative">
-            <h2 className="text-2xl font-bold mb-4 text-center">Región {selectedRegion}</h2>
-            <div className="overflow-y-auto max-h-96">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-                {tours
-                  .filter(tour => tour.region === selectedRegion && tour.agency.id === params.id)
-                  .map(tour => (
-                    <Link href={`/travel/pack_bus/${tour.id}`} key={tour.id}>
-                      <TourCard key={tour.id} tour={tour} onClick={() => console.log(tour.id)} />
-                    </Link>
-                  ))}
-              </div>
-            </div>
-          </div>
+{selectedRegion && (
+  <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-80 z-50 flex justify-center items-center p-4 md:p-8">
+    <div className="bg-white shadow-md rounded-lg p-4 w-full max-w-full md:max-w-3xl relative top-20 md:top-auto md:my-auto">
+      <h2 className="text-2xl font-bold mb-4 text-center">Región {selectedRegion}</h2>
+      <div className="overflow-y-auto max-h-96">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {tours
+            .filter(tour => tour.region === selectedRegion && tour.agency.id === params.id)
+            .map(tour => (
+              <Link href={`/travel/pack_bus/${tour.id}`} key={tour.id}>
+                <TourCard key={tour.id} tour={tour} onClick={() => console.log(tour.id)} />
+              </Link>
+            ))}
         </div>
-      )}
+      </div>
+    </div>
+  </div>
+)}
+
+      
+
 
 
 
