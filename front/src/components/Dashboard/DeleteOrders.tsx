@@ -101,7 +101,6 @@ const DeleteOrders = ({ refreshTotal }: DeleteOrdersProps) => {
         ) : message ? (
           <p>{message}</p>
         ) : (
-          // <button onClick={handleDeleteClick}>Eliminar orden</button>
           <button
             onClick={handleDeleteClick}
             type="button"

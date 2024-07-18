@@ -35,9 +35,9 @@ const Agency: React.FC<AgencyProps> = ({ userData }) => {
       {userData ? (
         <div>
           <h1 className="text-3xl font-semibold">Información personal</h1>
-          <p className="text-sm mt-4 text-gray-500">
+          {/* <p className="text-sm mt-4 text-gray-500">
             Aquí puedes editar la información de tu agencia.
-          </p>
+          </p> */}
           <hr className="mt-4" />
           <div className="mt-4 flex items-center">
             <p className="font-semibold w-32">Nombre de Agencia:</p>

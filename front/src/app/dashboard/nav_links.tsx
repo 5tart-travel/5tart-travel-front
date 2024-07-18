@@ -23,7 +23,7 @@ const links = [
   { name: 'Favoritos', href: '/dashboard/favoritos', icon: MdFavorite },
   {
     name: 'Agregar Tour',
-    href: '/agregar-tour',
+    href: '/dashboard/agregar-tour',
     icon: GiAirplaneDeparture,
   },
   { name: 'Mis Tours', href: '/dashboard/mis-tours', icon: IoMdPlanet },
