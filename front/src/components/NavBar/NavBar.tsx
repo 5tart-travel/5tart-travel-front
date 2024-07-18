@@ -26,6 +26,7 @@ const Navbar = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState<Partial<JwtPayload> | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDarkThemeActive, setIsDarkThemeActive] = useState(false);
   const avatarButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -50,6 +51,17 @@ const Navbar = (props: any) => {
       }
     } else {
       setIsLoggedIn(false);
+    }
+
+    const savedFeatures = localStorage.getItem('newFeatures');
+    if (savedFeatures) {
+      const features = JSON.parse(savedFeatures);
+      const darkThemeFeature = features.find(
+        (feature: { title: string; isActive: boolean }) => feature.title === 'Modo Oscuro'
+      );
+      if (darkThemeFeature) {
+        setIsDarkThemeActive(darkThemeFeature.isActive);
+      }
     }
   }, [pathname]);
 
@@ -76,7 +88,7 @@ const Navbar = (props: any) => {
       <div className="w-1/12 md:w-1/12 lg:w-nav lg:flex justify-between h-custom-4">
         <Search />
 
-        {pathname === '/' && (
+        {isDarkThemeActive && pathname === '/' && (
           <div
             onClick={toggleTema}
             className="hidden lg:flex bg-inherit border-none cursor-pointer"

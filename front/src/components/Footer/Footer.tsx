@@ -1,6 +1,8 @@
-import Link from "next/link";
-import { FaInstagram, FaYoutube, FaTwitter, FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
-import Logo from "@/components/ui/Logo";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { FaInstagram, FaYoutube, FaTwitter, FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
+import Logo from '@/components/ui/Logo';
+import MusicPlayer, { PlaylistItem } from '../music/music';
 
 interface FooterProps {
   username: string | null;
@@ -8,10 +10,28 @@ interface FooterProps {
   tema?: boolean | null;
 }
 
-
 const Footer: React.FC<FooterProps> = ({ username, className, tema }) => {
+  const [isMusicActive, setIsMusicActive] = useState(false);
+
+  useEffect(() => {
+    const savedFeatures = localStorage.getItem('newFeatures');
+    if (savedFeatures) {
+      const features = JSON.parse(savedFeatures);
+      const musicFeature = features.find(
+        (feature: { title: string; isActive: boolean }) => feature.title === 'Musica'
+      );
+      if (musicFeature) {
+        setIsMusicActive(musicFeature.isActive);
+      }
+    }
+  }, []);
+
+  const playlist: PlaylistItem[] = [
+    { title: 'relax', url: 'https://www.youtube.com/watch?v=m_HdyEbpd7o' },
+  ];
+
   return (
-    <footer className={`${ tema ? 'bg-black' : 'bg-blue-950'} font-sans mt-0 ${className}`}>
+    <footer className={`${tema ? 'bg-black' : 'bg-blue-950'} font-sans mt-0 ${className}`}>
       <div className="container mx-auto py-2">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center">
@@ -30,7 +50,11 @@ const Footer: React.FC<FooterProps> = ({ username, className, tema }) => {
             <Link href="/nosotros">
               <p className="text-gray-50 hover:text-blue-300 hover:underline">Nosotros</p>
             </Link>
-            
+            {isMusicActive && (
+              <div>
+                <MusicPlayer playlist={playlist} />
+              </div>
+            )}
           </div>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <Link href="https://www.instagram.com/" target="_blank">
