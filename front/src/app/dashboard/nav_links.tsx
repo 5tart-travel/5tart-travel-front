@@ -27,11 +27,11 @@ const links = [
     icon: GiAirplaneDeparture,
   },
   { name: 'Mis Tours', href: '/dashboard/mis-tours', icon: IoMdPlanet },
-  {
-    name: 'Datos bancarios',
-    href: '/dashboard/datosBank',
-    icon: AiFillDollarCircle,
-  },
+  // {
+  //   name: 'Datos bancarios',
+  //   href: '/dashboard/datosBank',
+  //   icon: AiFillDollarCircle,
+  // },
   {
     name: 'Pagos',
     href: '/dashboard/pagos',
