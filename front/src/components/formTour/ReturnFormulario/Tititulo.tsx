@@ -29,7 +29,7 @@ const Titulo: React.FC<ITourFormProps> = ({ title, setTitle }) => {
       <div className="flex">
         <input
           id="hotel"
-          placeholder="Faltan Validaciones"
+          placeholder="Mínimo 2 caracteres"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
