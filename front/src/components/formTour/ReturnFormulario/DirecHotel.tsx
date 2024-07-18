@@ -65,7 +65,7 @@ const DirecHotel: React.FC<ITourFormProps> = ({ address, setAddress }) => {
             <div className="py-2 px-4 bg-yellow-100 rounded-tr-xl rounded-br-xl rounded-bl-lg">
               <p className="text-gray-700 text-sm">
                 Coloque el nombre de la calle o avenida y su altura, seguido de
-                una y luego la provincia.
+                una y luego la provincia. Ej: Av.San Martin 598, Salta
               </p>
             </div>
           </div>

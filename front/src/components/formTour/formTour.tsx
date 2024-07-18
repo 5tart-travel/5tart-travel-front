@@ -40,7 +40,10 @@ const FormularioTour: React.FC = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4">Agregar Nuevo Tour</h2>
+        <h2 className="text-2xl font-bold">Agregar Nuevo Tour</h2>
+        <p className="text-xs text-red-500 mb-5">
+          Si tiene alguna duda acerque el cursor al signo de pregunta.
+        </p>
 
         <div className="grid grid-cols-1 gap-4">
           <TourForm
