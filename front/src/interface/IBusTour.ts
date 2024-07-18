@@ -26,6 +26,7 @@ export interface IBusTour {
     comments:IComments[]
     tourId: string;
     listImg:string[];
+    isActive:boolean;
     
   }
   export interface ITourisPoints{

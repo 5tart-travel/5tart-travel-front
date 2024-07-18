@@ -54,7 +54,8 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           throw new Error('Expected JSON but received HTML');
         }
         const data: IBusTour[] = await response.json();
-        setTours(data);
+        const activeTours = data.filter(tour => tour.isActive);
+        setTours(activeTours);
       } catch (error: any) {
         console.error('Error fetching tours:', error);
         setError(error.message);
@@ -110,7 +111,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const planeTours = tours.filter(tour => tour.agency.id === params.id && tour.transportType === 'plane');
   const busTours = tours.filter(tour => tour.agency.id === params.id && tour.transportType === 'bus');
 
-  const regions = [...new Set(tours.map(tour => tour.region))]; 
+  const regions = [...new Set(tours.map(tour => tour.region))];
   const openRegionModal = (region: string) => {
     const toursInRegion = tours.filter(tour => tour.region === region && tour.agency.id === params.id);
     if (toursInRegion.length > 0) {
@@ -122,7 +123,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
     const toursInRegion = tours.filter(tour => tour.region === region && tour.agency.id === params.id);
     return toursInRegion.length > 0;
   }
-  
+
 
   return (
     <div className="relative">
@@ -140,7 +141,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
 
           <div className="grid grid-cols-2 gap-10">
 
-          <div className="p-4 bg-black bg-opacity-60 rounded-lg text-white">
+            <div className="p-4 bg-black bg-opacity-60 rounded-lg text-white">
               <MapsAgencia address={agencyDetails.address} />
             </div>
 
@@ -207,7 +208,7 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
       )}
 
       {selectedRegion && (
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-80 z-50 flex justify-center items-center mb-20"style={{ zIndex: 1000 }}>
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-80 z-50 flex justify-center items-center mb-20" style={{ zIndex: 1000 }}>
           <div className="bg-white shadow-md rounded-lg p-4 w-full max-w-3xl relative">
             <h2 className="text-2xl font-bold mb-4 text-center">Región {selectedRegion}</h2>
             <div className="overflow-y-auto max-h-96">
@@ -243,15 +244,15 @@ const AgencyDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           </div>
         </div>
       )}
-       <div className="flex justify-center mb-16">
+      <div className="flex justify-center mb-16">
         <Link href={'/'}>
           <BackButton />
         </Link>
       </div>
-      
+
     </div>
 
-   
+
   );
 };
 
