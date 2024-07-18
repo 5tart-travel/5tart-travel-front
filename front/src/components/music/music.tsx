@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPause, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faPause, faVolumeHigh, faBullseye } from '@fortawesome/free-solid-svg-icons';
 
 export type PlaylistItem = {
   title: string;
@@ -15,7 +15,7 @@ interface MusicPlayerProps {
 
 const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlist }) => {
   const [currentTrack, setCurrentTrack] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [player, setPlayer] = useState<any>(null);
   const [currentVolume, setCurrentVolume] = useState(50); 
   const [showVolumeControl, setShowVolumeControl] = useState(false); 
@@ -82,13 +82,12 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ playlist }) => {
       <button onClick={handlePlayPause}>
         <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} style={{ marginLeft: '10px', color: 'white' }} />
       </button>
-{/*       <YouTube
-  videoId={(new URL(playlist[currentTrack].url).searchParams.get('v') || '') as string}
-  opts={opts}
-  onReady={onPlayerReady}
-  onEnd={handleTrackEnd}
-/> */}
-
+      <YouTube
+      videoId={(new URL(playlist[currentTrack].url).searchParams.get('v') || '') as string}
+      opts={opts}
+      onReady={onPlayerReady}
+      onEnd={handleTrackEnd}
+      /> 
     </div>
   );
 };
