@@ -10,6 +10,7 @@ const MisVentas = () => {
   const [orders, setOrders] = useState<IToursDashboard[]>([]);
   const [token, setToken] = useState<string | null>(null);
   const [agencyId, setAgencyId] = useState<string | null>(null);
+  const [total, setTotal] = useState<number | null>(null);
 
   const router = useRouter();
 
@@ -65,11 +66,39 @@ const MisVentas = () => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   };
 
+  const refreshTotal = () => {
+    if (token) {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/agency/totalMount`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (typeof data === 'number') {
+            setTotal(data);
+          } else {
+            throw new Error('Unexpected response structure');
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching total mount:', error);
+        });
+    }
+  };
+
   return (
     <AuthGuardAgency>
       <div className="flex flex-col gap-4">
         <div>
-          <TotalMount />
+          <TotalMount total={total} refreshTotal={refreshTotal} />
         </div>
 
         <div className="flex justify-between font-bold px-8 mt-10">
