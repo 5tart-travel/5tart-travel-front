@@ -8,6 +8,9 @@ import TouristPointsSection from './section/turispointsection';
 import PackageList from './section/packagelist';
 import Link from 'next/link';
 import BackButton from '@/components/ui/BackButton';
+import { IoRemoveCircleOutline, IoAddCircleOutline } from 'react-icons/io5';
+import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 interface TouristPoint {
   name: string;
@@ -25,6 +28,10 @@ const Calculadora: React.FC = () => {
   const [totalFoodBudget, setTotalFoodBudget] = useState<number>(0);
   const [selectedTouristPoints, setSelectedTouristPoints] = useState<TouristPoint[]>([]);
   const [totalGeneral, setTotalGeneral] = useState<number>(0);
+  const [numberOfPeople, setNumberOfPeople] = useState<number>(1); 
+  const router = useRouter();
+
+
 
 
   useEffect(() => {
@@ -201,6 +208,18 @@ const Calculadora: React.FC = () => {
       );
     }
   }
+
+  const handlePeopleChange = (event: { target: any; }) => {
+    setNumberOfPeople(Number(event.target.value));
+  };
+
+  const handleIncrement = () => {
+    setNumberOfPeople(prev => prev + 1);
+  };
+
+  const handleDecrement = () => {
+    setNumberOfPeople(prev => Math.max(prev - 1, 1));
+  };
   useEffect(() => {
     const calculateTotalGeneral = () => {
       let total = totalFoodBudget;
@@ -212,12 +231,13 @@ const Calculadora: React.FC = () => {
       if (selectedPackage) {
         total += selectedPackage.price;
       }
+      total *= numberOfPeople
 
       setTotalGeneral(total);
     };
 
     calculateTotalGeneral();
-  }, [totalFoodBudget, selectedTouristPoints, selectedPackage]);
+  }, [totalFoodBudget, selectedTouristPoints, selectedPackage, numberOfPeople]);
   const handleClearAll = () => {
     setSelectedPackage(null);
     setTouristPoints([]);
@@ -227,8 +247,18 @@ const Calculadora: React.FC = () => {
     setTotalFoodBudget(0);
     setSelectedTouristPoints([]);
     setTotalGeneral(0);
+    setNumberOfPeople(0)
   };
-
+  const handleBuyClick = () => {
+    if (!selectedPackage) {
+      Swal.fire({
+        title: 'Debe seleccionar un paquete para comprar',
+        icon: 'warning',
+      });
+    } else {
+      router.push(`/travel/pack_${selectedPackage.transportType}/${selectedPackage.id}`);
+    }
+  };
   return (
     <div style={{ marginTop: '10px' }}>
       <section style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '95%', margin: '0 auto' }}>
@@ -388,6 +418,163 @@ const Calculadora: React.FC = () => {
           </div>
         </div>
 
+        <div style={{
+          display: 'flex',
+          width: '100%',
+          height: '100px',
+          overflow: 'hidden',
+        }}>
+          <div style={{
+            backgroundColor: '#f0f0f0',
+            padding: '10px',
+            boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+            width: '50%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginRight: '10px',
+            borderRadius: '10px'
+          }}>
+            <label htmlFor="people-count" style={{
+              display: 'block',
+              marginBottom: '8px',
+              fontSize: '18px',
+              textAlign: 'center',
+              color: '#333',
+              fontWeight: '500'
+            }}>
+              Cantidad de Personas
+            </label>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              border: '1px solid #ddd',
+              borderRadius: '8px',
+              overflow: 'hidden',
+              backgroundColor: '#f9f9f9',
+              width: '100%',
+              maxWidth: '100%'
+            }}>
+              <button
+                onClick={() => handlePeopleChange({ target: { value: Math.max(numberOfPeople - 1, 1) } })}
+                style={{
+                  backgroundColor: '#1e3a8a',
+                  border: 'none',
+                  color: '#fff',
+                  fontSize: '16px',
+                  padding: '11px',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.3s',
+                  borderRadius: '8px 0 0 8px',
+                  flex: '0 0 auto',
+                }}
+              >
+                <IoRemoveCircleOutline size={20} />
+              </button>
+              <input
+                type="number"
+                id="people-count"
+                min="1"
+                value={numberOfPeople}
+                onChange={handlePeopleChange}
+                style={{
+                  flex: '1',
+                  textAlign: 'center',
+                  border: 'none',
+                  outline: 'none',
+                  fontSize: '16px',
+                  padding: '10px',
+                  borderRadius: '0',
+                  backgroundColor: '#ffffff',
+                }}
+              />
+              <button
+                onClick={() => handlePeopleChange({ target: { value: numberOfPeople + 1 } })}
+                style={{
+                  backgroundColor: '#1e3a8a',
+                  border: 'none',
+                  color: '#fff',
+                  fontSize: '16px',
+                  padding: '11px',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.3s',
+                  borderRadius: '0 8px 8px 0',
+                  flex: '0 0 auto',
+                }}
+              >
+                <IoAddCircleOutline size={20} />
+              </button>
+            </div>
+          </div>
+
+          <div style={{
+  backgroundColor: '#f0f0f0',
+  padding: '10px',
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+  width: '50%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  borderRadius: '10px',
+  marginLeft: '10px'
+}}>
+  <h2 style={{
+    marginBottom: '16px',
+    fontSize: '20px',
+    textAlign: 'center',
+    color: '#333',
+    fontWeight: '600'
+  }}>
+    Compra tu Paquete
+  </h2>
+  <div style={{
+    display: 'flex',
+    gap: '10px',
+    justifyContent: 'center',
+    width: '100%'
+  }}>
+      <button
+              onClick={handleBuyClick}
+              style={{
+        backgroundColor: '#172554',
+        color: '#fff',
+        border: 'none',
+        fontSize: '16px',
+        padding: '12px 24px',
+        cursor: 'pointer',
+        transition: 'background-color 0.3s',
+        borderRadius: '10px',
+        fontWeight: '500',
+        flex: '1',
+        textAlign: 'center'
+      }}>
+        Comprar
+      </button>
+
+    <button
+      onClick={handleClearAll}
+      style={{
+        backgroundColor: '#172554',
+        color: '#fff',
+        border: 'none',
+        fontSize: '16px',
+        cursor: 'pointer',
+        transition: 'background-color 0.3s',
+        borderRadius: '10px',
+        fontWeight: '500',
+        flex: '1',
+        textAlign: 'center'
+      }}
+    >
+      Limpiar Todos los Campos
+    </button>
+  </div>
+</div>
+
+
+        </div>
+
         <div style={{ marginTop: '10px', backgroundColor: '#f0f0f0', padding: '20px', textAlign: 'center', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
           <h3 style={{ textAlign: 'center' }}>Total General</h3>
           <div style={{
@@ -403,22 +590,6 @@ const Calculadora: React.FC = () => {
           </div>
         </div>
       </section>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-        <button
-          onClick={handleClearAll}
-          style={{
-            padding: '10px 20px',
-            fontSize: '16px',
-            backgroundColor: '#172554',
-            color: 'white',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer'
-          }}
-        >
-          Limpiar Todos los Campos
-        </button>
-      </div>
 
       <div style={{
         display: 'flex',
@@ -437,7 +608,7 @@ const Calculadora: React.FC = () => {
       </div>
       <hr className='mt-10' />
 
-     
+
 
 
       <section style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
@@ -469,7 +640,7 @@ const Calculadora: React.FC = () => {
           <BackButton />
         </Link>
       </div>
-      
+
 
     </div>
   );
