@@ -19,6 +19,8 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const [totalPointsPrice, setTotalPointsPrice] = useState<number>(0);
+
 
   useEffect(() => {
     const userSession = localStorage.getItem('userSession');
@@ -73,6 +75,9 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   if (!busDetails) {
     return <p>No se encontraron detalles del tour.</p>;
   }
+  const handleTotalPointsPriceChange = (totalPrice: number) => {
+    setTotalPointsPrice(totalPrice);
+  };
 
   return (
     <div className="relative">
@@ -85,14 +90,19 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         />
       </div>
 
-      <CompraSection busDetails={busDetails} tourId={params.id} />
-      <div>
+      <CompraSection
+        busDetails={{ ...busDetails, activitiesTotalPrice: totalPointsPrice }}
+        tourId={params.id}
+      />      <div>
         <TourDetails busDetails={busDetails} />
       </div>
 
       <MapSection busDetails={busDetails} />
 
-      <TouristPointsSection busDetails={busDetails} />
+      <TouristPointsSection
+        busDetails={busDetails}
+        onTotalPriceChange={handleTotalPointsPriceChange} 
+      />
 
       <div className="flex items-center mb-1 mt-20">
         <hr className="border-gray-300 flex-grow opacity-20" />

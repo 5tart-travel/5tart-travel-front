@@ -10,6 +10,7 @@ interface CompraSectionProps {
     id: string;
     title: string;
     price: number;
+    activitiesTotalPrice: number; 
   };
   tourId: string;
 }
@@ -42,8 +43,6 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   }, [tourId]);
 
   const toggleFavorite = async () => {
-    
-    
     try {
       const url = `https://fivetart-travel-kafg.onrender.com/user/tour/favorite/${tourId}`;
       if (favorited) {
@@ -80,7 +79,6 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   };
 
   const handleCheckout = async () => {
-   
     try {
       const responss = await fetch(
         `https://fivetart-travel-kafg.onrender.com/order/${busDetails.id}`,
@@ -135,12 +133,13 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   };
 
   useEffect(() => {
-    setTotalPrice(busDetails.price * peopleCount);
-  }, [busDetails.price, peopleCount]);
+    setTotalPrice((busDetails.price + busDetails.activitiesTotalPrice) * peopleCount);
+  }, [busDetails.price, busDetails.activitiesTotalPrice, peopleCount]);
 
   const handleQuantityChange = (newQuantity: number) => {
     setPeopleCount(newQuantity);
   };
+  
   if (userRole === 'agency') {
     return null;
   }
@@ -166,6 +165,9 @@ const CompraSection: React.FC<CompraSectionProps> = ({
         </h2>
         <p className="text-sm md:text-md mb-2 md:mb-4">
           Precio por persona: ${busDetails.price}
+        </p>
+        <p className="text-sm md:text-md mb-2 md:mb-4">
+          Total Actividades: ${busDetails.activitiesTotalPrice.toLocaleString('es-ES')}
         </p>
         <div className="mb-2 md:mb-4 flex-col items-center justify-center">
           <label
@@ -199,5 +201,3 @@ const CompraSection: React.FC<CompraSectionProps> = ({
 };
 
 export default CompraSection;
-
-

@@ -18,6 +18,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [busDetails, setBusDetails] = useState<IBusTour | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [totalPointsPrice, setTotalPointsPrice] = useState<number>(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -61,6 +62,10 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
     fetchBusDetails();
   }, [params.id, router]);
 
+  const handleTotalPointsPriceChange = (totalPrice: number) => {
+    setTotalPointsPrice(totalPrice);
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -84,14 +89,20 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         />
       </div>
 
-      <CompraSection tourId={params.id} busDetails={busDetails} />
+      <CompraSection
+        busDetails={{ ...busDetails, activitiesTotalPrice: totalPointsPrice }}
+        tourId={params.id}
+      />
       <div>
         <TourDetails busDetails={busDetails} />
       </div>
 
       <MapSection busDetails={busDetails} />
 
-      <TouristPointsSection busDetails={busDetails} />
+      <TouristPointsSection
+        busDetails={busDetails}
+        onTotalPriceChange={handleTotalPointsPriceChange} 
+      />
 
       <div className="flex items-center mb-1 mt-20">
         <hr className="border-gray-300 flex-grow opacity-20" />
