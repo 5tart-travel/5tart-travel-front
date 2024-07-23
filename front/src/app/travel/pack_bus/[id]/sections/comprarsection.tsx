@@ -146,7 +146,7 @@ const CompraSection: React.FC<CompraSectionProps> = ({
 
   return (
     <section>
-      <div className="absolute top-0 right-0 bg-white text-center border-4 md:border-10 border-blue-500 rounded-lg p-6 md:p-12 z-10 mt-24 md:mt-80 mr-4 md:mr-8 shadow-lg">
+      <div className="absolute top-0 right-0 bg-white text-center border-4 md:border-10 border-blue-500 rounded-lg p-6 md:p-12 z-10 mt-24 md:mt-64 mr-4 md:mr-8 shadow-lg">
         <div
           className={`absolute right-0 top-0 m-2 rounded-full p-1 cursor-pointer ${
             favorited
