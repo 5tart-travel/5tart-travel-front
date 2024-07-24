@@ -301,7 +301,7 @@ const AgencyForm: React.FC = () => {
           </button>
         </div>
         <div className="flex justify-center">
-          <Link href={'/Home'}>
+          <Link href={'/'}>
             <HomeButton />
           </Link>
         </div>
