@@ -58,7 +58,7 @@ const Users: React.FC = () => {
           <div className="flex items-center space-x-4">
             <div className={`w-12 h-12 bg-gray-400 rounded-full overflow-hidden ${user.isActive ? '' : 'grayscale'}`}>
               <Image
-                src={user.avatar || 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp'}
+                src={user.avatar || 'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/perfil_pbtlkc'}
                 alt="Avatar"
                 className="w-full h-full object-cover"
                 width={48}
