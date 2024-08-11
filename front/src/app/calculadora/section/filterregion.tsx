@@ -8,25 +8,21 @@ interface RegionFilterProps {
 
 const RegionFilter: React.FC<RegionFilterProps> = ({ selectedRegion, regions, handleSelectRegion }) => {
   return (
-    <div className="mt-10" style={{ flex: '1', maxWidth: '50%', overflowY: 'auto' }}>
-      <div style={{ border: '2px solid #172554', borderRadius: '8px', padding: '10px', maxHeight: '70vh' }}>
-        <h2 className="text-center" style={{ marginBottom: '10px' }}>Filtrar por Región</h2>
-        <hr className='mt-1 mb-10' />
-
-        <div style={{ marginTop:'4px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '10px' }}>
-          {regions.map(region => (
+    <div className="mt-10 flex-1 max-w-[50%] overflow-y-auto bg-white rounded-xl shadow-2xl ">
+      <div className="border-2 border-[#172554] rounded-xl p-2.5 max-h-[70vh]">
+        <h2 className="text-center text-gray-600 text-xl text-shadow-semilight font-bold leading-relaxed flex items-center justify-center gap-2">Filtrar por Región</h2>
+        <hr className="mt-1 mb-10" />
+  
+        <div className="mt-1 grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-2.5">
+          {regions.map((region) => (
             <button
               key={region}
               onClick={() => handleSelectRegion(region)}
-              style={{
-                gridColumn: 'span 1',
-                backgroundColor: selectedRegion === region ? '#172554' : 'white',
-                color: selectedRegion === region ? 'white' : '#172554',
-                border: '1px solid #172554',
-                borderRadius: '4px',
-                padding: '8px',
-                cursor: 'pointer'
-              }}
+              className={`col-span-1 border bg-orange-400 rounded-xl p-2 cursor-pointer ${
+                selectedRegion === region
+                  ? 'bg-[#172554] text-white'
+                  : 'bg-violet-200 hover:bg-violet-300 text-[#172554]'
+              }`}
             >
               {region}
             </button>
@@ -35,6 +31,7 @@ const RegionFilter: React.FC<RegionFilterProps> = ({ selectedRegion, regions, ha
       </div>
     </div>
   );
+  
 };
 
 export default RegionFilter;
