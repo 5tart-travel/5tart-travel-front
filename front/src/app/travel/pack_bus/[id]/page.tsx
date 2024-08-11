@@ -105,21 +105,21 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
       />
 
       <div className="flex items-center mb-1 mt-20">
-        <hr className="border-gray-300 flex-grow opacity-20" />
-        <h2 className="text-lg font-bold text-gray-300 mx-2">Detalle de</h2>
-        <span className="text-lg font-bold text-gray-300 opacity-23">
+        <hr className="border-gray-500 flex-grow opacity-20" />
+        <h2 className="text-lg font-bold text-gray-400 mx-2">Detalle de</h2>
+        <span className="text-lg font-bold text-gray-500 opacity-23">
           {busDetails.transportType.toUpperCase()}
         </span>
-        <hr className="border-gray-300 flex-grow opacity-20" />
+        <hr className="border-gray-500 flex-grow opacity-20" />
       </div>
       <div>
         <Pasage busDetails={busDetails} />
       </div>
 
       <div className="flex items-center mb-1 mt-20">
-        <hr className="border-gray-300 flex-grow opacity-20" />
-        <h2 className="text-lg font-bold text-gray-300 mx-2">Comentarios</h2>
-        <hr className="border-gray-300 flex-grow opacity-20" />
+        <hr className="border-gray-500 flex-grow opacity-20" />
+        <h2 className="text-lg font-bold text-gray-400 mx-2">Comentarios</h2>
+        <hr className="border-gray-500 flex-grow opacity-20" />
       </div>
 
       <div className="w-full p-10">

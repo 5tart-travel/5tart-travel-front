@@ -38,7 +38,7 @@ const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ busDetails,
   };
 
   return (
-    <section className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="max-w-full mx-auto pb-10 sm:px-6 lg:px-8  ">
     <h2 className="text-2xl font-bold text-center mt-10 mb-5 text-gray-600 text-shadow-medium ">Selecciona tu actividad favorita</h2>
     <div className="flex items-center mb-1 mt-10">
       <hr className="border-gray-500 flex-grow opacity-20" />
@@ -51,17 +51,17 @@ const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ busDetails,
       {busDetails.touristPoints.map((point, index) => (
         <div
           key={index}
-          className="p-4 bg-white rounded-lg shadow-lg transform transition duration-500 hover:scale-105"
+          className="p-4 bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105"
           style={{ width: '100%', height: '150px' }}
         >
           <div
-            className="text-base text-black font-bold cursor-pointer flex flex-col items-center justify-center h-full text-center"
+            className="text-base text-gray-600 font-bold cursor-pointer flex flex-col items-center justify-center h-full text-center"
             onClick={() => handleStarClick(point.name)}
           >
             <span>
               {selectedPoints.includes(point.name) ? '⭐' : '☆'} {point.name}
             </span>
-            <p className='bg-blue-950 text-white rounded-lg'>${point.price}</p>
+            <p className='bg-blue-950 py-2 px-4 text-white rounded-xl'>${point.price}</p>
           </div>
         </div>
       ))}
