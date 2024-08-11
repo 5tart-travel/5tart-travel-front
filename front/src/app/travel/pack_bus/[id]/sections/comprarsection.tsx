@@ -160,7 +160,7 @@ const CompraSection: React.FC<CompraSectionProps> = ({
             className={`${favorited ? 'text-indigo-600' : 'text-black'}`}
           />
         </div>
-        <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-4">
+        <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-4 text-gray-600 ">
           {busDetails.title}
         </h2>
         <p className="text-sm md:text-md mb-2 md:mb-4">

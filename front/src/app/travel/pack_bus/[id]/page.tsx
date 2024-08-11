@@ -67,15 +67,15 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className='text-center py-10 text-4xl text-blue-500 text-shadow-semidark ' >Loading...</p>;
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return <p className='text-center py-10 text-4xl text-blue-500 text-shadow-semidark '>Error: {error}</p>;
   }
 
   if (!busDetails) {
-    return <p>No se encontraron detalles del tour.</p>;
+    return <p className='text-center py-10 text-4xl text-blue-500 text-shadow-semidark '>No se encontraron detalles del tour.</p>;
   }
 
   return (
@@ -118,7 +118,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
 
       <div className="flex items-center mb-1 mt-20">
         <hr className="border-gray-500 flex-grow opacity-20" />
-        <h2 className="text-lg font-bold text-gray-400 mx-2">Comentarios</h2>
+        <h2 className="text-lg font-bold text-gray-500 mx-2">Comentarios</h2>
         <hr className="border-gray-500 flex-grow opacity-20" />
       </div>
 
