@@ -47,9 +47,9 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
       onClick={() => onClick(tour.id)}
     >
       <div className="flex flex-col relative">
-        <div className="w-full h-48 rounded-lg mb-4 overflow-hidden">
+        <div className="w-full h-48 rounded-lg mb-4 overflow-hidden  ">
           {tour.oferta && (
-            <div className="ribbon ribbon-top-right text-center">
+            <div className="ribbon ribbon-top-right text-center  ">
               <span>Oferta</span>
             </div>
           )}
@@ -103,16 +103,16 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 mt-2">
-          <p className="bg-white rounded-full border border-gray-300 shadow-md px-4 py-1 text-gray-500 text-xs text-center">
+          <p className="bg-white rounded-full border border-gray-300 shadow-xl hover:shadow-inner px-4 py-1 text-gray-500 text-xs text-center">
             Check-in: <br />
             {new Date(tour.fecha_ingreso).toLocaleDateString()}
           </p>
-          <p className="bg-white rounded-full border border-gray-300 shadow-md px-4 py-1 text-gray-500 text-xs text-center">
+          <p className="bg-white rounded-full border border-gray-300 shadow-xl hover:shadow-inner px-4 py-1 text-gray-500 text-xs text-center">
             Check-out: <br />
             {new Date(tour.fecha_egreso).toLocaleDateString()}
           </p>
         </div>
-        <div className="bg-blue-950 hover:bg-blue-900 text-white font-bold text-center p-2 mt-4 rounded-md shadow-md">
+        <div className="bg-blue-950 hover:bg-blue-900 text-white font-bold text-center p-2 mt-4 rounded-xl shadowdark">
           {`$${tour.price}`}
         </div>
       </div>

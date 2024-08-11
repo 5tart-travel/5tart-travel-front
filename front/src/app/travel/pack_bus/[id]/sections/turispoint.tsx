@@ -39,12 +39,12 @@ const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ busDetails,
 
   return (
     <section className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 className="text-2xl font-bold text-center mt-10 mb-5">Selecciona tu actividad favorita</h2>
+    <h2 className="text-2xl font-bold text-center mt-10 mb-5 text-gray-600 text-shadow-medium ">Selecciona tu actividad favorita</h2>
     <div className="flex items-center mb-1 mt-10">
-      <hr className="border-gray-300 flex-grow opacity-20" />
-      <h2 className="text-lg font-bold text-gray-300 mx-2">Qué hacer en</h2>
-      <span className="text-lg font-bold text-gray-300 opacity-23">{busDetails.destino.toUpperCase()}</span>
-      <hr className="border-gray-300 flex-grow opacity-20" />
+      <hr className="border-gray-500 flex-grow opacity-20" />
+      <h2 className="text-lg font-bold text-gray-400 mx-2">Qué hacer en</h2>
+      <span className="text-lg font-bold text-gray-500 text-shadow-medium opacity-23">{busDetails.destino.toUpperCase()}</span>
+      <hr className="border-gray-500 flex-grow opacity-20" />
     </div>
   
     <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 max-h-96 overflow-y-auto">

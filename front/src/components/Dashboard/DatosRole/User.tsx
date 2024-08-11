@@ -124,7 +124,7 @@ const User: React.FC<UserProps> = ({ userData }) => {
           <hr className="mt-4" />
           <button
             onClick={handleSave}
-            className="mt-4 bg-blue-500 text-white p-2 rounded-md"
+            className="mt-4 bg-blue-950 text-white p-2 rounded-xl hover:bg-blue-800"
             disabled={buttonsDisabled || disabled}
           >
             Guardar

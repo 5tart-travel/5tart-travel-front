@@ -38,8 +38,8 @@ export default function Home() {
   };
   
   return (
-    <ThemeProvider theme={theme}> 
-      <>
+    <ThemeProvider theme={theme}  > 
+      <div className='bg-white'>
         <GlobalStyles />
         <Navbar toggleTema={toggleTema} tema={tema} />
         <div className="flex">
@@ -70,7 +70,7 @@ export default function Home() {
           <SubscriptionForm tema={tema}/>
         </div>
         <Footer tema={tema} username={null} />
-      </>
+      </div>
     </ThemeProvider>  
   );
 }
