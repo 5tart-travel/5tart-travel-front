@@ -3,10 +3,54 @@
 @tailwind utilities;
 
 
+/*? Sombra blanca box */
+
+
+/* Sombra blanca ligera para elementos */
+.box-shadow-white-light {
+  box-shadow: 0 2px 4px rgba(94, 94, 94, 0.3);
+}
+
+/* Sombra blanca semiligera para elementos */
+.box-shadow-white-semilight {
+  box-shadow: 0 4px 6px rgba(77, 77, 77, 0.5);
+}
+
+/* Sombra blanca mediana para elementos */
+.box-shadow-white-medium {
+  box-shadow: 0 6px 8px rgba(34, 34, 34, 0.6);
+}
+
+/* Sombra blanca semioscura para elementos */
+.box-shadow-white-semidark {
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.8);
+}
+
+
+/** sobras luz */
+/* Sombra blanca ligera */
+.text-shadow-white-light {
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Sombra blanca semiligera */
+.text-shadow-white-semilight {
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+/* Sombra blanca mediana */
+.text-shadow-white-medium {
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
+}
+
+/* Sombra blanca semioscura */
+.text-shadow-white-semidark {
+  text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.8);
+}
 
 
 
-
+/* *+++++++++Sombras darck +++++++++ */
 /* Sombra ligera */
 .text-shadow-light {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -131,7 +175,7 @@ time, mark, audio, video {
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
+    font: Saira;
     vertical-align: baseline;
 }
 
@@ -167,22 +211,32 @@ table {
 }
 
 
+/* animaciones para car sobre nosotros  */
 
-
-
-/* animation skeleton */
-/* @keyframes pulse {
-  100% {
-    background-color: #e0e0e0;
-  }
-  50% {
-    background-color: #f0f0f0;
-  }
+@keyframes borderAnimation {
   0% {
-    background-color: #e0e0e0;
+    border-color: #7816f9; 
+  }
+  30% {
+    border-color: #4853ec; 
+  }
+  60% {
+    border-color: #1c90f0; 
+  }
+  100% {
+    border-color: #7816f9; 
+  }
+  60% {
+    border-color: #4853ec; 
+  }
+  30% {
+    border-color: #1c90f0; 
+  }
+}
+/*  #7816f9, #4853ec, #1c90f0, #7816f9) */
+@layer utilities {
+  .animate-borderAnimation {
+    animation: borderAnimation 2s infinite;
   }
 }
 
-.skeleton {
-  animation: pulse 1.3s infinite linear;
-} */

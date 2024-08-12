@@ -59,21 +59,7 @@ const config: Config = {
         yellow500: "#af8f2c",
         lime500: "#88a147",
         customGray: 'rgb(92, 91, 94)',
-        // primary: '#41d3be',
-        // secondary: '#8AFF70',
-        // tertiary: '#708aff',
-        // quaternary: '#A47AFF',
-        // quinary: '#FF3D60',
-        // neutral: '#7f7f7f',
-        // Tomato: "#FF5733",
-        // SpringGreen: "#33FF57",
-        // RoyalBlue: "#3357FF",
-        // DeepPink: "#FF33A6",
-        // DarkOrange: "#FF8F33",
-        // Turquoise: "#33FFDB",
-        // RedOrange: "#FF3333",
-        // Purple: "#8D33FF",
-        // MediumSpringGreen: "#33FF8F",
+        
         tremor: {
           brand: {
             faint: colors.blue[50],
@@ -162,6 +148,7 @@ const config: Config = {
     require('@tailwindcss/forms')
   ],
   safelist: [
+    
     {
       pattern: /^(fill|bg|text|border|ring|stroke|hover:bg|hover:border|hover:text|ui-selected:bg|ui-selected:border|ui-selected:text)-(slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(50|100|200|300|400|500|600|700|800|900|950)$/,
     },
