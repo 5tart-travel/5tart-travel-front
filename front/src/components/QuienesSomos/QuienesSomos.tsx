@@ -27,7 +27,7 @@ const QuienesSomos = () => {
 
   return (
     <div className="w-full  ">
-      <section className="py-5 mx-5">
+      {/* <section className="py-5 mx-5">
         <h3 className="text-center my-5 text-3xl font-bold text-gray-700 text-shadow-medium ">SOBRE NUESTRA PAGINA</h3>
         <Image 
           src={currentImage} 
@@ -45,7 +45,7 @@ const QuienesSomos = () => {
           <br />
           Ofrecemos un espacio donde las pequeñas y grandes agencias de turismo pueden destacar sus mejores ofertas, mientras que los usuarios disfrutan de un proceso de búsqueda y compra sencillo y eficiente. En <span className="italic">5tart Travel</span>, nos aseguramos de que cada viaje sea único y memorable, garantizando calidad y satisfacción en cada paso del camino.
         </p>
-      </section>
+      </section> */}
 
       <NuestrosDatos />
 
@@ -76,4 +76,3 @@ const QuienesSomos = () => {
 }
 
 export default QuienesSomos;
-0
