@@ -21,7 +21,7 @@ const Card4: React.FC<CardProps> = ({ data }) => {
       <div className="w-1/3 bg-neutral-900 flex flex-col justify-between p-4">
         <img src={data.imgUrl} alt={data.name} className="w-20 h-20 rounded-full object-cover mb-4 mx-auto" />
         <div className="text-center ">
-          <h3 className="text-xl font-semibold mb-1">{data.name}</h3>
+          <h3 className="text-xl text-gray-200 font-semibold mb-1">{data.name}</h3>
           <p className="text-indigo-500 text-shadow-white-semilight ">{data.specialization}</p>
         </div>
         <div className="mt-4 mx-auto">
