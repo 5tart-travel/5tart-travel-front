@@ -10,8 +10,9 @@ interface PackageListProps {
 
 const PackageList: React.FC<PackageListProps> = ({ tours, filteredTours, selectedPackage, handleSelectPackage }) => {
   return (
-    <div className="w-[50vw] max-h-[50vh] overflow-y-auto">
-      <div className="grid grid-cols-3 gap-5">
+    <div className="mx-3 custom-scrollbar">
+    <div className="w-[95vw] lg:w-[50vw] xl:w-[50vw] 2xl:w-[35vw] max-h-[50vh] overflow-y-auto custom-scrollbar">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
         {filteredTours.map((tour) => {
           const startDate = new Date(tour.fecha_ingreso);
           const endDate = new Date(tour.fecha_egreso);
@@ -34,7 +35,7 @@ const PackageList: React.FC<PackageListProps> = ({ tours, filteredTours, selecte
           return (
             <div
               key={tour.id}
-              className={` rounded-xl p-5 shadow-2xl cursor-pointer  ${
+              className={`rounded-xl p-5 shadow-2xl cursor-pointer ${
                 selectedPackage && selectedPackage.id === tour.id ? 'bg-red-500' : 'bg-white'
               }`}
               style={{
@@ -46,14 +47,14 @@ const PackageList: React.FC<PackageListProps> = ({ tours, filteredTours, selecte
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-center text-white bg-gradient-to-bl from-purple-600 via-indigo-600 to-indigo-500 p-1.5 rounded-xl text-sm whitespace-nowrap overflow-hidden text-ellipsis max-w-[160px]">
+                  <h3 className="text-center text-white bg-blue-950 bg-opacity-65 p-1.5 rounded-xl text-sm whitespace-nowrap overflow-hidden text-ellipsis max-w-[160px]">
                     {tour.title}
                     <p className="text-left">
                       {tourDuration} días, {noches} noches
                     </p>
                   </h3>
   
-                  <div className="mt-1 text-center p-1 border  rounded-xl bg-blue-950 text-white">
+                  <div className="mt-1 text-center p-1 border rounded-xl bg-violet-600 bg-opacity-35 backdrop-blur-lg shadow-3xl text-white">
                     <p>Precio: ${tour.price.toLocaleString()}</p>
                   </div>
                 </div>
@@ -69,9 +70,9 @@ const PackageList: React.FC<PackageListProps> = ({ tours, filteredTours, selecte
         })}
       </div>
     </div>
+  </div>
+  
   );
-  
-  
 };
 
-      export default PackageList;
+export default PackageList;

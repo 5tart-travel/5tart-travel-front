@@ -301,14 +301,14 @@ const Calculadora: React.FC = () => {
             <div className="bg-gray-50 p-5 rounded-xl shadow-2xl">
               {selectedPackageDetails ? (
                 <div className="mb-5">
-                  <h3 className="text-center text-gray-500 text-base text-shadow-semilight font-semibold leading-relaxed">
+                  <h3 className="text-center text-gray-700 text-base text-shadow-semilight font-semibold leading-relaxed">
                     Paquete Seleccionado
                   </h3>
                   <p>{selectedPackageDetails}</p>
                 </div>
               ) : (
                 <div className="mb-5 rounded-lg">
-                  <p className="text-center text-gray-500 text-base text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
+                  <p className="text-center text-gray-700 text-base text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
                     <PiBackpackFill className="text-indigo-600 w-10 h-10 " />
                     No hay paquete seleccionado
                   </p>
@@ -318,7 +318,7 @@ const Calculadora: React.FC = () => {
 
             {/* Area Actividades Seleccionadas */}
             <div className="bg-gray-50 p-5 rounded-xl shadow-2xl max-h-[57vh] min-h-[57vh] overflow-hidden flex flex-col">
-              <h3 className="text-center text-gray-500 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
+              <h3 className="text-center text-gray-700 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
                 <FaMapMarkedAlt className="text-orange-400 w-10 h-10 mb-3 " />{' '}
                 Actividades Seleccionadas
               </h3>
@@ -357,7 +357,7 @@ const Calculadora: React.FC = () => {
           {/* Area total de paquete seleccionado */}
           <div className="flex-1 flex flex-col gap-5 w-1/2">
             <div className="bg-gray-50 mb-5 p-5 rounded-xl shadow-2xl">
-              <h4 className="text-center text-gray-500 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
+              <h4 className="text-center text-gray-700 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
               <PiBackpackFill className="text-indigo-600 w-6 h-6 " />
                 Paquete Seleccionado
               </h4>
@@ -368,7 +368,7 @@ const Calculadora: React.FC = () => {
             </div>
             {/*  Comida por dia */}
             <div className="bg-gray-50 p-5 mb-5 rounded-xl shadow-2xl">
-              <h4 className="text-center text-gray-500 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
+              <h4 className="text-center text-gray-700 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
               <IoFastFood className="text-pink-600 w-6 h-6 mb-3 " />
                 Comida por Día
               </h4>
@@ -378,7 +378,7 @@ const Calculadora: React.FC = () => {
             </div>
             {/* Comida total  */}
             <div className="bg-gray-50 p-5 mb-5 rounded-md shadow-md">
-              <h4 className="text-center text-gray-500 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
+              <h4 className="text-center text-gray-700 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
               <IoFastFood className="text-lime500 w-6 h-6 mb-3 " />
                 Comida total del viaje
               </h4>
@@ -391,7 +391,7 @@ const Calculadora: React.FC = () => {
             </div>
             {/* Total de Actividades */}
             <div className="bg-gray-50 p-5 rounded-xl shadow-2xl">
-              <h4 className="text-center text-gray-500 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
+              <h4 className="text-center text-gray-700 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
               <FaMapMarkedAlt className="text-orange-400 w-6 h-6 mb-3 " />
                 Total Actividades
               </h4>
@@ -407,7 +407,7 @@ const Calculadora: React.FC = () => {
             <div className="bg-violet-50 shadow-inner  p-2.5  w-1/2 flex flex-col items-center justify-center mr-2.5 rounded-xl  ">
             <label
   htmlFor="people-count"
-  className=" mb-2 text-lg font-semibold text-center text-gray-600 text-shadow-medium flex items-center justify-center"
+  className=" mb-2 text-lg font-semibold text-center text-gray-700 text-shadow-medium flex items-center justify-center"
 >
   <FaPeopleGroup className="mr-2 w-8 h-8 text-cyan-500 " />
   Cantidad de Personas
@@ -447,7 +447,7 @@ const Calculadora: React.FC = () => {
             </div>
 
             <div className="bg-violet-50 shadow-inner p-2.5  w-1/2 flex flex-col items-center rounded-xl ml-2.5">
-              <h2 className="text-center text-gray-600 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
+              <h2 className="text-center text-gray-700 text-lg text-shadow-semilight font-semibold leading-relaxed flex items-center justify-center gap-2">
               <FaMoneyCheckDollar className="text-purple-500 text-xl w-8 h-8 " />
                 Compra tu Paquete
               </h2>
@@ -471,7 +471,7 @@ const Calculadora: React.FC = () => {
           </div>
           
         <div className="mt-2.5 bg-violet-200 p-9 text-center rounded-xl shadow-2xl">
-          <h3 className="text-center text-gray-600 text-xl text-shadow-semilight font-bold leading-relaxed flex items-center justify-center gap-2">Total General</h3>
+          <h3 className="text-center text-gray-700 text-xl text-shadow-semilight font-bold leading-relaxed flex items-center justify-center gap-2">Total General</h3>
           <div className="mt-7.5 text-center text-3xl py-2.5 border border-blue-950 rounded-2xl bg-blue-950 text-white">
             ${totalGeneral.toLocaleString()}
           </div>
@@ -497,7 +497,7 @@ const Calculadora: React.FC = () => {
 
       <div className="flex-1 mr-5">
   <div>
-    <h2 className="text-center text-gray-600 text-xl text-shadow-semilight font-bold leading-relaxed flex items-center justify-center gap-2">
+    <h2 className="text-center text-gray-700 text-xl text-shadow-semilight font-bold leading-relaxed flex items-center justify-center gap-2">
       Paquetes Disponibles
     </h2>
             <PackageList
@@ -510,7 +510,7 @@ const Calculadora: React.FC = () => {
         </div>
         <div className="flex-1 ml-5">
   <div>
-    <h2 className="mb-5 mt-5 text-center">
+    <h2 className="text-center text-gray-700 text-xl text-shadow-semilight font-bold leading-relaxed flex items-center justify-center mb-5">
       Actividades Disponibles
     </h2>
             <TouristPointsSection

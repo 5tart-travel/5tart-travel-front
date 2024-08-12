@@ -11,7 +11,7 @@ interface TouristPointsSectionProps {
   setSelectedPoints: React.Dispatch<React.SetStateAction<TouristPoint[]>>;
 }
 
-const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ touristPoints, selectedPoints, setSelectedPoints }) => {
+export const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ touristPoints, selectedPoints, setSelectedPoints }) => {
 
   const togglePointSelection = (pointName: string) => {
     const isSelected = selectedPoints.some(point => point.name === pointName);
@@ -27,41 +27,38 @@ const TouristPointsSection: React.FC<TouristPointsSectionProps> = ({ touristPoin
   };
 
   return (
-    <div style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-      {touristPoints.length > 0 ? (
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '10px',
-        }}>
-          {touristPoints.map((point, index) => (
-            <div key={index} style={{
-              border: '1px solid #172554',
-              borderRadius: '8px',
-              padding: '10px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              backgroundColor: '#fff',
-              cursor: 'pointer'
-            }}>
-              <input
-                type='checkbox'
-                checked={selectedPoints.some(selectedPoint => selectedPoint.name === point.name)}
-                onChange={() => togglePointSelection(point.name)}
-                style={{ marginBottom: '5px' }}
-              />
-              <p style={{ margin: '0', textAlign: 'center', fontSize: '0.9em', fontWeight: 'bold', minHeight: '40px' }}>{point.name}</p>
-              <div style={{ backgroundColor: '#172554', color: 'white', borderRadius: '5px', padding: '5px' }}>
-                <p style={{ margin: '0', fontSize: '0.8em' }}>${point.price.toLocaleString()}</p>
-              </div>
+    <div className="max-h-[50vh] overflow-y-auto custom-scrollbar">
+    {touristPoints.length > 0 ? (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {touristPoints.map((point, index) => (
+          <div 
+            key={index} 
+            className="border border-blue-950 rounded-xl p-3 flex flex-col items-center bg-violet-100 shadow-2xl cursor-pointer"
+          >
+            <input
+              type="checkbox"
+              checked={selectedPoints.some(selectedPoint => selectedPoint.name === point.name)}
+              onChange={() => togglePointSelection(point.name)}
+              className="mb-2"
+            />
+            <p className="m-0 text-center text-xs font-bold min-h-[40px]">
+              {point.name}
+            </p>
+            <div className="bg-blue-950 text-white rounded-lg p-2 mt-2">
+              <p className="m-0 text-[0.7rem]">
+                ${point.price.toLocaleString()}
+              </p>
             </div>
-          ))}
-        </div>
-      ) : (
-        <p style={{ textAlign: 'center', marginTop: '10px' }}>No hay Actividades disponibles para este destino.</p>
-      )}
-    </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p className="text-center text-lime500 text-xl text-shadow-semilight font-bold leading-relaxed flex items-center justify-center gap-2 mt-[120px]">
+        No hay Actividades disponibles para este destino.
+      </p>
+    )}
+  </div>
+  
   );
 };
 
