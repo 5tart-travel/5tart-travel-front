@@ -1,11 +1,10 @@
 'use client';
 
 import NuestrosDatos from './NuestrosDatos';
-import ReactPlayer from 'react-player';
 import TecnologiasUtilizadas from './TecnologiasUtilizadas';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import SnakeLoading from '@/components/ui/snakeLoading'; 
 
 const DynamicReactPlayer = dynamic(() => import('react-player'), {
   ssr: false,
@@ -13,6 +12,7 @@ const DynamicReactPlayer = dynamic(() => import('react-player'), {
 
 const QuienesSomos = () => {
   const [isClient, setIsClient] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setIsClient(true);
@@ -22,8 +22,13 @@ const QuienesSomos = () => {
     <div className="w-full relative">
       {/* Banner con video */}
       <div className="relative flex w-full h-[300px] lg:h-[500px] md:h-[400px] sm:h-[300px]">
-        <div className="w-full h-[350px] bg-black  flex justify-center items-center overflow-hidden">
-          <ReactPlayer
+        <div className="w-full h-[350px] flex justify-center items-center overflow-hidden">
+          {loading && (
+            <div className="absolute inset-0 flex justify-center items-center  z-10">
+              <SnakeLoading />
+            </div>
+          )}
+          <DynamicReactPlayer
             url="https://res.cloudinary.com/dia2gautk/video/upload/v1723517461/1104507_1080p_Come_1920x1080_hrxph9_gtwszu.mp4"
             playing={true}
             loop={true}
@@ -31,11 +36,12 @@ const QuienesSomos = () => {
             width="100vw"
             height="auto"
             muted={true}
+            onReady={() => setLoading(false)} // Oculta el loading cuando el video esté listo
           />
           <div className="absolute top-[65%]">
             <TecnologiasUtilizadas />
           </div>
-          <div className="absolute text-xs right-10 text-left  max-w-xl xxs:my-0 xxs:right-5 xs:my-0 xs:right-7 sm:my-0 sm:right-7 md:my-10 md:right-7 lg:my-20 lg:right-9">
+          <div className="absolute text-xs right-10 text-left max-w-xl xxs:my-0 xxs:right-5 xs:my-0 xs:right-7 sm:my-0 sm:right-7 md:my-10 md:right-7 lg:my-20 lg:right-9">
             <p className="text-lg mt-2 text-gray-50 text-shadow-semidark xxs:text-sm xs:text-base sm:text-base md:text-lg lg:text-xl">
               Conectamos a viajeros con las mejores agencias.
             </p>

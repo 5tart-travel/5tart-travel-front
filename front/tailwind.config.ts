@@ -13,6 +13,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+
+      keyframes: {
+        'underline-expand': {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
+        },
+      },
+      animation: {
+        'underline-expand': 'underline-expand 0.3s ease-in-out forwards',
+      },
      
       width: {
         'nav': '29rem',
