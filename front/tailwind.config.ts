@@ -1,6 +1,7 @@
 import { Config } from "tailwindcss";
 import colors from 'tailwindcss/colors';
-import { nextui } from "@nextui-org/react";
+// Importa solo el paquete sin usarlo como función
+import nextui from "@nextui-org/react";
 
 const config: Config = {
   content: [
@@ -12,6 +13,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+     
       width: {
         'nav': '29rem',
       },
@@ -24,17 +26,8 @@ const config: Config = {
       invert: {
         100: '1',
       },
-      animation: {
-        'bounce': 'bounce 1.5s infinite',
-      },
-      keyframes: {
-        bounce: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-15px)' },
-        },
-      },
       screens: {
-        xxs:'320px',  
+        xxs: '320px',  
         xs: '412px',
         sm: '480px',
         md: '768px',
@@ -50,7 +43,6 @@ const config: Config = {
         '4xl': '64rem', // 1024px
       },
       colors: {
-        // para el degrade:  bg-gradient-to-bl from-purple-600 via-indigo-600 to-indigo-500 
         indigo500: "#6366f1",
         violeta: "#A763F1",
         red500: "#e83c88",
@@ -59,7 +51,6 @@ const config: Config = {
         yellow500: "#af8f2c",
         lime500: "#88a147",
         customGray: 'rgb(92, 91, 94)',
-        
         tremor: {
           brand: {
             faint: colors.blue[50],
@@ -142,13 +133,11 @@ const config: Config = {
   },
   darkMode: "class",
   plugins: [
-    nextui(),
     require('tailwind-scrollbar'),
     require('@headlessui/tailwindcss'), 
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
   ],
   safelist: [
-    
     {
       pattern: /^(fill|bg|text|border|ring|stroke|hover:bg|hover:border|hover:text|ui-selected:bg|ui-selected:border|ui-selected:text)-(slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(50|100|200|300|400|500|600|700|800|900|950)$/,
     },

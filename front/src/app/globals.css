@@ -240,3 +240,39 @@ table {
   }
 }
 
+/*! Animacion logo girar sobre su eje */
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 5s linear infinite;
+}
+/* estilos carrusel tecnloias */
+
+
+@keyframes slide-loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide-loop {
+  animation: slide-loop 30s linear infinite;
+}
+
+
+
+.Slider_tag__MsWMp {
+  width: fit-content;
+}
+
