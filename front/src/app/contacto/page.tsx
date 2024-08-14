@@ -41,21 +41,44 @@ const Contacto: React.FC = () => {
     e.preventDefault();
 
     if (!isUserLoggedIn) {
-      Swal.fire('Debes estar logueado para enviar un mensaje.');
+      Swal.fire({
+        icon: "warning",
+        title: "Debes estar logueado para enviar un mensaje",
+        showConfirmButton: false,
+        timer: 2000
+      });
       router.push('/AUTH/login');
       return;
     }
 
     try {
       await axios.post('https://fivetart-travel-kafg.onrender.com/contact', formData); 
-      Swal.fire('Formulario enviado con éxito');
+      Swal.fire({
+        title: 'Formulario enviado con éxito',
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false
+      });
+
+      // Limpiar los campos del formulario después de enviarlo con éxito
+      setFormData({
+        username: '',
+        telefono: '',
+        mail: '',
+        message: ''
+      });
     } catch (error) {
-      Swal.fire('Hubo un error al enviar el formulario');
+      Swal.fire({
+        title: "Formulario no enviado",
+        icon: 'error',
+        timer: 2000,
+        showConfirmButton: false
+      });
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-gray-50">
+    <div className="min-h-screen flex flex-col justify-between bg-white">
       <div className="relative w-full h-[300px] lg:h-[400px] md:h-[400px] sm:h-[300px]">
         <Image
           src="https://res.cloudinary.com/dia2gautk/image/upload/v1720054222/woman-is-standing-beautiful-tropical-beach-gazing-vast-ocean_brbbpx.webp"
@@ -85,71 +108,72 @@ const Contacto: React.FC = () => {
         <ContactoUi />
       </div>
       <div className="container mx-auto px-4 py-24 w-[700px] my-10">
-        <form className="flex flex-col space-y-4 mt-8" onSubmit={handleSubmit}>
-          <div className="w-full">
-            <label htmlFor="username" className="block text-sm font-medium text-gray-500">
-              Nombre <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              className="bg-gray-50 mt-1 p-2 block w-full border-0 border-b-3 border-gray-400 focus:ring-0 focus:border-lime500"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="w-full">
-            <label htmlFor="telefono" className="block text-sm font-medium text-gray-700">
-              Teléfono
-            </label>
-            <input
-              type="tel"
-              id="telefono"
-              name="telefono"
-              className="mt-1 p-2 block w-full border-0 border-b-3 border-gray-400 bg-gray-50 focus:ring-0 focus:border-lime500"
-              value={formData.telefono}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="w-full">
-            <label htmlFor="mail" className="block text-sm font-medium text-gray-700">
-              Email <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              id="mail"
-              name="mail"
-              className="mt-1 p-2 block w-full border-0 border-b-3 border-gray-400 bg-gray-50 focus:ring-0 focus:border-lime500"
-              value={formData.mail}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="w-full">
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-              Mensaje <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={3}
-              className="mt-1 p-2 block w-full border-0 border-b-3 border-gray-400 bg-gray-50 focus:ring-0 focus:border-lime500"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="w-full mt-4">
-            <button
-              type="submit"
-              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-950 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2"
-            >
-              Enviar
-            </button>
-          </div>
-        </form>
+      <form className="flex flex-col space-y-4 mt-8" onSubmit={handleSubmit}>
+  <div className="w-full">
+    <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+      Nombre <span className="text-red-500">*</span>
+    </label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      className="bg-gray-50 mt-1 p-2 block w-full border-0  border-b-2 rounded-xl shadow-inner border-indigo-300 focus:ring-0 focus:border-lime500"
+      value={formData.username}
+      onChange={handleChange}
+      required
+    />
+  </div>
+  <div className="w-full">
+    <label htmlFor="telefono" className="block text-sm font-medium text-gray-700">
+      Teléfono
+    </label>
+    <input
+      type="tel"
+      id="telefono"
+      name="telefono"
+      className="bg-gray-50 mt-1 p-2 block w-full  border-0 border-b-2 border-indigo-300  rounded-xl shadow-inner focus:ring-0 focus:border-lime500"
+      value={formData.telefono}
+      onChange={handleChange}
+    />
+  </div>
+  <div className="w-full">
+    <label htmlFor="mail" className="block text-sm font-medium text-gray-700">
+      Email <span className="text-red-500">*</span>
+    </label>
+    <input
+      type="email"
+      id="mail"
+      name="mail"
+      className="bg-gray-50 mt-1 p-2 block w-full border-0 border-b-2 border-indigo-300  rounded-xl shadow-inner focus:ring-0 focus:border-lime500"
+      value={formData.mail}
+      onChange={handleChange}
+      required
+    />
+  </div>
+  <div className="w-full">
+    <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+      Mensaje <span className="text-red-500">*</span>
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      rows={3}
+      className="bg-gray-50 mt-1 p-2 block w-full  border-0 border-b-2 border-indigo-300  rounded-xl shadow-inner focus:ring-0 focus:border-lime500"
+      value={formData.message}
+      onChange={handleChange}
+      required
+    />
+  </div>
+  <div className="w-full mt-4">
+    <button
+      type="submit"
+      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-xl text-white bg-blue-950 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2"
+    >
+      Enviar
+    </button>
+  </div>
+</form>
+
       </div>
       <Footer className="w-full" username={null} tema={null} />
     </div>

@@ -15,7 +15,7 @@ const adminLinks = [
   { name: "Paquetes", href: "/admin/packages", icon: FaSuitcaseRolling }, 
   { name: "Soporte", href: "/admin/reportes", icon: MdSupportAgent },
   { name: "Usuarios", href: "/admin/users", icon: FaUserFriends }, 
-  {name:'Betas', href: '/admin/betas', icon: TbBeta}
+  {name:'Beta', href: '/admin/betas', icon: TbBeta}
 ];
 
 const NavLinksAdmin: React.FC = () => {

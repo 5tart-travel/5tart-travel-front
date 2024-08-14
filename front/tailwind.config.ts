@@ -19,10 +19,17 @@ const config: Config = {
           '0%': { width: '0%' },
           '100%': { width: '100%' },
         },
+        'shrink-line': {
+          '0%': { transform: 'scaleY(1)', opacity: '1' },
+          '50%': { transform: 'scaleY(0.05)', opacity: '1' },
+          '100%': { transform: 'scaleY(0.05)', opacity: '0' },
+        },
       },
       animation: {
         'underline-expand': 'underline-expand 0.3s ease-in-out forwards',
+        'shrink-line': 'shrink-line 0.5s ease-in-out forwards',
       },
+      
      
       width: {
         'nav': '29rem',

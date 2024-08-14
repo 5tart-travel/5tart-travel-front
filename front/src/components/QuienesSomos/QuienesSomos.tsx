@@ -36,7 +36,7 @@ const QuienesSomos = () => {
             width="100vw"
             height="auto"
             muted={true}
-            onReady={() => setLoading(false)} // Oculta el loading cuando el video esté listo
+            onReady={() => setLoading(false)} 
           />
           <div className="absolute top-[65%]">
             <TecnologiasUtilizadas />

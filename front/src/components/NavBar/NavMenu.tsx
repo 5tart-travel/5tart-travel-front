@@ -30,6 +30,17 @@ const NavMenu: React.FC = () => {
           <Link
             className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-0 after:bg-blue-300 after:transition-[width] after:duration-300 after:ease-out hover:after:w-full"
             href={{
+              pathname: '/contacto',
+              query: { name: 'test' },
+            }}
+          >
+            Contacto
+          </Link>
+        </li>
+        <li className="hidden md:flex"> 
+          <Link
+            className="relative hover:text-blue-300 after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-0 after:bg-blue-300 after:transition-[width] after:duration-300 after:ease-out hover:after:w-full"
+            href={{
               pathname: '/nosotros',
               query: { name: 'test' },
             }}
