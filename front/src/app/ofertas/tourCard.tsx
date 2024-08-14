@@ -75,9 +75,13 @@ const TourCard: React.FC<TourCardProps> = ({ tour, onClick }) => {
             {tour.destino}
           </h2>
           <p className="text-gray-500 font-bold">
-            {tour.agency.name_agency.length > 12
-              ? `${tour.agency.name_agency.substring(0, 12)}...`
-              : tour.agency.name_agency}
+            {tour.agency?.name_agency ? (
+              tour.agency.name_agency.length > 12
+                ? `${tour.agency.name_agency.substring(0, 12)}...`
+                : tour.agency.name_agency
+            ) : (
+              'Agencia no disponible'
+            )}
           </p>
         </div>
         <div className="grid grid-cols-2 gap-4">
