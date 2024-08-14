@@ -62,13 +62,15 @@ const Compras = () => {
   }, [token, userId]);
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-4">Tus compras</h1>
+    <div className="p-6">
+      <h1 className="text-center text-gray-800 uppercase text-2xl font-bold text-shadow-medium">
+        Tus compras{' '}
+      </h1>{' '}
       {Array.isArray(orders) && orders.length === 0 ? (
-        <div className="text-center text-gray-600">
+        <div className="flex flex-col items-center justify-center text-center text-gray-600 p-6">
           <p>No tienes compras.</p>
           <p>
-            Haz click{' '}
+            Haz clic{' '}
             <Link href="/travel" className="text-blue-500">
               aquí
             </Link>{' '}
@@ -76,7 +78,7 @@ const Compras = () => {
           </p>
         </div>
       ) : (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center gap-6">
           {orders.map((order) => (
             <OrderCard key={order.id} order={order} />
           ))}

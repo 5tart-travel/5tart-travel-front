@@ -5,7 +5,7 @@ import DeleteOrders from '@/components/Dashboard/DeleteOrders';
 import TotalMount from '@/components/Dashboard/TotalMount';
 import AuthGuardAgency from '@/components/AuthGuard/AuthGuardAgency';
 
-const Pagos: React.FC = () => {
+const Banca: React.FC = () => {
   const [total, setTotal] = useState<number | null>(null);
   const [token, setToken] = useState<string | null>(null);
 
@@ -49,20 +49,21 @@ const Pagos: React.FC = () => {
 
   return (
     <AuthGuardAgency>
-      <div className="mt-5">
+      <div className="flex flex-col items-center justify-center">
         <TotalMount total={total} refreshTotal={refreshTotal} />
         <h1 className="fond-bold text-2xl py-10">
           Opciones para la transferencia de ganancias
         </h1>
-        <p>
-          {' '}
+        <p className="text-center">
           Tu saldo siempre estará centrado en la pantalla. Recuerda que todos{' '}
           <br />
           los lunes recibirás el pago de tu saldo y tendrás opciones claras para{' '}
           <br />
-          que elijas cómo y cuándo transferir las ganancias
+          que elijas cómo y cuándo transferir las ganancias.
+          <br />
+          Por otro lado recuerda que se te descontará el 10% por cada venta.
         </p>
-        <div className="ml-20 mt-5">
+        <div className="mt-5">
           <DeleteOrders refreshTotal={refreshTotal} />
         </div>
       </div>
@@ -70,4 +71,4 @@ const Pagos: React.FC = () => {
   );
 };
 
-export default Pagos;
+export default Banca;

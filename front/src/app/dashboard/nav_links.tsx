@@ -33,15 +33,15 @@ const links = [
   //   icon: AiFillDollarCircle,
   // },
   {
-    name: 'Pagos',
-    href: '/dashboard/pagos',
+    name: 'Ganancias',
+    href: '/dashboard/ganancias',
     icon: BsBank2,
   },
-  {
-    name: 'Mis ventas',
-    href: '/dashboard/mis-ventas',
-    icon: FaMoneyCheckAlt,
-  },
+  // {
+  //   name: 'Mis ventas',
+  //   href: '/dashboard/mis-ventas',
+  //   icon: FaMoneyCheckAlt,
+  // },
 ];
 
 export default function NavLinks() {
@@ -78,7 +78,7 @@ export default function NavLinks() {
           userRole === 'user' &&
           (link.name === 'Agregar Tour' ||
             link.name === 'Mis Tours' ||
-            link.name === 'Datos bancarios' ||
+            link.name === 'Ganancias' ||
             link.name === 'Pagos' ||
             link.name === 'Mis ventas')
         ) {
@@ -90,9 +90,9 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-200 p-3 text-sm font-medium hover:bg-blue-200 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
+              'flex h-[48px] grow items-center justify-center gap-2 bg-white rounded-br-3xl rounded-tl-3xl shadow-xl p-3 text-sm font-medium hover:bg-blue-200 hover:text-blue-900 md:flex-none md:justify-start md:p-2 md:px-3',
               {
-                'bg-blue-100 text-blue-600': pathname === link.href,
+                ' text-blue-600': pathname === link.href,
               },
             )}
           >
