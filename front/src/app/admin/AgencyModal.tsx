@@ -2,7 +2,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
 import ToggleAgency from './ToggleAgency';
 import { TbBrandGoogleHome } from 'react-icons/tb';
 import Image from 'next/image';

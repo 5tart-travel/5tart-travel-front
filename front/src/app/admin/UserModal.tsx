@@ -82,7 +82,7 @@ const UserModal: React.FC<UserModalProps> = ({ users, onClose }) => {
                 >
                   <div className="flex items-center space-x-4">
                     <div
-                      className={`w-12 h-12 bg-gray-400 rounded-full overflow-hidden ${
+                      className={`w-12 h-12 bg-violet-400 rounded-full overflow-hidden ${
                         user.isActive ? '' : 'grayscale'
                       }`}
                     >

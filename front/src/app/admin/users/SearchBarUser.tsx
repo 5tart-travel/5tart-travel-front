@@ -1,18 +1,23 @@
 'use client';
 
-import React, { useState, Suspense, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const SearchBarComponent: React.FC = () => {
+interface SearchBarProps {
+  onSearch: (query: string) => void;
+}
+
+const SearchBarComponent: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [query, setQuery] = useState('');
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => { 
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const newQuery = event.target.value;
     setQuery(newQuery);
+    onSearch(newQuery);  // Llama al callback para actualizar el estado en el componente padre
 
-    const params = new URLSearchParams(searchParams as any); 
+    const params = new URLSearchParams(searchParams as any);
     if (newQuery) {
       params.set('search', newQuery);
     } else {
@@ -26,16 +31,10 @@ const SearchBarComponent: React.FC = () => {
       type="text"
       value={query}
       onChange={handleSearch}
-      placeholder="Buscar agencias..."
+      placeholder="Buscar usuarios..."
       className="p-2 m-4 rounded-2xl border-none shadow-black/30 shadow-inner w-[600px] "
     />
   );
 };
 
-const SearchBar: React.FC = () => (
-  <Suspense fallback={<div>Cargando...</div>}>
-    <SearchBarComponent />
-  </Suspense>
-);
-
-export default SearchBar;
+export default SearchBarComponent;
