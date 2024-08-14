@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FaBus, FaHotel, FaShieldAlt } from 'react-icons/fa';
 import Image from 'next/image';
 import TogglePack from '../TogglePack';
+import Swal from 'sweetalert2';
 
 interface Package {
   id: string;
@@ -48,8 +49,29 @@ const Packages: React.FC = () => {
     fetchPackages();
   }, []);
 
-  const handleDeletePackage = (packageId: string) => {
-    setPackages(packages.filter(pkg => pkg.id !== packageId));
+  const handleDeletePackage = async (packageId: string) => {
+    try {
+      await axios.delete(`https://fivetart-travel-kafg.onrender.com/tours/${packageId}`);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Paquete eliminado exitosamente',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      // Vuelve a obtener los paquetes después de una eliminación exitosa
+      const response = await axios.get('https://fivetart-travel-kafg.onrender.com/tours');
+      setPackages(response.data);
+    } catch (error) {
+      console.error(`Error eliminando el paquete con ID ${packageId}:`, error);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Error al eliminar el paquete',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
   };
 
   const filteredPackages = packages.filter(pkg =>

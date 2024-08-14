@@ -12,7 +12,20 @@ interface TogglePackProps {
 const TogglePack: React.FC<TogglePackProps> = ({ packageId, onDelete }) => {
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://fivetart-travel-kafg.onrender.com/tours/${packageId}`);
+      // Obtener el token de autenticación desde localStorage o donde esté almacenado
+      const token = localStorage.getItem('userSession');
+
+      if (!token) {
+        throw new Error('No se encontró el token de autenticación');
+      }
+
+      // Configurar el encabezado de la solicitud con el token
+      await axios.delete(`https://fivetart-travel-kafg.onrender.com/tours/${packageId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
       onDelete(packageId);
       Swal.fire({
         position: 'top-end',
@@ -21,8 +34,8 @@ const TogglePack: React.FC<TogglePackProps> = ({ packageId, onDelete }) => {
         showConfirmButton: false,
         timer: 2000,
       });
-    } catch (error: AxiosError | any) {
-      console.error(`Error eliminando el paquete con ID ${packageId}:`, error.message);
+    } catch (error) {
+      console.error(`Error eliminando el paquete con ID ${packageId}:`, error);
       Swal.fire({
         position: 'top-end',
         icon: 'error',

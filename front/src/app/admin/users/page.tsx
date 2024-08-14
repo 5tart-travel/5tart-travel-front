@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import ToggleUser from '../ToggleUser';
-
+import SearchBarComponent from './SearchBarUser'; // Asegúrate de usar el nombre correcto
 
 interface Users {
   id?: string;
@@ -47,7 +47,7 @@ const Users: React.FC = () => {
   return (
     <div className="p-4">
       <div className="mb-4 w-[400px] flex intem-center justify-center bg-violet-300 rounded-xl shadow-2xl" >
-      {/* <SearchBarComponent onSearch={setSearchQuery} />    */}
+      <SearchBarComponent onSearch={setSearchQuery} />   
       </div>
       
       <div className="grid grid-cols-2 gap-4">

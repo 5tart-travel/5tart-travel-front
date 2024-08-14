@@ -5,7 +5,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import { TbBrandGoogleHome } from 'react-icons/tb';
 import { useSearchParams } from 'next/navigation';
-;
+import SearchBarAgencies from './SearchBarAgencies';
 import ToggleAgency from '../ToggleAgency'; // Importa el nuevo componente
 
 interface Agency {
@@ -59,7 +59,7 @@ const Agencies: React.FC = () => {
   return (
     <div className="p-4">
       <div className="mb-4 w-[400px] flex items-center justify-center bg-violet-300 rounded-xl shadow-2xl">
-        
+        <SearchBarAgencies />
       </div>
       
       <div className="grid grid-cols-1 gap-4">
