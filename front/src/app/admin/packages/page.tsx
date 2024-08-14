@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaBus, FaHotel, FaShieldAlt } from 'react-icons/fa';
 import Image from 'next/image';
+import TogglePack from '../TogglePack';
 
 interface Package {
   id: string;
@@ -21,7 +22,7 @@ interface Package {
   agency: {
     name_agency: string;
     imgUrl: string;
-  };
+  } | null;
 }
 
 const Packages: React.FC = () => {
@@ -33,8 +34,7 @@ const Packages: React.FC = () => {
       try {
         const response = await axios.get('https://fivetart-travel-kafg.onrender.com/tours');
         if (Array.isArray(response.data)) {
-          const activePackages = response.data.filter((pkg: Package) => pkg.oferta === true);
-          setPackages(activePackages);
+          setPackages(response.data); 
         } else {
           console.error('Unexpected response format:', response.data);
           setPackages([]);
@@ -48,6 +48,10 @@ const Packages: React.FC = () => {
     fetchPackages();
   }, []);
 
+  const handleDeletePackage = (packageId: string) => {
+    setPackages(packages.filter(pkg => pkg.id !== packageId));
+  };
+
   const filteredPackages = packages.filter(pkg =>
     pkg.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -56,12 +60,14 @@ const Packages: React.FC = () => {
     <div>
       <div className="flex justify-center min-h-screen p-6">
         <div className="flex flex-col space-y-4 w-full max-w-4xl">
-          
           {filteredPackages.map((pkg) => (
             <div
               key={pkg.id}
-              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow flex flex-col md:flex-row"
+              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow flex flex-col md:flex-row relative"
             >
+              <div className="absolute top-4 left-4">
+                <TogglePack packageId={pkg.id} onDelete={handleDeletePackage} />
+              </div>
               <div className="w-full md:w-1/3 h-48 md:h-auto">
                 <Image
                   src={pkg.imgUrl}
@@ -110,17 +116,21 @@ const Packages: React.FC = () => {
                   <div className="h-full w-[2px] bg-gray-400"></div>
                 </div>
                 <div className="w-full md:w-1/3 my-6 flex flex-col items-center pl-4">
-                  <div className="flex flex-col items-end">
-                    <span className="text-gray-700 font-semibold">{pkg.agency.name_agency}</span>
-                    <Image
-                      src={pkg.agency.imgUrl}
-                      alt={pkg.agency.name_agency}
-                      width={150}
-                      height={150}
-                      className="rounded-2xl my-4"
-                    />
-                    <p className="text-2xl font-bold text-gray-600">${pkg.price}</p>
-                  </div>
+                  {pkg.agency ? (
+                    <div className="flex flex-col items-end">
+                      <span className="text-gray-700 font-semibold">{pkg.agency.name_agency}</span>
+                      <Image
+                        src={pkg.agency.imgUrl}
+                        alt={pkg.agency.name_agency}
+                        width={150}
+                        height={150}
+                        className="rounded-2xl my-4"
+                      />
+                      <p className="text-2xl font-bold text-gray-600">${pkg.price}</p>
+                    </div>
+                  ) : (
+                    <div className="text-red-500">Agencia no disponible</div>
+                  )}
                 </div>
               </div>
             </div>
