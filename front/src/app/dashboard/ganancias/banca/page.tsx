@@ -63,9 +63,6 @@ const Banca: React.FC = () => {
           <br />
           Por otro lado recuerda que se te descontará el 10% por cada venta.
         </p>
-        <div className="mt-5">
-          <DeleteOrders refreshTotal={refreshTotal} />
-        </div>
       </div>
     </AuthGuardAgency>
   );
