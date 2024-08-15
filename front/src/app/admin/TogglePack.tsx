@@ -13,7 +13,7 @@ const TogglePack: React.FC<TogglePackProps> = ({ packageId, onDelete }) => {
   };
 
   return (
-    <button onClick={handleDelete} className="text-red-500 hover:text-red-700">
+    <button onClick={handleDelete} className="text-red-500 hover:text-red-700 bg-white rounded-full p-3 border-4 border-red-500 hover:border-red-700" >
       <FaTrash size={18} />
     </button>
   );
