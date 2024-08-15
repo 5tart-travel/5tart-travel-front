@@ -119,7 +119,7 @@ const CardBox: React.FC = () => {
       
   };
 
-  const desord: any[] = [...agencies, ...users]; // Combinar agencias y usuarios en un solo array
+  const desord: any[] = [...agencies, ...users]; 
   const notification = desord.sort((a, b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
@@ -178,62 +178,69 @@ const CardBox: React.FC = () => {
       </div>
 
       <Transition appear show={isModalOpen} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>
-          <div className="min-h-screen px-4 text-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-black opacity-30" />
-            </Transition.Child>
+  <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>
+    <div className="min-h-screen px-4 text-center">
+      <Transition.Child
+        as={Fragment}
+        enter="ease-out duration-300"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="ease-in duration-200"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <div className="fixed inset-0 bg-black opacity-30" />
+      </Transition.Child>
 
-            <span className="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <Dialog.Title as="h2" className="text-lg font-medium leading-6 text-indigo-600  ">
-                <FaMailBulk  className='text-5xl' />
-                </Dialog.Title>
-                <div className="mt-2 text-center ">
-                  <h1 className="text-lg font-semibold text-gray-600">
-                    Agencia registrada: <br /> <strong className='text-indigo-500' >{selectedNotification?.name_agency}</strong>
-                  </h1>
-                </div>
-
-                <div className="mt-4 flex justify-end">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
-                    onClick={() => deleteNotification(selectedNotification!.id, selectedNotification!)}
-                  >
-                    <MdDelete size={20} className="mr-1" />
-                    
-                  </button>
-                  <button
-                    type="button"
-                    className="ml-2 inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
-                    onClick={closeModal}
-                  >
-                    Cerrar
-                  </button>
-                </div>
-              </div>
-            </Transition.Child>
+      <span className="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
+      <Transition.Child
+        as={Fragment}
+        enter="ease-out duration-300"
+        enterFrom="opacity-0 scale-95"
+        enterTo="opacity-100 scale-100"
+        leave="ease-in duration-200"
+        leaveFrom="opacity-100 scale-100"
+        leaveTo="opacity-0 scale-95"
+      >
+        <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+          <Dialog.Title as="h2" className="text-lg font-medium leading-6 text-indigo-600">
+            <FaMailBulk className="text-5xl" />
+          </Dialog.Title>
+          <div className="mt-2 text-center">
+            {selectedNotification?.name_agency ? (
+              <h1 className="text-lg font-semibold text-gray-600">
+                Agencia registrada: <br /> <strong className="text-indigo-500">{selectedNotification.name_agency}</strong>
+              </h1>
+            ) : (
+              <h1 className="text-lg font-semibold text-gray-600">
+                Usuario registrado: <br /> <strong className="text-indigo-500">{selectedNotification?.username}</strong><br />
+                Email: <strong className="text-indigo-500">{selectedNotification?.email}</strong>
+              </h1>
+            )}
           </div>
-        </Dialog>
-      </Transition>
+
+          <div className="mt-4 flex justify-end">
+            <button
+              type="button"
+              className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+              onClick={() => deleteNotification(selectedNotification!.id, selectedNotification!)}
+            >
+              <MdDelete size={20} className="mr-1" />
+            </button>
+            <button
+              type="button"
+              className="ml-2 inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
+              onClick={closeModal}
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </Transition.Child>
+    </div>
+  </Dialog>
+</Transition>
+
     </div>
   );
 };

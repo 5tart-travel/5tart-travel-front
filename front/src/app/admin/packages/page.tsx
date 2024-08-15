@@ -1,11 +1,10 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaBus, FaHotel, FaShieldAlt } from 'react-icons/fa';
-import Image from 'next/image';
-import TogglePack from '../TogglePack';
 import Swal from 'sweetalert2';
+import TogglePack from '../TogglePack';
+import Image from 'next/image';
+import { FaBus, FaHotel, FaShieldAlt } from 'react-icons/fa';
 
 interface Package {
   id: string;
@@ -30,38 +29,52 @@ const Packages: React.FC = () => {
   const [packages, setPackages] = useState<Package[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => {
-    const fetchPackages = async () => {
-      try {
-        const response = await axios.get('https://fivetart-travel-kafg.onrender.com/tours');
-        if (Array.isArray(response.data)) {
-          setPackages(response.data); 
-        } else {
-          console.error('Unexpected response format:', response.data);
-          setPackages([]);
-        }
-      } catch (error) {
-        console.error('Error fetching packages:', error);
+  const fetchPackages = async () => {
+    try {
+      const response = await axios.get('https://fivetart-travel-kafg.onrender.com/tours');
+      if (Array.isArray(response.data)) {
+        setPackages(response.data);
+      } else {
+        console.error('Unexpected response format:', response.data);
         setPackages([]);
       }
-    };
+    } catch (error) {
+      console.error('Error fetching packages:', error);
+      setPackages([]);
+    }
+  };
 
+  useEffect(() => {
     fetchPackages();
   }, []);
 
   const handleDeletePackage = async (packageId: string) => {
     try {
-      await axios.delete(`https://fivetart-travel-kafg.onrender.com/tours/${packageId}`);
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Paquete eliminado exitosamente',
-        showConfirmButton: false,
-        timer: 2000,
+      const token = localStorage.getItem('userSession');
+      if (!token) {
+        throw new Error('No se encontró el token de autenticación');
+      }
+
+      const response = await axios.delete(`https://fivetart-travel-kafg.onrender.com/tours/${packageId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
-      // Vuelve a obtener los paquetes después de una eliminación exitosa
-      const response = await axios.get('https://fivetart-travel-kafg.onrender.com/tours');
-      setPackages(response.data);
+
+      if (response.status === 200) {
+        //? Elimino el paquete del estado local
+        
+        setPackages((prevPackages) => prevPackages.filter(pkg => pkg.id !== packageId));
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Paquete eliminado exitosamente',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      } else {
+        throw new Error('No se pudo eliminar el paquete');
+      }
     } catch (error) {
       console.error(`Error eliminando el paquete con ID ${packageId}:`, error);
       Swal.fire({
