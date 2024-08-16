@@ -40,7 +40,7 @@ const SearchBarComponent: React.FC<SearchBarProps> = ({ onSearch }) => {
 const WrappedSearchBarComponent: React.FC<SearchBarProps> = (props) => (
   <Suspense fallback={<div>Cargando...</div>}>
     <div className="flex justify-center">
-      <div className="mb-4 w-[400px] flex items-center justify-center bg-violet-300 rounded-xl shadow-2xl">
+      <div className="mb-4 w-[400px] flex items-center justify-center bg-black rounded-xl shadow-lg">
         <SearchBarComponent {...props} />
       </div>
     </div>

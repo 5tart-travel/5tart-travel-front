@@ -7,14 +7,14 @@ const initialFeatures = [
   {
     imgUrl: 'https://res.cloudinary.com/dd1yaduhv/image/upload/v1721265583/luna_vt1wu0.jpg',
     title: 'Modo Oscuro',
-    description: 'Lanzamiento | 24-08-24',
+    description: 'Lanzamiento | 24-09-24',
     version: 'v1.2',
     isActive: false,
   },
   {
     imgUrl: 'https://res.cloudinary.com/dd1yaduhv/image/upload/v1721265659/musica_fmtv2v.jpg',
     title: 'Musica',
-    description: 'Lanzamiento | 10-08-24',
+    description: 'Lanzamiento | 10-09-24',
     version: 'v1.6',
     isActive: false,
   }

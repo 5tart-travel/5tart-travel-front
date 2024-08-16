@@ -25,12 +25,12 @@ const ToggleAgency: React.FC<ToggleAgencyProps> = ({ agencyId, isActive, onToggl
         ? `https://fivetart-travel-kafg.onrender.com/agency/active/${agencyId}`
         : `https://fivetart-travel-kafg.onrender.com/agency/disable/${agencyId}`;
       await axios.put(url);
-      setIsChecked(newStatus); // Solo se cambia el estado si la petición es exitosa
+      setIsChecked(newStatus);
       onToggle(agencyId, newStatus);
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: `Agencia ${newStatus ? "activado" : "desactivado"}`,
+        title: `Agencia ${newStatus ? "activada" : "desactivada"}`,
         showConfirmButton: false ,
         timer: 2000,
         customClass: {

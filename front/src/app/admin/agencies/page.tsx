@@ -21,7 +21,6 @@ interface Agency {
 const Agencies: React.FC = () => {
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const searchParams = useSearchParams();
-  // const searchQuery = searchParams.get('search') || '';
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
@@ -66,12 +65,13 @@ const Agencies: React.FC = () => {
         {filteredAgencies.map((agency) => (
           <div
             key={agency.id}
-            className="relative bg-violet-100 rounded-lg shadow-md p-4 transform transition-all hover:scale-105 translate-x-4 hover:shadow-lg"
+            className="bg-white rounded-lg shadow-md p-4 mb-4 transform transition-all hover:scale-105 hover:shadow-lg"
           >
             <div className="flex items-center space-x-4">
               <div
-                className={`relative w-12 h-12 bg-violet-400 rounded-full overflow-hidden border-8 border-gray-700 ${agency.isActive ? '' : 'grayscale'
-                  }`}
+                className={`relative w-12 h-12 bg-violet-400 rounded-full overflow-hidden border-8 border-gray-700 ${
+                  agency.isActive ? '' : 'grayscale'
+                }`}
               >
                 {agency.imgUrl ? (
                   <Image
@@ -85,21 +85,17 @@ const Agencies: React.FC = () => {
                   <TbBrandGoogleHome className="w-full h-full text-gray-500" />
                 )}
               </div>
-              <div className="grid grid-cols-4 gap-x-4 w-full text-left">
+              <div className="grid grid-cols-3 gap-x-8 ">
                 <div>
-                  <h3 className="text-base font-bold text-shadow-medium text-violet-600">
-                    Nombre
-                  </h3>
-                  <p className="text-sm font-semibold text-gray-600 truncate w-[200px]">
-                    {agency.name_agency || 'Sin nombre'}
-                  </p>
+                  <h3 className="font-semibold mb-1">Nombre</h3>
+                  <p className="text-gray-600">{agency.name_agency || 'Sin nombre'}</p>
                 </div>
-                <div className="mx-4"> {/* Aplica el mismo margen horizontal aquí */}
+                <div>
                   <h3 className="text-base font-bold text-shadow-medium text-violet-600">
                     Email
                   </h3>
                   <div className="relative group">
-                    <p className="text-sm font-semibold text-gray-600 cursor-pointer">
+                    <p className="text-sm font-semibold text-gray-600 truncate w-[120px] cursor-pointer">
                       {agency.mail || 'Sin email'}
                     </p>
                     <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1">
@@ -107,7 +103,7 @@ const Agencies: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-span-2">
+                <div>
                   <h3 className="text-base font-bold text-shadow-medium text-violet-600">
                     Dirección
                   </h3>
@@ -116,12 +112,12 @@ const Agencies: React.FC = () => {
                   </p>
                 </div>
               </div>
-
             </div>
             <div className="absolute top-4 right-4 flex flex-col items-end">
               <p
-                className={`text-sm font-medium ${agency.isActive ? 'text-green-500' : 'text-red-500'
-                  }`}
+                className={`text-sm font-medium ${
+                  agency.isActive ? 'text-green-500' : 'text-red-500'
+                }`}
               >
                 {agency.isActive ? 'Activo' : 'Desactivado'}
               </p>

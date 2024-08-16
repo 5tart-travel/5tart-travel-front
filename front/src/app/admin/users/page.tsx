@@ -6,6 +6,7 @@ import Image from 'next/image';
 import ToggleUser from '../ToggleUser';
 import SearchBarComponent from './SearchBarUser';
 import WrappedSearchBarComponent from './SearchBarUser';
+import Swal from 'sweetalert2';
 
 interface Users {
   id?: string;
@@ -44,23 +45,36 @@ const Users: React.FC = () => {
     user.username.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  function handleToggleUser(userId: string, newStatus: boolean): void {
-    throw new Error('Function not implemented.');
-  }
+  const handleToggleUser = async (userId: string, newStatus: boolean) => {
+    try {
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.id === userId ? { ...user, isActive: newStatus } : user
+        )
+      );
+    } catch (error) {
+      console.error('Error toggling user status:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error al actualizar el estado del usuario',
+      });
+    }
+  };
 
   return (
     <div className="p-4">
       <WrappedSearchBarComponent onSearch={setSearchQuery} />
 
-      <div className="px-4 sm:px-8 lg:px-20 w-full max-w-4xl mx-auto gap-8">
+      <div className="w-full max-w-4xl mx-auto space-y-4">
         {filteredUsers.map((user) => (
           <div
             key={user.id}
-            className="bg-violet-100 rounded-lg shadow-md p-4 transform transition-all hover:scale-105 hover:shadow-lg"
+            className="bg-white rounded-lg shadow-md p-4 transform transition-all hover:scale-105 hover:shadow-lg"
           >
             <div className="flex items-start gap-8">
               <div
-                className={`relative w-12 h-12 bg-violet-400 rounded-full overflow-hidden border-8 border-gray-700 ${
+                className={`relative w-12 h-12 bg-gray-400 rounded-full overflow-hidden ${
                   user.isActive ? '' : 'grayscale'
                 }`}
               >
@@ -76,17 +90,13 @@ const Users: React.FC = () => {
               </div>
               <div className="flex-1 grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <h3 className="text-base font-bold text-shadow-medium text-violet-600">
-                    Nombre
-                  </h3>
+                  <h3 className="text-base font-bold text-gray-700">Nombre</h3>
                   <p className="text-sm font-semibold text-gray-600 truncate">
                     {user.username}
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-shadow-medium text-violet-600">
-                    Email
-                  </h3>
+                  <h3 className="text-base font-bold text-gray-700">Email</h3>
                   <div className="relative group">
                     <p className="text-sm font-semibold text-gray-600 truncate cursor-pointer">
                       {user.mail}
@@ -97,7 +107,7 @@ const Users: React.FC = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-shadow-medium text-violet-600">
+                  <h3 className="text-base font-bold text-gray-700">
                     Fecha de Nac.
                   </h3>
                   <p className="text-sm text-gray-600 font-semibold">
