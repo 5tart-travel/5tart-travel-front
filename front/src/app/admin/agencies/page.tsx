@@ -7,10 +7,7 @@ import { TbBrandGoogleHome } from 'react-icons/tb';
 import { useSearchParams } from 'next/navigation';
 import SearchBarAgencies from './SearchBarAgencies';
 import ToggleAgency from '../ToggleAgency';
-<<<<<<< Updated upstream
 import WrappedSearchBarComponent from '../users/SearchBarUser';
-=======
->>>>>>> Stashed changes
 
 interface Agency {
   id?: string;
@@ -73,9 +70,8 @@ const Agencies: React.FC = () => {
           >
             <div className="flex items-center space-x-4">
               <div
-                className={`relative w-12 h-12 bg-violet-400 rounded-full overflow-hidden border-8 border-gray-700 ${
-                  agency.isActive ? '' : 'grayscale'
-                }`}
+                className={`relative w-12 h-12 bg-violet-400 rounded-full overflow-hidden border-8 border-gray-700 ${agency.isActive ? '' : 'grayscale'
+                  }`}
               >
                 {agency.imgUrl ? (
                   <Image
@@ -89,7 +85,7 @@ const Agencies: React.FC = () => {
                   <TbBrandGoogleHome className="w-full h-full text-gray-500" />
                 )}
               </div>
-              <div className="grid grid-cols-3 gap-x-8 ">
+              <div className="grid grid-cols-4 gap-x-4 w-full text-left">
                 <div>
                   <h3 className="text-base font-bold text-shadow-medium text-violet-600">
                     Nombre
@@ -98,12 +94,12 @@ const Agencies: React.FC = () => {
                     {agency.name_agency || 'Sin nombre'}
                   </p>
                 </div>
-                <div>
+                <div className="mx-4"> {/* Aplica el mismo margen horizontal aquí */}
                   <h3 className="text-base font-bold text-shadow-medium text-violet-600">
                     Email
                   </h3>
                   <div className="relative group">
-                    <p className="text-sm font-semibold text-gray-600 truncate w-[120px] cursor-pointer">
+                    <p className="text-sm font-semibold text-gray-600 cursor-pointer">
                       {agency.mail || 'Sin email'}
                     </p>
                     <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1">
@@ -111,7 +107,7 @@ const Agencies: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className="col-span-2">
                   <h3 className="text-base font-bold text-shadow-medium text-violet-600">
                     Dirección
                   </h3>
@@ -120,44 +116,12 @@ const Agencies: React.FC = () => {
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-4 gap-x-4 w-full text-left">
-  <div>
-    <h3 className="text-base font-bold text-shadow-medium text-violet-600">
-      Nombre
-    </h3>
-    <p className="text-sm font-semibold text-gray-600 truncate w-[200px]">
-      {agency.name_agency || 'Sin nombre'}
-    </p>
-  </div>
-  <div className="mx-4"> {/* Aplica el mismo margen horizontal aquí */}
-    <h3 className="text-base font-bold text-shadow-medium text-violet-600">
-      Email
-    </h3>
-    <div className="relative group">
-      <p className="text-sm font-semibold text-gray-600 cursor-pointer">
-        {agency.mail || 'Sin email'}
-      </p>
-      <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1">
-        {agency.mail || 'Sin email'}
-      </div>
-    </div>
-  </div>
-  <div className="col-span-2"> 
-    <h3 className="text-base font-bold text-shadow-medium text-violet-600">
-      Dirección
-    </h3>
-    <p className="text-sm text-gray-600 font-semibold">
-      {agency.address || 'Sin dirección'}
-    </p>
-  </div>
-</div>
 
             </div>
             <div className="absolute top-4 right-4 flex flex-col items-end">
               <p
-                className={`text-sm font-medium ${
-                  agency.isActive ? 'text-green-500' : 'text-red-500'
-                }`}
+                className={`text-sm font-medium ${agency.isActive ? 'text-green-500' : 'text-red-500'
+                  }`}
               >
                 {agency.isActive ? 'Activo' : 'Desactivado'}
               </p>
