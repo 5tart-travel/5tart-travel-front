@@ -14,9 +14,8 @@ const ViajaPorElMundo: React.FC<ViajaProps> = ({ tema }) => {
           src="https://res.cloudinary.com/dia2gautk/image/upload/v1719784196/v0zrrldwojrq457qhjbt.webp" 
           alt="Avión" 
           className="mr-0 md:mr-4 mb-4 md:mb-0 object-contain"
-          layout="responsive"
-          width={150}
-          height={150}
+          fill
+         
         />
       </div>
       <div className="relative flex items-center w-full md:w-auto">
@@ -28,9 +27,8 @@ const ViajaPorElMundo: React.FC<ViajaProps> = ({ tema }) => {
           src="https://res.cloudinary.com/dia2gautk/image/upload/v1719784195/xtjrf8tcjccsfofogloh.webp" 
           alt="Destino" 
           className="ml-0 md:ml-4 mt-4 md:mt-0 object-contain"
-          layout="responsive"
-          width={150}
-          height={150}
+          fill
+         
         />
       </div>
     </div>
