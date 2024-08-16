@@ -87,15 +87,15 @@ const Agencies: React.FC = () => {
               </div>
               <div className="flex-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr 1fr 1.2fr', gridGap: '40px'}}>
                 <div>
-                  <h3 className="font-semibold">Nombre</h3>
+                  <h3 className="font-semibold mb-1">Nombre</h3>
                   <p className="text-gray-600">{agency.name_agency || 'Sin nombre'}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold">Email</h3>
+                  <h3 className="font-semibold mb-1">Email</h3>
                   <p className="text-gray-600">{agency.mail || 'Sin email'}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold">Dirección</h3>
+                  <h3 className="font-semibold mb-1 ">Dirección</h3>
                   <p className="text-gray-600">{agency.address || 'Sin dirección'}</p>
                 </div>
               </div>
