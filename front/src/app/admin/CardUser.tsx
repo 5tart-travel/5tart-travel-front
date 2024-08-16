@@ -1,4 +1,3 @@
-
 'use client';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -41,6 +40,12 @@ const CardUser: React.FC<CardContactProps> = () => {
 
   useEffect(() => {
     fetchUsers();
+
+    // Configurar polling cada 5 segundos
+    const interval = setInterval(fetchUsers, 5000);
+
+    // Limpiar el intervalo al desmontar el componente
+    return () => clearInterval(interval);
   }, []);
 
   const openModal = () => {
@@ -49,7 +54,6 @@ const CardUser: React.FC<CardContactProps> = () => {
   };
 
   const closeModal = () => {
-    console.log('Closing modal');
     setIsModalOpen(false);
   };
 
