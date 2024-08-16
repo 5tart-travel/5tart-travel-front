@@ -8,6 +8,7 @@ import CardBox from './CardBox'
 import CardTours from './CardTours'
 import StatisticsCard from './StatisticsCard'
 import AuthGuardAdmin from '@/components/AuthGuard/AuthGuardAdmin'
+import ClockWeather from './ClockWeather'
 
 const minidashboar: React.FC = () => {
   return (
@@ -31,6 +32,7 @@ const minidashboar: React.FC = () => {
       {/* Columna derecha */}
       <div className="flex flex-col space-y-4">
         <CardBox />
+        <ClockWeather />
       </div>
     </div>
     </AuthGuardAdmin>

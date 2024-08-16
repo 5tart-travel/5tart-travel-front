@@ -2,22 +2,25 @@ import socket from '@/hooks/useSocket';
 import axios from 'axios';
 import { useState, useEffect, useRef, Fragment } from 'react';
 import { BsFillInboxesFill } from "react-icons/bs";
-import { MdDelete } from 'react-icons/md';
+import { MdDelete, MdDeleteSweep } from 'react-icons/md';
 import { FaMailBulk } from "react-icons/fa";
 import { Dialog, Transition } from '@headlessui/react';
 import { motion } from 'framer-motion';
+import { RiMailCloseFill } from 'react-icons/ri';
 
 export interface Agency {
   id: string;
   name_agency: string;
-  date: string;
+  mail?: string;
+  
 
 }
 
 export interface User {
   id: string;
   username: string;
-  date: string;
+  mail?: string;
+  
 }
 
 const CardBox: React.FC = () => {
@@ -139,7 +142,7 @@ const CardBox: React.FC = () => {
   };
 
   return (
-    <div className="relative p-4 bg-white rounded-2xl shadow-2xl cursor-pointer w-60 h-full transition-all duration-500 custom-scrollbar overflow-y-auto">
+    <div className="relative p-4 bg-white rounded-2xl shadow-2xl cursor-pointer w-60 h-[345px] transition-all duration-500 custom-scrollbar overflow-y-auto">
       <audio ref={audioRef} src="/sounds/notification2.mp3" preload="auto"></audio>
       <div className="absolute top-2 left-2 bg-white rounded-full p-2">
         <BsFillInboxesFill className="text-lime-700" size={24} />
@@ -202,37 +205,39 @@ const CardBox: React.FC = () => {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-          <Dialog.Title as="h2" className="text-lg font-medium leading-6 text-indigo-600">
-            <FaMailBulk className="text-5xl" />
+        <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-neutral-800 shadow-xl rounded-2xl">
+          <Dialog.Title as="h2" className="text-lg font-medium leading-6 text-lime-600 ">
+            <FaMailBulk className="text-4xl  " />
           </Dialog.Title>
           <div className="mt-2 text-center">
             {selectedNotification?.name_agency ? (
-              <h1 className="text-lg font-semibold text-gray-600">
-                Agencia registrada: <br /> <strong className="text-indigo-500">{selectedNotification.name_agency}</strong>
+              <h1 className="text-lg font-semibold text-gray-300">
+                Agencia registrada: <br /> <strong className="text-indigo-500 text-3xl">{selectedNotification.name_agency}</strong>
+                <br />  <strong className="text-indigo-500">{selectedNotification?.mail}</strong>
               </h1>
             ) : (
-              <h1 className="text-lg font-semibold text-gray-600">
-                Usuario registrado: <br /> <strong className="text-indigo-500">{selectedNotification?.username}</strong><br />
-                Email: <strong className="text-indigo-500">{selectedNotification?.email}</strong>
+              <h1 className="text-lg font-semibold text-gray-300">
+                Usuario registrado: <br className='border-b-2 border-gray-500 ' /> <strong className="text-indigo-500 text-3xl">{selectedNotification?.username}</strong><br />
+                 <strong className="text-indigo-300">{selectedNotification?.mail}</strong>
+                
               </h1>
             )}
           </div>
 
-          <div className="mt-4 flex justify-end">
+          <div className="mt-4 flex justify-between">
             <button
               type="button"
-              className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+              className="inline-flex justify-center p-1 text-xs font-medium text-red-600  hover:text-red-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
               onClick={() => deleteNotification(selectedNotification!.id, selectedNotification!)}
             >
-              <MdDelete size={20} className="mr-1" />
+              <MdDeleteSweep  size={30} className="m-1" />
             </button>
             <button
               type="button"
-              className="ml-2 inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
+              className="ml-2 inline-flex justify-center px-4 py-2 text-3xl font-medium text-orange-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
               onClick={closeModal}
             >
-              Cerrar
+              <RiMailCloseFill />
             </button>
           </div>
         </div>

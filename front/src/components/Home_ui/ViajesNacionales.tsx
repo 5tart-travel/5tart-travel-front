@@ -14,9 +14,7 @@ const ViajesNacionales: React.FC<ViajesNacProps> = ({ tema }) => {
           src="https://res.cloudinary.com/dia2gautk/image/upload/v1719878618/uqjfb5kuwhonq9a44kqr.webp" 
           alt="Icono de Viajes" 
           className={`mr-0 md:mr-4 mb-4 md:mb-0 object-contain ${ tema ? 'filter invert-100' : ''}`}
-          layout="responsive"
-          width={450}
-          height={300}
+         fill
         />
       </div>
       <div className="relative flex items-center w-full md:w-auto">
@@ -28,9 +26,7 @@ const ViajesNacionales: React.FC<ViajesNacProps> = ({ tema }) => {
           src="https://res.cloudinary.com/dia2gautk/image/upload/v1719878618/uqjfb5kuwhonq9a44kqr.webp" 
           alt="Icono de Viajes" 
           className={`ml-0 md:ml-4 mt-4 md:mt-0 object-contain ${ tema ? 'filter invert-100' : ''}`}
-          layout="responsive"
-          width={450}
-          height={300}
+         fill
         />
       </div>
     </div>
