@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import TogglePack from '../TogglePack';
 import Image from 'next/image';
 import { FaBus, FaHotel, FaShieldAlt } from 'react-icons/fa';
+import WrappedSearchBarComponent from '../users/SearchBarUser';
 
 interface Package {
   id: string;
@@ -31,7 +32,9 @@ const Packages: React.FC = () => {
 
   const fetchPackages = async () => {
     try {
-      const response = await axios.get('https://fivetart-travel-kafg.onrender.com/tours');
+      const response = await axios.get(
+        'https://fivetart-travel-kafg.onrender.com/tours',
+      );
       if (Array.isArray(response.data)) {
         setPackages(response.data);
       } else {
@@ -55,16 +58,21 @@ const Packages: React.FC = () => {
         throw new Error('No se encontró el token de autenticación');
       }
 
-      const response = await axios.delete(`https://fivetart-travel-kafg.onrender.com/tours/${packageId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+      const response = await axios.delete(
+        `https://fivetart-travel-kafg.onrender.com/tours/${packageId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
 
       if (response.status === 200) {
         //? Elimino el paquete del estado local
-        
-        setPackages((prevPackages) => prevPackages.filter(pkg => pkg.id !== packageId));
+
+        setPackages((prevPackages) =>
+          prevPackages.filter((pkg) => pkg.id !== packageId),
+        );
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -87,12 +95,13 @@ const Packages: React.FC = () => {
     }
   };
 
-  const filteredPackages = packages.filter(pkg =>
-    pkg.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredPackages = packages.filter((pkg) =>
+    pkg.title.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
-    <div>
+    <div className="p-4">
+      <WrappedSearchBarComponent onSearch={setSearchQuery} />
       <div className="flex justify-center min-h-screen p-6">
         <div className="flex flex-col space-y-4 w-full max-w-4xl">
           {filteredPackages.map((pkg) => (
@@ -127,7 +136,9 @@ const Packages: React.FC = () => {
                   </p>
                   <p className="text-gray-700 mb-1">
                     <strong>Hotel:</strong> {pkg.hotel}{' '}
-                    <span className="text-green-500 font-bold">{pkg.averageRate}</span>
+                    <span className="text-green-500 font-bold">
+                      {pkg.averageRate}
+                    </span>
                   </p>
                   <p className="text-gray-700 mb-1 truncate">
                     <strong>Descripción:</strong> {pkg.description}
@@ -153,7 +164,9 @@ const Packages: React.FC = () => {
                 <div className="w-full md:w-1/3 my-6 flex flex-col items-center pl-4">
                   {pkg.agency ? (
                     <div className="flex flex-col items-end">
-                      <span className="text-gray-700 font-semibold">{pkg.agency.name_agency}</span>
+                      <span className="text-gray-700 font-semibold">
+                        {pkg.agency.name_agency}
+                      </span>
                       <Image
                         src={pkg.agency.imgUrl}
                         alt={pkg.agency.name_agency}
@@ -161,7 +174,9 @@ const Packages: React.FC = () => {
                         height={150}
                         className="rounded-2xl my-4"
                       />
-                      <p className="text-2xl font-bold text-gray-600">${pkg.price}</p>
+                      <p className="text-2xl font-bold text-gray-600">
+                        ${pkg.price}
+                      </p>
                     </div>
                   ) : (
                     <div className="text-red-500">Agencia no disponible</div>

@@ -6,7 +6,8 @@ import Image from 'next/image';
 import { TbBrandGoogleHome } from 'react-icons/tb';
 import { useSearchParams } from 'next/navigation';
 import SearchBarAgencies from './SearchBarAgencies';
-import ToggleAgency from '../ToggleAgency'; // Importa el nuevo componente
+import ToggleAgency from '../ToggleAgency';
+import WrappedSearchBarComponent from '../users/SearchBarUser';
 
 interface Agency {
   id?: string;
@@ -20,7 +21,8 @@ interface Agency {
 const Agencies: React.FC = () => {
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const searchParams = useSearchParams();
-  const searchQuery = searchParams.get('search') || '';
+  // const searchQuery = searchParams.get('search') || '';
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchAgencies = async () => {
@@ -58,10 +60,8 @@ const Agencies: React.FC = () => {
 
   return (
     <div className="p-4">
-      <div className="mb-4 w-[400px] flex items-center justify-center bg-violet-300 rounded-xl shadow-2xl">
-        <SearchBarAgencies />
-      </div>
-      
+      <WrappedSearchBarComponent onSearch={setSearchQuery} />
+
       <div className="grid grid-cols-1 gap-4">
         {filteredAgencies.map((agency) => (
           <div
@@ -70,7 +70,9 @@ const Agencies: React.FC = () => {
           >
             <div className="flex items-center space-x-4">
               <div
-                className={`relative w-12 h-12 bg-violet-400 rounded-full overflow-hidden border-8 border-gray-700 ${agency.isActive ? '' : 'grayscale'}`}
+                className={`relative w-12 h-12 bg-violet-400 rounded-full overflow-hidden border-8 border-gray-700 ${
+                  agency.isActive ? '' : 'grayscale'
+                }`}
               >
                 {agency.imgUrl ? (
                   <Image
@@ -117,7 +119,11 @@ const Agencies: React.FC = () => {
               </div>
             </div>
             <div className="absolute top-4 right-4 flex flex-col items-end">
-              <p className={`text-sm font-medium ${agency.isActive ? 'text-green-500' : 'text-red-500'}`}>
+              <p
+                className={`text-sm font-medium ${
+                  agency.isActive ? 'text-green-500' : 'text-red-500'
+                }`}
+              >
                 {agency.isActive ? 'Activo' : 'Desactivado'}
               </p>
               <ToggleAgency
