@@ -32,7 +32,7 @@ const SearchBarComponent: React.FC<SearchBarProps> = ({ onSearch }) => {
       value={query}
       onChange={handleSearch}
       placeholder="Buscar..."
-      className="p-2 m-4 rounded-2xl border-none shadow-black/30 shadow-inner w-[600px]"
+      className="p-2 m-4 rounded-2xl border-none shadow-neutral-700 shadow-inner w-[600px]"
     />
   );
 };
@@ -40,7 +40,7 @@ const SearchBarComponent: React.FC<SearchBarProps> = ({ onSearch }) => {
 const WrappedSearchBarComponent: React.FC<SearchBarProps> = (props) => (
   <Suspense fallback={<div>Cargando...</div>}>
     <div className="flex justify-center">
-      <div className="mb-4 w-[400px] flex items-center justify-center bg-black rounded-xl shadow-lg">
+      <div className="mb-4 w-[400px] flex items-center justify-center bg-neutral-700 rounded-xl shadow-lg">
         <SearchBarComponent {...props} />
       </div>
     </div>

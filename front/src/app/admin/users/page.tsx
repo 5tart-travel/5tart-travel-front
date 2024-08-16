@@ -90,13 +90,13 @@ const Users: React.FC = () => {
               </div>
               <div className="flex-1 grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <h3 className="text-base font-bold text-gray-700">Nombre</h3>
+                  <h3 className="text-base font-bold text-gray-700 text-shadow-medium">Nombre</h3>
                   <p className="text-sm font-semibold text-gray-600 truncate">
                     {user.username}
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-gray-700">Email</h3>
+                  <h3 className="text-base font-bold text-gray-700 text-shadow-medium ">Email</h3>
                   <div className="relative group">
                     <p className="text-sm font-semibold text-gray-600 truncate cursor-pointer">
                       {user.mail}
@@ -107,7 +107,7 @@ const Users: React.FC = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-gray-700">
+                  <h3 className="text-base font-bold text-gray-700 text-shadow-medium">
                     Fecha de Nac.
                   </h3>
                   <p className="text-sm text-gray-600 font-semibold">
