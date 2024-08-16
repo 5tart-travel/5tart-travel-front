@@ -1,6 +1,7 @@
 import { Config } from "tailwindcss";
 import colors from 'tailwindcss/colors';
-import { nextui } from "@nextui-org/react";
+// Importa solo el paquete sin usarlo como función
+import nextui from "@nextui-org/react";
 
 const config: Config = {
   content: [
@@ -12,6 +13,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
+
+      keyframes: {
+        'underline-expand': {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
+        },
+        'shrink-line': {
+          '0%': { transform: 'scaleY(1)', opacity: '1' },
+          '50%': { transform: 'scaleY(0.05)', opacity: '1' },
+          '100%': { transform: 'scaleY(0.05)', opacity: '0' },
+        },
+      },
+      animation: {
+        'underline-expand': 'underline-expand 0.3s ease-in-out forwards',
+        'shrink-line': 'shrink-line 0.5s ease-in-out forwards',
+      },
+      
+     
       width: {
         'nav': '29rem',
       },
@@ -24,17 +43,8 @@ const config: Config = {
       invert: {
         100: '1',
       },
-      animation: {
-        'bounce': 'bounce 1.5s infinite',
-      },
-      keyframes: {
-        bounce: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-15px)' },
-        },
-      },
       screens: {
-        xxs:'320px',  
+        xxs: '320px',  
         xs: '412px',
         sm: '480px',
         md: '768px',
@@ -50,7 +60,6 @@ const config: Config = {
         '4xl': '64rem', // 1024px
       },
       colors: {
-        // para el degrade:  bg-gradient-to-bl from-purple-600 via-indigo-600 to-indigo-500 
         indigo500: "#6366f1",
         violeta: "#A763F1",
         red500: "#e83c88",
@@ -59,21 +68,6 @@ const config: Config = {
         yellow500: "#af8f2c",
         lime500: "#88a147",
         customGray: 'rgb(92, 91, 94)',
-        // primary: '#41d3be',
-        // secondary: '#8AFF70',
-        // tertiary: '#708aff',
-        // quaternary: '#A47AFF',
-        // quinary: '#FF3D60',
-        // neutral: '#7f7f7f',
-        // Tomato: "#FF5733",
-        // SpringGreen: "#33FF57",
-        // RoyalBlue: "#3357FF",
-        // DeepPink: "#FF33A6",
-        // DarkOrange: "#FF8F33",
-        // Turquoise: "#33FFDB",
-        // RedOrange: "#FF3333",
-        // Purple: "#8D33FF",
-        // MediumSpringGreen: "#33FF8F",
         tremor: {
           brand: {
             faint: colors.blue[50],
@@ -156,10 +150,9 @@ const config: Config = {
   },
   darkMode: "class",
   plugins: [
-    nextui(),
     require('tailwind-scrollbar'),
     require('@headlessui/tailwindcss'), 
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
   ],
   safelist: [
     {

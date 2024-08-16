@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/app/calculadora/section/Funciones auxiliares"  ],
   "exclude": [
     "node_modules"
   ]

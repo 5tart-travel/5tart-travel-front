@@ -4,9 +4,8 @@ import { useRouter } from 'next/navigation';
 import { decodeJwt } from '@/utils/decodeJwt';
 import { IToursDashboard } from '@/components/CardTourDashboard/CardTourDashboard';
 import AuthGuardAgency from '@/components/AuthGuard/AuthGuardAgency';
-import TotalMount from '@/components/Dashboard/TotalMount';
 
-const MisVentas = () => {
+const Ganancias = () => {
   const [orders, setOrders] = useState<IToursDashboard[]>([]);
   const [token, setToken] = useState<string | null>(null);
   const [agencyId, setAgencyId] = useState<string | null>(null);
@@ -97,35 +96,38 @@ const MisVentas = () => {
   return (
     <AuthGuardAgency>
       <div className="flex flex-col gap-4">
-        <div>
-          <TotalMount total={total} refreshTotal={refreshTotal} />
-        </div>
-
-        <div className="flex justify-between font-bold px-8 mt-10">
+        <div className="flex justify-between font-bold px-8">
           <div>Título</div>
           <div>Fecha</div>
           <div>Precio</div>
         </div>
+        <hr />
 
-        {orders.map((order, index) => (
-          <div
-            key={index}
-            className="flex flex-col border border-gray-300 p-4 rounded-lg bg-gray-100"
-          >
-            <div className="flex justify-between">
-              <div className="flex-1">{order.title}</div>
-              <div className="flex-1 text-center">
-                {formatDate(order.date!)}
-              </div>
-              <div className="flex-1 text-right">
-                ${formatPrice(order.price)}
+        {orders.length === 0 ? (
+          <div className="flex justify-center items-center p-4 text-gray-500">
+            Sin actividad en el historial de ganancias
+          </div>
+        ) : (
+          orders.map((order, index) => (
+            <div
+              key={index}
+              className="flex flex-col border border-gray-300 px-4 rounded-lg "
+            >
+              <div className="flex justify-between">
+                <div className="flex-1">{order.title}</div>
+                <div className="flex-1 text-center">
+                  {formatDate(order.date!)}
+                </div>
+                <div className="flex-1 text-right">
+                  ${formatPrice(order.price)}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </AuthGuardAgency>
   );
 };
 
-export default MisVentas;
+export default Ganancias;

@@ -99,7 +99,7 @@ const CardTourDashboard: FC<CardTourDashboardProps> = ({
 
   return (
     <>
-      <div className="w-full h-80 rounded-2xl shadow-2xl overflow-hidden relative">
+      <div className="w-full h-80 rounded-2xl shadow-2xl overflow-hidden relative border-2 border-white">
         <Image
           src={imgUrl}
           alt={title}
@@ -130,7 +130,7 @@ const CardTourDashboard: FC<CardTourDashboardProps> = ({
           <DeleteTour tourId={id} onDelete={deleteTour} />
         </div>
         <Link href={`/travel/pack_plane/${id}`} key={id}>
-          <div className="absolute bottom-0 left-0 p-2 bg-blue-600 hover:bg-blue-950 bg-opacity-35 backdrop-blur-lg shadow-3xl w-[90%] h-auto rounded-2xl flex flex-col mx-4 mb-2">
+          <div className="absolute bottom-0 left-0 p-2 bg-blue-600 hover:bg-blue-950 bg-opacity-35 backdrop-blur-lg shadow-3xl w-[90%] h-auto rounded-2xl flex flex-col mx-4 mb-2 ">
             <h3 className="text-xl text-gray-50 text-shadow-semidark font-semibold">
               {title}
             </h3>

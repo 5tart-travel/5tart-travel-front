@@ -22,8 +22,8 @@ const TourDetails: React.FC<{ busDetails: IBusTour }> = ({ busDetails }) => {
   return (
     <section className="text-base flex flex-col md:flex-row items-center mt-10 md:mt-36 ml-10 "style={{ width: '95vw' }}>
       <div className="w-full md:w-1/2 pr-0 md:pr-4 h-full mb-6 md:mb-0 md:mr-2">
-        <div className="bg-gray-200 p-4 rounded-lg h-full flex flex-col items-center justify-center text-center">
-          <h2 className="text-xl font-bold uppercase mb-2">{busDetails.hotel}</h2>
+        <div className="bg-indigo-100 p-4 rounded-lg h-full flex flex-col items-center justify-center text-center">
+          <h2 className="text-2xl font-bold uppercase mb-2 text-gray-600 text-shadow-medium ">{busDetails.hotel}</h2>
           <Carousel listImg={busDetails.listImg} />
         </div>
       </div>
@@ -32,9 +32,9 @@ const TourDetails: React.FC<{ busDetails: IBusTour }> = ({ busDetails }) => {
         <div className="bg-white p-4 rounded-lg flex flex-col justify-start items-center h-full">
           <div className="text-left w-full">
             <div className="flex items-center mb-1">
-              <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-lg font-bold text-gray-300 mx-2">Diversión y ocio</h2>
-              <hr className="border-gray-300 flex-grow opacity-20" />
+              <hr className="border-gray-500 flex-grow opacity-20" />
+              <h2 className="text-lg font-bold text-gray-500 mx-2 text-shadow-medium ">Diversión y ocio</h2>
+              <hr className="border-gray-500 flex-grow opacity-20" />
             </div>
             <div>
               <p className="text-base"><strong><FontAwesomeIcon icon={faSwimmer} /> Piscina al aire libre de temporada</strong></p>
@@ -42,47 +42,47 @@ const TourDetails: React.FC<{ busDetails: IBusTour }> = ({ busDetails }) => {
             </div>
   
             <div className="flex items-center mb-1">
-              <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-lg font-bold text-gray-300 mx-2">Alimentación</h2>
-              <hr className="border-gray-300 flex-grow opacity-20" />
+              <hr className="border-gray-500 flex-grow opacity-20" />
+              <h2 className="text-lg font-bold text-gray-500 mx-2 text-shadow-medium ">Alimentación</h2>
+              <hr className="border-gray-500 flex-grow opacity-20" />
             </div>
             <div>
               <p className="text-base"><strong><FontAwesomeIcon icon={faChair} /> Desayuno</strong></p>
             </div>
   
             <div className="flex items-center mb-1">
-              <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-lg font-bold text-gray-300 mx-2">Estacionamiento y movilidad</h2>
-              <hr className="border-gray-300 flex-grow opacity-20" />
+              <hr className="border-gray-500 flex-grow opacity-20" />
+              <h2 className="text-lg font-bold text-gray-500 mx-2 text-shadow-medium ">Estacionamiento y movilidad</h2>
+              <hr className="border-gray-500 flex-grow opacity-20" />
             </div>
             <p className="text-base"><strong><FontAwesomeIcon icon={faParking} /> Estacionamiento gratis</strong></p>
   
             <div className="flex items-center mb-1">
-              <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-lg font-bold text-gray-300 mx-2">Seguridad</h2>
-              <hr className="border-gray-300 flex-grow opacity-20" />
+              <hr className="border-gray-500 flex-grow opacity-20" />
+              <h2 className="text-lg font-bold text-gray-500 mx-2 text-shadow-medium ">Seguridad</h2>
+              <hr className="border-gray-500 flex-grow opacity-20" />
             </div>
             <p className="text-base"><strong><FontAwesomeIcon icon={faUserShield} /> Seguridad 24 hrs</strong></p>
   
             <div className="flex items-center mb-1">
-              <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-lg font-bold text-gray-300 mx-2">Información sobre accesibilidad</h2>
-              <hr className="border-gray-300 flex-grow opacity-20" />
+              <hr className="border-gray-500 flex-grow opacity-20" />
+              <h2 className="text-lg font-bold text-gray-500 mx-2 text-shadow-medium ">Información sobre accesibilidad</h2>
+              <hr className="border-gray-500 flex-grow opacity-20" />
             </div>
             <p className="text-base"><strong><FontAwesomeIcon icon={faWheelchairAlt} /> Unidades adaptadas a personas con movilidad reducida</strong></p>
   
             <div className="flex items-center mb-1">
-              <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-lg font-bold text-gray-300 mx-2">Servicios en áreas comunes y habitación</h2>
-              <hr className="border-gray-300 flex-grow opacity-20" />
+              <hr className="border-gray-500 flex-grow opacity-20" />
+              <h2 className="text-lg font-bold text-gray-500 mx-2 text-shadow-medium ">Servicios en áreas comunes y habitación</h2>
+              <hr className="border-gray-500 flex-grow opacity-20" />
             </div>
             <p className="text-base"><strong><FontAwesomeIcon icon={faSnowflake} /> Aire acondicionado y calefacción</strong></p>
             <p className="text-base"><strong><FontAwesomeIcon icon={faWifi} /> Wi-Fi y Internet por cable gratis</strong></p>
   
             <div className="flex items-center mb-1">
-              <hr className="border-gray-300 flex-grow opacity-20" />
-              <h2 className="text-lg font-bold text-gray-300 mx-2">Incluye</h2>
-              <hr className="border-gray-300 flex-grow opacity-20" />
+              <hr className="border-gray-500 flex-grow opacity-20" />
+              <h2 className="text-lg font-bold text-gray-500 mx-2 text-shadow-medium ">Incluye</h2>
+              <hr className="border-gray-500 flex-grow opacity-20" />
             </div>
             <p className="text-base"><strong><FontAwesomeIcon icon={faBroom} /> Servicio de cama</strong></p>
             <div className="text-left flex">

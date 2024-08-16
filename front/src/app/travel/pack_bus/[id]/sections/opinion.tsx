@@ -173,19 +173,19 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
     <section className="text-base mt-5">
       <div className="container mx-auto flex flex-wrap justify-center">
         <div className="w-full sm:w-1/2 p-4">
-          <div className="bg-gray-200 p-4 rounded-lg flex flex-col items-center justify-center text-center">
-            <h2 className="text-2xl font-bold mb-4">Déjanos tu opinión</h2>
+          <div className="bg-gray-100 p-4 rounded-lg flex flex-col items-center justify-center text-center">
+            <h2 className="text-2xl font-bold mb-4 text-gray-600 text-shadow-medium ">Déjanos tu opinión</h2>
             <form className="w-full max-w-md mx-auto" onSubmit={onFormSubmit}>
               {error && <div className="text-red-500 mb-4">{error}</div>}
               <div className="mb-4">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-gray-600 text-sm font-bold mb-2  "
                   htmlFor="username"
                 >
                   Nombre
                 </label>
                 <input
-                  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  className={`shadow-2xl appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                     userRole === 'agency' ? 'bg-gray-300' : ''
                   }`}
                   id="username"
@@ -205,7 +205,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
                   Lo Bueno
                 </label>
                 <textarea
-                  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  className={` appearance-none border rounded-xl shadow-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                     userRole === 'agency' ? 'bg-gray-300' : ''
                   }`}
                   id="good"
@@ -224,7 +224,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
                   Lo Malo
                 </label>
                 <textarea
-                  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  className={`shadow-2xl appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                     userRole === 'agency' ? 'bg-gray-300' : ''
                   }`}
                   id="bad"
@@ -263,7 +263,7 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
               </div>
               <div className="mb-4 text-center mt-4">
                 <button
-                  className={`bg-blue-950 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+                  className={`bg-blue-950 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline ${
                     userRole === 'agency'
                       ? 'opacity-50 cursor-not-allowed hover:bg-blue-500'
                       : ''
@@ -279,8 +279,8 @@ const OpinionSection: React.FC<OpinionSectionProps> = ({
         </div>
 
         <div className="w-full sm:w-1/2 p-4">
-          <div className="bg-gray-200 rounded-lg flex flex-col text-center h-full">
-            <h2 className="text-2xl font-bold mb-4 mt-4">Comentarios</h2>
+          <div className="bg-gray-100 rounded-lg flex flex-col text-center h-full">
+            <h2 className="text-2xl font-bold mb-4 mt-4 text-gray-600 text-shadow-medium">Comentarios</h2>
             <div className="comments-container h-96 ml-6 mr-6 overflow-y-auto">
               {comments.map((card) => (
                 <div

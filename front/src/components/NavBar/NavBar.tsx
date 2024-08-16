@@ -14,7 +14,7 @@ import SwitcherTema from './SwitcherTema';
 import { usePathname } from 'next/navigation';
 
 const DEFAULT_AVATAR =
-  'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/yglvytp7lyjwt2lkygba.webp';
+  'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/perfil_pbtlkc';
 const ADMIN_AVATAR =
   'https://res.cloudinary.com/dia2gautk/image/upload/v1719631293/How-To-Fit-An-MX-5-Into-A-Pickup-Truck-Speedhunters_zy37c4';
 

@@ -27,7 +27,7 @@ const SearchBarComponent: React.FC = () => {
       value={query}
       onChange={handleSearch}
       placeholder="Buscar agencias..."
-      className="p-2 my-4 rounded-2xl border-none shadow-black/30 shadow-lg"
+      className="p-2 m-4 rounded-2xl border-none shadow-black/30 shadow-inner w-[600px] "
     />
   );
 };

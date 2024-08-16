@@ -120,11 +120,11 @@ const MisTours = () => {
 
   return (
     <AuthGuardAgency>
-      <div className="p-6">
+      <div className="p-10">
         {Array.isArray(tours) && tours.length === 0 ? (
-          <div className="text-center">
-            <p>
-              Aún no tienes tours, has click{' '}
+          <div className="flex items-center justify-center p-6">
+            <p className="text-center">
+              Aún no tienes tours, haz clic{' '}
               <Link href="/dashboard/agregar-tour" className="text-blue-500">
                 aquí
               </Link>{' '}

@@ -74,7 +74,7 @@ const Favoritos = () => {
 
   return (
     <AuthGuardUser>
-      <div className="p-6">
+      <div className="p-10">
         {Array.isArray(favorites) && favorites.length === 0 ? (
           <div className="text-center">
             <p>
@@ -94,7 +94,9 @@ const Favoritos = () => {
                 title={tour.title}
                 price={tour.price}
                 imageUrl={tour.imgUrl}
-                oferta={tour.oferta} transportType={'plane'}              />
+                oferta={tour.oferta}
+                transportType={'plane'}
+              />
             ))}
           </div>
         )}

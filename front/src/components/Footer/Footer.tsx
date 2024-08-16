@@ -39,16 +39,28 @@ const Footer: React.FC<FooterProps> = ({ username, className, tema }) => {
           </div>
           <div className="flex flex-col md:flex-row items-center mt-4 md:mt-0 space-y-2 md:space-y-0 md:space-x-6">
             <Link href="/">
-              <p className="text-gray-50 hover:text-blue-300 hover:underline">Inicio</p>
+              <p className="text-gray-50 hover:text-blue-300 relative group">
+                Inicio
+                <span className="block w-0 h-[2px] bg-blue-300 group-hover:w-full transition-all duration-300"></span>
+              </p>
             </Link>
             <Link href="/contacto">
-              <p className="text-gray-50 hover:text-blue-300 hover:underline">Contacto</p>
+              <p className="text-gray-50 hover:text-blue-300 relative group">
+                Contacto
+                <span className="block w-0 h-[2px] bg-blue-300 group-hover:w-full transition-all duration-300"></span>
+              </p>
             </Link>
             <Link href="/travel">
-              <p className="text-gray-50 hover:text-blue-300 hover:underline">Paquetes</p>
+              <p className="text-gray-50 hover:text-blue-300 relative group">
+                Paquetes
+                <span className="block w-0 h-[2px] bg-blue-300 group-hover:w-full transition-all duration-300"></span>
+              </p>
             </Link>
             <Link href="/nosotros">
-              <p className="text-gray-50 hover:text-blue-300 hover:underline">Nosotros</p>
+              <p className="text-gray-50 hover:text-blue-300 relative group">
+                Nosotros
+                <span className="block w-0 h-[2px] bg-blue-300 group-hover:w-full transition-all duration-300"></span>
+              </p>
             </Link>
             {isMusicActive && (
               <div>
@@ -63,7 +75,6 @@ const Footer: React.FC<FooterProps> = ({ username, className, tema }) => {
             <Link href="https://www.youtube.com/" target="_blank">
               <FaYoutube className="text-gray-50 hover:text-blue-300" size={30} />
             </Link>
-
             <Link href="https://www.facebook.com/" target="_blank">
               <FaFacebook className="text-gray-50 hover:text-blue-300" size={30} />
             </Link>

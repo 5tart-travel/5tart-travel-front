@@ -28,7 +28,7 @@ const MiPerfil = () => {
   }, []);
 
   return (
-    <div className="flex flex-col rounded-md md:h-[200px]">
+    <div className="flex flex-col items-center rounded-md md:h-[200px] py-10">
       {userRole ? (
         <div>
           {userRole === 'admin' && <Admin userData={userData} />}

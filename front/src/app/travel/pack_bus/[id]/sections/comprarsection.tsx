@@ -146,21 +146,21 @@ const CompraSection: React.FC<CompraSectionProps> = ({
 
   return (
     <section>
-      <div className="absolute top-0 right-0 bg-white text-center border-4 md:border-10 border-blue-500 rounded-lg p-6 md:p-12 z-10 mt-24 md:mt-64 mr-4 md:mr-8 shadow-lg">
+      <div className="absolute top-0 right-0 bg-white text-center border-4 md:border-10 border-indigo-500 rounded-lg p-6 md:p-12 z-10 mt-24 md:mt-64 mr-4 md:mr-8 shadow-lg">
         <div
           className={`absolute right-0 top-0 m-2 rounded-full p-1 cursor-pointer ${
             favorited
-              ? 'bg-white text-blue-500'
+              ? 'bg-white text-indigo-300'
               : 'bg-white border-2 border-black'
           }`}
           onClick={toggleFavorite}
         >
           <FontAwesomeIcon
             icon={faHeart}
-            className={`${favorited ? 'text-blue-500' : 'text-black'}`}
+            className={`${favorited ? 'text-indigo-600' : 'text-black'}`}
           />
         </div>
-        <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-4">
+        <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-4 text-gray-600 ">
           {busDetails.title}
         </h2>
         <p className="text-sm md:text-md mb-2 md:mb-4">

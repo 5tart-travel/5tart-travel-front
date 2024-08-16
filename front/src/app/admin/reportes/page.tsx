@@ -1,8 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaEnvelope, FaTrashAlt } from 'react-icons/fa';
+import { MdAlternateEmail } from 'react-icons/md';
+import { RiMailSendFill } from 'react-icons/ri';
+import { HiMailOpen } from "react-icons/hi";
+import { FaDeleteLeft, FaHubspot, FaEye } from 'react-icons/fa6';
+import Link from 'next/link';
+import Swal from 'sweetalert2';
+import ReactCardFlip from 'react-card-flip';
 
 interface Notification {
   id: string;
@@ -14,6 +20,7 @@ interface Notification {
 
 const Reportes: React.FC = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [flipped, setFlipped] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -39,7 +46,15 @@ const Reportes: React.FC = () => {
   const sendMessage = async (id: string) => {
     try {
       await axios.post(`https://fivetart-travel-kafg.onrender.com/contact/sendEmail/${id}`);
-      alert('Mensaje enviado');
+      Swal.fire({
+        icon: "success",
+        title: "Mensaje enviado",
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'custom-swal2-popup',
+        },
+      });
     } catch (error) {
       console.error('Error sending message:', error);
     }
@@ -49,27 +64,85 @@ const Reportes: React.FC = () => {
     try {
       await axios.delete(`https://fivetart-travel-kafg.onrender.com/contact/${id}`);
       setNotifications(notifications.filter(notification => notification.id !== id));
+      Swal.fire({
+        icon: "success",
+        title: "Mensaje eliminado",
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'custom-swal2-popup',
+        },
+      });
     } catch (error) {
       console.error('Error deleting message:', error);
     }
+  };
+
+  const handleFlip = (id: string) => {
+    setFlipped(flipped === id ? null : id);
   };
 
   return (
     <div className="p-6 shadow-black/50 min-h-screen">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {notifications.map((notification) => (
-          <div key={notification.id} className="relative bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-            <div className="absolute top-2 right-2 cursor-pointer text-blue-500" onClick={() => sendMessage(notification.id)}>
-              <FaEnvelope size={20} />
+          <ReactCardFlip
+            key={notification.id}
+            isFlipped={flipped === notification.id}
+            flipDirection="horizontal"
+          >
+            {/* Frente de la card  */}
+            <div
+              className="relative max-w-md w-full bg-indigo-100 rounded-2xl overflow-hidden flex box-shadow-white-medium hover:shadow-2xl transition-shadow duration-300 ease-in-out cursor-pointer hover:box-shadow-white-medium"
+              onClick={() => handleFlip(notification.id)}
+            >
+              <div className="w-1/3 bg-blue-950 flex flex-col justify-between p-4">
+                <div className="text-center">
+                  <h3 className="text-xl text-gray-200 font-semibold mb-1">{notification.username}</h3>
+                  <p className="text-base text-gray-200 font-semibold mb-1">Tel:</p>
+                  <p className="text-indigo-500 text-sm text-shadow-white-semilight">{notification.telefono}</p>
+                </div>
+                <div className="mt-4 mx-auto">
+                  <img src="/star_travel.png" alt="Star Travel Logo" className="w-16 h-16" />
+                </div>
+              </div>
+              <div className="w-2/3 p-4 relative">
+                <div className="absolute inset-y-0 left-0 w-[6px] bg-indigo-500"></div>
+                <div className="pl-6">
+                  <div className="flex items-center mb-4 group">
+                    <MdAlternateEmail className="text-blue-950 text-xl mr-3 flex-shrink-0" />
+                    <Link href={`mailto:${notification.mail}`} className="text-gray-800 truncate w-[100px] relative">
+                      {notification.mail}
+                      <span className="block w-0 h-[3px] bg-indigo-950 group-hover:w-full transition-all duration-300"></span>
+                    </Link>
+                  </div>
+                  <div className="flex mb-4 gap-2 text-gray-700 text-sm cursor-pointer ">
+                    <FaHubspot className="w-10 text-blue-950" />
+                    {notification.message.slice(0, 50)}...
+                  </div>
+                  <div className="flex items-center space-x-4 mt-6 absolute bottom-6 gap-20">
+                    <button className="cursor-pointer text-red-500 hover:text-red-300" onClick={(e) => { e.stopPropagation(); deleteMessage(notification.id); }}>
+                      <FaDeleteLeft size={30} />
+                    </button>
+                    <button className="cursor-pointer text-blue-950 hover:text-indigo-500" onClick={(e) => { e.stopPropagation(); sendMessage(notification.id); }}>
+                      <RiMailSendFill size={30} />
+                    </button>
+                 
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="absolute bottom-2 right-2 cursor-pointer text-red-500" onClick={() => deleteMessage(notification.id)}>
-              <FaTrashAlt size={20} />
+
+            {/* cara trasera de la card */}
+            <div
+              className="relative max-w-md w-full h-full bg-indigo-100  box-shadow-white-medium hover:shadow-2xl transition-shadow duration-300 ease-in-out cursor-pointer rounded-2xl overflow-hidden p-6 text-gray-100"
+              onClick={() => handleFlip(notification.id)}
+            >
+              <HiMailOpen size={30} className="absolute top-8 right-14 text-white z-10 " />
+              <h3 className="text-xl font-semibold mb-2 bg-blue-950 px-4 py-2 rounded-br-full rounded-tl-full ">{notification.username}:</h3>
+              <p className="mb-4 text-gray-700 ">{notification.message}</p>
             </div>
-            <h2 className="text-2xl font-semibold mb-2">{notification.username}</h2>
-            <p className="text-gray-700 mb-1"><strong>Correo:</strong> {notification.mail}</p>
-            <p className="text-gray-700"><strong>Teléfono:</strong> {notification.telefono}</p>
-            <p className="text-gray-700 mb-1"><strong>Mensaje:</strong> {notification.message}</p>
-          </div>
+          </ReactCardFlip>
         ))}
       </div>
     </div>
