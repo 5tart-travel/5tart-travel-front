@@ -22,7 +22,6 @@ const CardAgency: React.FC = () => {
     const fetchAgencies = async () => {
       try {
         const response = await axios.get('https://fivetart-travel-kafg.onrender.com/agency');
-        console.log('Fetched agencies:', response.data);
         setAgencies(response.data);
       } catch (error) {
         console.error('Error fetching agencies:', error);
@@ -30,6 +29,12 @@ const CardAgency: React.FC = () => {
     };
 
     fetchAgencies();
+
+    // Configurar polling cada 5 segundos
+    const interval = setInterval(fetchAgencies, 5000);
+
+    // Limpiar el intervalo al desmontar el componente
+    return () => clearInterval(interval);
   }, []);
 
   const openModal = () => {
@@ -37,7 +42,6 @@ const CardAgency: React.FC = () => {
   };
 
   const closeModal = () => {
-    console.log('Closing modal');
     setIsModalOpen(false);
   };
 
