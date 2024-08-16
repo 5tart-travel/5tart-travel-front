@@ -41,7 +41,7 @@ const ToggleUser: React.FC<ToggleUserProps> = ({ userId, isActive, onToggle }) =
       console.error(
         `Error actualizando el estado del usuario con ID ${userId}:`,
         error.response ? error.response.data : error.message
-      );
+      ); 
       if (error.response && error.response.status === 400) {
         const errorMessage = error.response.data.message;
         if (errorMessage.includes('ya se encuentra inactivo')) {
