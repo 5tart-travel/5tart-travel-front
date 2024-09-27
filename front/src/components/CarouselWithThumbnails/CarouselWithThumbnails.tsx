@@ -9,7 +9,7 @@ interface CarouselProps {
   tema: boolean;
 }
 
-const CarouselWithThumbnails: React.FC<CarouselProps> = ({tema}) => {
+const CarouselWithThumbnails: React.FC<CarouselProps> = ({ tema }) => {
   const [agencias, setAgencias] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +17,7 @@ const CarouselWithThumbnails: React.FC<CarouselProps> = ({tema}) => {
     console.log('Fetching agencias...');
     try {
       const response = await fetch(
-        'https://fivetart-travel-kafg.onrender.com/agency',
+        `https://5tart-back-production.up.railway.app/agency`,
       );
       const data = await response.json();
       console.log('Agencias fetched:', data);
@@ -85,7 +85,13 @@ const CarouselWithThumbnails: React.FC<CarouselProps> = ({tema}) => {
 
         <div className="absolute xl:top-[260px] xl:right-[530px] lg:top-[260px] lg:right-[500px] md:top-[260px] md:right-[400px] sm:top-[130px] sm:right-[380px] xs:top-[170px] xs:right-[50px] xxs:top-[140px] xxs:right-[70px]">
           <Link href="/travel">
-            <button className={`mt-4 px-6 py-3 ${ tema ?  'bg-black hover:bg-gray-900' : 'bg-blue-950 hover:bg-blue-900' } rounded-xl  shadow-xl text-white sm:px-4 sm:py-2 sm:mb-96 md:px-5 md:py-2.5 lg:px-6 lg:py-3`}>
+            <button
+              className={`mt-4 px-6 py-3 ${
+                tema
+                  ? 'bg-black hover:bg-gray-900'
+                  : 'bg-blue-950 hover:bg-blue-900'
+              } rounded-xl  shadow-xl text-white sm:px-4 sm:py-2 sm:mb-96 md:px-5 md:py-2.5 lg:px-6 lg:py-3`}
+            >
               Buscar viajes
             </button>
           </Link>

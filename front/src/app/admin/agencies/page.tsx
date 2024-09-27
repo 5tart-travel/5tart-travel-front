@@ -27,7 +27,7 @@ const Agencies: React.FC = () => {
     const fetchAgencies = async () => {
       try {
         const response = await axios.get(
-          'https://fivetart-travel-kafg.onrender.com/agency',
+          `${process.env.NEXT_PUBLIC_API_URL}/agency`,
           {
             headers: {
               Authorization: `Bearer YOUR_TOKEN_HERE`,
@@ -85,18 +85,35 @@ const Agencies: React.FC = () => {
                   <TbBrandGoogleHome className="w-full h-full text-gray-500" />
                 )}
               </div>
-              <div className="flex-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr 1fr 1.2fr', gridGap: '40px'}}>
+              <div
+                className="flex-1"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1.6fr 1fr 1.2fr',
+                  gridGap: '40px',
+                }}
+              >
                 <div>
-                  <h3 className="font-semibold mb-1 text-shadow-medium ">Nombre</h3>
-                  <p className="text-gray-600">{agency.name_agency || 'Sin nombre'}</p>
+                  <h3 className="font-semibold mb-1 text-shadow-medium ">
+                    Nombre
+                  </h3>
+                  <p className="text-gray-600">
+                    {agency.name_agency || 'Sin nombre'}
+                  </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 text-shadow-medium ">Email</h3>
+                  <h3 className="font-semibold mb-1 text-shadow-medium ">
+                    Email
+                  </h3>
                   <p className="text-gray-600">{agency.mail || 'Sin email'}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 text-shadow-medium ">Dirección</h3>
-                  <p className="text-gray-600">{agency.address || 'Sin dirección'}</p>
+                  <h3 className="font-semibold mb-1 text-shadow-medium ">
+                    Dirección
+                  </h3>
+                  <p className="text-gray-600">
+                    {agency.address || 'Sin dirección'}
+                  </p>
                 </div>
               </div>
               <div className="flex flex-col items-end">
