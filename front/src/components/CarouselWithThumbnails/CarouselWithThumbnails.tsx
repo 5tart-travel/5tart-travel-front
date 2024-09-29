@@ -16,7 +16,9 @@ const CarouselWithThumbnails: React.FC<CarouselProps> = ({ tema }) => {
   const fetchAgencias = async () => {
     console.log('Fetching agencias...');
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/agency`);
+      const response = await fetch(
+        `https://5tart-back-production.up.railway.app/agency`,
+      );
       const data = await response.json();
       console.log('Agencias fetched:', data);
       setAgencias(data);
