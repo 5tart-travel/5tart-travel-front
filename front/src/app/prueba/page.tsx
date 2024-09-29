@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import axios from 'axios';
 import socket from '@/hooks/useSocket';
@@ -16,7 +16,9 @@ const HomePage = () => {
     // Obtener los datos iniciales mediante una solicitud HTTP
     const fetchInitialData = async () => {
       try {
-        const response = await axios.get<Agency[]>('https://fivetart-travel-kafg.onrender.com/agency/disable');
+        const response = await axios.get<Agency[]>(
+          `${process.env.NEXT_PUBLIC_API_URL}/agency/disable`,
+        );
         setAgencies(response.data);
       } catch (error) {
         console.error('Error fetching initial data:', error);

@@ -14,7 +14,7 @@ interface Tour {
   country: string;
   empresa: string;
   transportType: 'plane' | 'bus';
-  isActive:boolean;
+  isActive: boolean;
 }
 
 const CardInternacional: React.FC = () => {
@@ -23,10 +23,14 @@ const CardInternacional: React.FC = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await fetch('https://fivetart-travel-kafg.onrender.com/tours');
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/tours`,
+        );
         const data: Tour[] = await response.json();
-        const internationalActiveTours = data.filter(tour => tour.region === 'Internacional' && tour.isActive);
-      setTours(internationalActiveTours);
+        const internationalActiveTours = data.filter(
+          (tour) => tour.region === 'Internacional' && tour.isActive,
+        );
+        setTours(internationalActiveTours);
       } catch (error) {
         console.error('Error fetching tours:', error);
       }
@@ -37,7 +41,7 @@ const CardInternacional: React.FC = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-      {tours.map(tour => (
+      {tours.map((tour) => (
         <CardGrid
           key={tour.id}
           id={tour.id}

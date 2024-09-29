@@ -24,17 +24,21 @@ const StatisticsCard: React.FC = () => {
   const fetchData = async () => {
     try {
       const [userResponse, agencyResponse] = await Promise.all([
-        axios.get('https://fivetart-travel-kafg.onrender.com/user'),
-        axios.get('https://fivetart-travel-kafg.onrender.com/agency'),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user`),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/agency`),
       ]);
 
       const users = userResponse.data;
       const agencies = agencyResponse.data;
 
-      const activeUsersCount = users.filter((user: any) => user.isActive).length;
+      const activeUsersCount = users.filter(
+        (user: any) => user.isActive,
+      ).length;
       const inactiveUsersCount = users.length - activeUsersCount;
 
-      const activeAgenciesCount = agencies.filter((agency: any) => agency.isActive).length;
+      const activeAgenciesCount = agencies.filter(
+        (agency: any) => agency.isActive,
+      ).length;
       const inactiveAgenciesCount = agencies.length - activeAgenciesCount;
 
       setData({
@@ -74,10 +78,34 @@ const StatisticsCard: React.FC = () => {
   };
 
   const charts = [
-    { label: 'Activos', value: data.activeUsers, total: data.totalUsers, color: '#36a2eb', icon: <FaUsers className="text-white text-lg" /> },
-    { label: 'Inactivos', value: data.inactiveUsers, total: data.totalUsers, color: '#ff6384', icon: <FaUsers className="text-white text-lg" /> },
-    { label: 'Agen. Activas', value: data.activeAgencies, total: data.totalAgencies, color: '#4bc0c0', icon: <FaBuilding className="text-white text-lg" /> },
-    { label: 'Agen. Inactivas', value: data.inactiveAgencies, total: data.totalAgencies, color: '#ffcd56', icon: <FaBuilding className="text-white text-lg" /> },
+    {
+      label: 'Activos',
+      value: data.activeUsers,
+      total: data.totalUsers,
+      color: '#36a2eb',
+      icon: <FaUsers className="text-white text-lg" />,
+    },
+    {
+      label: 'Inactivos',
+      value: data.inactiveUsers,
+      total: data.totalUsers,
+      color: '#ff6384',
+      icon: <FaUsers className="text-white text-lg" />,
+    },
+    {
+      label: 'Agen. Activas',
+      value: data.activeAgencies,
+      total: data.totalAgencies,
+      color: '#4bc0c0',
+      icon: <FaBuilding className="text-white text-lg" />,
+    },
+    {
+      label: 'Agen. Inactivas',
+      value: data.inactiveAgencies,
+      total: data.totalAgencies,
+      color: '#ffcd56',
+      icon: <FaBuilding className="text-white text-lg" />,
+    },
   ];
 
   const calculatePercentage = (value: number, total: number) => {
@@ -87,19 +115,29 @@ const StatisticsCard: React.FC = () => {
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 space-y-8">
-      <h2 className="text-2xl font-bold text-gray-600 text-shadow-medium">Agencias y usuarios</h2>
+      <h2 className="text-2xl font-bold text-gray-600 text-shadow-medium">
+        Agencias y usuarios
+      </h2>
       <div className="flex flex-wrap justify-around">
         {charts.map((chart, index) => (
           <div key={index} className="flex flex-col items-center w-1/4">
             <div className="relative w-32 h-w-32">
-              <Doughnut data={chartData(chart.value, chart.total, chart.color)} options={{ cutout: '70%' }} />
+              <Doughnut
+                data={chartData(chart.value, chart.total, chart.color)}
+                options={{ cutout: '70%' }}
+              />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className={`rounded-full w-12 h-12 flex items-center justify-center`} style={{ backgroundColor: chart.color }}>
+                <div
+                  className={`rounded-full w-12 h-12 flex items-center justify-center`}
+                  style={{ backgroundColor: chart.color }}
+                >
                   {chart.icon}
                 </div>
               </div>
             </div>
-            <p className="text-xl font-semibold text-gray-700 mt-4">{calculatePercentage(chart.value, chart.total)}%</p>
+            <p className="text-xl font-semibold text-gray-700 mt-4">
+              {calculatePercentage(chart.value, chart.total)}%
+            </p>
             <p className="text-md text-gray-500">{chart.label}</p>
           </div>
         ))}

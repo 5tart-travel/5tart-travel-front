@@ -1,41 +1,42 @@
-import React, { useState } from "react";
-import { RiSearchLine } from "react-icons/ri";
-import Modal from "@/components/modal_search/modal_search";
-import Image from "next/image";
+import React, { useState } from 'react';
+import { RiSearchLine } from 'react-icons/ri';
+import Modal from '@/components/modal_search/modal_search';
+import Image from 'next/image';
 import Link from 'next/link';
-import LoadingSpinner from "@/components/LoadingSniper/LoadingSniper";
-import { MdOutlinePets } from "react-icons/md";
-import hardcodedResults from "@/utils/harcodedResults";
-import { ISearch } from "@/interface/ISearch";
-import axios from "axios";
+import LoadingSpinner from '@/components/LoadingSniper/LoadingSniper';
+import { MdOutlinePets } from 'react-icons/md';
+import hardcodedResults from '@/utils/harcodedResults';
+import { ISearch } from '@/interface/ISearch';
+import axios from 'axios';
 
 const Search: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState<ISearch[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
-    setError("");
+    setError('');
     setResults([]);
     setIsModalOpen(true);
-    console.log("Searching for:", searchTerm);
+    console.log('Searching for:', searchTerm);
     try {
-      const response = await axios.get(`https://fivetart-travel-kafg.onrender.com/search?q=${searchTerm}`)
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/search?q=${searchTerm}`,
+      );
 
-      const filteredResults = response.data
-      
+      const filteredResults = response.data;
+
       setTimeout(() => {
         setResults(filteredResults);
         setLoading(false);
       }, 1000);
-
     } catch (error) {
-      throw new Error('Error al buscar')
+      throw new Error('Error al buscar');
     }
   };
 
@@ -89,10 +90,10 @@ const Search: React.FC = () => {
         ) : (
           <div>
             <p className="flex items-center justify-center text-gray-700 font-bold text-2xl">
-              No se encontraron resultados.{" "}
+              No se encontraron resultados.{' '}
               <span className="text-3xl ml-2">
-                {" "}
-                <MdOutlinePets />{" "}
+                {' '}
+                <MdOutlinePets />{' '}
               </span>
             </p>
           </div>

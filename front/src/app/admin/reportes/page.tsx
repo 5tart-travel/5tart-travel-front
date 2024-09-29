@@ -66,9 +66,7 @@ const Reportes: React.FC = () => {
 
   const deleteMessage = async (id: string) => {
     try {
-      await axios.delete(
-        `https://5tart-back-production.up.railway.app/contact/${id}`,
-      );
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/contact/${id}`);
       setNotifications(
         notifications.filter((notification) => notification.id !== id),
       );

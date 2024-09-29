@@ -21,7 +21,7 @@ const DeleteTour: React.FC<{
       if (result.isConfirmed) {
         try {
           const response = await fetch(
-            `https://fivetart-travel-kafg.onrender.com/tours/${tourId}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/tours/${tourId}`,
             {
               method: 'DELETE',
             },
