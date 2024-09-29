@@ -27,7 +27,7 @@ const Agencies: React.FC = () => {
     const fetchAgencies = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/agency`,
+          `${process.env.NEXT_PUBLIC_API_URL}agency`,
           {
             headers: {
               Authorization: `Bearer YOUR_TOKEN_HERE`,
