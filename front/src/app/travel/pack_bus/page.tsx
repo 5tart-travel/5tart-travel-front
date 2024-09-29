@@ -21,7 +21,7 @@ const PackBus: React.FC = () => {
     const fetchBuses = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/tours/bus`,
+          `${process.env.NEXT_PUBLIC_API_URL}tours/bus`,
         );
         if (!response.ok) {
           throw new Error('Falló el fetch de bus tours');
