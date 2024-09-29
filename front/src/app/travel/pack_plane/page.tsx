@@ -26,7 +26,7 @@ const PackPlane: React.FC = () => {
           throw new Error('Falló el fetch de bus tours');
         }
         const data: IBusTour[] = await response.json();
-        const activeBuses = data.filter(tour => tour.isActive);
+        const activeBuses = data.filter((tour) => tour.isActive);
         setBuses(activeBuses);
         setFilteredTours(activeBuses);
 

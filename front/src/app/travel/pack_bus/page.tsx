@@ -7,7 +7,6 @@ import FilterComponent from '@/components/FiltrosPack/FilterComponent';
 import '../../../components/Styles/ErrorBus.css';
 import { checkUserRole } from '@/utils/decodeJwt';
 
-
 const PackBus: React.FC = () => {
   const router = useRouter();
   const [buses, setBuses] = useState<IBusTour[]>([]);
@@ -17,8 +16,6 @@ const PackBus: React.FC = () => {
   const [noResults, setNoResults] = useState(false);
   const [uniqueStates, setUniqueStates] = useState<string[]>([]);
   const [selectedState, setSelectedState] = useState<string>('');
-
-
 
   useEffect(() => {
     const fetchBuses = async () => {
@@ -30,7 +27,7 @@ const PackBus: React.FC = () => {
           throw new Error('Falló el fetch de bus tours');
         }
         const data: IBusTour[] = await response.json();
-        const activeBuses = data.filter(tour => tour.isActive);
+        const activeBuses = data.filter((tour) => tour.isActive);
         setBuses(activeBuses);
         setFilteredTours(activeBuses);
 
@@ -53,11 +50,8 @@ const PackBus: React.FC = () => {
   }, [filteredTours]);
 
   const handleCardClick = (id: string) => {
-
     router.push(`/travel/pack_bus/${id}`);
   };
-
-
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -127,5 +121,3 @@ const PackBus: React.FC = () => {
 };
 
 export default PackBus;
-
-

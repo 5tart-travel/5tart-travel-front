@@ -9,7 +9,7 @@ interface Tour {
   imgUrl: string;
   oferta: boolean;
   transportType: 'plane' | 'bus';
-  isActive:boolean;
+  isActive: boolean;
 }
 
 const TourHome: React.FC = () => {
@@ -18,9 +18,13 @@ const TourHome: React.FC = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await fetch('https://fivetart-travel-kafg.onrender.com/tours');
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/tours`,
+        );
         const data = await response.json();
-        const filteredTours = data.filter((tour: Tour) => tour.region !== 'Internacional' && tour.isActive);
+        const filteredTours = data.filter(
+          (tour: Tour) => tour.region !== 'Internacional' && tour.isActive,
+        );
         setTours(filteredTours);
       } catch (error) {
         console.error('Error fetching tours:', error);

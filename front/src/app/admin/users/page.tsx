@@ -25,7 +25,7 @@ const Users: React.FC = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          'https://fivetart-travel-kafg.onrender.com/user',
+          `${process.env.NEXT_PUBLIC_API_URL}/user`,
           {
             headers: {
               Authorization: `Bearer YOUR_TOKEN_HERE`,
@@ -49,8 +49,8 @@ const Users: React.FC = () => {
     try {
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
-          user.id === userId ? { ...user, isActive: newStatus } : user
-        )
+          user.id === userId ? { ...user, isActive: newStatus } : user,
+        ),
       );
     } catch (error) {
       console.error('Error toggling user status:', error);
@@ -90,13 +90,17 @@ const Users: React.FC = () => {
               </div>
               <div className="flex-1 grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <h3 className="text-base font-bold text-gray-700 text-shadow-medium">Nombre</h3>
+                  <h3 className="text-base font-bold text-gray-700 text-shadow-medium">
+                    Nombre
+                  </h3>
                   <p className="text-sm font-semibold text-gray-600 truncate">
                     {user.username}
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-gray-700 text-shadow-medium ">Email</h3>
+                  <h3 className="text-base font-bold text-gray-700 text-shadow-medium ">
+                    Email
+                  </h3>
                   <div className="relative group">
                     <p className="text-sm font-semibold text-gray-600 truncate cursor-pointer">
                       {user.mail}

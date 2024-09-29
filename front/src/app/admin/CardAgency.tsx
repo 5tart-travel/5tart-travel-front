@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { TbBrandGoogleHome } from "react-icons/tb";
+import { TbBrandGoogleHome } from 'react-icons/tb';
 import AgencyModal from './AgencyModal';
 
 interface Agency {
@@ -21,7 +21,9 @@ const CardAgency: React.FC = () => {
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        const response = await axios.get('https://fivetart-travel-kafg.onrender.com/agency');
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/agency`,
+        );
         setAgencies(response.data);
       } catch (error) {
         console.error('Error fetching agencies:', error);
@@ -57,12 +59,14 @@ const CardAgency: React.FC = () => {
         <TbBrandGoogleHome className="text-orange-500" size={24} />
       </div>
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-5xl text-gray-600 text-shadow-medium font-bold">{agencies.length}</p>
-        <p className="text-xl text-shadow-medium text-gray-600 font-semibold">Agencias</p>
+        <p className="text-5xl text-gray-600 text-shadow-medium font-bold">
+          {agencies.length}
+        </p>
+        <p className="text-xl text-shadow-medium text-gray-600 font-semibold">
+          Agencias
+        </p>
       </div>
-      {isModalOpen && (
-        <AgencyModal agencies={agencies} onClose={closeModal} />
-      )}
+      {isModalOpen && <AgencyModal agencies={agencies} onClose={closeModal} />}
     </div>
   );
 };

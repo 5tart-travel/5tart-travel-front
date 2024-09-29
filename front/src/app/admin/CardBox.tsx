@@ -1,9 +1,9 @@
 import socket from '@/hooks/useSocket';
 import axios from 'axios';
 import { useState, useEffect, useRef, Fragment } from 'react';
-import { BsFillInboxesFill } from "react-icons/bs";
+import { BsFillInboxesFill } from 'react-icons/bs';
 import { MdDelete, MdDeleteSweep } from 'react-icons/md';
-import { FaMailBulk } from "react-icons/fa";
+import { FaMailBulk } from 'react-icons/fa';
 import { Dialog, Transition } from '@headlessui/react';
 import { motion } from 'framer-motion';
 import { RiMailCloseFill } from 'react-icons/ri';
@@ -12,41 +12,43 @@ export interface Agency {
   id: string;
   name_agency: string;
   mail?: string;
-  
-
 }
 
 export interface User {
   id: string;
   username: string;
   mail?: string;
-  
 }
 
 const CardBox: React.FC = () => {
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const [users, setUsers] = useState<User[]>([]);
-  const [selectedNotification, setSelectedNotification] = useState< Agency | User | any | null>(null);
+  const [selectedNotification, setSelectedNotification] = useState<
+    Agency | User | any | null
+  >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const response = await axios.get<Agency[]>('https://fivetart-travel-kafg.onrender.com/agency/disable/seen');
+        const response = await axios.get<Agency[]>(
+          `${process.env.NEXT_PUBLIC_API_URL}/agency/disable/seen`,
+        );
         if (Array.isArray(response.data)) {
           setAgencies(response.data);
         } else {
           console.error('Response data is not an array:', response.data);
         }
 
-        const response2 = await axios.get<User[]>('https://fivetart-travel-kafg.onrender.com/user/disable/seen');
+        const response2 = await axios.get<User[]>(
+          `${process.env.NEXT_PUBLIC_API_URL}/user/disable/seen`,
+        );
         if (Array.isArray(response2.data)) {
           setUsers(response2.data);
         } else {
           console.error('Response data is not an array:', response2.data);
         }
-
       } catch (error) {
         console.error('Error fetching initial data:', error);
       }
@@ -64,7 +66,9 @@ const CardBox: React.FC = () => {
         setAgencies(items);
         console.log('Nueva notificacion recibida');
         if (audioRef.current) {
-          audioRef.current.play().catch(error => console.error('Error de audio:', error));
+          audioRef.current
+            .play()
+            .catch((error) => console.error('Error de audio:', error));
         }
       } else {
         console.error('Received items are not an array:', items);
@@ -74,11 +78,13 @@ const CardBox: React.FC = () => {
     socket.on('allUsers', (items: any) => {
       if (Array.isArray(items)) {
         console.log(items);
-        
+
         setUsers(items);
         console.log('Nueva notificacion recibida');
         if (audioRef.current) {
-          audioRef.current.play().catch(error => console.error('Error de audio:', error));
+          audioRef.current
+            .play()
+            .catch((error) => console.error('Error de audio:', error));
         }
       } else {
         console.error('Received items are not an array:', items);
@@ -107,22 +113,23 @@ const CardBox: React.FC = () => {
   };
 
   const deleteNotification = async (id: string, type: any) => {
-      const url = `https://fivetart-travel-kafg.onrender.com/agency/disable/seen/${id}`;
-      await axios.put(url);
-  
-      if (type.name_agency) {
-        setAgencies(prevAgencies => prevAgencies.filter(agency => agency.id !== id));
-        closeModal();
-      } else {
-        setUsers(prevUsers => prevUsers.filter(user => user.id !== id));
-        closeModal();
-      }  
-    
-    console.error('Error al eliminar la notificación:');      
-      
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/agency/disable/seen/${id}`;
+    await axios.put(url);
+
+    if (type.name_agency) {
+      setAgencies((prevAgencies) =>
+        prevAgencies.filter((agency) => agency.id !== id),
+      );
+      closeModal();
+    } else {
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+      closeModal();
+    }
+
+    console.error('Error al eliminar la notificación:');
   };
 
-  const desord: any[] = [...agencies, ...users]; 
+  const desord: any[] = [...agencies, ...users];
   const notification = desord.sort((a, b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
@@ -130,12 +137,15 @@ const CardBox: React.FC = () => {
   });
 
   console.log(notification);
-  
 
   const formatDate = (dateString: string) => {
     const optionss: any = {
-      year: 'numeric', month: 'short', day: 'numeric',
-      hour: 'numeric', minute: 'numeric', second: 'numeric',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
       hour12: false, // Formato de 24 horas
     };
     return new Date(dateString).toLocaleDateString('es-ES', optionss);
@@ -143,7 +153,11 @@ const CardBox: React.FC = () => {
 
   return (
     <div className="relative p-4 bg-white rounded-2xl shadow-2xl cursor-pointer w-60 h-[345px] transition-all duration-500 custom-scrollbar overflow-y-auto">
-      <audio ref={audioRef} src="/sounds/notification2.mp3" preload="auto"></audio>
+      <audio
+        ref={audioRef}
+        src="/sounds/notification2.mp3"
+        preload="auto"
+      ></audio>
       <div className="absolute top-2 left-2 bg-white rounded-full p-2">
         <BsFillInboxesFill className="text-lime-700" size={24} />
       </div>
@@ -152,7 +166,9 @@ const CardBox: React.FC = () => {
       </div>
       <div className="flex flex-col items-center justify-center mt-4">
         <p className="text-xl text-gray-600 font-semibold">Inbox</p>
-        <p className="text-3xl text-gray-600 font-bold">{notification.length}</p>
+        <p className="text-3xl text-gray-600 font-bold">
+          {notification.length}
+        </p>
       </div>
       <div className="mt-4 w-full">
         {notification.length > 0 ? (
@@ -168,7 +184,9 @@ const CardBox: React.FC = () => {
                 animate={{ x: 0 }}
                 transition={{ type: 'spring', stiffness: 50 }}
               >
-                {item.name_agency ? `Nueva agencia: ${item.name_agency} para activar` : `Nuevo usuario: ${item.username} registrado`}
+                {item.name_agency
+                  ? `Nueva agencia: ${item.name_agency} para activar`
+                  : `Nuevo usuario: ${item.username} registrado`}
                 <p className="text-xs text-gray-500">{formatDate(item.date)}</p>
               </motion.p>
             </div>
@@ -181,75 +199,101 @@ const CardBox: React.FC = () => {
       </div>
 
       <Transition appear show={isModalOpen} as={Fragment}>
-  <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>
-    <div className="min-h-screen px-4 text-center">
-      <Transition.Child
-        as={Fragment}
-        enter="ease-out duration-300"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="ease-in duration-200"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
-      >
-        <div className="fixed inset-0 bg-black opacity-30" />
-      </Transition.Child>
-
-      <span className="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
-      <Transition.Child
-        as={Fragment}
-        enter="ease-out duration-300"
-        enterFrom="opacity-0 scale-95"
-        enterTo="opacity-100 scale-100"
-        leave="ease-in duration-200"
-        leaveFrom="opacity-100 scale-100"
-        leaveTo="opacity-0 scale-95"
-      >
-        <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-neutral-800 shadow-xl rounded-2xl">
-          <Dialog.Title as="h2" className="text-lg font-medium leading-6 text-lime-600 ">
-            <FaMailBulk className="text-4xl  " />
-          </Dialog.Title>
-          <div className="mt-2 text-center">
-            {selectedNotification?.name_agency ? (
-              <h1 className="text-lg font-semibold text-gray-300">
-                Agencia registrada: <br /> <strong className="text-indigo-500 text-3xl">{selectedNotification.name_agency}</strong>
-                <br />  <strong className="text-indigo-500">{selectedNotification?.mail}</strong>
-              </h1>
-            ) : (
-              <h1 className="text-lg font-semibold text-gray-300">
-                Usuario registrado: <br className='border-b-2 border-gray-500 ' /> <strong className="text-indigo-500 text-3xl">{selectedNotification?.username}</strong><br />
-                 <strong className="text-indigo-300">{selectedNotification?.mail}</strong>
-                
-              </h1>
-            )}
-          </div>
-
-          <div className="mt-4 flex justify-between">
-            <button
-              type="button"
-              className="inline-flex justify-center p-1 text-xs font-medium text-red-600  hover:text-red-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
-              onClick={() => deleteNotification(selectedNotification!.id, selectedNotification!)}
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-10 overflow-y-auto"
+          onClose={closeModal}
+        >
+          <div className="min-h-screen px-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
             >
-              <MdDeleteSweep  size={30} className="m-1" />
-            </button>
-            <button
-              type="button"
-              className="ml-2 inline-flex justify-center px-4 py-2 text-3xl font-medium text-orange-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
-              onClick={closeModal}
-            >
-              <RiMailCloseFill />
-            </button>
-          </div>
-        </div>
-      </Transition.Child>
-    </div>
-  </Dialog>
-</Transition>
+              <div className="fixed inset-0 bg-black opacity-30" />
+            </Transition.Child>
 
+            <span
+              className="inline-block h-screen align-middle"
+              aria-hidden="true"
+            >
+              &#8203;
+            </span>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-neutral-800 shadow-xl rounded-2xl">
+                <Dialog.Title
+                  as="h2"
+                  className="text-lg font-medium leading-6 text-lime-600 "
+                >
+                  <FaMailBulk className="text-4xl  " />
+                </Dialog.Title>
+                <div className="mt-2 text-center">
+                  {selectedNotification?.name_agency ? (
+                    <h1 className="text-lg font-semibold text-gray-300">
+                      Agencia registrada: <br />{' '}
+                      <strong className="text-indigo-500 text-3xl">
+                        {selectedNotification.name_agency}
+                      </strong>
+                      <br />{' '}
+                      <strong className="text-indigo-500">
+                        {selectedNotification?.mail}
+                      </strong>
+                    </h1>
+                  ) : (
+                    <h1 className="text-lg font-semibold text-gray-300">
+                      Usuario registrado:{' '}
+                      <br className="border-b-2 border-gray-500 " />{' '}
+                      <strong className="text-indigo-500 text-3xl">
+                        {selectedNotification?.username}
+                      </strong>
+                      <br />
+                      <strong className="text-indigo-300">
+                        {selectedNotification?.mail}
+                      </strong>
+                    </h1>
+                  )}
+                </div>
+
+                <div className="mt-4 flex justify-between">
+                  <button
+                    type="button"
+                    className="inline-flex justify-center p-1 text-xs font-medium text-red-600  hover:text-red-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    onClick={() =>
+                      deleteNotification(
+                        selectedNotification!.id,
+                        selectedNotification!,
+                      )
+                    }
+                  >
+                    <MdDeleteSweep size={30} className="m-1" />
+                  </button>
+                  <button
+                    type="button"
+                    className="ml-2 inline-flex justify-center px-4 py-2 text-3xl font-medium text-orange-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
+                    onClick={closeModal}
+                  >
+                    <RiMailCloseFill />
+                  </button>
+                </div>
+              </div>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition>
     </div>
   );
 };
 
 export default CardBox;
-
-

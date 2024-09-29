@@ -92,7 +92,7 @@ export const useTourForm = () => {
         console.log('Tour a enviar:', nuevoTour);
 
         const tourResponse = await fetch(
-          'https://fivetart-travel-kafg.onrender.com/tours',
+          `${process.env.NEXT_PUBLIC_API_URL}/tours`,
           {
             method: 'POST',
             headers: {
