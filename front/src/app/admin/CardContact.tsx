@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { MdSupportAgent } from "react-icons/md";
+import { MdSupportAgent } from 'react-icons/md';
 
 interface Notification {
   username: string;
@@ -19,7 +19,9 @@ const CardContact: React.FC = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get('https://fivetart-travel-kafg.onrender.com/contact');
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/contact`,
+        );
         console.log('Fetched notifications:', response.data);
 
         if (Array.isArray(response.data)) {
@@ -55,7 +57,9 @@ const CardContact: React.FC = () => {
         <MdSupportAgent className="text-teal-500" size={36} />
       </div>
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-5xl font-bold text-shadow-medium">{notifications.length}</p>
+        <p className="text-5xl font-bold text-shadow-medium">
+          {notifications.length}
+        </p>
         <p className="text-xl font-semibold text-shadow-medium">Soporte</p>
       </div>
     </div>

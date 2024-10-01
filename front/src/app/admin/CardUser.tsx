@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserModal from './UserModal';
-import { PiUsersThreeBold } from "react-icons/pi";
+import { PiUsersThreeBold } from 'react-icons/pi';
 
 interface Users {
   id?: string;
@@ -27,11 +27,14 @@ const CardUser: React.FC<CardContactProps> = () => {
       const userSession = localStorage.getItem('userSession');
       const token = userSession ? JSON.parse(userSession).token : '';
 
-      const response = await axios.get('https://fivetart-travel-kafg.onrender.com/user', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
       setUsers(response.data);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -69,12 +72,14 @@ const CardUser: React.FC<CardContactProps> = () => {
         <PiUsersThreeBold className="text-yellow-500" size={36} />
       </div>
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-5xl text-gray-600 text-shadow-medium font-bold">{users.length}</p>
-        <p className="text-xl text-gray-600 text-shadow-medium font-semibold">Usuarios</p>
+        <p className="text-5xl text-gray-600 text-shadow-medium font-bold">
+          {users.length}
+        </p>
+        <p className="text-xl text-gray-600 text-shadow-medium font-semibold">
+          Usuarios
+        </p>
       </div>
-      {isModalOpen && (
-        <UserModal users={users} onClose={closeModal} />
-      )}
+      {isModalOpen && <UserModal users={users} onClose={closeModal} />}
     </div>
   );
 };

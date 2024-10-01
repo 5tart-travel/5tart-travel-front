@@ -10,7 +10,7 @@ interface CompraSectionProps {
     id: string;
     title: string;
     price: number;
-    activitiesTotalPrice: number; 
+    activitiesTotalPrice: number;
   };
   tourId: string;
 }
@@ -44,7 +44,7 @@ const CompraSection: React.FC<CompraSectionProps> = ({
 
   const toggleFavorite = async () => {
     try {
-      const url = `https://fivetart-travel-kafg.onrender.com/user/tour/favorite/${tourId}`;
+      const url = `${process.env.NEXT_PUBLIC_API_URL}/user/tour/favorite/${tourId}`;
       if (favorited) {
         await axios.delete(url, {
           headers: {
@@ -133,13 +133,15 @@ const CompraSection: React.FC<CompraSectionProps> = ({
   };
 
   useEffect(() => {
-    setTotalPrice((busDetails.price + busDetails.activitiesTotalPrice) * peopleCount);
+    setTotalPrice(
+      (busDetails.price + busDetails.activitiesTotalPrice) * peopleCount,
+    );
   }, [busDetails.price, busDetails.activitiesTotalPrice, peopleCount]);
 
   const handleQuantityChange = (newQuantity: number) => {
     setPeopleCount(newQuantity);
   };
-  
+
   if (userRole === 'agency') {
     return null;
   }
@@ -167,7 +169,8 @@ const CompraSection: React.FC<CompraSectionProps> = ({
           Precio por persona: ${busDetails.price}
         </p>
         <p className="text-sm md:text-md mb-2 md:mb-4">
-          Total Actividades: ${busDetails.activitiesTotalPrice.toLocaleString('es-ES')}
+          Total Actividades: $
+          {busDetails.activitiesTotalPrice.toLocaleString('es-ES')}
         </p>
         <div className="mb-2 md:mb-4 flex-col items-center justify-center">
           <label

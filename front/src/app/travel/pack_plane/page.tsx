@@ -20,13 +20,13 @@ const PackPlane: React.FC = () => {
     const fetchBuses = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/tours/plane`,
+          `${process.env.NEXT_PUBLIC_API_URL}tours/plane`,
         );
         if (!response.ok) {
           throw new Error('Falló el fetch de bus tours');
         }
         const data: IBusTour[] = await response.json();
-        const activeBuses = data.filter(tour => tour.isActive);
+        const activeBuses = data.filter((tour) => tour.isActive);
         setBuses(activeBuses);
         setFilteredTours(activeBuses);
 
@@ -95,7 +95,7 @@ const PackPlane: React.FC = () => {
                 <div className="rounded-lg overflow-hidden p-4 w-full h-[400px] max-w-2xl relative">
                   <div className="airplane"></div>{' '}
                   <h2 className="flex justify-center text-gray-600 mt-[100px] text-xl font-bold mb-4">
-                    No se encontraron tours según los filtros aplicados
+                    No se encontraron tours según los filtros aplicados.
                   </h2>
                 </div>
               </div>

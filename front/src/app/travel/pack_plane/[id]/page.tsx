@@ -21,7 +21,6 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const router = useRouter();
   const [totalPointsPrice, setTotalPointsPrice] = useState<number>(0);
 
-
   useEffect(() => {
     const userSession = localStorage.getItem('userSession');
     if (!userSession) {
@@ -45,7 +44,7 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
     const fetchBusDetails = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/tours/${params.id}`,
+          `${process.env.NEXT_PUBLIC_API_URL}tours/${params.id}`,
         );
         if (!response.ok) {
           throw new Error('Failed to fetch data');
@@ -89,21 +88,18 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
           averageRate={busDetails.averageRate}
         />
       </div>
-
       <CompraSection
         busDetails={{ ...busDetails, activitiesTotalPrice: totalPointsPrice }}
         tourId={params.id}
-      />      <div>
+      />{' '}
+      <div>
         <TourDetails busDetails={busDetails} />
       </div>
-
       <MapSection busDetails={busDetails} />
-
       <TouristPointsSection
         busDetails={busDetails}
-        onTotalPriceChange={handleTotalPointsPriceChange} 
+        onTotalPriceChange={handleTotalPointsPriceChange}
       />
-
       <div className="flex items-center mb-1 mt-20">
         <hr className="border-gray-300 flex-grow opacity-20" />
         <h2 className="text-lg font-bold text-gray-300 mx-2">Detalle de</h2>
@@ -115,13 +111,11 @@ const PlaneDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
       <div>
         <Pasage busDetails={busDetails} />
       </div>
-
       <div className="flex items-center mb-1 mt-20">
         <hr className="border-gray-300 flex-grow opacity-20" />
         <h2 className="text-lg font-bold text-gray-300 mx-2">Comentarios</h2>
         <hr className="border-gray-300 flex-grow opacity-20" />
       </div>
-
       <div className="w-full p-10">
         <div className="bg-gray-200 rounded-md p-5">
           {busDetails && (

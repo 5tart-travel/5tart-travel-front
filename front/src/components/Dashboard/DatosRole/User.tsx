@@ -46,7 +46,7 @@ const User: React.FC<UserProps> = ({ userData }) => {
             localStorage.getItem('userSession') || '{}',
           ).token;
           const response = await fetch(
-            'https://fivetart-travel-kafg.onrender.com/user/profile',
+            `${process.env.NEXT_PUBLIC_API_URL}/user/profile`,
             {
               method: 'PUT',
               headers: {

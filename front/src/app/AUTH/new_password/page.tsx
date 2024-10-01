@@ -12,55 +12,62 @@ const NewPassword: React.FC = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     newPassword: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
 
   const [formValidations, setFormValidations] = useState({
     newPasswordValid: null as boolean | null,
-    confirmPasswordValid: null as boolean | null
+    confirmPasswordValid: null as boolean | null,
   });
 
   const validatePassword = (password: string) => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return regex.test(password);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     if (name === 'newPassword') {
-      setFormValidations(prev => ({
+      setFormValidations((prev) => ({
         ...prev,
         newPasswordValid: validatePassword(value),
-        confirmPasswordValid: value === formData.confirmPassword
+        confirmPasswordValid: value === formData.confirmPassword,
       }));
     }
 
     if (name === 'confirmPassword') {
-      setFormValidations(prev => ({
+      setFormValidations((prev) => ({
         ...prev,
-        confirmPasswordValid: value === formData.newPassword
+        confirmPasswordValid: value === formData.newPassword,
       }));
     }
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (formValidations.newPasswordValid && formValidations.confirmPasswordValid) {
+    if (
+      formValidations.newPasswordValid &&
+      formValidations.confirmPasswordValid
+    ) {
       try {
         const dataUserString = localStorage.getItem('dataUser');
         if (!dataUserString) {
           throw new Error('No se encontró el objeto dataUser en localStorage');
         }
         const dataUser = JSON.parse(dataUserString);
-        
-        const response = await axios.put('https://fivetart-travel-kafg.onrender.com/auth/password', {  
-          id: dataUser.id,
-          type: dataUser.type,
-          newPassword: formData.newPassword,
-        });
-        
+
+        const response = await axios.put(
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/password`,
+          {
+            id: dataUser.id,
+            type: dataUser.type,
+            newPassword: formData.newPassword,
+          },
+        );
+
         Swal.fire({ text: '¡Cambio de contraseña exitoso!', icon: 'success' });
         localStorage.removeItem('dataUser');
         router.push('/AUTH/login');
@@ -73,21 +80,21 @@ const NewPassword: React.FC = () => {
       Swal.fire({ text: '¡Error al cambiar la contraseña!', icon: 'error' });
     }
   };
-  
+
   return (
-    <div className='w-full max-w-md mx-auto mt-48'>
-      <div className='mb-5'>
-        <h2 className='text-2xl font-semibold'>Cambia tu contraseña</h2>
-        <p className='text-yellow500 text-sm'>
+    <div className="w-full max-w-md mx-auto mt-48">
+      <div className="mb-5">
+        <h2 className="text-2xl font-semibold">Cambia tu contraseña</h2>
+        <p className="text-yellow500 text-sm">
           Por favor, ingresa tu nueva contraseña y confirma.
         </p>
       </div>
-      <form className='w-full' onSubmit={handleSubmit}>
+      <form className="w-full" onSubmit={handleSubmit}>
         <div className="relative mt-4">
           <Input
-            type='password'
-            name='newPassword'
-            placeholder='Nueva contraseña'
+            type="password"
+            name="newPassword"
+            placeholder="Nueva contraseña"
             value={formData.newPassword}
             onChange={handleChange}
             className={`border-2 w-full ${
@@ -100,15 +107,16 @@ const NewPassword: React.FC = () => {
           />
           {formValidations.newPasswordValid === false && (
             <p className="text-red-500 text-xs">
-              La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una minúscula, un número y un carácter especial.
+              La contraseña debe tener al menos 8 caracteres, una letra
+              mayúscula, una minúscula, un número y un carácter especial.
             </p>
           )}
         </div>
         <div className="relative mt-4">
           <Input
-            type='password'
-            name='confirmPassword'
-            placeholder='Confirmar contraseña'
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirmar contraseña"
             value={formData.confirmPassword}
             onChange={handleChange}
             className={`border-2 w-full ${
@@ -125,13 +133,16 @@ const NewPassword: React.FC = () => {
             </p>
           )}
         </div>
-        <Button type='submit' label='Cambiar contraseña' className='w-full mt-4' />
+        <Button
+          type="submit"
+          label="Cambiar contraseña"
+          className="w-full mt-4"
+        />
 
-        <div className='flex justify-center'>
-            <Link href={'/AUTH/forgot_password'}>
-             <BackButton />
-            </Link>
-       
+        <div className="flex justify-center">
+          <Link href={'/AUTH/forgot_password'}>
+            <BackButton />
+          </Link>
         </div>
       </form>
     </div>

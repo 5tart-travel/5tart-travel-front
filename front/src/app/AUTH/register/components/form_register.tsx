@@ -154,7 +154,7 @@ const UserForm: React.FC = () => {
     if (!someInvalid) {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/register/user`,
+          `${process.env.NEXT_PUBLIC_API_URL}auth/register/user`,
           {
             method: 'POST',
             headers: {

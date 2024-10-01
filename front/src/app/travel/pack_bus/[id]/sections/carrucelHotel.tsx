@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import React, { useState, useEffect, useCallback } from 'react';
 
 type CarouselProps = {
   listImg: string[];
@@ -7,22 +8,27 @@ type CarouselProps = {
 const Carousel: React.FC<CarouselProps> = ({ listImg }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % listImg.length);
-  };
+  }, [listImg.length]);
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + listImg.length) % listImg.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + listImg.length) % listImg.length,
+    );
   };
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 5000); 
+    const interval = setInterval(nextSlide, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [nextSlide]);
 
   return (
-    <div id="default-carousel" className="relative w-full" data-carousel="slide">
-      
+    <div
+      id="default-carousel"
+      className="relative w-full"
+      data-carousel="slide"
+    >
       <div className="relative h-56 md:h-96 overflow-hidden rounded-lg">
         {listImg.map((imageUrl, index) => (
           <div
@@ -32,11 +38,18 @@ const Carousel: React.FC<CarouselProps> = ({ listImg }) => {
             }`}
             data-carousel-item
           >
-            <img
+            <Image
+              src={imageUrl}
+              alt={`Carousel ${index + 1}`}
+              layout="fill" // Para cubrir el contenedor, como lo haría `absolute top-0 left-0 w-full h-full`
+              className="object-cover"
+            />
+
+            {/* <img
               src={imageUrl}
               className="absolute top-0 left-0 w-full h-full object-cover"
               alt={`Carousel ${index + 1}`}
-            />
+            /> */}
           </div>
         ))}
       </div>
@@ -45,7 +58,9 @@ const Carousel: React.FC<CarouselProps> = ({ listImg }) => {
           <button
             key={index}
             type="button"
-            className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-white' : 'bg-gray-300'}`}
+            className={`w-3 h-3 rounded-full ${
+              currentIndex === index ? 'bg-white' : 'bg-gray-300'
+            }`}
             aria-current={currentIndex === index ? 'true' : 'false'}
             aria-label={`Slide ${index + 1}`}
             data-carousel-slide-to={index}
@@ -68,7 +83,13 @@ const Carousel: React.FC<CarouselProps> = ({ listImg }) => {
                 fill="none"
                 viewBox="0 0 6 10"
               >
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1 1 5l4 4"/>
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M5 1 1 5l4 4"
+                />
               </svg>
               <span className="sr-only">Previous</span>
             </span>
@@ -87,7 +108,13 @@ const Carousel: React.FC<CarouselProps> = ({ listImg }) => {
                 fill="none"
                 viewBox="0 0 6 10"
               >
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m1 9 4-4-4-4"
+                />
               </svg>
               <span className="sr-only">Next</span>
             </span>
