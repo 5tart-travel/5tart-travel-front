@@ -66,6 +66,7 @@
     "tailwind-scrollbar": "^3.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.25.2",
     "@tailwindcss/forms": "^0.5.7",
     "@types/jwt-decode": "^3.1.0",
     "@types/leaflet": "^1.9.12",
@@ -75,6 +76,7 @@
     "@types/react-modal": "^3.16.3",
     "@types/react-slick": "^0.23.13",
     "@types/react-star-ratings": "^2.3.3",
+    "babel-preset-next": "^1.4.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
