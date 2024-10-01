@@ -44,7 +44,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
     const fetchBusDetails = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/tours/${params.id}`,
+          `${process.env.NEXT_PUBLIC_API_URL}tours/${params.id}`,
         );
         if (!response.ok) {
           throw new Error('Failed to fetch data');
@@ -67,15 +67,27 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   };
 
   if (loading) {
-    return <p className='text-center py-10 text-4xl text-blue-500 text-shadow-semidark ' >Loading...</p>;
+    return (
+      <p className="text-center py-10 text-4xl text-blue-500 text-shadow-semidark ">
+        Loading...
+      </p>
+    );
   }
 
   if (error) {
-    return <p className='text-center py-10 text-4xl text-blue-500 text-shadow-semidark '>Error: {error}</p>;
+    return (
+      <p className="text-center py-10 text-4xl text-blue-500 text-shadow-semidark ">
+        Error: {error}
+      </p>
+    );
   }
 
   if (!busDetails) {
-    return <p className='text-center py-10 text-4xl text-blue-500 text-shadow-semidark '>No se encontraron detalles del tour.</p>;
+    return (
+      <p className="text-center py-10 text-4xl text-blue-500 text-shadow-semidark ">
+        No se encontraron detalles del tour.
+      </p>
+    );
   }
 
   return (
@@ -101,7 +113,7 @@ const BusDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
 
       <TouristPointsSection
         busDetails={busDetails}
-        onTotalPriceChange={handleTotalPointsPriceChange} 
+        onTotalPriceChange={handleTotalPointsPriceChange}
       />
 
       <div className="flex items-center mb-1 mt-20">

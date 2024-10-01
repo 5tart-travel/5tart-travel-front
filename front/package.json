@@ -57,6 +57,7 @@
     "react-youtube": "^10.1.0",
     "reactjs-flip-card": "^2.0.3",
     "recharts": "^2.12.7",
+    "sharp": "^0.33.5",
     "simplebar-react": "^3.2.6",
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.7.5",
