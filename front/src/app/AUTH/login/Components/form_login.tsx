@@ -72,7 +72,7 @@ const Form_Login: React.FC = () => {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+        `${process.env.NEXT_PUBLIC_API_URL}auth/login`,
         {
           method: 'POST',
           headers: {
@@ -86,7 +86,7 @@ const Form_Login: React.FC = () => {
         if (response.status === 401) {
           throw new Error('Unauthorized');
         } else if (response.status === 418) {
-          throw new Error('I\'m a teapot');
+          throw new Error("I'm a teapot");
         } else {
           throw new Error('Error al iniciar sesión');
         }
@@ -114,21 +114,24 @@ const Form_Login: React.FC = () => {
     } catch (error: any) {
       console.error('Error al iniciar sesión:', error);
 
-      let errorMessage = 'Hubo un error al iniciar sesión. Por favor, inténtalo nuevamente.';
+      let errorMessage =
+        'Hubo un error al iniciar sesión. Por favor, inténtalo nuevamente.';
       let errorTitle = '¡Error!';
       let errorIcon: SweetAlertIcon = 'error';
-      let timerAlert = 3000
+      let timerAlert = 3000;
 
       if (error && error.message) {
         if (error.message === 'Unauthorized') {
-          errorMessage = 'Las credenciales proporcionadas son incorrectas.\nPor favor, verifica tu usuario y contraseña e intenta nuevamente.';
+          errorMessage =
+            'Las credenciales proporcionadas son incorrectas.\nPor favor, verifica tu usuario y contraseña e intenta nuevamente.';
           errorTitle = 'Error de Autenticación';
-          timerAlert = 4000
-        } else if (error.message === 'I\'m a teapot') {
-          errorMessage = 'Esta cuenta se encuentra inactiva. Por favor, aguarde hasta recibir el correo de activación y vuelva a intentarlo.';
+          timerAlert = 4000;
+        } else if (error.message === "I'm a teapot") {
+          errorMessage =
+            'Esta cuenta se encuentra inactiva. Por favor, aguarde hasta recibir el correo de activación y vuelva a intentarlo.';
           errorTitle = 'Cuenta Inactiva';
-          errorIcon = 'info'
-          timerAlert = 4000
+          errorIcon = 'info';
+          timerAlert = 4000;
         }
       }
 
@@ -149,7 +152,7 @@ const Form_Login: React.FC = () => {
 
   const handleGoogleLogin = async () => {
     const hasConfirmed = localStorage.getItem('googleLoginConfirmed');
-  
+
     if (hasConfirmed) {
       window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/google`;
     } else {
@@ -170,7 +173,7 @@ const Form_Login: React.FC = () => {
       });
     }
   };
-  
+
   return (
     <div className="w-full max-w-md">
       <div className="mb-5">
