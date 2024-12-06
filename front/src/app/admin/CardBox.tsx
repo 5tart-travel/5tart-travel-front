@@ -33,14 +33,14 @@ const CardBox: React.FC = () => {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const response = await axios.get<Agency[]>('https://fivetart-travel-kafg.onrender.com/agency/disable/seen');
+        const response = await axios.get<Agency[]>(`${process.env.NEXT_PUBLIC_API_URL}/agency/disable/seen`);
         if (Array.isArray(response.data)) {
           setAgencies(response.data);
         } else {
           console.error('Response data is not an array:', response.data);
         }
 
-        const response2 = await axios.get<User[]>('https://fivetart-travel-kafg.onrender.com/user/disable/seen');
+        const response2 = await axios.get<User[]>(`${process.env.NEXT_PUBLIC_API_URL}/user/disable/seen`);
         if (Array.isArray(response2.data)) {
           setUsers(response2.data);
         } else {
@@ -107,7 +107,7 @@ const CardBox: React.FC = () => {
   };
 
   const deleteNotification = async (id: string, type: any) => {
-      const url = `https://fivetart-travel-kafg.onrender.com/agency/disable/seen/${id}`;
+      const url = `${process.env.NEXT_PUBLIC_API_URL}/agency/disable/seen/${id}`;
       await axios.put(url);
   
       if (type.name_agency) {

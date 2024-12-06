@@ -22,8 +22,8 @@ const ToggleUser: React.FC<ToggleUserProps> = ({ userId, isActive, onToggle }) =
 
     try {
       const url = newStatus
-        ? `https://fivetart-travel-kafg.onrender.com/user/active/${userId}`
-        : `https://fivetart-travel-kafg.onrender.com/user/disable/${userId}`;
+        ? `${process.env.NEXT_PUBLIC_API_URL}/user/active/${userId}`
+        : `${process.env.NEXT_PUBLIC_API_URL}/user/disable/${userId}`;
       await axios.put(url);
       setIsChecked(newStatus); //? Solo se cambia el estado si la petición es exitosa
       onToggle(userId, newStatus);

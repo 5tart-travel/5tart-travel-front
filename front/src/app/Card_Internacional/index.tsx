@@ -23,7 +23,7 @@ const CardInternacional: React.FC = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await fetch('https://fivetart-travel-kafg.onrender.com/tours');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours`);
         const data: Tour[] = await response.json();
         const internationalActiveTours = data.filter(tour => tour.region === 'Internacional' && tour.isActive);
       setTours(internationalActiveTours);

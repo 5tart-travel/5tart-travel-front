@@ -52,7 +52,7 @@ const Contacto: React.FC = () => {
     }
 
     try {
-      await axios.post('https://fivetart-travel-kafg.onrender.com/contact', formData); 
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/contact`, formData); 
       Swal.fire({
         title: 'Formulario enviado con éxito',
         icon: 'success',

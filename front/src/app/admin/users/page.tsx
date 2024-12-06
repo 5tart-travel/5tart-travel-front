@@ -25,7 +25,7 @@ const Users: React.FC = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          'https://fivetart-travel-kafg.onrender.com/user',
+          `${process.env.NEXT_PUBLIC_API_URL}/user`,
           {
             headers: {
               Authorization: `Bearer YOUR_TOKEN_HERE`,

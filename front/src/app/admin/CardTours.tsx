@@ -19,7 +19,7 @@ const CardTours: React.FC = () => {
       const userSession = localStorage.getItem('userSession');
       const token = userSession ? JSON.parse(userSession).token : '';
 
-      const response = await axios.get('https://fivetart-travel-kafg.onrender.com/tours', {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/tours`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

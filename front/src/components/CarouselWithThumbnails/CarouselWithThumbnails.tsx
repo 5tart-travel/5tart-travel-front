@@ -17,7 +17,7 @@ const CarouselWithThumbnails: React.FC<CarouselProps> = ({tema}) => {
     console.log('Fetching agencias...');
     try {
       const response = await fetch(
-        'https://fivetart-travel-kafg.onrender.com/agency',
+        `${process.env.NEXT_PUBLIC_API_URL}/agency`,
       );
       const data = await response.json();
       console.log('Agencias fetched:', data);

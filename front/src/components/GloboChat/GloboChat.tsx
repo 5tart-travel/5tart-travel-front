@@ -28,14 +28,14 @@ const GloboChat: React.FC = () => {
     // Añadir el mensaje al estado local inmediatamente
     setMessages((prevMessages) => [...prevMessages, message]);
     setMessage('');
-
+      
     try {
       const response = await fetch('https://tu-backend-url.com/api/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: message }),
+        body: JSON.stringify({ text: message }),    
       });
 
       if (!response.ok) {

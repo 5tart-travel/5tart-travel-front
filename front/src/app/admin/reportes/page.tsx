@@ -45,7 +45,7 @@ const Reportes: React.FC = () => {
 
   const sendMessage = async (id: string) => {
     try {
-      await axios.post(`https://fivetart-travel-kafg.onrender.com/contact/sendEmail/${id}`);
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/contact/sendEmail/${id}`);
       Swal.fire({
         icon: "success",
         title: "Mensaje enviado",
@@ -62,7 +62,7 @@ const Reportes: React.FC = () => {
 
   const deleteMessage = async (id: string) => {
     try {
-      await axios.delete(`https://fivetart-travel-kafg.onrender.com/contact/${id}`);
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/contact/${id}`);
       setNotifications(notifications.filter(notification => notification.id !== id));
       Swal.fire({
         icon: "success",

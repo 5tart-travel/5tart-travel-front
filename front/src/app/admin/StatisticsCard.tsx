@@ -24,8 +24,8 @@ const StatisticsCard: React.FC = () => {
   const fetchData = async () => {
     try {
       const [userResponse, agencyResponse] = await Promise.all([
-        axios.get('https://fivetart-travel-kafg.onrender.com/user'),
-        axios.get('https://fivetart-travel-kafg.onrender.com/agency'),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user`),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/agency`),
       ]);
 
       const users = userResponse.data;

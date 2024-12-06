@@ -59,7 +59,7 @@ const Packages: React.FC = () => {
       }
 
       const response = await axios.delete(
-        `https://fivetart-travel-kafg.onrender.com/tours/${packageId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/tours/${packageId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
