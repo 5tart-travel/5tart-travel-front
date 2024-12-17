@@ -6,7 +6,7 @@ const buses = [
   { name: "Flecha Bus", logoSrc: "https://res.cloudinary.com/dia2gautk/image/upload/v1719862035/a9iedzedpltbm9bu8mmx.png", href: "#" },
   { name: "Chevallier", logoSrc: "https://res.cloudinary.com/dia2gautk/image/upload/v1719862035/p1rhtbe1q4twz1jbxerd.png", href: "#" },
   { name: "Via Bariloche", logoSrc: "https://res.cloudinary.com/dia2gautk/image/upload/v1719862035/vhixlcjlxkaod1rplj6m.png", href: "#" },
-  { name: "El Rápido Argentino", logoSrc: "https://res.cloudinary.com/dia2gautk/image/upload/v1719862035/sfy3zrcdgig2bihdf99r.png", href: "#" },
+  { name: "El Rapido Argentino", logoSrc: "https://res.cloudinary.com/dia2gautk/image/upload/v1719862035/sfy3zrcdgig2bihdf99r.png", href: "#" },
   { name: "Plusmar", logoSrc: "https://res.cloudinary.com/dia2gautk/image/upload/v1719862034/cuux0jsi8d5mvriegdkw.png", href: "#" },
   { name: "Crucero del Norte", logoSrc: "https://res.cloudinary.com/dia2gautk/image/upload/v1719862034/swsqv50qfg0uoooi0mx0.png", href: "#" },
   { name: "La Nueva Empresa", logoSrc: "https://res.cloudinary.com/dia2gautk/image/upload/v1719862034/sp5gzuij3pkgrhmpjtev.png", href: "#" },
