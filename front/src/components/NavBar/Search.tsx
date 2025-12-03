@@ -25,7 +25,7 @@ const Search: React.FC = () => {
     setIsModalOpen(true);
     console.log("Searching for:", searchTerm);
     try {
-      const response = await axios.get(`https://fivetart-travel-kafg.onrender.com/search?q=${searchTerm}`)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/search?q=${searchTerm}`)
 
       const filteredResults = response.data
       

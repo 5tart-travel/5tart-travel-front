@@ -5,7 +5,7 @@ export const addNewTour = async (
   token: string | null,
 ) => {
   const response = await fetch(
-    'https://fivetart-travel-kafg.onrender.com/tours',
+    `${process.env.NEXT_PUBLIC_API_URL}/tours`,
     {
       method: 'POST',
       headers: {

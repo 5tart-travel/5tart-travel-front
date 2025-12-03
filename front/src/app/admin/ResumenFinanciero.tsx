@@ -11,7 +11,7 @@ const ResumenFinanciero: React.FC = () => {
   useEffect(() => {
     const calcularBruto = async () => {
       try {
-        const response = await axios.get('https://fivetart-travel-kafg.onrender.com/order');
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/order`);
         const data: any = response.data;
 
         let total = 0;

@@ -19,7 +19,7 @@ const CardContact: React.FC = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get('https://fivetart-travel-kafg.onrender.com/contact');
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/contact`);
         console.log('Fetched notifications:', response.data);
 
         if (Array.isArray(response.data)) {

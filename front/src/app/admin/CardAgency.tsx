@@ -21,7 +21,7 @@ const CardAgency: React.FC = () => {
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        const response = await axios.get('https://fivetart-travel-kafg.onrender.com/agency');
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/agency`);
         setAgencies(response.data);
       } catch (error) {
         console.error('Error fetching agencies:', error);

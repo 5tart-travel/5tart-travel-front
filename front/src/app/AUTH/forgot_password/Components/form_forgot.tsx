@@ -25,7 +25,7 @@ const Form_forgot = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://fivetart-travel-kafg.onrender.com/auth/email', { mail: email });
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/email`, { mail: email });
 
       localStorage.setItem('dataUser', JSON.stringify(response.data));
 

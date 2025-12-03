@@ -55,7 +55,7 @@ const NewPassword: React.FC = () => {
         }
         const dataUser = JSON.parse(dataUserString);
         
-        const response = await axios.put('https://fivetart-travel-kafg.onrender.com/auth/password', {  
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/password`, {  
           id: dataUser.id,
           type: dataUser.type,
           newPassword: formData.newPassword,

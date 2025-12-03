@@ -19,7 +19,7 @@ const SubscriptionForm: React.FC<SubscriptionProps> = ({ tema }) => {
     }
 
     try {
-      const response = await fetch('https://fivetart-travel-kafg.onrender.com/tours/mailOfertas', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours/mailOfertas`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

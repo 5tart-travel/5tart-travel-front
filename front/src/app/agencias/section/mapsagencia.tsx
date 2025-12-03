@@ -40,7 +40,7 @@ const MapsAgencia: React.FC<MapsAgenciaProps> = ({ address }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`https://fivetart-travel-kafg.onrender.com/maps/geocode`, {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/maps/geocode`, {
           address: address,
         });
 

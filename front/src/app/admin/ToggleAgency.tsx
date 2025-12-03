@@ -22,8 +22,8 @@ const ToggleAgency: React.FC<ToggleAgencyProps> = ({ agencyId, isActive, onToggl
 
     try {
       const url = newStatus
-        ? `https://fivetart-travel-kafg.onrender.com/agency/active/${agencyId}`
-        : `https://fivetart-travel-kafg.onrender.com/agency/disable/${agencyId}`;
+        ? `${process.env.NEXT_PUBLIC_API_URL}/agency/active/${agencyId}`
+        : `${process.env.NEXT_PUBLIC_API_URL}/agency/disable/${agencyId}`;
       await axios.put(url);
       setIsChecked(newStatus);
       onToggle(agencyId, newStatus);

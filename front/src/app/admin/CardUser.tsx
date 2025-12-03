@@ -27,7 +27,7 @@ const CardUser: React.FC<CardContactProps> = () => {
       const userSession = localStorage.getItem('userSession');
       const token = userSession ? JSON.parse(userSession).token : '';
 
-      const response = await axios.get('https://fivetart-travel-kafg.onrender.com/user', {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
