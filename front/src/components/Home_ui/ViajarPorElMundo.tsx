@@ -8,7 +8,7 @@ interface ViajaProps {
 const ViajaPorElMundo: React.FC<ViajaProps> = ({ tema }) => {
   return (
     <div
-      className={`flex flex-col md:flex-row items-center justify-between mt-20 ${
+      className={`flex flex-col items-center justify-center justify-between ${
         tema ? 'bg-customGray md:mt-30' : 'bg-gray-100 md:mt-40'
       } h-auto md:h-custom-1 px-4`}
     >
